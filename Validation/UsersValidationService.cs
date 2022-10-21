@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Validation
 {
-    internal class UsersValidationService : IUsersValidationService
+    public class UsersValidationService : IUsersValidationService
     {
 
         public bool ValidateEmailFormat(string email)
