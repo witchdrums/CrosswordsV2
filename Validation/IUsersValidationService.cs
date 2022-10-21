@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Validation
 {
-    internal interface IUsersValidationService
+    public interface IUsersValidationService
     {
         bool ValidateEmailFormat(String email);
         bool ValidateEmailIsNew(String email);
