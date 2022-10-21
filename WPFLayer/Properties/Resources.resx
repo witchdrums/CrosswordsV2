@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,147 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Button_AddFriend" xml:space="preserve">
+    <value>Add friend</value>
+  </data>
+  <data name="Button_EditProfile" xml:space="preserve">
+    <value>Edit profile</value>
+  </data>
+  <data name="Button_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Button_GameSetting" xml:space="preserve">
+    <value>Game settings</value>
+  </data>
+  <data name="Button_NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="Button_Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="Button_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Button_Unfriend" xml:space="preserve">
+    <value>Unfriend</value>
+  </data>
+  <data name="Button_ViewProfile" xml:space="preserve">
+    <value>View profile</value>
+  </data>
+  <data name="Game_Button_Guess" xml:space="preserve">
+    <value>Guess</value>
+  </data>
+  <data name="Game_Button_LeaveGame" xml:space="preserve">
+    <value>Leave game</value>
+  </data>
+  <data name="Game_Label_Clues" xml:space="preserve">
+    <value>Clues</value>
+  </data>
+  <data name="Game_Label_LeaveConfirmation" xml:space="preserve">
+    <value>Are you sure you want to leave this game?</value>
+  </data>
+  <data name="Game_Label_ReportingPlayer" xml:space="preserve">
+    <value>Reporting player: </value>
+  </data>
+  <data name="Game_Label_Score" xml:space="preserve">
+    <value>Score: </value>
+  </data>
+  <data name="General_Button_Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="General_Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="General_Button_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="General_Button_Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="General_Button_ViewProfile" xml:space="preserve">
+    <value>View profile</value>
+  </data>
+  <data name="General_Button_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="General_Label_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="General_Label_EmailAlreadyExists" xml:space="preserve">
+    <value>This e-mail is already in our system</value>
+  </data>
+  <data name="General_Label_EmailInvalid" xml:space="preserve">
+    <value>Invalid e-mail address</value>
+  </data>
+  <data name="General_Label_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="General_Label_PasswordConfirmation" xml:space="preserve">
+    <value>Confirm your password</value>
+  </data>
+  <data name="General_Label_PasswordDontMatch" xml:space="preserve">
+    <value>The passwords must match</value>
+  </data>
+  <data name="General_Label_PasswordInvalid" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
+  <data name="General_Label_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="General_Label_UsernameInvalid" xml:space="preserve">
+    <value>Invalid username</value>
+  </data>
+  <data name="Label_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="Label_GamesPlayed" xml:space="preserve">
+    <value>Games played</value>
+  </data>
+  <data name="Label_GamesWon" xml:space="preserve">
+    <value>Games won</value>
+  </data>
+  <data name="Label_InviteFriend" xml:space="preserve">
+    <value>Invite friend</value>
+  </data>
+  <data name="Label_PlayerDescription" xml:space="preserve">
+    <value>Player description</value>
+  </data>
+  <data name="Label_PlayerID" xml:space="preserve">
+    <value>Player ID</value>
+  </data>
+  <data name="Label_PlayerLevel" xml:space="preserve">
+    <value>Player level</value>
+  </data>
+  <data name="Label_PlayerProfile" xml:space="preserve">
+    <value>Player profile</value>
+  </data>
+  <data name="Label_PlayerRank" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="Label_SearchPlayer" xml:space="preserve">
+    <value>Search player</value>
+  </data>
+  <data name="LogIn_Button_ForgotYourPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="LogIn_Label_PasswordRecovery1" xml:space="preserve">
+    <value>Enter your e-mail address. If we have it on our system, we´ll send you instructions to re-establish your password.</value>
+  </data>
+  <data name="LogIn_Label_PasswordRecovery2" xml:space="preserve">
+    <value>We sent you an e-mail to: </value>
+  </data>
+  <data name="LogIn_LogIn" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogIn_PlayAsGuest" xml:space="preserve">
+    <value>Play as guest</value>
+  </data>
+  <data name="LogIn_SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
 </root>
