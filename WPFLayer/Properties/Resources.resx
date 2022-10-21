@@ -240,6 +240,12 @@
   <data name="LogIn_Button_ForgotYourPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
+  <data name="LogIn_Button_Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogIn_Button_PlayAsGuest" xml:space="preserve">
+    <value>Play as guest</value>
+  </data>
   <data name="LogIn_Label_PasswordRecovery1" xml:space="preserve">
     <value>Enter your e-mail address. If we have it on our system, we´ll send you instructions to re-establish your password.</value>
   </data>
