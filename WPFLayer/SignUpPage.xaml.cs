@@ -59,8 +59,6 @@ namespace WPFLayer
                 newUser.email = this.TextBox_Email.Text;
                 newUser.password = this.PasswordBox_Password.Password;
                 newUser.username = this.TextBox_Email.Text;
-                newUser.idUserType = 1;
-
 
                 client.AddUser(newUser);
                 MessageBox.Show("User has been added");
