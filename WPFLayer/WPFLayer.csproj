@@ -147,6 +147,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{582a1f29-18b4-41ad-8974-f218729ef079}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{69c25a37-3367-48a4-b91c-2c5be423fd6f}</Project>
       <Name>Validation</Name>

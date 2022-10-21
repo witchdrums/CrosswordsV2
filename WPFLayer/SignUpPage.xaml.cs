@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Validation;
+using Security;
 
 namespace WPFLayer
 {
@@ -57,7 +58,8 @@ namespace WPFLayer
 
                 ServicesImplementation.Users newUser = new ServicesImplementation.Users();
                 newUser.email = this.TextBox_Email.Text;
-                newUser.password = this.PasswordBox_Password.Password;
+                IEncryptionService encryptionService = new EncryptionService();
+                newUser.password = encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
                 newUser.username = this.TextBox_Email.Text;
 
                 client.AddUser(newUser);
