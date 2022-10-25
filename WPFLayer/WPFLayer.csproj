@@ -124,6 +124,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicesImplementation\ServicesImplementation.wsdl" />
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Users.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

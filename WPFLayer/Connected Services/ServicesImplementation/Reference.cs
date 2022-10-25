@@ -23,6 +23,9 @@ namespace WPFLayer.ServicesImplementation {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool credentialField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string emailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -44,6 +47,19 @@ namespace WPFLayer.ServicesImplementation {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool credential {
+            get {
+                return this.credentialField;
+            }
+            set {
+                if ((this.credentialField.Equals(value) != true)) {
+                    this.credentialField = value;
+                    this.RaisePropertyChanged("credential");
+                }
             }
         }
         
@@ -137,6 +153,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByEmail", ReplyAction="http://tempuri.org/IUsersManager/FindUserByEmailResponse")]
         System.Threading.Tasks.Task FindUserByEmailAsync(string userEmail);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword", ReplyAction="http://tempuri.org/IUsersManager/FindUserByUserNameAndPasswordResponse")]
+        WPFLayer.ServicesImplementation.Users FindUserByUserNameAndPassword(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword", ReplyAction="http://tempuri.org/IUsersManager/FindUserByUserNameAndPasswordResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> FindUserByUserNameAndPasswordAsync(WPFLayer.ServicesImplementation.Users user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -188,6 +210,14 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task FindUserByEmailAsync(string userEmail) {
             return base.Channel.FindUserByEmailAsync(userEmail);
+        }
+        
+        public WPFLayer.ServicesImplementation.Users FindUserByUserNameAndPassword(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.FindUserByUserNameAndPassword(user);
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> FindUserByUserNameAndPasswordAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.FindUserByUserNameAndPasswordAsync(user);
         }
     }
 }

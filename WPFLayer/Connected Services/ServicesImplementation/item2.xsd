@@ -27,6 +27,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="FindUserByUserNameAndPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q2:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindUserByUserNameAndPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="FindUserByUserNameAndPasswordResult" nillable="true" type="q3:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Response">
     <xs:complexType>
       <xs:sequence>

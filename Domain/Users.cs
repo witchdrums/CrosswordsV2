@@ -25,6 +25,8 @@ namespace Domain
         public string email { get; set; }
         [DataMember]
         public string password { get; set; }
+        [DataMember]
+        public bool credential { get; set; }
 
         [DataMember]
         public int idUserType { get; set; }

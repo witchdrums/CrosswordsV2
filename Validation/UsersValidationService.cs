@@ -40,5 +40,26 @@ namespace Validation
             bool passwordIsValid = validPasswordRegex.IsMatch(password);
             return passwordIsValid;
         }
+
+
+        public bool ValidateUserNameIsNotEmpty(String userName)
+        {
+            bool validUserName = false;
+            if (!String.IsNullOrWhiteSpace(userName))
+            {
+                validUserName = true;
+            }
+            return validUserName;
+        }
+
+        public bool ValidatePasswordIsNotEmpty(String password)
+        {
+            bool validPassword = false;
+            if (!String.IsNullOrWhiteSpace(password))
+            {
+                validPassword = true;
+            }
+            return validPassword;
+        }
     }
 }
