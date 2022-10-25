@@ -19,12 +19,8 @@ using Security;
 
 namespace WPFLayer
 {
-    /* by witchdrums
-     * TO DO
-        [   ] Turn into PAGE
-        [   ] Connect this with chavi's login window
-     */
-    public partial class SignUpPage : Window, ServicesImplementation.IUsersManagerCallback
+
+    public partial class SignUpPage : Page, ServicesImplementation.IUsersManagerCallback
     {
         public SignUpPage()
         {
@@ -62,8 +58,11 @@ namespace WPFLayer
                 newUser.password = encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
                 newUser.username = this.TextBox_Email.Text;
 
-                client.AddUser(newUser);
-                MessageBox.Show("User has been added");
+                if (client.AddUser(newUser))
+                {
+                    MessageBox.Show("User has been added.");
+                }
+                
                 clearFields();
             }
 
@@ -119,9 +118,18 @@ namespace WPFLayer
             return passwordsMAtch;
         }
 
-        public void Response(string response)
+        public void Response(bool response)
         {
-            MessageBox.Show(response);
+            if (response == true)
+            {
+                MessageBox.Show("User has been added!");
+            }
+            
+        }
+
+        private void Button_Return_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
         }
     }
 }

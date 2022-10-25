@@ -11,7 +11,7 @@ namespace Services
 { 
 
     [ServiceContract(CallbackContract = typeof(IUsersManagerCallback))]
-    interface IUsersManager
+    public interface IUsersManager
     {
         [OperationContract]
         bool AddUser(Users user);
@@ -21,10 +21,10 @@ namespace Services
     }
 
     [ServiceContract]
-    interface IUsersManagerCallback
+    public interface IUsersManagerCallback
     {
         [OperationContract]
-        void Response(String response);
+        void Response(bool response);
     }
 
 }

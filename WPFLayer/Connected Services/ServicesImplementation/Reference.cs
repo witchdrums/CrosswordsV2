@@ -143,7 +143,7 @@ namespace WPFLayer.ServicesImplementation {
     public interface IUsersManagerCallback {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/Response", ReplyAction="http://tempuri.org/IUsersManager/ResponseResponse")]
-        void Response([System.ServiceModel.MessageParameterAttribute(Name="response")] string response1);
+        void Response([System.ServiceModel.MessageParameterAttribute(Name="response")] bool response1);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

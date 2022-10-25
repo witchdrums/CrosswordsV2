@@ -18,7 +18,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : Window
+    public partial class LoginPage : Page
     {
         public LoginPage()
         {
@@ -52,8 +52,8 @@ namespace WPFLayer
         private void Button_SignUp_Click_(object sender, RoutedEventArgs e)
         {
             SignUpPage signUpPage = new SignUpPage();
-            signUpPage.Show();
-            this.Close();
+            this.NavigationService.Navigate(signUpPage);
+            //this.Close();
         }
     }
 }
