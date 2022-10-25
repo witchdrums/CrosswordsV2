@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServicesImplementation" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="NetTcpBinding_IUsersManager_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IUserService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -36,43 +36,43 @@
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Domain" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IUsersManager_AddUser_InputMessage">
+  <wsdl:message name="IUserService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_AddUser_OutputMessage">
+  <wsdl:message name="IUserService_AddUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_FindUserByEmail_InputMessage">
+  <wsdl:message name="IUserService_FindUserByEmail_InputMessage">
     <wsdl:part name="parameters" element="tns:FindUserByEmail" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_FindUserByEmail_OutputMessage">
+  <wsdl:message name="IUserService_FindUserByEmail_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindUserByEmailResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
+  <wsdl:message name="IUserService_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_Response_InputCallbackMessage">
+  <wsdl:message name="IUserService_Response_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ResponseResponse" />
   </wsdl:message>
-  <wsdl:portType name="IUsersManager">
+  <wsdl:portType name="IUserService">
     <wsdl:operation name="AddUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/AddUser" message="tns:IUsersManager_AddUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/AddUserResponse" message="tns:IUsersManager_AddUser_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUser" message="tns:IUserService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserResponse" message="tns:IUserService_AddUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="FindUserByEmail">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/FindUserByEmail" message="tns:IUsersManager_FindUserByEmail_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/FindUserByEmailResponse" message="tns:IUsersManager_FindUserByEmail_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/FindUserByEmail" message="tns:IUserService_FindUserByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/FindUserByEmailResponse" message="tns:IUserService_FindUserByEmail_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Response">
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ResponseResponse" message="tns:IUsersManager_Response_InputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/Response" message="tns:IUserService_Response_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/ResponseResponse" message="tns:IUserService_Response_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="NetTcpBinding_IUsersManager" type="tns:IUsersManager">
-    <wsp:PolicyReference URI="#NetTcpBinding_IUsersManager_policy" />
+  <wsdl:binding name="NetTcpBinding_IUserService" type="tns:IUserService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUserService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="AddUser">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/AddUser" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IUserService/AddUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -81,7 +81,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="FindUserByEmail">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/FindUserByEmail" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IUserService/FindUserByEmail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -90,7 +90,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Response">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/Response" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IUserService/Response" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -100,7 +100,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServicesImplementation">
-    <wsdl:port name="NetTcpBinding_IUsersManager" binding="tns:NetTcpBinding_IUsersManager">
+    <wsdl:port name="NetTcpBinding_IUserService" binding="tns:NetTcpBinding_IUserService">
       <soap12:address location="net.tcp://localhost:8090/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>

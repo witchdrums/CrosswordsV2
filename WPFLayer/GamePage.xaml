@@ -1,0 +1,87 @@
+﻿<Window x:Class="WPFLayer.GamePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFLayer"
+        xmlns:p ="clr-namespace:WPFLayer.Properties"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button 
+            Grid.Row="1" 
+            Grid.Column="0"
+            x:Name="Button_LeaveGame"
+            Margin="10,50,10,20" 
+            MaxHeight="50" 
+            Content="{x:Static p:Resources.Game_Button_LeaveGame}"/>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="sadfasdfsasdf"/>
+            <Button Grid.Column="1"/>
+            <Button Grid.Column="2"/>
+        </Grid>
+        <Button Grid.Row="1" Grid.Column="2"/>
+
+
+        <Grid Grid.Column="0"  x:Name="Grid_ChatPanel">
+            <Label Content="Chat goes here!!"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" x:Name="Grid_CrosswordPanel"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Column="0" >
+                    <TextBox  x:Name="TextBox_WordGuess" MinWidth="230" TextChanged="TextBox_WordGuess_TextChanged"/>
+                    
+                </Viewbox>
+                <Viewbox Grid.Column="1">
+
+                    <Button  x:Name="Button_Guess" MinWidth="62" Content="{x:Static p:Resources.Game_Button_Guess}"/>
+                </Viewbox>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Column="2"  x:Name="Grid_CluePanel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10*"/> 
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0" HorizontalAlignment="Right">
+                    <Label x:Name="Label_Clues" Content="Clues" FontWeight="Bold"/>
+                </Viewbox>
+                
+                <ListView x:Name="ListView_HorizontalClueList" Grid.Row="1">
+                    <ListViewItem Content="asdf" FontSize="15"/>
+                    <ListViewItem Content="asdf" FontSize="15"/>
+                    <ListViewItem Content="asdf" FontSize="15"/>
+                    <ListViewItem Content="asdf" FontSize="15"/>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

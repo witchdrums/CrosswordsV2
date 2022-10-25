@@ -123,54 +123,54 @@ namespace WPFLayer.ServicesImplementation {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IUsersManager", CallbackContract=typeof(WPFLayer.ServicesImplementation.IUsersManagerCallback))]
-    public interface IUsersManager {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IUserService", CallbackContract=typeof(WPFLayer.ServicesImplementation.IUserServiceCallback))]
+    public interface IUserService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/AddUser", ReplyAction="http://tempuri.org/IUsersManager/AddUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
         bool AddUser(WPFLayer.ServicesImplementation.Users user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/AddUser", ReplyAction="http://tempuri.org/IUsersManager/AddUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
         System.Threading.Tasks.Task<bool> AddUserAsync(WPFLayer.ServicesImplementation.Users user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByEmail", ReplyAction="http://tempuri.org/IUsersManager/FindUserByEmailResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/FindUserByEmail", ReplyAction="http://tempuri.org/IUserService/FindUserByEmailResponse")]
         void FindUserByEmail(string userEmail);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByEmail", ReplyAction="http://tempuri.org/IUsersManager/FindUserByEmailResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/FindUserByEmail", ReplyAction="http://tempuri.org/IUserService/FindUserByEmailResponse")]
         System.Threading.Tasks.Task FindUserByEmailAsync(string userEmail);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUsersManagerCallback {
+    public interface IUserServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/Response", ReplyAction="http://tempuri.org/IUsersManager/ResponseResponse")]
-        void Response([System.ServiceModel.MessageParameterAttribute(Name="response")] string response1);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Response", ReplyAction="http://tempuri.org/IUserService/ResponseResponse")]
+        void Response([System.ServiceModel.MessageParameterAttribute(Name="response")] bool response1);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUsersManagerChannel : WPFLayer.ServicesImplementation.IUsersManager, System.ServiceModel.IClientChannel {
+    public interface IUserServiceChannel : WPFLayer.ServicesImplementation.IUserService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UsersManagerClient : System.ServiceModel.DuplexClientBase<WPFLayer.ServicesImplementation.IUsersManager>, WPFLayer.ServicesImplementation.IUsersManager {
+    public partial class UserServiceClient : System.ServiceModel.DuplexClientBase<WPFLayer.ServicesImplementation.IUserService>, WPFLayer.ServicesImplementation.IUserService {
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
+        public UserServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+        public UserServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
                 base(callbackInstance, endpointConfigurationName) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+        public UserServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public UserServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public UserServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
         }
         

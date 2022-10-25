@@ -1,4 +1,4 @@
-﻿<Window x:Class="WPFLayer.LoginPage"
+﻿<Page x:Class="WPFLayer.LoginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -109,4 +109,4 @@
             VerticalAlignment="Top" 
             Foreground="Red"/>
     </Grid>
-</Window>
+</Page>
