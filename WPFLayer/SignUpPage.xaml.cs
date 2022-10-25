@@ -20,7 +20,7 @@ using Security;
 namespace WPFLayer
 {
 
-    public partial class SignUpPage : Page, ServicesImplementation.IUserServiceCallback
+    public partial class SignUpPage : Page, ServicesImplementation.IUsersManagerCallback
     {
         public SignUpPage()
         {
@@ -50,7 +50,7 @@ namespace WPFLayer
             {
                 InstanceContext context = new InstanceContext(this);
 
-                ServicesImplementation.UserServiceClient client = new ServicesImplementation.UserServiceClient(context);
+                ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
 
                 ServicesImplementation.Users newUser = new ServicesImplementation.Users();
                 newUser.email = this.TextBox_Email.Text;

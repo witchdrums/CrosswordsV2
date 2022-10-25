@@ -13,9 +13,9 @@ namespace Services
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
 
-    public partial class ServicesImplementation : IUserService
+    public partial class ServicesImplementation : IUsersManager
     {
-
+        
         CrosswordsContext _context = new CrosswordsContext();
         public bool AddUser(Domain.Users user)
         {
@@ -39,7 +39,7 @@ namespace Services
         public void FindUserByEmail(string userMEmail)
         {
             //Console.WriteLine(userMEmail);
-            OperationContext.Current.GetCallbackChannel<IUserServiceCallback>().Response(true);
+            OperationContext.Current.GetCallbackChannel<IUsersManagerCallback>().Response(true);
         }
     }
 }

@@ -10,8 +10,8 @@ using Domain;
 namespace Services
 { 
 
-    [ServiceContract(CallbackContract = typeof(IUserServiceCallback))]
-    public interface IUserService
+    [ServiceContract(CallbackContract = typeof(IUsersManagerCallback))]
+    public interface IUsersManager
     {
         [OperationContract]
         bool AddUser(Users user);
@@ -21,7 +21,7 @@ namespace Services
     }
 
     [ServiceContract]
-    public interface IUserServiceCallback
+    public interface IUsersManagerCallback
     {
         [OperationContract]
         void Response(bool response);
