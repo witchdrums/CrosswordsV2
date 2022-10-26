@@ -12,5 +12,7 @@ namespace Validation
         bool ValidateEmailIsNew(String email);
         bool ValidatePasswordFormat(String password);
         bool ValidateMatchingPasswords(String password, String passwordConfirmation);
+        bool ValidateUserNameIsNotEmpty(String userName);
+        bool ValidatePasswordIsNotEmpty(String password);
     }
 }

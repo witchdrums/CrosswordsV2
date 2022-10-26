@@ -41,5 +41,24 @@ namespace Services
             //Console.WriteLine(userMEmail);
             OperationContext.Current.GetCallbackChannel<IUsersManagerCallback>().Response(true);
         }
+
+        public Users FindUserByUserNameAndPassword(Domain.Users user)
+        {
+            BusinessLogic.User businessLogicUser = new BusinessLogic.User();
+            businessLogicUser.username = user.username;
+            businessLogicUser.password = user.password;
+            if (_context.Users.Contains(businessLogicUser))
+            {
+                businessLogicUser = _context.Users.Find(businessLogicUser);
+                user.username = businessLogicUser.username;
+                user.credential = true;
+            }
+            else
+            {
+                user.credential = false;
+            }
+
+            return user;
+        }
     }
 }

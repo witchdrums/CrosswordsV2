@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Domain;
+using BusinessLogic;
 
 namespace Services
 { 
@@ -18,6 +19,9 @@ namespace Services
 
         [OperationContract]
         void FindUserByEmail(String userEmail);
+
+        [OperationContract]
+        Users FindUserByUserNameAndPassword(Users user);
     }
 
     [ServiceContract]
