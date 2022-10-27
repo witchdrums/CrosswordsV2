@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using BusinessLogic;
 using System.Runtime.Remoting.Contexts;
 using System.Data.Entity.Validation;
+using BusinessServices;
+
+
 
 namespace Services
 {
@@ -17,22 +20,10 @@ namespace Services
     {
         
         CrosswordsContext _context = new CrosswordsContext();
-        public bool AddUser(Domain.Users user)
+        public bool AddUser(Users user)
         {
-            
-            BusinessLogic.User businesLogicUser = new BusinessLogic.User();
-            businesLogicUser.password = user.password;
-            businesLogicUser.email = user.email;
-            businesLogicUser.username = user.username;
-            businesLogicUser.idUserType = 1;
-
-            bool result = false;
-            using (var _context = new CrosswordsContext())
-            {
-                Console.WriteLine("before");
-                _context.Users.Add(businesLogicUser);
-                result = _context.SaveChanges() > 0;
-            }
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool result = userManagement.RegisterUser(user);
             return result;
         }
 
@@ -42,7 +33,7 @@ namespace Services
             OperationContext.Current.GetCallbackChannel<IUsersManagerCallback>().Response(true);
         }
 
-        public Users FindUserByUserNameAndPassword(Domain.Users user)
+        public Users FindUserByUserNameAndPassword(Users user)
         {
             BusinessLogic.User businessLogicUser = new BusinessLogic.User();
             businessLogicUser.username = user.username;
@@ -60,5 +51,7 @@ namespace Services
 
             return user;
         }
+
     }
+
 }

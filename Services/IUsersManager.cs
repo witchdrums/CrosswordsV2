@@ -4,8 +4,8 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using Domain;
+using System.Runtime.Serialization;
 using BusinessLogic;
 
 namespace Services
@@ -30,5 +30,4 @@ namespace Services
         [OperationContract]
         void Response(bool response);
     }
-
 }
