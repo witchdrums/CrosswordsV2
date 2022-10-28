@@ -16,7 +16,7 @@ namespace Services
         {
             roomMap.Add(idRoom, new List<Users>());
         }
-        public void AddUserToRoom(int idRoom,Users user)//Define
+        public void AddUserToRoom(int idRoom,Users user)
         {
             roomMap[idRoom].Add(user);
         }
