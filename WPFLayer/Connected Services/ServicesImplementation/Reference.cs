@@ -149,10 +149,10 @@ namespace WPFLayer.ServicesImplementation {
         System.Threading.Tasks.Task<bool> AddUserAsync(WPFLayer.ServicesImplementation.Users user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByEmail", ReplyAction="http://tempuri.org/IUsersManager/FindUserByEmailResponse")]
-        void FindUserByEmail(string userEmail);
+        bool FindUserByEmail(string userEmail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByEmail", ReplyAction="http://tempuri.org/IUsersManager/FindUserByEmailResponse")]
-        System.Threading.Tasks.Task FindUserByEmailAsync(string userEmail);
+        System.Threading.Tasks.Task<bool> FindUserByEmailAsync(string userEmail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword", ReplyAction="http://tempuri.org/IUsersManager/FindUserByUserNameAndPasswordResponse")]
         WPFLayer.ServicesImplementation.Users FindUserByUserNameAndPassword(WPFLayer.ServicesImplementation.Users user);
@@ -204,11 +204,11 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.AddUserAsync(user);
         }
         
-        public void FindUserByEmail(string userEmail) {
-            base.Channel.FindUserByEmail(userEmail);
+        public bool FindUserByEmail(string userEmail) {
+            return base.Channel.FindUserByEmail(userEmail);
         }
         
-        public System.Threading.Tasks.Task FindUserByEmailAsync(string userEmail) {
+        public System.Threading.Tasks.Task<bool> FindUserByEmailAsync(string userEmail) {
             return base.Channel.FindUserByEmailAsync(userEmail);
         }
         

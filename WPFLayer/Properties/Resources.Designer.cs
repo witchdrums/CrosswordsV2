@@ -142,6 +142,42 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That&apos;s it, have &lt;b&gt;fun :D&lt;/b&gt;.
+        /// </summary>
+        public static string Email_SignUpWelcome_Body {
+            get {
+                return ResourceManager.GetString("Email_SignUpWelcome_Body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Crosswords.
+        /// </summary>
+        public static string Email_SignUpWelcome_Header {
+            get {
+                return ResourceManager.GetString("Email_SignUpWelcome_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for signing up to Crosswords!.
+        /// </summary>
+        public static string Email_SignUpWelcome_Subject {
+            get {
+                return ResourceManager.GetString("Email_SignUpWelcome_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t reach our servers. Please, try again later..
+        /// </summary>
+        public static string Exception_ServerFailure {
+            get {
+                return ResourceManager.GetString("Exception_ServerFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guess.
         /// </summary>
         public static string Game_Button_Guess {
@@ -489,6 +525,15 @@ namespace WPFLayer.Properties {
         public static string LogIn_SignUp {
             get {
                 return ResourceManager.GetString("LogIn_SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for signing up. Have fun!.
+        /// </summary>
+        public static string Message_SignUpSuccess {
+            get {
+                return ResourceManager.GetString("Message_SignUpSuccess", resourceCulture);
             }
         }
     }

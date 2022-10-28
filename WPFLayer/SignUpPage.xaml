@@ -102,45 +102,48 @@
             Foreground="#FFAFAFAF"/>
         <Label 
             x:Name="Label_EmailInvalid" 
-            Visibility="Hidden" 
+            Visibility="Visible" 
             Content="{x:Static p:Resources.General_Label_EmailInvalid}" 
-            FontSize="8" 
+            FontSize="15
+            " 
             HorizontalAlignment="Left" 
             Padding="-1" 
-            Margin="42,77,0,0" 
+            Margin="67,185,0,0" 
             VerticalAlignment="Top" 
             Width="201" 
             Foreground="#FFE40000"/>
         <Label 
             x:Name="Label_EmailAlreadyInDatabase" 
-            Visibility="Hidden" 
+            Visibility="Visible" 
             Content="{x:Static p:Resources.General_Label_EmailAlreadyExists}" 
-            FontSize="8" 
+            FontSize="15
+            " 
             HorizontalAlignment="Left" 
             Padding="-1" 
-            Margin="42,77,0,0" 
+            Margin="65,185,0,0" 
             VerticalAlignment="Top" 
-            Width="201" 
+            Width="366" 
             Foreground="#FFE40000"/>
         <Label 
             x:Name="Label_PasswordInvalid"
-            Visibility="Hidden" 
+            Visibility="Visible" 
             Content="{x:Static p:Resources.General_Label_PasswordInvalid}" 
-            FontSize="8" 
+            FontSize="15" 
             HorizontalAlignment="Left" 
             Padding="-1" 
-            Margin="42,129,0,0" 
+            Margin="67,246,0,0" 
             VerticalAlignment="Top"
             Width="201" 
             Foreground="#FFE40000"/>
         <Label 
             x:Name="Label_PasswordsDontMatch" 
-            Visibility="Hidden"
+            Visibility="Visible"
             Content="{x:Static p:Resources.General_Label_PasswordDontMatch}" 
-            FontSize="8" 
+            FontSize="15
+            " 
             HorizontalAlignment="Left" 
             Padding="-1" 
-            Margin="42,180,0,0" 
+            Margin="65,246,0,0" 
             VerticalAlignment="Top" 
             Width="201" 
             Foreground="#FFE40000"/>

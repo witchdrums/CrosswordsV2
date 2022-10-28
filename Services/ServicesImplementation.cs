@@ -27,10 +27,11 @@ namespace Services
             return result;
         }
 
-        public void FindUserByEmail(string userMEmail)
+        public bool FindUserByEmail(string userEmail)
         {
-            //Console.WriteLine(userMEmail);
-            OperationContext.Current.GetCallbackChannel<IUsersManagerCallback>().Response(true);
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool result = userManagement.FindUserByEmail(userEmail);
+            return result;
         }
 
         public Users FindUserByUserNameAndPassword(Users user)

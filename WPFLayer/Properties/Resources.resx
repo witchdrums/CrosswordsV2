@@ -144,6 +144,18 @@
   <data name="Button_ViewProfile" xml:space="preserve">
     <value>View profile</value>
   </data>
+  <data name="Email_SignUpWelcome_Body" xml:space="preserve">
+    <value>That's it, have &lt;b&gt;fun :D&lt;/b&gt;</value>
+  </data>
+  <data name="Email_SignUpWelcome_Header" xml:space="preserve">
+    <value>Welcome to Crosswords</value>
+  </data>
+  <data name="Email_SignUpWelcome_Subject" xml:space="preserve">
+    <value>Thank you for signing up to Crosswords!</value>
+  </data>
+  <data name="Exception_ServerFailure" xml:space="preserve">
+    <value>We couldn't reach our servers. Please, try again later.</value>
+  </data>
   <data name="Game_Button_Guess" xml:space="preserve">
     <value>Guess</value>
   </data>
@@ -260,5 +272,8 @@
   </data>
   <data name="LogIn_SignUp" xml:space="preserve">
     <value>Sign up</value>
+  </data>
+  <data name="Message_SignUpSuccess" xml:space="preserve">
+    <value>Thank you for signing up. Have fun!</value>
   </data>
 </root>
