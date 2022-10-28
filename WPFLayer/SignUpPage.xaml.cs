@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Validation;
 using Security;
+using Email;
 
 namespace WPFLayer
 {
@@ -25,6 +26,15 @@ namespace WPFLayer
         public SignUpPage()
         {
             InitializeComponent();
+            HideErrorLabels();
+        }
+
+        private void HideErrorLabels()
+        { 
+            this.Label_EmailInvalid.Visibility = Visibility.Hidden;
+            this.Label_EmailAlreadyInDatabase.Visibility = Visibility.Hidden;
+            this.Label_PasswordInvalid.Visibility = Visibility.Hidden;
+            this.Label_PasswordsDontMatch.Visibility = Visibility.Hidden;
         }
         private void TextBox_Email_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -44,28 +54,56 @@ namespace WPFLayer
 
         private void Button_SignUp_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateEmail()
-                && ValidatePassword()
-                && ValidateMatchingPasswords())
+            try
             {
-                InstanceContext context = new InstanceContext(this);
-
-                ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
-
-                ServicesImplementation.Users newUser = new ServicesImplementation.Users();
-                newUser.email = this.TextBox_Email.Text;
-                IEncryptionService encryptionService = new EncryptionService();
-                newUser.password = encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
-                newUser.username = this.TextBox_Email.Text;
-
-                if (client.AddUser(newUser))
+                if (ValidateEmailFormat()
+                    && ValidateEmailIsNew()
+                    && ValidatePasswordFormat()
+                    && ValidateMatchingPasswords())
                 {
-                    MessageBox.Show("User has been added.");
+                    RegisterUser();
                 }
+            }
+            catch (EndpointNotFoundException enfException)
+            {
                 
-                clearFields();
+                MessageBox.Show(Properties.Resources.Exception_ServerFailure);
             }
 
+
+        }
+
+        private void RegisterUser()
+        {
+            InstanceContext context = new InstanceContext(this);
+
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+
+            ServicesImplementation.Users newUser = new ServicesImplementation.Users();
+            newUser.email = this.TextBox_Email.Text;
+            IEncryptionService encryptionService = new EncryptionService();
+            newUser.password = encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
+            newUser.username = this.TextBox_Email.Text;
+
+            if (client.AddUser(newUser))
+            {
+                WelcomeNewUserViaEmail(newUser.email);
+                MessageBox.Show(Properties.Resources.Message_SignUpSuccess);
+            }
+
+            clearFields();
+        }
+
+        private void WelcomeNewUserViaEmail(String userEmail)
+        {
+            IEmailService emailService = new EmailService();
+            emailService.SendEmailToUser
+            (
+                userEmail,
+                Properties.Resources.Email_SignUpWelcome_Subject,
+                Properties.Resources.Email_SignUpWelcome_Header,
+                Properties.Resources.Email_SignUpWelcome_Body
+            );
         }
 
         private void clearFields()
@@ -74,8 +112,24 @@ namespace WPFLayer
             this.PasswordBox_Password.Password = "";
             this.PasswordBox_PasswordConfirmation.Password = "";
         }
+
+        private bool ValidateEmailIsNew()
+        {
+            
+            InstanceContext context = new InstanceContext(this);
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            string emailInput = this.TextBox_Email.Text;
+
+            bool emailIsNew = client.FindUserByEmail(emailInput);
+            if (emailIsNew == false)
+            {
+                this.TextBox_Email.BorderBrush = System.Windows.Media.Brushes.Red;
+                this.Label_EmailAlreadyInDatabase.Visibility = Visibility.Visible;
+            }
+            return emailIsNew;
+        }
         
-        private bool ValidateEmail()
+        private bool ValidateEmailFormat()
         {
             
             string email = this.TextBox_Email.Text.ToString();
@@ -89,7 +143,7 @@ namespace WPFLayer
             return emailFormatIsValid;
         }
 
-        private bool ValidatePassword()
+        private bool ValidatePasswordFormat()
         {
             
             string password = this.PasswordBox_Password.Password.ToString();
