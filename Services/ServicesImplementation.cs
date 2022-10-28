@@ -19,7 +19,7 @@ namespace Services
     public partial class ServicesImplementation : IUsersManager
     {
         
-        CrosswordsContext _context = new CrosswordsContext();
+        CrosswordsContext context = new CrosswordsContext();
         public bool AddUser(Users user)
         {
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
@@ -39,9 +39,9 @@ namespace Services
             BusinessLogic.User businessLogicUser = new BusinessLogic.User();
             businessLogicUser.username = user.username;
             businessLogicUser.password = user.password;
-            if (_context.Users.Contains(businessLogicUser))
+            if (context.Users.Contains(businessLogicUser))
             {
-                businessLogicUser = _context.Users.Find(businessLogicUser);
+                businessLogicUser = context.Users.Find(businessLogicUser);
                 user.username = businessLogicUser.username;
                 user.credential = true;
             }
@@ -53,6 +53,48 @@ namespace Services
             return user;
         }
 
+    }
+
+    public partial class ServicesImplementation : IMessages
+    {
+        ConnectionMap usersMap = new ConnectionMap();
+        public void SendChatMessage(List<Users> room, Users userOrigin, string message)
+        {
+            foreach (Users user in room)
+            {
+                usersMap.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,message);
+            }
+        }
+
+        public void SendPrivateMessage(Users userOrigin, Users userDestination, string message)
+        {
+            usersMap.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,"[Private] "+message);
+        }
+
+
+    }
+    //to do review Invitations Validations
+    public partial class ServicesImplementation : IGameRoomManagement
+    {
+        RoomMap roomMap = new RoomMap();
+        public int CreateRoom(Users user)
+        {
+            roomMap.NewRoom(user.idUser);//Todo Generate Random ID
+            roomMap.AddUserToRoom(user.idUser, user);
+            return user.idUser;
+        }
+
+        public void JoinToRoom(int idRoom,Users user)
+        {
+            roomMap.AddUserToRoom(idRoom, user);
+            usersMap.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().JoinToRoom(idRoom,roomMap.GetUsersInRoom(idRoom));
+        }
+
+        public void SendInvitationToRoom(int idRoom, Users userTarget)
+        {
+            //Here Validations?
+            usersMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
+        }
     }
 
 }
