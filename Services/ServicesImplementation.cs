@@ -72,26 +72,27 @@ namespace Services
 
 
     }
-    //to do review Invitations Validations
     public partial class ServicesImplementation : IGameRoomManagement
     {
         RoomMap roomMap = new RoomMap();
         public int CreateRoom(Users user)
         {
             roomMap.NewRoom(user.idUser);//Todo Generate Random ID
-            roomMap.AddUserToRoom(user.idUser, user);
             return user.idUser;
         }
 
-        public void JoinToRoom(int idRoom,Users user)
+        public void JoinToRoom(int idRoom,Users newUser)
         {
-            roomMap.AddUserToRoom(idRoom, user);
-            usersMap.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().JoinToRoom(idRoom,roomMap.GetUsersInRoom(idRoom));
+            roomMap.AddUserToRoom(idRoom, newUser);
+            List<Users> usersRoom = roomMap.GetUsersInRoom(idRoom);
+            foreach (Users user in usersRoom)
+            {
+                usersMap.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(usersRoom);
+            }            
         }
 
         public void SendInvitationToRoom(int idRoom, Users userTarget)
         {
-            //Here Validations?
             usersMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
         }
     }

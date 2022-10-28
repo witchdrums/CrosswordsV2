@@ -15,7 +15,7 @@ namespace Services
         [OperationContract]
         void SendInvitationToRoom(int idRoom, Users userTarget);
         [OperationContract]
-        void JoinToRoom(int idRoom,Users user);
+        void JoinToRoom(int idRoom,Users newUser);
 
         [OperationContract]
         int CreateRoom(Users user);
@@ -28,7 +28,8 @@ namespace Services
         [OperationContract]
         void ReciveInvitationToRoom(int idRoom);
         [OperationContract]
-        void JoinToRoom(int idRoom,List<Users> usersInRoom);
+        void UpdateRoom(List<Users> usersInRoom);
+
     }
   
 }
