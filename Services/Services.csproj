@@ -54,8 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionMap.cs" />
+    <Compile Include="IGameManagement.cs" />
+    <Compile Include="IGameRoomManagement.cs" />
+    <Compile Include="IMessages.cs" />
     <Compile Include="IUsersManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomMap.cs" />
     <Compile Include="ServicesImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
