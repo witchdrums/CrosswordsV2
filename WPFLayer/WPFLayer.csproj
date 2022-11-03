@@ -124,6 +124,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicesImplementation\ServicesImplementation.wsdl" />
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Board.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

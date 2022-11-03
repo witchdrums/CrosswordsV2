@@ -17,6 +17,10 @@
         <AssociationConnector Association="CrosswordsModel.FK_Players_Users" ManuallyRouted="false" />
         <AssociationConnector Association="CrosswordsModel.FK_Users_UserTypes" ManuallyRouted="false" />
         <AssociationConnector Association="CrosswordsModel.Friends" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CrosswordsModel.Board" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="CrosswordsModel.WordsBoard" Width="1.5" PointX="3" PointY="7.375" />
+        <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Boards" />
+        <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Words" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,7 +18,7 @@ namespace Services
 
     public partial class ServicesImplementation : IUsersManager
     {
-        
+        private static readonly ConnectionMap connectionMap = new ConnectionMap();
         CrosswordsContext context = new CrosswordsContext();
         public bool AddUser(Users user)
         {
@@ -83,6 +83,22 @@ namespace Services
         public void SendInvitationToRoom(int idRoom, Users userTarget)
         {
             usersMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
+        }
+    }
+
+    public partial class ServicesImplementation : IGameManagement
+    {
+
+
+        public Domain.Board GetBoardById(int idBoard)
+        {
+            Domain.Board foundBoard = new Domain.Board();
+            BusinessServices.GameManagement gameManagement = new BusinessServices.GameManagement();
+            foundBoard = gameManagement.GetBoardById(idBoard);
+
+
+            return foundBoard;
+
         }
     }
 
