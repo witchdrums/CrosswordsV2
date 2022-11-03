@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9f18b1c8a7a54d36b8cf711bb2059656" Name="Diagram1">
-        <EntityTypeShape EntityType="CrosswordsModel.Game" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrosswordsModel.Game" Width="1.5" PointX="7.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CrosswordsModel.Player" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CrosswordsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CrosswordsModel.User" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
@@ -17,6 +17,10 @@
         <AssociationConnector Association="CrosswordsModel.FK_Players_Users" ManuallyRouted="false" />
         <AssociationConnector Association="CrosswordsModel.FK_Users_UserTypes" ManuallyRouted="false" />
         <AssociationConnector Association="CrosswordsModel.Friends" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CrosswordsModel.Board" Width="1.5" PointX="4.125" PointY="6.75" />
+        <EntityTypeShape EntityType="CrosswordsModel.WordsBoard" Width="1.5" PointX="9.375" PointY="5.5" />
+        <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Boards" />
+        <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Words" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

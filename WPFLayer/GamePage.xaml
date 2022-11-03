@@ -13,7 +13,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
@@ -39,7 +39,10 @@
 
 
         <Grid Grid.Column="0"  x:Name="Grid_ChatPanel">
-            <Label Content="Chat goes here!!"/>
+            <TextBlock Background="LightGray" x:Name="TextBlock_Chat" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="275" Width="164"/>
+            <TextBox x:Name="TextBox_Message" HorizontalAlignment="Left" Margin="10,298,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="Button_SendMessage" Content="Send" HorizontalAlignment="Left" Margin="135,296,0,0" VerticalAlignment="Top" Width="39" Click="Button_SendMessage_Click"/>
+
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -56,11 +59,11 @@
 
                 <Viewbox Grid.Column="0" >
                     <TextBox  x:Name="TextBox_WordGuess" MinWidth="230" TextChanged="TextBox_WordGuess_TextChanged"/>
-                    
+
                 </Viewbox>
                 <Viewbox Grid.Column="1">
 
-                    <Button  x:Name="Button_Guess" MinWidth="62" Content="{x:Static p:Resources.Game_Button_Guess}"/>
+                    <Button  x:Name="Button_Guess" MinWidth="62" Content="{x:Static p:Resources.Game_Button_Guess}" Click="Button_Guess_Click"/>
                 </Viewbox>
             </Grid>
 
@@ -69,17 +72,14 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="10*"/> 
+                    <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0" HorizontalAlignment="Right">
                     <Label x:Name="Label_Clues" Content="Clues" FontWeight="Bold"/>
                 </Viewbox>
-                
-                <ListView x:Name="ListView_HorizontalClueList" Grid.Row="1">
-                    <ListViewItem Content="asdf" FontSize="15"/>
-                    <ListViewItem Content="asdf" FontSize="15"/>
-                    <ListViewItem Content="asdf" FontSize="15"/>
-                    <ListViewItem Content="asdf" FontSize="15"/>
+
+                <ListView x:Name="ListView_HorizontalClueList" Grid.Row="1" SelectionChanged="ListView_HorizontalClueList_SelectionChanged">
+
                 </ListView>
             </Grid>
         </Grid>

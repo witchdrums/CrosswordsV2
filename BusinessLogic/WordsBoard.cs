@@ -12,19 +12,18 @@ namespace BusinessLogic
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class Word
+    public partial class WordsBoard
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Word()
-        {
-            this.WordsBoards = new ObservableCollection<WordsBoard>();
-        }
-    
         public int idWord { get; set; }
-        public string word1 { get; set; }
-        public string clue { get; set; }
+        public int idBoard { get; set; }
+        public byte xStart { get; set; }
+        public byte xEnd { get; set; }
+        public byte yStart { get; set; }
+        public byte yEnd { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<WordsBoard> WordsBoards { get; set; }
+        public virtual Board Board { get; set; }
+        public virtual Word Word { get; set; }
+
+        
     }
 }

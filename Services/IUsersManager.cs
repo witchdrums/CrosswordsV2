@@ -22,6 +22,10 @@ namespace Services
 
         [OperationContract]
         Users FindUserByUserNameAndPassword(Users user);
+
+        [OperationContract]
+
+        void PrintConnectionMap();
     }
 
     [ServiceContract]
