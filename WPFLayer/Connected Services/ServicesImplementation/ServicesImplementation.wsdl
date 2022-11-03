@@ -135,11 +135,11 @@
   <wsdl:message name="IUsersManager_FindUserByEmail_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindUserByEmailResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_FindUserByUserNameAndPassword_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindUserByUserNameAndPassword" />
+  <wsdl:message name="IUsersManager_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_FindUserByUserNameAndPassword_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindUserByUserNameAndPasswordResponse" />
+  <wsdl:message name="IUsersManager_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:message name="IUsersManager_PrintConnectionMap_InputMessage">
     <wsdl:part name="parameters" element="tns:PrintConnectionMap" />
@@ -216,9 +216,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/FindUserByEmail" message="tns:IUsersManager_FindUserByEmail_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/FindUserByEmailResponse" message="tns:IUsersManager_FindUserByEmail_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindUserByUserNameAndPassword">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword" message="tns:IUsersManager_FindUserByUserNameAndPassword_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPasswordResponse" message="tns:IUsersManager_FindUserByUserNameAndPassword_OutputMessage" />
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/Login" message="tns:IUsersManager_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/LoginResponse" message="tns:IUsersManager_Login_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="PrintConnectionMap">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/PrintConnectionMap" message="tns:IUsersManager_PrintConnectionMap_InputMessage" />
@@ -292,8 +292,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindUserByUserNameAndPassword">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword" style="document" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/Login" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -419,7 +419,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

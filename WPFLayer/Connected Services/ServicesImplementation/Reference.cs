@@ -140,14 +140,21 @@ namespace WPFLayer.ServicesImplementation {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+
     [System.Runtime.Serialization.DataContractAttribute(Name="Board", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
     [System.SerializableAttribute()]
     public partial class Board : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+
+    [System.Runtime.Serialization.DataContractAttribute(Name="Players", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
+    [System.SerializableAttribute()]
+    public partial class Players : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+
         private WPFLayer.ServicesImplementation.WordsBoard[] WordsBoardsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -247,6 +254,24 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte yStartField;
+
+        private int idPlayerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string playerDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int playerLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string playerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string playerRankField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.Users userField;
+
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -259,6 +284,7 @@ namespace WPFLayer.ServicesImplementation {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+
         public WPFLayer.ServicesImplementation.Board Board {
             get {
                 return this.BoardField;
@@ -345,11 +371,22 @@ namespace WPFLayer.ServicesImplementation {
                 if ((this.yEndField.Equals(value) != true)) {
                     this.yEndField = value;
                     this.RaisePropertyChanged("yEnd");
+
+        public int idPlayer {
+            get {
+                return this.idPlayerField;
+            }
+            set {
+                if ((this.idPlayerField.Equals(value) != true)) {
+                    this.idPlayerField = value;
+                    this.RaisePropertyChanged("idPlayer");
+
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+
         public byte yStart {
             get {
                 return this.yStartField;
@@ -358,10 +395,21 @@ namespace WPFLayer.ServicesImplementation {
                 if ((this.yStartField.Equals(value) != true)) {
                     this.yStartField = value;
                     this.RaisePropertyChanged("yStart");
+
+        public string playerDescription {
+            get {
+                return this.playerDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.playerDescriptionField, value) != true)) {
+                    this.playerDescriptionField = value;
+                    this.RaisePropertyChanged("playerDescription");
+
                 }
             }
         }
         
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -412,11 +460,23 @@ namespace WPFLayer.ServicesImplementation {
                 if ((object.ReferenceEquals(this.WordsBoardsField, value) != true)) {
                     this.WordsBoardsField = value;
                     this.RaisePropertyChanged("WordsBoards");
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int playerLevel {
+            get {
+                return this.playerLevelField;
+            }
+            set {
+                if ((this.playerLevelField.Equals(value) != true)) {
+                    this.playerLevelField = value;
+                    this.RaisePropertyChanged("playerLevel");
+
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+
         public string clue {
             get {
                 return this.clueField;
@@ -425,11 +485,22 @@ namespace WPFLayer.ServicesImplementation {
                 if ((object.ReferenceEquals(this.clueField, value) != true)) {
                     this.clueField = value;
                     this.RaisePropertyChanged("clue");
+
+        public string playerName {
+            get {
+                return this.playerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.playerNameField, value) != true)) {
+                    this.playerNameField = value;
+                    this.RaisePropertyChanged("playerName");
+
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+
         public bool isSolved {
             get {
                 return this.isSolvedField;
@@ -438,11 +509,22 @@ namespace WPFLayer.ServicesImplementation {
                 if ((this.isSolvedField.Equals(value) != true)) {
                     this.isSolvedField = value;
                     this.RaisePropertyChanged("isSolved");
+
+        public string playerRank {
+            get {
+                return this.playerRankField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.playerRankField, value) != true)) {
+                    this.playerRankField = value;
+                    this.RaisePropertyChanged("playerRank");
+
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+
         public string term {
             get {
                 return this.termField;
@@ -451,6 +533,16 @@ namespace WPFLayer.ServicesImplementation {
                 if ((object.ReferenceEquals(this.termField, value) != true)) {
                     this.termField = value;
                     this.RaisePropertyChanged("term");
+
+        public WPFLayer.ServicesImplementation.Users user {
+            get {
+                return this.userField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.userField, value) != true)) {
+                    this.userField = value;
+                    this.RaisePropertyChanged("user");
+
                 }
             }
         }
@@ -481,9 +573,10 @@ namespace WPFLayer.ServicesImplementation {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByEmail", ReplyAction="http://tempuri.org/IUsersManager/FindUserByEmailResponse")]
         System.Threading.Tasks.Task<bool> FindUserByEmailAsync(string userEmail);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword", ReplyAction="http://tempuri.org/IUsersManager/FindUserByUserNameAndPasswordResponse")]
-        WPFLayer.ServicesImplementation.Users FindUserByUserNameAndPassword(WPFLayer.ServicesImplementation.Users user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/Login", ReplyAction="http://tempuri.org/IUsersManager/LoginResponse")]
+        WPFLayer.ServicesImplementation.Players Login(WPFLayer.ServicesImplementation.Users user);
         
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/FindUserByUserNameAndPassword", ReplyAction="http://tempuri.org/IUsersManager/FindUserByUserNameAndPasswordResponse")]
         System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> FindUserByUserNameAndPasswordAsync(WPFLayer.ServicesImplementation.Users user);
         
@@ -492,6 +585,10 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/PrintConnectionMap", ReplyAction="http://tempuri.org/IUsersManager/PrintConnectionMapResponse")]
         System.Threading.Tasks.Task PrintConnectionMapAsync();
+
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/Login", ReplyAction="http://tempuri.org/IUsersManager/LoginResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> LoginAsync(WPFLayer.ServicesImplementation.Users user);
+
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -545,12 +642,12 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.FindUserByEmailAsync(userEmail);
         }
         
-        public WPFLayer.ServicesImplementation.Users FindUserByUserNameAndPassword(WPFLayer.ServicesImplementation.Users user) {
-            return base.Channel.FindUserByUserNameAndPassword(user);
+        public WPFLayer.ServicesImplementation.Players Login(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.Login(user);
         }
         
-        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> FindUserByUserNameAndPasswordAsync(WPFLayer.ServicesImplementation.Users user) {
-            return base.Channel.FindUserByUserNameAndPasswordAsync(user);
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> LoginAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.LoginAsync(user);
         }
         
         public void PrintConnectionMap() {

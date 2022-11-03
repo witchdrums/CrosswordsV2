@@ -41,5 +41,47 @@ namespace BusinessServices
             }
             return result;
         }
+
+        public Players FindUserByUserNameAndPassword(Users user)
+        {
+            Players player = new Players();
+            using (var context = new CrosswordsContext())
+            {
+                var foundUsers = (from users in context.Users
+                            where users.username == user.username && users.password == user.password
+                            select users).ToList();
+                if (foundUsers.Count > 0)
+                {
+                    user.credential = true;
+                    user.idUser = foundUsers[0].idUser;
+                    user.idUserType = foundUsers[0].idUserType;
+                    user.email = foundUsers[0].email;
+                    player.user = user;
+                    player = GetPlayerInformation(player);
+                    
+                }
+            }
+
+            return player;
+        }
+
+        private Players GetPlayerInformation(Players player)
+        {
+            using (var context = new CrosswordsContext())
+            {
+                var foundPlayers = (from players in context.Players
+                                  where players.idUser == player.user.idUser 
+                                  select players).ToList();
+                if (foundPlayers.Count > 0)
+                {
+                    player.idPlayer = foundPlayers[0].idPlayer;
+                    player.playerName = foundPlayers[0].playerName;
+                    player.playerDescription = foundPlayers[0].playerDescription;
+                    player.playerLevel = foundPlayers[0].playerLevel;
+                    player.playerRank = foundPlayers[0].playerRank;
+                }
+            }
+            return player;
+        }
     }
 }

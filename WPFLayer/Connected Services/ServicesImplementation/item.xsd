@@ -11,6 +11,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Users" nillable="true" type="tns:Users" />
+
   <xs:complexType name="Board">
     <xs:sequence>
       <xs:element minOccurs="0" name="WordsBoards" nillable="true" type="tns:ArrayOfWordsBoard" />
@@ -53,4 +54,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
+
+  <xs:complexType name="Players">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+      <xs:element minOccurs="0" name="playerDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerRank" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user" nillable="true" type="tns:Users" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Players" nillable="true" type="tns:Players" />
+
 </xs:schema>
