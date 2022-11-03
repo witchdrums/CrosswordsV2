@@ -12,15 +12,8 @@ namespace Services
     {
         private readonly Dictionary <int, OperationContext> usersMap = new Dictionary <int, OperationContext> ();
 
-        public ConnectionMap() { }
-
-        public ConnectionMap getInstance()
-        {
-        return this;
-        }
         public void SaveUser(int idUser, OperationContext operationContext)
         {
-            Console.WriteLine(idUser);
             usersMap.Add(idUser, operationContext);
         }
         //To do : Define Override <3
@@ -36,12 +29,6 @@ namespace Services
         public void DeteleUserForId(int userId)
         {
             usersMap.Remove(userId);
-        }
-
-        public Dictionary<int,OperationContext> GetUsersMap()
-        {
-            return this.usersMap;
-
         }
     }
 }

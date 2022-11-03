@@ -50,9 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs">
-      <DependentUpon>CrosswordsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="CrosswordsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,9 +85,6 @@
       <DependentUpon>CrosswordsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Word.cs">
-      <DependentUpon>CrosswordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WordsBoard.cs">
       <DependentUpon>CrosswordsModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -4,14 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CrosswordsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Boards">
-          <Key>
-            <PropertyRef Name="idBoard" />
-          </Key>
-          <Property Name="idBoard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="boardMatrix" Type="nvarchar" MaxLength="500" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="CrosswordsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'crosswordsBranch.dbo.Friends' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Friends">
@@ -86,27 +79,9 @@ warning 6002: The table/view 'crosswordsBranch.dbo.GamesPlayers' does not have a
           <Key>
             <PropertyRef Name="idWord" />
           </Key>
-          <Property Name="idWord" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idWord" Type="int" Nullable="false" />
           <Property Name="word" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clue" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="WordsBoards">
-          <Key>
-            <PropertyRef Name="idWord" />
-            <PropertyRef Name="idBoard" />
-            <PropertyRef Name="xStart" />
-            <PropertyRef Name="xEnd" />
-            <PropertyRef Name="yStart" />
-            <PropertyRef Name="yEnd" />
-          </Key>
-          <Property Name="idWord" Type="int" Nullable="false" />
-          <Property Name="idBoard" Type="int" Nullable="false" />
-          <Property Name="xStart" Type="tinyint" Nullable="false" />
-          <Property Name="xEnd" Type="tinyint" Nullable="false" />
-          <Property Name="yStart" Type="tinyint" Nullable="false" />
-          <Property Name="yEnd" Type="tinyint" Nullable="false" />
         </EntityType>
         <Association Name="FK_Friends_Users">
           <End Role="Players" Type="Self.Players" Multiplicity="1" />
@@ -180,32 +155,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WordsBoards_Boards">
-          <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
-          <End Role="WordsBoards" Type="Self.WordsBoards" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Boards">
-              <PropertyRef Name="idBoard" />
-            </Principal>
-            <Dependent Role="WordsBoards">
-              <PropertyRef Name="idBoard" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WordsBoards_Words">
-          <End Role="Words" Type="Self.Words" Multiplicity="1" />
-          <End Role="WordsBoards" Type="Self.WordsBoards" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Words">
-              <PropertyRef Name="idWord" />
-            </Principal>
-            <Dependent Role="WordsBoards">
-              <PropertyRef Name="idWord" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CrosswordsModelStoreContainer">
-          <EntitySet Name="Boards" EntityType="Self.Boards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -225,16 +175,6 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
     [GamesPlayers].[gameScore] AS [gameScore], 
     [GamesPlayers].[gameRank] AS [gameRank]
     FROM [dbo].[GamesPlayers] AS [GamesPlayers]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="WordsBoards" EntityType="Self.WordsBoards" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [WordsBoards].[idWord] AS [idWord], 
-    [WordsBoards].[idBoard] AS [idBoard], 
-    [WordsBoards].[xStart] AS [xStart], 
-    [WordsBoards].[xEnd] AS [xEnd], 
-    [WordsBoards].[yStart] AS [yStart], 
-    [WordsBoards].[yEnd] AS [yEnd]
-    FROM [dbo].[WordsBoards] AS [WordsBoards]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Friends_Users" Association="Self.FK_Friends_Users">
             <End Role="Players" EntitySet="Players" />
@@ -260,16 +200,9 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             <End Role="UserTypes" EntitySet="UserTypes" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_WordsBoards_Boards" Association="Self.FK_WordsBoards_Boards">
-            <End Role="Boards" EntitySet="Boards" />
-            <End Role="WordsBoards" EntitySet="WordsBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WordsBoards_Words" Association="Self.FK_WordsBoards_Words">
-            <End Role="Words" EntitySet="Words" />
-            <End Role="WordsBoards" EntitySet="WordsBoards" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CrosswordsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -334,7 +267,6 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <Property Name="idWord" Type="Int32" Nullable="false" />
           <Property Name="word1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="clue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="WordsBoards" Relationship="CrosswordsModel.FK_WordsBoards_Words" FromRole="Word" ToRole="WordsBoard" />
         </EntityType>
         <EntityType Name="GamesPlayer">
           <Key>
@@ -430,67 +362,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             <End Role="Players" EntitySet="Players" />
             <End Role="Players1" EntitySet="Players" />
           </AssociationSet>
-          <EntitySet Name="Boards" EntityType="CrosswordsModel.Board" />
-          <EntitySet Name="WordsBoards" EntityType="CrosswordsModel.WordsBoard" />
-          <AssociationSet Name="FK_WordsBoards_Boards" Association="CrosswordsModel.FK_WordsBoards_Boards">
-            <End Role="Board" EntitySet="Boards" />
-            <End Role="WordsBoard" EntitySet="WordsBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WordsBoards_Words" Association="CrosswordsModel.FK_WordsBoards_Words">
-            <End Role="Word" EntitySet="Words" />
-            <End Role="WordsBoard" EntitySet="WordsBoards" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Board">
-          <Key>
-            <PropertyRef Name="idBoard" />
-          </Key>
-          <Property Name="idBoard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardMatrix" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="WordsBoards" Relationship="CrosswordsModel.FK_WordsBoards_Boards" FromRole="Board" ToRole="WordsBoard" />
-        </EntityType>
-        <EntityType Name="WordsBoard">
-          <Key>
-            <PropertyRef Name="idWord" />
-            <PropertyRef Name="idBoard" />
-            <PropertyRef Name="xStart" />
-            <PropertyRef Name="xEnd" />
-            <PropertyRef Name="yStart" />
-            <PropertyRef Name="yEnd" />
-          </Key>
-          <Property Name="idWord" Type="Int32" Nullable="false" />
-          <Property Name="idBoard" Type="Int32" Nullable="false" />
-          <Property Name="xStart" Type="Byte" Nullable="false" />
-          <Property Name="xEnd" Type="Byte" Nullable="false" />
-          <Property Name="yStart" Type="Byte" Nullable="false" />
-          <Property Name="yEnd" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Board" Relationship="CrosswordsModel.FK_WordsBoards_Boards" FromRole="WordsBoard" ToRole="Board" />
-          <NavigationProperty Name="Word" Relationship="CrosswordsModel.FK_WordsBoards_Words" FromRole="WordsBoard" ToRole="Word" />
-        </EntityType>
-        <Association Name="FK_WordsBoards_Boards">
-          <End Type="CrosswordsModel.Board" Role="Board" Multiplicity="1" />
-          <End Type="CrosswordsModel.WordsBoard" Role="WordsBoard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Board">
-              <PropertyRef Name="idBoard" />
-            </Principal>
-            <Dependent Role="WordsBoard">
-              <PropertyRef Name="idBoard" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WordsBoards_Words">
-          <End Type="CrosswordsModel.Word" Role="Word" Multiplicity="1" />
-          <End Type="CrosswordsModel.WordsBoard" Role="WordsBoard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Word">
-              <PropertyRef Name="idWord" />
-            </Principal>
-            <Dependent Role="WordsBoard">
-              <PropertyRef Name="idWord" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -575,26 +447,6 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
               <ScalarProperty Name="idPlayer" ColumnName="idPlayerFriend" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Boards">
-            <EntityTypeMapping TypeName="CrosswordsModel.Board">
-              <MappingFragment StoreEntitySet="Boards">
-                <ScalarProperty Name="boardMatrix" ColumnName="boardMatrix" />
-                <ScalarProperty Name="idBoard" ColumnName="idBoard" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WordsBoards">
-            <EntityTypeMapping TypeName="CrosswordsModel.WordsBoard">
-              <MappingFragment StoreEntitySet="WordsBoards">
-                <ScalarProperty Name="yEnd" ColumnName="yEnd" />
-                <ScalarProperty Name="yStart" ColumnName="yStart" />
-                <ScalarProperty Name="xEnd" ColumnName="xEnd" />
-                <ScalarProperty Name="xStart" ColumnName="xStart" />
-                <ScalarProperty Name="idBoard" ColumnName="idBoard" />
-                <ScalarProperty Name="idWord" ColumnName="idWord" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

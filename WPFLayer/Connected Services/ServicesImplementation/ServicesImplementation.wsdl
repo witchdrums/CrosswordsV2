@@ -29,93 +29,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IGameManagement_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IGameRoomManagement_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IMessages_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -141,71 +54,11 @@
   <wsdl:message name="IUsersManager_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersManager_PrintConnectionMap_InputMessage">
-    <wsdl:part name="parameters" element="tns:PrintConnectionMap" />
-  </wsdl:message>
-  <wsdl:message name="IUsersManager_PrintConnectionMap_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PrintConnectionMapResponse" />
-  </wsdl:message>
   <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
   <wsdl:message name="IUsersManager_Response_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ResponseResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetBoardById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetBoardById" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetBoardById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetBoardByIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_SendInvitationToRoom_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendInvitationToRoom" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_SendInvitationToRoom_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendInvitationToRoomResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_JoinToRoom_InputMessage">
-    <wsdl:part name="parameters" element="tns:JoinToRoom" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_JoinToRoom_OutputMessage">
-    <wsdl:part name="parameters" element="tns:JoinToRoomResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_CreateRoom_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateRoom" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_CreateRoom_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateRoomResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReciveInvitationToRoom" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_ReciveInvitationToRoom_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReciveInvitationToRoomResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_UpdateRoom_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdateRoom" />
-  </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_UpdateRoom_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdateRoomResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessages_SendChatMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendChatMessage" />
-  </wsdl:message>
-  <wsdl:message name="IMessages_SendChatMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendChatMessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessages_SendPrivateMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendPrivateMessage" />
-  </wsdl:message>
-  <wsdl:message name="IMessages_SendPrivateMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendPrivateMessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessages_ReciveChatMessage_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReciveChatMessage" />
-  </wsdl:message>
-  <wsdl:message name="IMessages_ReciveChatMessage_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReciveChatMessageResponse" />
   </wsdl:message>
   <wsdl:portType name="IUsersManager">
     <wsdl:operation name="AddUser">
@@ -220,55 +73,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/Login" message="tns:IUsersManager_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/LoginResponse" message="tns:IUsersManager_Login_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="PrintConnectionMap">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/PrintConnectionMap" message="tns:IUsersManager_PrintConnectionMap_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/PrintConnectionMapResponse" message="tns:IUsersManager_PrintConnectionMap_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="Response">
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ResponseResponse" message="tns:IUsersManager_Response_InputCallbackMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="IGameManagement">
-    <wsdl:operation name="GetBoardById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetBoardById" message="tns:IGameManagement_GetBoardById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/GetBoardByIdResponse" message="tns:IGameManagement_GetBoardById_OutputMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="IGameRoomManagement">
-    <wsdl:operation name="SendInvitationToRoom">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/SendInvitationToRoom" message="tns:IGameRoomManagement_SendInvitationToRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/SendInvitationToRoomResponse" message="tns:IGameRoomManagement_SendInvitationToRoom_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="JoinToRoom">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/JoinToRoom" message="tns:IGameRoomManagement_JoinToRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/JoinToRoomResponse" message="tns:IGameRoomManagement_JoinToRoom_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CreateRoom">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/CreateRoom" message="tns:IGameRoomManagement_CreateRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/CreateRoomResponse" message="tns:IGameRoomManagement_CreateRoom_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ReciveInvitationToRoom">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" message="tns:IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoomResponse" message="tns:IGameRoomManagement_ReciveInvitationToRoom_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRoom">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/UpdateRoom" message="tns:IGameRoomManagement_UpdateRoom_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/UpdateRoomResponse" message="tns:IGameRoomManagement_UpdateRoom_InputCallbackMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="IMessages">
-    <wsdl:operation name="SendChatMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessages/SendChatMessage" message="tns:IMessages_SendChatMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessages/SendChatMessageResponse" message="tns:IMessages_SendChatMessage_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SendPrivateMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessages/SendPrivateMessage" message="tns:IMessages_SendPrivateMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessages/SendPrivateMessageResponse" message="tns:IMessages_SendPrivateMessage_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ReciveChatMessage">
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessages/ReciveChatMessage" message="tns:IMessages_ReciveChatMessage_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessages/ReciveChatMessageResponse" message="tns:IMessages_ReciveChatMessage_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUsersManager" type="tns:IUsersManager">
@@ -301,110 +108,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="PrintConnectionMap">
-      <soap12:operation soapAction="http://tempuri.org/IUsersManager/PrintConnectionMap" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Response">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/Response" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IGameManagement" type="tns:IGameManagement">
-    <wsp:PolicyReference URI="#NetTcpBinding_IGameManagement_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetBoardById">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetBoardById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IGameRoomManagement" type="tns:IGameRoomManagement">
-    <wsp:PolicyReference URI="#NetTcpBinding_IGameRoomManagement_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="SendInvitationToRoom">
-      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/SendInvitationToRoom" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="JoinToRoom">
-      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/JoinToRoom" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateRoom">
-      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/CreateRoom" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReciveInvitationToRoom">
-      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRoom">
-      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/UpdateRoom" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IMessages" type="tns:IMessages">
-    <wsp:PolicyReference URI="#NetTcpBinding_IMessages_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="SendChatMessage">
-      <soap12:operation soapAction="http://tempuri.org/IMessages/SendChatMessage" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SendPrivateMessage">
-      <soap12:operation soapAction="http://tempuri.org/IMessages/SendPrivateMessage" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReciveChatMessage">
-      <soap12:operation soapAction="http://tempuri.org/IMessages/ReciveChatMessage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -420,33 +125,6 @@
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Upn>JAVI\THE CHAVI’S</Upn>
-        </Identity>
-      </wsa10:EndpointReference>
-    </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IGameManagement" binding="tns:NetTcpBinding_IGameManagement">
-      <soap12:address location="net.tcp://localhost:8090/Services" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
-        </Identity>
-      </wsa10:EndpointReference>
-    </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IGameRoomManagement" binding="tns:NetTcpBinding_IGameRoomManagement">
-      <soap12:address location="net.tcp://localhost:8090/Services" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
-        </Identity>
-      </wsa10:EndpointReference>
-    </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IMessages" binding="tns:NetTcpBinding_IMessages">
-      <soap12:address location="net.tcp://localhost:8090/Services" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

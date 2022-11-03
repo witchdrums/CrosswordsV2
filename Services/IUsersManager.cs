@@ -19,14 +19,8 @@ namespace Services
 
         [OperationContract]
         bool FindUserByEmail(String userEmail);
-
-
         [OperationContract]
-
-        void PrintConnectionMap();
-
         Players Login(Users user);
-
     }
 
     [ServiceContract]

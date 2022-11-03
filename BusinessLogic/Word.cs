@@ -14,17 +14,8 @@ namespace BusinessLogic
     
     public partial class Word
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Word()
-        {
-            this.WordsBoards = new ObservableCollection<WordsBoard>();
-        }
-    
         public int idWord { get; set; }
         public string word1 { get; set; }
         public string clue { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<WordsBoard> WordsBoards { get; set; }
     }
 }
