@@ -11,9 +11,11 @@ namespace Services
     [ServiceContract(CallbackContract = typeof(IGameManagementCallback))]
     public interface IGameManagement
     {
-        
-    
-        
+        [OperationContract]
+        Domain.Board GetBoardById(int idBoard);
+
+
+
     }
 
     public interface IGameManagementCallback
