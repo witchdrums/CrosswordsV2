@@ -43,7 +43,7 @@
             Height="38" 
             TextAlignment="Left" 
             VerticalContentAlignment="Center"
-            MaxLength="20"/>
+            MaxLength="100"/>
         <PasswordBox 
             x:Name="PasswordBox_Password" 
             HorizontalAlignment="Left" 

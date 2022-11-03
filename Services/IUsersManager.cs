@@ -19,9 +19,8 @@ namespace Services
 
         [OperationContract]
         bool FindUserByEmail(String userEmail);
-
         [OperationContract]
-        Users FindUserByUserNameAndPassword(Users user);
+        Players Login(Users user);
     }
 
     [ServiceContract]
