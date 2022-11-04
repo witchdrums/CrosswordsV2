@@ -11,7 +11,6 @@ namespace Services
     [ServiceContract(CallbackContract = typeof(IGameManagementCallback))]
     public interface IGameManagement
     {
-        
     
         
     }

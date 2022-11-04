@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using System.Runtime.Serialization;
 
 namespace Services
 {
