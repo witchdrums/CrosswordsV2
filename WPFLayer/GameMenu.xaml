@@ -1,11 +1,13 @@
-﻿<NavigationWindow x:Class="WPFLayer.MainWindow"
+﻿<Page x:Class="WPFLayer.GameMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Source="LoginPage.xaml"
-                  ShowsNavigationUI="False">
+        Title="GameMenu" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="NewGameRoom" Content="Play!!!!!!" HorizontalAlignment="Left" Margin="222,359,0,0" VerticalAlignment="Top" Click="NewGameRoom_Click" Width="300"/>
 
-</NavigationWindow>
+    </Grid>
+</Page>
