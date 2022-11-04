@@ -62,14 +62,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="GameMenu.xaml.cs">
-      <DependentUpon>GameMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GameRoom.xaml.cs">
-      <DependentUpon>GameRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -77,17 +71,9 @@
     <Compile Include="SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="GameMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="GameRoom.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
@@ -174,10 +160,6 @@
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{582a1f29-18b4-41ad-8974-f218729ef079}</Project>
       <Name>Security</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{CB149365-F43C-4E20-B53A-380EEE85DFE3}</Project>
-      <Name>Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{69c25a37-3367-48a4-b91c-2c5be423fd6f}</Project>
