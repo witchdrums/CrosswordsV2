@@ -10,20 +10,22 @@ using Domain;
 namespace Services
 {
     [ServiceContract(CallbackContract = typeof(IGameRoomManagementCallback))]
-    public interface IGameRoomManagement
+    interface IGameRoomManagement
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void SendInvitationToRoom(int idRoom, Users userTarget);
-        [OperationContract]
-        void JoinToRoom(int idRoom,Users newUser);
+        [OperationContract(IsOneWay = true)]
+        void JoinToRoom(int idRoom, Users newUser);
 
         [OperationContract]
         int CreateRoom(Users user);
+        [OperationContract]
+        void ConnectGameRoomManagement(Users users);
         
     }
     
     [ServiceContract]
-    public interface IGameRoomManagementCallback
+    interface IGameRoomManagementCallback
     {
         [OperationContract]
         void ReciveInvitationToRoom(int idRoom);

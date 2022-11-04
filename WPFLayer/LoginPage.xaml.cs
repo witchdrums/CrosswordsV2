@@ -85,8 +85,9 @@ namespace WPFLayer
             playerLogin = client.Login(playerLogin.user);
             if (playerLogin.user.credential)
             {
-                //Singleton
-                MessageBox.Show(playerLogin.user.email);
+                GameMenu gameMenuPage = new GameMenu();
+                gameMenuPage.UserLogin = playerLogin.user;
+                this.NavigationService.Navigate(gameMenuPage);
             }
             else
             {
