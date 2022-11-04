@@ -56,7 +56,7 @@ namespace Services
 
         public void SendPrivateMessage(Users userOrigin, Users userDestination, string message)
         {
-            usersMap.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,"[Private] "+message);
+            usersMap.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,"[Private]  vc"+message);
         }
 
 

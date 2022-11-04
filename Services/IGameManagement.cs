@@ -13,9 +13,6 @@ namespace Services
     {
         [OperationContract]
         Domain.Board GetBoardById(int idBoard);
-
-
-
     }
 
     public interface IGameManagementCallback
