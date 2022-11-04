@@ -18,7 +18,7 @@ namespace Services
 
     public partial class ServicesImplementation : IUsersManager
     {
-        
+        private static readonly ConnectionMap connectionMap = new ConnectionMap();
         CrosswordsContext context = new CrosswordsContext();
         public bool AddUser(Users user)
         {
@@ -27,31 +27,20 @@ namespace Services
             return result;
         }
 
-        public void FindUserByEmail(string userMEmail)
+        public bool FindUserByEmail(string userEmail)
         {
-            //Console.WriteLine(userMEmail);
-            OperationContext.Current.GetCallbackChannel<IUsersManagerCallback>().Response(true);
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool result = userManagement.FindUserByEmail(userEmail);
+            return result;
         }
 
-        public Users FindUserByUserNameAndPassword(Users user)
+        public Players Login(Users user)
         {
-            BusinessLogic.User businessLogicUser = new BusinessLogic.User();
-            businessLogicUser.username = user.username;
-            businessLogicUser.password = user.password;
-            if (context.Users.Contains(businessLogicUser))
-            {
-                businessLogicUser = context.Users.Find(businessLogicUser);
-                user.username = businessLogicUser.username;
-                user.credential = true;
-            }
-            else
-            {
-                user.credential = false;
-            }
-
-            return user;
+            Players playerLogin = new Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerLogin = userManagement.FindUserByUserNameAndPassword(user);
+            return playerLogin;
         }
-
     }
 
     public partial class ServicesImplementation : IMessages
@@ -94,6 +83,22 @@ namespace Services
         public void SendInvitationToRoom(int idRoom, Users userTarget)
         {
             usersMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
+        }
+    }
+
+    public partial class ServicesImplementation : IGameManagement
+    {
+
+
+        public Domain.Board GetBoardById(int idBoard)
+        {
+            Domain.Board foundBoard = new Domain.Board();
+            BusinessServices.GameManagement gameManagement = new BusinessServices.GameManagement();
+            foundBoard = gameManagement.GetBoardById(idBoard);
+
+
+            return foundBoard;
+
         }
     }
 

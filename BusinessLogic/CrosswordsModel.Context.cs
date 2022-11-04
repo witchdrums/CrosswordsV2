@@ -32,5 +32,7 @@ namespace BusinessLogic
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<Word> Words { get; set; }
         public virtual DbSet<GamesPlayer> GamesPlayers { get; set; }
+        public virtual DbSet<Board> Boards { get; set; }
+        public virtual DbSet<WordsBoard> WordsBoards { get; set; }
     }
 }

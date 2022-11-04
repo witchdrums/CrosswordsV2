@@ -11,6 +11,53 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Users" nillable="true" type="tns:Users" />
+  <xs:complexType name="Players">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+      <xs:element minOccurs="0" name="playerDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerRank" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user" nillable="true" type="tns:Users" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Players" nillable="true" type="tns:Players" />
+  <xs:complexType name="Board">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WordsBoards" nillable="true" type="tns:ArrayOfWordsBoard" />
+      <xs:element minOccurs="0" name="boardMatrix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idBoard" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Board" nillable="true" type="tns:Board" />
+  <xs:complexType name="ArrayOfWordsBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WordsBoard" nillable="true" type="tns:WordsBoard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWordsBoard" nillable="true" type="tns:ArrayOfWordsBoard" />
+  <xs:complexType name="WordsBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Board" nillable="true" type="tns:Board" />
+      <xs:element minOccurs="0" name="Word" nillable="true" type="tns:Word" />
+      <xs:element minOccurs="0" name="idBoard" type="xs:int" />
+      <xs:element minOccurs="0" name="idWord" type="xs:int" />
+      <xs:element minOccurs="0" name="xEnd" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="xStart" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="yEnd" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="yStart" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WordsBoard" nillable="true" type="tns:WordsBoard" />
+  <xs:complexType name="Word">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WordsBoards" nillable="true" type="tns:ArrayOfWordsBoard" />
+      <xs:element minOccurs="0" name="clue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isSolved" type="xs:boolean" />
+      <xs:element minOccurs="0" name="term" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Word" nillable="true" type="tns:Word" />
   <xs:complexType name="ArrayOfUsers">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Users" nillable="true" type="tns:Users" />

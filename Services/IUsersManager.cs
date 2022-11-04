@@ -18,10 +18,9 @@ namespace Services
         bool AddUser(Users user);
 
         [OperationContract]
-        void FindUserByEmail(String userEmail);
-
+        bool FindUserByEmail(String userEmail);
         [OperationContract]
-        Users FindUserByUserNameAndPassword(Users user);
+        Players Login(Users user);
     }
 
     [ServiceContract]

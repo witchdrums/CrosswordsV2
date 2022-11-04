@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessServices", "BusinessServices\BusinessServices.csproj", "{29900545-3AC6-4DA8-9833-1D43C51D1FD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{D8653BC9-A644-4B85-B1D0-99ACF03F479A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{29900545-3AC6-4DA8-9833-1D43C51D1FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29900545-3AC6-4DA8-9833-1D43C51D1FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29900545-3AC6-4DA8-9833-1D43C51D1FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8653BC9-A644-4B85-B1D0-99ACF03F479A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8653BC9-A644-4B85-B1D0-99ACF03F479A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8653BC9-A644-4B85-B1D0-99ACF03F479A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8653BC9-A644-4B85-B1D0-99ACF03F479A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{08545FB2-C9B7-49E2-A6CC-4DDD4FF43607} = {BFC36F47-606C-411F-B97A-F6E1F322E4F3}
 		{CB149365-F43C-4E20-B53A-380EEE85DFE3} = {BFC36F47-606C-411F-B97A-F6E1F322E4F3}
 		{29900545-3AC6-4DA8-9833-1D43C51D1FD1} = {BFC36F47-606C-411F-B97A-F6E1F322E4F3}
+		{D8653BC9-A644-4B85-B1D0-99ACF03F479A} = {8767580E-8858-4CD4-9DB7-88D8790E94D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D5C87E3-DDF1-41B2-9C3A-B38DBCEE541F}

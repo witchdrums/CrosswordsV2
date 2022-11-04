@@ -138,7 +138,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicesImplementation\ServicesImplementation.wsdl" />
-    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Users.datasource">
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Board.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
@@ -171,6 +174,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Email\Email.csproj">
+      <Project>{d8653bc9-a644-4b85-b1d0-99acf03f479a}</Project>
+      <Name>Email</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{582a1f29-18b4-41ad-8974-f218729ef079}</Project>
       <Name>Security</Name>

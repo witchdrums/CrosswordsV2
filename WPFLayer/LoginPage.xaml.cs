@@ -14,13 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
 using Validation;
+using Security;
 
 namespace WPFLayer
 {
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LoginPage : Page, ServicesImplementation.IUsersManagerCallback
     {
         public LoginPage()
         {
@@ -33,33 +34,15 @@ namespace WPFLayer
         {
             bool validUserName = checkFieldUserName();
             bool validPassword = checkFieldPassword();
-            if (validUserName && validUserName)
+            if (validUserName && validPassword)
             {
-                InstanceContext context = new InstanceContext(this);
-
-                ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
-
-                ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
-                userLogin.username = this.TextBox_Username.Text;
-                userLogin.password = this.PasswordBox_Password.Password;
-                userLogin = client.FindUserByUserNameAndPassword(userLogin);
-                if (!userLogin.credential)
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Usuario no encontrado, verifique sus credenciales o registrese",
-                                    "Usuario no encontrado", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                UserValidation();
             }
 
         }
 
         private bool checkFieldUserName()
         {
-
             Label_UsernameInvalid.Visibility = Visibility.Hidden;
             this.TextBox_Username.BorderBrush = System.Windows.Media.Brushes.Gray;
             String userName = this.TextBox_Username.Text;
@@ -88,11 +71,40 @@ namespace WPFLayer
             return validPassword;
         }
 
+        private void UserValidation()
+        {
+            InstanceContext context = new InstanceContext(this);
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
+            ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
+            userLogin.username = this.TextBox_Username.Text;
+            EncryptionService encriptador = new EncryptionService();
+            //userLogin.credential = false;
+            userLogin.password = encriptador.StringToSHA512(this.PasswordBox_Password.Password);
+            playerLogin.user = userLogin;
+            playerLogin = client.Login(playerLogin.user);
+            if (playerLogin.user.credential)
+            {
+                //Singleton
+                MessageBox.Show(playerLogin.user.email);
+            }
+            else
+            {
+                MessageBox.Show("Usuario no encontrado, verifique sus credenciales o registrese",
+                                "Usuario no encontrado", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
         private void Button_SignUp_Click_(object sender, RoutedEventArgs e)
         {
             SignUpPage signUpPage = new SignUpPage();
             this.NavigationService.Navigate(signUpPage);
             //this.Close();
+        }
+
+        public void Response([MessageParameter(Name = "response")] bool response1)
+        {
+            throw new NotImplementedException();
         }
     }
 }
