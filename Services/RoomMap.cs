@@ -20,6 +20,19 @@ namespace Services
         {
             roomMap[idRoom].Add(user);
         }
+        public void RemoveUserToRoom(int idRoom,Users user)
+        {
+            List<Users> oldUsersList = roomMap[idRoom];
+            List<Users> updatedUsersList = new List<Users>();
+            foreach (Users updatedUser in oldUsersList)
+            {
+                if (updatedUser.idUser != user.idUser)
+                {
+                    updatedUsersList.Add(updatedUser);
+                }
+            }
+            roomMap[idRoom] = updatedUsersList;
+        }
         public List<Users> GetUsersInRoom(int idRoom)
         {
             return roomMap[idRoom];
@@ -31,6 +44,35 @@ namespace Services
         public void UpdateList(int idRoom,List<Users> usersList)
         {
             roomMap[idRoom] = usersList;
+        }
+
+        public bool IsFullRoom(int idRoom)
+        {
+            bool response = false;
+            if(roomMap[idRoom].Count() >= 4)
+            {
+                response = true;    
+            }
+            return response;
+        }
+
+        public bool ExistRoom(int idRoom)
+        {
+            bool response = false;
+            if (roomMap.ContainsKey(idRoom))
+            {
+                response = true;
+            }
+            return response;
+        }
+        public bool IsEmptyRoom(int idRoom)
+        {
+            bool response = false;
+            if (roomMap[idRoom].Count() == 0)
+            {
+                response = true;
+            }
+            return response;
         }
     }
 }
