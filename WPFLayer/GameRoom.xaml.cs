@@ -40,6 +40,7 @@ namespace WPFLayer
 
         public void ReciveChatMessage(Users userOrigin, string message)
         {
+            //this.ListBox_Chat.Items.Add(userOrigin.username + " : " + message + "\n");
             this.TextBlock_Chat.Text += userOrigin.username + " : " + message + "\n";
         }
 
@@ -76,15 +77,30 @@ namespace WPFLayer
             this.TextBox_Message.Clear();
         }
 
-        private void Button_InviteUser_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
+            InstanceContext context = new InstanceContext(this);
+            ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
+            if (this.IdRoom != this.UserLogin.idUser){
+                gameRoomClient.ExitToRoom(this.IdRoom, this.UserLogin);
+                this.NavigationService.GoBack();
+            }else
+            {
+                gameRoomClient.DeleteRoom(this.IdRoom);
+            }
             
+
+        }
+
+        public void ForceExitToRoom()
+        {
             this.NavigationService.GoBack();
+        }
+
+        private void TextBlock_Chat_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
 
         }
     }
