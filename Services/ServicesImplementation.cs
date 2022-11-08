@@ -75,6 +75,23 @@ namespace Services
         private static readonly RoomMap roomMap = new RoomMap();
         private static readonly ConnectionMap connectionMapRoomManagement = new ConnectionMap();
 
+        public bool CheckRoomAvailability(int idRoom)
+        {
+            bool response = true;
+            if(!(roomMap.ExistRoom(idRoom)))
+            {
+                response = false;
+            }else
+            {
+                if(roomMap.IsFullRoom(idRoom))
+                {
+                    response = false;
+                }
+            }
+           
+            return response;
+        }
+
         public void ConnectGameRoomManagement(Users users)
         {
             connectionMapRoomManagement.SaveUser(users.idUser,OperationContext.Current);
@@ -84,6 +101,27 @@ namespace Services
         {
             roomMap.NewRoom(user.idUser);
             return user.idUser;
+        }
+
+        public void DeleteRoom(int idRoom)
+        {
+            List<Users> usersInRoom = roomMap.GetUsersInRoom(idRoom);
+            roomMap.DeleteRoom(idRoom);
+            foreach (Users user in usersInRoom)
+            {
+                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ForceExitToRoom();
+            }
+        }
+
+        public void ExitToRoom(int idRoom, Users user)
+        {
+            roomMap.RemoveUserToRoom(idRoom, user);
+            List<Users> updatedUserList = roomMap.GetUsersInRoom(idRoom);
+            foreach (Users userUpdated in updatedUserList)
+            {
+                connectionMapRoomManagement.GetOperationContextForId(userUpdated.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(updatedUserList);
+
+            }
         }
 
         public void JoinToRoom(int idRoom,Users newUser)
