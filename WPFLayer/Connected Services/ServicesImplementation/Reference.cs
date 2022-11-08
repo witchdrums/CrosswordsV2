@@ -821,16 +821,16 @@ namespace WPFLayer.ServicesImplementation {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IGameRoomManagement", CallbackContract=typeof(WPFLayer.ServicesImplementation.IGameRoomManagementCallback))]
     public interface IGameRoomManagement {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/SendInvitationToRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/SendInvitationToRoomResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/SendInvitationToRoom")]
         void SendInvitationToRoom(int idRoom, WPFLayer.ServicesImplementation.Users userTarget);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/SendInvitationToRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/SendInvitationToRoomResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/SendInvitationToRoom")]
         System.Threading.Tasks.Task SendInvitationToRoomAsync(int idRoom, WPFLayer.ServicesImplementation.Users userTarget);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/JoinToRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/JoinToRoomResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/JoinToRoom")]
         void JoinToRoom(int idRoom, WPFLayer.ServicesImplementation.Users newUser);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/JoinToRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/JoinToRoomResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/JoinToRoom")]
         System.Threading.Tasks.Task JoinToRoomAsync(int idRoom, WPFLayer.ServicesImplementation.Users newUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/CreateRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/CreateRoomResponse")]
@@ -838,6 +838,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/CreateRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/CreateRoomResponse")]
         System.Threading.Tasks.Task<int> CreateRoomAsync(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagement", ReplyAction="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagementResponse")]
+        void ConnectGameRoomManagement(WPFLayer.ServicesImplementation.Users users);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagement", ReplyAction="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagementResponse")]
+        System.Threading.Tasks.Task ConnectGameRoomManagementAsync(WPFLayer.ServicesImplementation.Users users);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -901,6 +907,14 @@ namespace WPFLayer.ServicesImplementation {
         public System.Threading.Tasks.Task<int> CreateRoomAsync(WPFLayer.ServicesImplementation.Users user) {
             return base.Channel.CreateRoomAsync(user);
         }
+        
+        public void ConnectGameRoomManagement(WPFLayer.ServicesImplementation.Users users) {
+            base.Channel.ConnectGameRoomManagement(users);
+        }
+        
+        public System.Threading.Tasks.Task ConnectGameRoomManagementAsync(WPFLayer.ServicesImplementation.Users users) {
+            return base.Channel.ConnectGameRoomManagementAsync(users);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -929,7 +943,7 @@ namespace WPFLayer.ServicesImplementation {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMessagesCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/ReciveChatMessage", ReplyAction="http://tempuri.org/IMessages/ReciveChatMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessages/ReciveChatMessage")]
         void ReciveChatMessage(WPFLayer.ServicesImplementation.Users userOrigin, string message);
     }
     

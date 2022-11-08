@@ -62,8 +62,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="GameMenu.xaml.cs">
+      <DependentUpon>GameMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameRoom.xaml.cs">
+      <DependentUpon>GameRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -71,9 +77,17 @@
     <Compile Include="SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="GameMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GameRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>

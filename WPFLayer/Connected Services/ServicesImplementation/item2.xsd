@@ -129,22 +129,12 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SendInvitationToRoomResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="JoinToRoom">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idRoom" type="xs:int" />
         <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="newUser" nillable="true" type="q16:Users" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="JoinToRoomResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateRoom">
@@ -159,6 +149,18 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="CreateRoomResult" type="xs:int" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectGameRoomManagement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="users" nillable="true" type="q8:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectGameRoomManagementResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ReciveInvitationToRoom">
@@ -221,11 +223,6 @@
         <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q24:Users" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReciveChatMessageResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

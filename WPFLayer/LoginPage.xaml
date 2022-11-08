@@ -7,7 +7,7 @@
       xmlns:p ="clr-namespace:WPFLayer.Properties"
       mc:Ignorable="d" 
   
-      Title="{x:Static p:Resources.LogIn_LogIn}" Height="700" Width="600">
+      Title="{x:Static p:Resources.LogIn_LogIn}" Height="450" Width="800">
     <Grid Background="White">
         <Label 
             x:Name="Label_CrossWords" 
@@ -21,7 +21,7 @@
             x:Name="Label_Username"
             Content="{x:Static p:Resources.General_Label_Username}" 
             HorizontalAlignment="Left" 
-            Margin="59,113,0,0" 
+            Margin="176,80,0,0" 
             VerticalAlignment="Top"
             FontSize="14" 
             FontWeight="Bold"/>
@@ -29,17 +29,17 @@
             x:Name="Label_Password" 
             Content="{x:Static p:Resources.General_Label_Password}" 
             HorizontalAlignment="Left"
-            Margin="59,215,0,0" 
+            Margin="176,182,0,0" 
             VerticalAlignment="Top" 
             FontSize="14" 
             FontWeight="Bold"/>
         <TextBox 
             x:Name="TextBox_Username" 
             HorizontalAlignment="Left"
-            Margin="64,145,0,0" 
+            Margin="180,112,0,0" 
             TextWrapping="Wrap" 
             VerticalAlignment="Top" 
-            Width="477"
+            Width="478"
             Height="38" 
             TextAlignment="Left" 
             VerticalContentAlignment="Center"
@@ -47,18 +47,18 @@
         <PasswordBox 
             x:Name="PasswordBox_Password" 
             HorizontalAlignment="Left" 
-            Margin="64,249,0,0" 
+            Margin="180,216,0,0" 
             VerticalAlignment="Top"
-            Width="477"
+            Width="478"
             Height="38" 
             VerticalContentAlignment="Center"/>
         <Button 
             x:Name="Button_Login" 
             Content="{x:Static p:Resources.LogIn_Button_Login}" 
             HorizontalAlignment="Left"
-            Margin="64,328,0,0" 
+            Margin="180,295,0,0" 
             VerticalAlignment="Top"
-            Width="477"
+            Width="478"
             Height="34"
             FontWeight="Bold" 
             Click="buttonLogin_Click"/>
@@ -66,7 +66,7 @@
             x:Name="Button_SignUp" 
             Content="{x:Static p:Resources.LogIn_SignUp}" 
             HorizontalAlignment="Left"
-            Margin="64,407,0,0"
+            Margin="182,356,0,0"
             VerticalAlignment="Top" 
             Width="225" 
             Height="34" 
@@ -75,7 +75,7 @@
             x:Name="Button_PlayAsGuest" 
             Content= "{x:Static p:Resources.LogIn_Button_PlayAsGuest}" 
             HorizontalAlignment="Left" 
-            Margin="315,407,0,0" 
+            Margin="433,356,0,0" 
             VerticalAlignment="Top" 
             Width="225" 
             Height="34" 
@@ -98,14 +98,14 @@
             x:Name="Label_UsernameInvalid" 
             Content="{x:Static p:Resources.General_Label_UsernameInvalid}"
             HorizontalAlignment="Left" 
-            Margin="60,176,0,0"
+            Margin="176,143,0,0"
             VerticalAlignment="Top"
             Foreground="Red"/>
         <Label 
             x:Name="Label_PasswordInvalid" 
             Content="{x:Static p:Resources.General_Label_PasswordInvalid}" 
             HorizontalAlignment="Left"
-            Margin="60,280,0,0" 
+            Margin="176,247,0,0" 
             VerticalAlignment="Top" 
             Foreground="Red"/>
     </Grid>

@@ -14,7 +14,7 @@ using BusinessServices;
 
 namespace Services
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
 
     public partial class ServicesImplementation : IUsersManager
     {
@@ -39,6 +39,10 @@ namespace Services
             Players playerLogin = new Players();
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
             playerLogin = userManagement.FindUserByUserNameAndPassword(user);
+            if(playerLogin.user.credential)
+            {
+                connectionMap.SaveUser(playerLogin.user.idUser, OperationContext.Current);
+            }
             return playerLogin;
         }
     }
@@ -55,7 +59,7 @@ namespace Services
         {
             foreach (Users user in room)
             {
-                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin, message);
+                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,message);
             }
         }
 
@@ -67,32 +71,76 @@ namespace Services
     }
     public partial class ServicesImplementation : IGameRoomManagement
     {
-        RoomMap roomMap = new RoomMap();
+        private static readonly RoomMap roomMap = new RoomMap();
+        private static readonly ConnectionMap connectionMapRoomManagement = new ConnectionMap();
+
+        public bool CheckRoomAvailability(int idRoom)
+        {
+            bool response = true;
+            if(!(roomMap.ExistRoom(idRoom)))
+            {
+                response = false;
+            }else
+            {
+                if(roomMap.IsFullRoom(idRoom))
+                {
+                    response = false;
+                }
+            }
+           
+            return response;
+        }
+
+        public void ConnectGameRoomManagement(Users users)
+        {
+            connectionMapRoomManagement.SaveUser(users.idUser,OperationContext.Current);
+        }
+
         public int CreateRoom(Users user)
         {
-            roomMap.NewRoom(user.idUser);//Todo Generate Random ID
+            roomMap.NewRoom(user.idUser);
             return user.idUser;
         }
 
-        public void JoinToRoom(int idRoom, Users newUser)
+        public void DeleteRoom(int idRoom)
+        {
+            List<Users> usersInRoom = roomMap.GetUsersInRoom(idRoom);
+            roomMap.DeleteRoom(idRoom);
+            foreach (Users user in usersInRoom)
+            {
+                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ForceExitToRoom();
+            }
+        }
+
+        public void ExitToRoom(int idRoom, Users user)
+        {
+            roomMap.RemoveUserToRoom(idRoom, user);
+            List<Users> updatedUserList = roomMap.GetUsersInRoom(idRoom);
+            foreach (Users userUpdated in updatedUserList)
+            {
+                connectionMapRoomManagement.GetOperationContextForId(userUpdated.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(updatedUserList);
+
+            }
+        }
+
+        public void JoinToRoom(int idRoom,Users newUser)
         {
             roomMap.AddUserToRoom(idRoom, newUser);
             List<Users> usersRoom = roomMap.GetUsersInRoom(idRoom);
             foreach (Users user in usersRoom)
             {
-                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(usersRoom);
-            }
+                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(usersRoom);
+            }            
         }
 
         public void SendInvitationToRoom(int idRoom, Users userTarget)
         {
-            connectionMapMessages.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
+            connectionMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
         }
     }
 
     public partial class ServicesImplementation : IGameManagement
     {
-
         private static readonly ConnectionMap connectionMapGameManagement = new ConnectionMap();
 
         public void JoinGame(Users user)
@@ -105,7 +153,6 @@ namespace Services
             Domain.Board foundBoard = new Domain.Board();
             BusinessServices.GameManagement gameManagement = new BusinessServices.GameManagement();
             foundBoard = gameManagement.GetBoardById(idBoard);
-
 
             return foundBoard;
 
