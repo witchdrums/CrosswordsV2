@@ -45,20 +45,24 @@ namespace Services
 
     public partial class ServicesImplementation : IMessages
     {
-        ConnectionMap usersMap = new ConnectionMap();
+        private static readonly ConnectionMap connectionMapMessages = new ConnectionMap();
+        public void ConnectMessages(Users user)
+        {
+            connectionMapMessages.SaveUser(user.idUser, OperationContext.Current);
+        }
+
         public void SendChatMessage(List<Users> room, Users userOrigin, string message)
         {
             foreach (Users user in room)
             {
-                usersMap.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,message);
+                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin, message);
             }
         }
 
         public void SendPrivateMessage(Users userOrigin, Users userDestination, string message)
         {
-            usersMap.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,"[Private] "+message);
+            connectionMapMessages.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin, "[Private] " + message);
         }
-
 
     }
     public partial class ServicesImplementation : IGameRoomManagement
@@ -70,25 +74,31 @@ namespace Services
             return user.idUser;
         }
 
-        public void JoinToRoom(int idRoom,Users newUser)
+        public void JoinToRoom(int idRoom, Users newUser)
         {
             roomMap.AddUserToRoom(idRoom, newUser);
             List<Users> usersRoom = roomMap.GetUsersInRoom(idRoom);
             foreach (Users user in usersRoom)
             {
-                usersMap.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(usersRoom);
-            }            
+                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(usersRoom);
+            }
         }
 
         public void SendInvitationToRoom(int idRoom, Users userTarget)
         {
-            usersMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
+            connectionMapMessages.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
         }
     }
 
     public partial class ServicesImplementation : IGameManagement
     {
 
+        private static readonly ConnectionMap connectionMapGameManagement = new ConnectionMap();
+
+        public void JoinGame(Users user)
+        {
+            connectionMapGameManagement.SaveUser(user.idUser, OperationContext.Current);
+        }
 
         public Domain.Board GetBoardById(int idBoard)
         {
@@ -99,6 +109,29 @@ namespace Services
 
             return foundBoard;
 
+        }
+
+        public void SendSolvedWordsBoard(List<Users> room, Users usersOrigin, Domain.WordsBoard solvedWordsBoard)
+        {
+
+            foreach (Users user in room)
+            {
+                OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(user.idUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(usersOrigin, solvedWordsBoard);
+            }
+        }
+    }
+
+    public partial class ServicesImplementation : IPlayersManagement
+    {
+        public Players GetPlayerFor(Users user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Players RegisterPlayer(Users user)
+        {
+            throw new NotImplementedException();
         }
     }
 

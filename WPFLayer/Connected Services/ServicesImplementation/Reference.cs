@@ -674,7 +674,68 @@ namespace WPFLayer.ServicesImplementation {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IGameManagement")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IPlayersManagement")]
+    public interface IPlayersManagement {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayersManagement/RegisterPlayerResponse")]
+        WPFLayer.ServicesImplementation.Players RegisterPlayer(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayersManagement/RegisterPlayerResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> RegisterPlayerAsync(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetPlayerFor", ReplyAction="http://tempuri.org/IPlayersManagement/GetPlayerForResponse")]
+        WPFLayer.ServicesImplementation.Players GetPlayerFor(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetPlayerFor", ReplyAction="http://tempuri.org/IPlayersManagement/GetPlayerForResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> GetPlayerForAsync(WPFLayer.ServicesImplementation.Users user);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IPlayersManagementChannel : WPFLayer.ServicesImplementation.IPlayersManagement, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class PlayersManagementClient : System.ServiceModel.ClientBase<WPFLayer.ServicesImplementation.IPlayersManagement>, WPFLayer.ServicesImplementation.IPlayersManagement {
+        
+        public PlayersManagementClient() {
+        }
+        
+        public PlayersManagementClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public PlayersManagementClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public PlayersManagementClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public PlayersManagementClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public WPFLayer.ServicesImplementation.Players RegisterPlayer(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.RegisterPlayer(user);
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> RegisterPlayerAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.RegisterPlayerAsync(user);
+        }
+        
+        public WPFLayer.ServicesImplementation.Players GetPlayerFor(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.GetPlayerFor(user);
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> GetPlayerForAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.GetPlayerForAsync(user);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IGameManagement", CallbackContract=typeof(WPFLayer.ServicesImplementation.IGameManagementCallback))]
     public interface IGameManagement {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetBoardById", ReplyAction="http://tempuri.org/IGameManagement/GetBoardByIdResponse")]
@@ -682,6 +743,25 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetBoardById", ReplyAction="http://tempuri.org/IGameManagement/GetBoardByIdResponse")]
         System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Board> GetBoardByIdAsync(int idBoard);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendSolvedWordsBoard")]
+        void SendSolvedWordsBoard(WPFLayer.ServicesImplementation.Users[] room, WPFLayer.ServicesImplementation.Users usersOrigin, WPFLayer.ServicesImplementation.WordsBoard solvedWordsBoard);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendSolvedWordsBoard")]
+        System.Threading.Tasks.Task SendSolvedWordsBoardAsync(WPFLayer.ServicesImplementation.Users[] room, WPFLayer.ServicesImplementation.Users usersOrigin, WPFLayer.ServicesImplementation.WordsBoard solvedWordsBoard);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/JoinGame")]
+        void JoinGame(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/JoinGame")]
+        System.Threading.Tasks.Task JoinGameAsync(WPFLayer.ServicesImplementation.Users user);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagementCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard")]
+        void ReceiveSolvedWordsBoard(WPFLayer.ServicesImplementation.Users usersOrigin, WPFLayer.ServicesImplementation.WordsBoard solvedWordsBoard);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -690,25 +770,26 @@ namespace WPFLayer.ServicesImplementation {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameManagementClient : System.ServiceModel.ClientBase<WPFLayer.ServicesImplementation.IGameManagement>, WPFLayer.ServicesImplementation.IGameManagement {
+    public partial class GameManagementClient : System.ServiceModel.DuplexClientBase<WPFLayer.ServicesImplementation.IGameManagement>, WPFLayer.ServicesImplementation.IGameManagement {
         
-        public GameManagementClient() {
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public GameManagementClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public GameManagementClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public GameManagementClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public GameManagementClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public GameManagementClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public WPFLayer.ServicesImplementation.Board GetBoardById(int idBoard) {
@@ -717,6 +798,22 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Board> GetBoardByIdAsync(int idBoard) {
             return base.Channel.GetBoardByIdAsync(idBoard);
+        }
+        
+        public void SendSolvedWordsBoard(WPFLayer.ServicesImplementation.Users[] room, WPFLayer.ServicesImplementation.Users usersOrigin, WPFLayer.ServicesImplementation.WordsBoard solvedWordsBoard) {
+            base.Channel.SendSolvedWordsBoard(room, usersOrigin, solvedWordsBoard);
+        }
+        
+        public System.Threading.Tasks.Task SendSolvedWordsBoardAsync(WPFLayer.ServicesImplementation.Users[] room, WPFLayer.ServicesImplementation.Users usersOrigin, WPFLayer.ServicesImplementation.WordsBoard solvedWordsBoard) {
+            return base.Channel.SendSolvedWordsBoardAsync(room, usersOrigin, solvedWordsBoard);
+        }
+        
+        public void JoinGame(WPFLayer.ServicesImplementation.Users user) {
+            base.Channel.JoinGame(user);
+        }
+        
+        public System.Threading.Tasks.Task JoinGameAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.JoinGameAsync(user);
         }
     }
     
@@ -810,17 +907,23 @@ namespace WPFLayer.ServicesImplementation {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IMessages", CallbackContract=typeof(WPFLayer.ServicesImplementation.IMessagesCallback))]
     public interface IMessages {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/SendChatMessage", ReplyAction="http://tempuri.org/IMessages/SendChatMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessages/SendChatMessage")]
         void SendChatMessage(WPFLayer.ServicesImplementation.Users[] room, WPFLayer.ServicesImplementation.Users userOrigin, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/SendChatMessage", ReplyAction="http://tempuri.org/IMessages/SendChatMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessages/SendChatMessage")]
         System.Threading.Tasks.Task SendChatMessageAsync(WPFLayer.ServicesImplementation.Users[] room, WPFLayer.ServicesImplementation.Users userOrigin, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/SendPrivateMessage", ReplyAction="http://tempuri.org/IMessages/SendPrivateMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessages/SendPrivateMessage")]
         void SendPrivateMessage(WPFLayer.ServicesImplementation.Users userOrigin, WPFLayer.ServicesImplementation.Users userDestination, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/SendPrivateMessage", ReplyAction="http://tempuri.org/IMessages/SendPrivateMessageResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessages/SendPrivateMessage")]
         System.Threading.Tasks.Task SendPrivateMessageAsync(WPFLayer.ServicesImplementation.Users userOrigin, WPFLayer.ServicesImplementation.Users userDestination, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/ConnectMessages", ReplyAction="http://tempuri.org/IMessages/ConnectMessagesResponse")]
+        void ConnectMessages(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessages/ConnectMessages", ReplyAction="http://tempuri.org/IMessages/ConnectMessagesResponse")]
+        System.Threading.Tasks.Task ConnectMessagesAsync(WPFLayer.ServicesImplementation.Users user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -872,6 +975,14 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task SendPrivateMessageAsync(WPFLayer.ServicesImplementation.Users userOrigin, WPFLayer.ServicesImplementation.Users userDestination, string message) {
             return base.Channel.SendPrivateMessageAsync(userOrigin, userDestination, message);
+        }
+        
+        public void ConnectMessages(WPFLayer.ServicesImplementation.Users user) {
+            base.Channel.ConnectMessages(user);
+        }
+        
+        public System.Threading.Tasks.Task ConnectMessagesAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.ConnectMessagesAsync(user);
         }
     }
 }

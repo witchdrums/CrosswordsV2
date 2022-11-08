@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -14,12 +13,26 @@ namespace Services
         [OperationContract]
         Domain.Board GetBoardById(int idBoard);
 
+        [OperationContract(IsOneWay = true)]
+        void SendSolvedWordsBoard
+        (
+            List<Users> room,
+            Users usersOrigin,
+            Domain.WordsBoard solvedWordsBoard
+        );
 
+        [OperationContract(IsOneWay = true)]
+        void JoinGame(Users user);
 
     }
 
     public interface IGameManagementCallback
     {
-
+        [OperationContract(IsOneWay = true)]
+        void ReceiveSolvedWordsBoard
+        (
+            Users usersOrigin,
+            WordsBoard solvedWordsBoard
+        );
     }
 }
