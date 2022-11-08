@@ -17,7 +17,6 @@ namespace Services
         void SendPrivateMessage(Users userOrigin,Users userDestination, string message);
         [OperationContract]
         void ConnectMessages(Users user);
-
     }
 
     [ServiceContract]

@@ -65,9 +65,8 @@ namespace Services
 
         public void SendPrivateMessage(Users userOrigin, Users userDestination, string message)
         {
-            connectionMap.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,"[Private] "+message);
+            connectionMapMessages.GetOperationContextForId(userDestination.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin, "[Private] " + message);
         }
-
 
     }
     public partial class ServicesImplementation : IGameRoomManagement
@@ -142,7 +141,12 @@ namespace Services
 
     public partial class ServicesImplementation : IGameManagement
     {
-        
+        private static readonly ConnectionMap connectionMapGameManagement = new ConnectionMap();
+
+        public void JoinGame(Users user)
+        {
+            connectionMapGameManagement.SaveUser(user.idUser, OperationContext.Current);
+        }
 
         public Domain.Board GetBoardById(int idBoard)
         {
@@ -150,9 +154,31 @@ namespace Services
             BusinessServices.GameManagement gameManagement = new BusinessServices.GameManagement();
             foundBoard = gameManagement.GetBoardById(idBoard);
 
-
             return foundBoard;
 
+        }
+
+        public void SendSolvedWordsBoard(List<Users> room, Users usersOrigin, Domain.WordsBoard solvedWordsBoard)
+        {
+
+            foreach (Users user in room)
+            {
+                OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(user.idUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(usersOrigin, solvedWordsBoard);
+            }
+        }
+    }
+
+    public partial class ServicesImplementation : IPlayersManagement
+    {
+        public Players GetPlayerFor(Users user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Players RegisterPlayer(Users user)
+        {
+            throw new NotImplementedException();
         }
     }
 
