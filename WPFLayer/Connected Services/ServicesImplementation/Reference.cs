@@ -833,6 +833,12 @@ namespace WPFLayer.ServicesImplementation {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/JoinToRoom")]
         System.Threading.Tasks.Task JoinToRoomAsync(int idRoom, WPFLayer.ServicesImplementation.Users newUser);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/CheckRoomAvailability", ReplyAction="http://tempuri.org/IGameRoomManagement/CheckRoomAvailabilityResponse")]
+        bool CheckRoomAvailability(int idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/CheckRoomAvailability", ReplyAction="http://tempuri.org/IGameRoomManagement/CheckRoomAvailabilityResponse")]
+        System.Threading.Tasks.Task<bool> CheckRoomAvailabilityAsync(int idRoom);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/CreateRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/CreateRoomResponse")]
         int CreateRoom(WPFLayer.ServicesImplementation.Users user);
         
@@ -844,6 +850,18 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagement", ReplyAction="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagementResponse")]
         System.Threading.Tasks.Task ConnectGameRoomManagementAsync(WPFLayer.ServicesImplementation.Users users);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/ExitToRoom")]
+        void ExitToRoom(int idRoom, WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/ExitToRoom")]
+        System.Threading.Tasks.Task ExitToRoomAsync(int idRoom, WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/DeleteRoom")]
+        void DeleteRoom(int idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/DeleteRoom")]
+        System.Threading.Tasks.Task DeleteRoomAsync(int idRoom);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -854,6 +872,9 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/UpdateRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/UpdateRoomResponse")]
         void UpdateRoom(WPFLayer.ServicesImplementation.Users[] usersInRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/ForceExitToRoom", ReplyAction="http://tempuri.org/IGameRoomManagement/ForceExitToRoomResponse")]
+        void ForceExitToRoom();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -900,6 +921,14 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.JoinToRoomAsync(idRoom, newUser);
         }
         
+        public bool CheckRoomAvailability(int idRoom) {
+            return base.Channel.CheckRoomAvailability(idRoom);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckRoomAvailabilityAsync(int idRoom) {
+            return base.Channel.CheckRoomAvailabilityAsync(idRoom);
+        }
+        
         public int CreateRoom(WPFLayer.ServicesImplementation.Users user) {
             return base.Channel.CreateRoom(user);
         }
@@ -914,6 +943,22 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task ConnectGameRoomManagementAsync(WPFLayer.ServicesImplementation.Users users) {
             return base.Channel.ConnectGameRoomManagementAsync(users);
+        }
+        
+        public void ExitToRoom(int idRoom, WPFLayer.ServicesImplementation.Users user) {
+            base.Channel.ExitToRoom(idRoom, user);
+        }
+        
+        public System.Threading.Tasks.Task ExitToRoomAsync(int idRoom, WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.ExitToRoomAsync(idRoom, user);
+        }
+        
+        public void DeleteRoom(int idRoom) {
+            base.Channel.DeleteRoom(idRoom);
+        }
+        
+        public System.Threading.Tasks.Task DeleteRoomAsync(int idRoom) {
+            return base.Channel.DeleteRoomAsync(idRoom);
         }
     }
     

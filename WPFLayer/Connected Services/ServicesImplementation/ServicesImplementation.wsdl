@@ -209,6 +209,12 @@
   <wsdl:message name="IGameRoomManagement_JoinToRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:JoinToRoom" />
   </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_CheckRoomAvailability_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRoomAvailability" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_CheckRoomAvailability_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRoomAvailabilityResponse" />
+  </wsdl:message>
   <wsdl:message name="IGameRoomManagement_CreateRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateRoom" />
   </wsdl:message>
@@ -221,6 +227,12 @@
   <wsdl:message name="IGameRoomManagement_ConnectGameRoomManagement_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectGameRoomManagementResponse" />
   </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_ExitToRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitToRoom" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_DeleteRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoom" />
+  </wsdl:message>
   <wsdl:message name="IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReciveInvitationToRoom" />
   </wsdl:message>
@@ -232,6 +244,12 @@
   </wsdl:message>
   <wsdl:message name="IGameRoomManagement_UpdateRoom_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_ForceExitToRoom_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ForceExitToRoom" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_ForceExitToRoom_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ForceExitToRoomResponse" />
   </wsdl:message>
   <wsdl:message name="IMessages_SendChatMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendChatMessage" />
@@ -298,6 +316,10 @@
     <wsdl:operation name="JoinToRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/JoinToRoom" message="tns:IGameRoomManagement_JoinToRoom_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CheckRoomAvailability">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/CheckRoomAvailability" message="tns:IGameRoomManagement_CheckRoomAvailability_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/CheckRoomAvailabilityResponse" message="tns:IGameRoomManagement_CheckRoomAvailability_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/CreateRoom" message="tns:IGameRoomManagement_CreateRoom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/CreateRoomResponse" message="tns:IGameRoomManagement_CreateRoom_OutputMessage" />
@@ -306,6 +328,12 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagement" message="tns:IGameRoomManagement_ConnectGameRoomManagement_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ConnectGameRoomManagementResponse" message="tns:IGameRoomManagement_ConnectGameRoomManagement_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ExitToRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ExitToRoom" message="tns:IGameRoomManagement_ExitToRoom_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/DeleteRoom" message="tns:IGameRoomManagement_DeleteRoom_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReciveInvitationToRoom">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" message="tns:IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoomResponse" message="tns:IGameRoomManagement_ReciveInvitationToRoom_InputCallbackMessage" />
@@ -313,6 +341,10 @@
     <wsdl:operation name="UpdateRoom">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/UpdateRoom" message="tns:IGameRoomManagement_UpdateRoom_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/UpdateRoomResponse" message="tns:IGameRoomManagement_UpdateRoom_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ForceExitToRoom">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ForceExitToRoom" message="tns:IGameRoomManagement_ForceExitToRoom_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ForceExitToRoomResponse" message="tns:IGameRoomManagement_ForceExitToRoom_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMessages">
@@ -438,6 +470,15 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="CheckRoomAvailability">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/CheckRoomAvailability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreateRoom">
       <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/CreateRoom" style="document" />
       <wsdl:input>
@@ -456,6 +497,18 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ExitToRoom">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ExitToRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/DeleteRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="ReciveInvitationToRoom">
       <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" style="document" />
       <wsdl:input>
@@ -467,6 +520,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateRoom">
       <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/UpdateRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForceExitToRoom">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ForceExitToRoom" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -521,7 +583,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
