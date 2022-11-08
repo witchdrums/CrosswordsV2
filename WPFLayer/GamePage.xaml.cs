@@ -13,8 +13,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
@@ -24,36 +26,88 @@ namespace WPFLayer
         [   ] Turn into PAGE
         [   ] Connect this with the lobby window
      */
-    public partial class GamePage : Window, ServicesImplementation.IMessagesCallback
+    public partial class GamePage : Window, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback
     {
+        private DispatcherTimer gameTimer = new DispatcherTimer();
+        private TimeSpan timeSpan = new TimeSpan();
         private UniformGrid crosswordGrid;
-        private Label[,] labelMatrix;
-        private char[,] wordMatrix;
+        private Label[,] labelMatrix = new Label[20, 20];
         private Board board;
-        List<Label> selectedWordLabels;
-        private List<ServicesImplementation.Users> players = new List<ServicesImplementation.Users>();
-        private Users userlogin;
+        private List<Label> selectedWordLabels = new List<Label>();
+        private List<Label> selectedWordLabelsCopy = new List<Label>();
+        private bool hasTurn;
+
+        //room info
+        private List<ServicesImplementation.Users> usersRoom = new List<ServicesImplementation.Users>();
+        private Users userLogin;
         private int idRoom;
 
-        public GamePage()
+        public GamePage() // should receive room info as parameters
         {
-            this.labelMatrix = new Label[20, 20];
-            this.wordMatrix = new char[20, 20];
-            this.selectedWordLabels = new List<Label>();
+
+
             Brush colorSorroundingLetters = System.Windows.Media.Brushes.Gray;
             InitializeComponent();
+            GameSetup();
+
+            userLogin = new Users();
+            userLogin.idUser = 1062;
+            userLogin.username = "vito";
+            usersRoom.Add(userLogin);
+            JoinGame(); //this one is not necessary i think
+
             InitializeBoard(colorSorroundingLetters);
             //InitializeWordList(colorSorroundingLetters);
 
 
             GetBoard();
             //ParseWordMatrix();
-            PlaceWordsInBoard();
+            PlaceAllWordsInBoard();
+            IsMyTurn(true);
+        }
+
+        private void GameSetup()
+        {
+            timeSpan = TimeSpan.FromSeconds(6);
+            gameTimer.Interval = TimeSpan.FromSeconds(1);
+
+            gameTimer.Tick += SecondPasses;
+            gameTimer.Start();
+            this.ListView_HorizontalClueList.SelectedIndex = 0;
+        }
+
+        private void RestartGameTimer()
+        {
+            timeSpan = TimeSpan.FromSeconds(6);
+            gameTimer.Start();
+        }
+
+        private void SecondPasses(object sender, EventArgs e)
+        {
+            if (timeSpan == TimeSpan.FromSeconds(1)) RestartGameTimer();
+            else
+            {
+                timeSpan = timeSpan.Add(TimeSpan.FromSeconds(-1));
+                this.Label_Timer.Content = timeSpan.ToString("c");
+            }
+        }
+
+
+        private void JoinGame()
+        {
+
+
+            InstanceContext instanceContext = new InstanceContext(this);
+            GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
+            MessagesClient messagesClient = new MessagesClient(instanceContext);
+            gameManagementClient.JoinGame(this.userLogin);
+            messagesClient.ConnectMessages(this.userLogin);
         }
 
         private void GetBoard()
         {
-            ServicesImplementation.GameManagementClient client = new ServicesImplementation.GameManagementClient();
+            InstanceContext instanceContext = new InstanceContext(this);
+            ServicesImplementation.GameManagementClient client = new GameManagementClient(instanceContext);
             this.board = client.GetBoardById(1);
             foreach (WordsBoard wordsBoards in board.WordsBoards)
             {
@@ -75,12 +129,16 @@ namespace WPFLayer
                 for (int columnIndex = 0; columnIndex < gridSize; columnIndex++)
                 {
                     Thickness borderThickness = new Thickness(1, 1, 1, 1);
+                    Thickness padding = new Thickness(-10);
                     Label cell = new Label()
                     {
                         BorderBrush = colorSorroundingLetters,
                         BorderThickness = borderThickness,
                         Background = colorSorroundingLetters,
-                        HorizontalContentAlignment = HorizontalAlignment.Center
+                        HorizontalContentAlignment = HorizontalAlignment.Center,
+                        FontWeight = FontWeights.Bold,
+                        Content = "",
+                        Padding = padding,
                     };
                     labelMatrix[columnIndex, rowIndex] = cell;
                     this.crosswordGrid.Children.Add(cell);
@@ -91,32 +149,41 @@ namespace WPFLayer
 
         private void TextBox_WordGuess_TextChanged(object sender, TextChangedEventArgs e)
         {
-            /*
+
             this.selectedWordLabels.ForEach(label => label.Content = "");
             for (int xIndex = 0; xIndex < this.TextBox_WordGuess.Text.Length; xIndex++)
             {
-                if (this.selectedWordLabels.ElementAt(xIndex).Content == "")
+
+                if (xIndex < this.selectedWordLabels.Count && this.selectedWordLabels.ElementAt(xIndex).Content.ToString() == "")
                 {
                     this.selectedWordLabels.ElementAt(xIndex).Content = this.TextBox_WordGuess.Text[xIndex];
                 }
-            }*/
+            }
 
         }
 
         private void ListView_HorizontalClueList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DeselectAllLettersInBoard();
-            WordsBoard selectedWord = GetSelectedWordInClueList();
-            InitializeTextBoxToSolveWord(selectedWord);
-            this.TextBox_WordGuess.Focus();
+            SelectWordLabels();
+        }
 
-            int xIndex = selectedWord.xStart; ;
+        private void SelectWordLabels()
+        {
+            DeselectAllBoardLabels();
+
+            WordsBoard selectedWord = GetSelectedWordInClueList();
+            ClearSelectedWordLabels(selectedWord);
+            InitializeTextBoxToSolveWord(selectedWord);
+
+            int xIndex = selectedWord.xStart;
             int yIndex = selectedWord.yStart;
 
             foreach (char letter in selectedWord.Word.term)
             {
-                this.labelMatrix[xIndex, yIndex].Background = System.Windows.Media.Brushes.Red;
-                this.selectedWordLabels.Add(this.labelMatrix[xIndex, yIndex]);
+                Label selectedWordLabel = this.labelMatrix[xIndex, yIndex];
+                selectedWordLabel.Background = System.Windows.Media.Brushes.Red;
+
+                this.selectedWordLabels.Add(selectedWordLabel);
                 bool wordIsHorizontal = selectedWord.yStart == selectedWord.yEnd;
                 if (wordIsHorizontal)
                 {
@@ -128,15 +195,34 @@ namespace WPFLayer
                 }
             }
 
+            CopySelectedWordLabels();
+        }
+
+        private void CopySelectedWordLabels()
+        {
+            foreach (Label wordLabel in selectedWordLabels)
+            {
+                Label wordLabelCopy = new Label();
+                wordLabelCopy.Content = wordLabel.Content;
+                selectedWordLabelsCopy.Add(wordLabelCopy);
+            }
+
+
         }
 
         private void InitializeTextBoxToSolveWord(WordsBoard selectedWord)
+
         {
-            this.TextBox_WordGuess.IsEnabled = !selectedWord.Word.isSolved;
-            this.TextBox_WordGuess.MaxLength = selectedWord.Word.term.Length;
+            this.TextBox_WordGuess.IsEnabled = false;
+            if (!selectedWord.Word.isSolved && hasTurn)
+            {
+                this.TextBox_WordGuess.Text = "";
+                this.TextBox_WordGuess.IsEnabled = true;
+                this.TextBox_WordGuess.MaxLength = selectedWord.Word.term.Length;
+            }
         }
 
-        private void DeselectAllLettersInBoard()
+        private void DeselectAllBoardLabels()
         {
 
             for (int rows = 0; rows < 20; rows++)
@@ -147,7 +233,7 @@ namespace WPFLayer
                     if (currentLabel.Background == System.Windows.Media.Brushes.Red)
                     {
                         currentLabel.Background = System.Windows.Media.Brushes.White;
-                        this.selectedWordLabels.Remove(currentLabel);
+
                     }
 
                 }
@@ -155,48 +241,67 @@ namespace WPFLayer
 
         }
 
-        private void PlaceWordsInBoard()
+
+
+        private void PlaceAllWordsInBoard()
         {
 
             foreach (WordsBoard word in board.WordsBoards)
             {
-                int xIndex = word.xStart;
-                int yIndex = word.yStart;
-                foreach (char letter in word.Word.term)
-                {
-                    Label currentLabel = this.labelMatrix[xIndex, yIndex];
-                    currentLabel.Background = System.Windows.Media.Brushes.White;
-                    currentLabel.FontSize = 15;
-                    if (word.yStart == word.yEnd)
-                    {
-                        xIndex++;
-                    }
-                    else
-                    {
-                        yIndex++;
-                    }
-                }
-
+                PlaceWordInBoard(word);
             }
         }
 
+
         private void Button_Guess_Click(object sender, RoutedEventArgs e)
+        {
+            GuessWord();
+        }
+
+        private void GuessWord()
         {
             String playerGuess = this.TextBox_WordGuess.Text.ToUpperInvariant();
             WordsBoard selectedWord = GetSelectedWordInClueList();
 
+            //IsMyTurn(false);
             if (playerGuess == selectedWord.Word.term)
             {
+
+
                 selectedWord.Word.isSolved = true;
-                ListViewItem item = (ListViewItem)this.ListView_HorizontalClueList.SelectedItem;
-                item.Foreground = System.Windows.Media.Brushes.LightGray;
-                for (int letterIndex = 0; letterIndex < playerGuess.Length; letterIndex++)
-                {
-                    this.selectedWordLabels.ElementAt(letterIndex).Content = playerGuess[letterIndex];
-                    this.TextBox_WordGuess.Clear();
-                }
+                InstanceContext instanceContext = new InstanceContext(this);
+                GameManagementClient client = new GameManagementClient(instanceContext);
+                client.SendSolvedWordsBoard(this.usersRoom.ToArray(), this.userLogin, selectedWord);
+                ClearSelectedWordLabels(selectedWord);
             }
+            else
+            {
+                this.selectedWordLabelsCopy.ForEach(label => Console.WriteLine(label.Content));
+                RestoreIntersectedWords();
+            }
+
+            this.TextBox_WordGuess.Text = "";
         }
+
+        private void IsMyTurn(bool isMyTurn)
+        {
+            this.hasTurn = isMyTurn;
+
+            this.TextBox_WordGuess.IsEnabled = hasTurn;
+            this.Button_Guess.IsEnabled = hasTurn;
+        }
+
+        private void ClearSelectedWordLabels(WordsBoard word)
+        {
+            Console.WriteLine(word.Word.term);
+            Console.WriteLine(word.Word.isSolved);
+
+
+
+            this.selectedWordLabels.Clear();
+            this.selectedWordLabelsCopy.Clear();
+        }
+
 
         private WordsBoard GetSelectedWordInClueList()
         {
@@ -207,7 +312,9 @@ namespace WPFLayer
 
         public void ReciveChatMessage(Users userOrigin, string message)
         {
-            TextBlock_Chat.Text += userOrigin.username + " : " + message + "\n";
+            this.TextBlock_Chat.Items.Add(userOrigin.username + ": " + message);
+            this.ScrollViewer_Chat.ScrollToBottom();
+
         }
 
         private void Button_SendMessage_Click(object sender, RoutedEventArgs e)
@@ -216,8 +323,89 @@ namespace WPFLayer
             {
                 InstanceContext context = new InstanceContext(this);
                 ServicesImplementation.IMessages messages = new ServicesImplementation.MessagesClient(context);
-                messages.SendChatMessage(this.players.ToArray(), this.userlogin, TextBox_Message.Text);
+                messages.SendChatMessage(this.usersRoom.ToArray(), this.userLogin, TextBox_Message.Text);
             }
+        }
+
+        public void ReceiveSolvedWordsBoard(Users usersOrigin, WordsBoard solvedWordsBoard)
+        {
+            WordsBoard localSolvedWordsBoard = new WordsBoard();
+            ListViewItem solvedItem = new ListViewItem();
+            foreach (ListViewItem item in ListView_HorizontalClueList.Items)
+            {
+                localSolvedWordsBoard = (WordsBoard)item.Tag;
+                if (localSolvedWordsBoard.Word.term == solvedWordsBoard.Word.term)
+                {
+                    solvedItem = item;
+                    localSolvedWordsBoard.Word.isSolved = true;
+                    break;
+                }
+            }
+
+            solvedItem.Foreground = System.Windows.Media.Brushes.LightGray;
+
+            PlaceWordInBoard(localSolvedWordsBoard);
+        }
+
+        private void PlaceWordInBoard(WordsBoard word)
+        {
+            int xIndex = word.xStart;
+            int yIndex = word.yStart;
+
+            foreach (char letter in word.Word.term)
+            {
+                Label currentLabel = this.labelMatrix[xIndex, yIndex];
+                currentLabel.Background = System.Windows.Media.Brushes.White;
+
+                if (word.Word.isSolved)
+                {
+                    currentLabel.Content = letter;
+                }
+                currentLabel.FontSize = 15;
+                if (word.yStart == word.yEnd)
+                {
+                    xIndex++;
+                }
+                else
+                {
+                    yIndex++;
+                }
+            }
+
+        }
+        private void OnKeyDownHandler(object sender, KeyEventArgs keyEvent)
+        {
+            if (keyEvent.Key == Key.Enter)
+            {
+                GuessWord();
+            }
+            else if ((keyEvent.Key == Key.Delete) || (keyEvent.Key == Key.Back))
+            {
+                Console.WriteLine("Backspace");
+                this.TextBox_WordGuess.Text = "";
+
+                RestoreIntersectedWords();
+            }
+        }
+
+        private void RestoreIntersectedWords()
+        {
+            for (int selectedWordLabelIndex = 0; selectedWordLabelIndex < selectedWordLabelsCopy.Count; selectedWordLabelIndex++)
+            {
+
+                this.selectedWordLabels.ElementAt(selectedWordLabelIndex).Content =
+                    this.selectedWordLabelsCopy.ElementAt(selectedWordLabelIndex).Content;
+            }
+        }
+
+        public void ReciveInvitationToRoom(int idRoom)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateRoom(Users[] usersInRoom)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,10 +11,13 @@ namespace Services
     [ServiceContract(CallbackContract = typeof(IMessagesCallback))]
     public interface IMessages
     {
+        [OperationContract(IsOneWay = true)]
+        void SendChatMessage(List<Users> room, Users userOrigin, string message);
+        [OperationContract(IsOneWay = true)]
+        void SendPrivateMessage(Users userOrigin, Users userDestination, string message);
         [OperationContract]
-        void SendChatMessage(List<Users> room,Users userOrigin, string message);
-        [OperationContract]
-        void SendPrivateMessage(Users userOrigin,Users userDestination, string message);
+        void ConnectMessages(Users user);
+
 
     }
 
@@ -22,6 +25,6 @@ namespace Services
     public interface IMessagesCallback
     {
         [OperationContract]
-        void ReciveChatMessage(Users userOrigin,string message);
+        void ReciveChatMessage(Users userOrigin, string message);
     }
 }
