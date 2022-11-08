@@ -85,8 +85,8 @@ namespace WPFLayer
             playerLogin = client.Login(playerLogin.user);
             if (playerLogin.user.credential)
             {
-                GameMenu gameMenuPage = new GameMenu();
-                gameMenuPage.UserLogin = playerLogin.user;
+                GameMenu gameMenuPage = new GameMenu(playerLogin.user);
+                //gameMenuPage.UserLogin = playerLogin.user;
                 this.NavigationService.Navigate(gameMenuPage);
             }
             else

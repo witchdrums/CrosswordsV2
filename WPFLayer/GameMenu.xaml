@@ -8,5 +8,7 @@
         Title="GameMenu" Height="450" Width="800">
     <Grid>
         <Button x:Name="NewGame" Content="Play!!!!!" Margin="120,303,120,33" Click="Button_NewGame_Click"/>
+        <Button x:Name="JoinGame" Content="Join!!!!!" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" Width="516" Click="JoinGame_Click"/>
+        <TextBox x:Name="TextBox_IdGameToJoin" HorizontalAlignment="Left" Height="21" Margin="305,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="270"/>
     </Grid>
 </Page>
