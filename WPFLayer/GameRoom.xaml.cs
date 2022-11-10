@@ -103,5 +103,20 @@ namespace WPFLayer
         {
 
         }
+
+        private void Button_StartGame_Click(object sender, RoutedEventArgs @event)
+        {
+            Console.WriteLine("start game");
+            InstanceContext instanceContext = new InstanceContext(this);
+            GameRoomManagementClient gameRoomManagementClient = new GameRoomManagementClient(instanceContext);
+            gameRoomManagementClient.StartGame(this.UsersRoom.ToArray());
+
+        }
+
+        public void EnterGame()
+        {
+            GamePage gamePage = new GamePage(this.UserLogin, this.IdRoom, this.UsersRoom);
+            gamePage.Show();
+        }
     }
 }

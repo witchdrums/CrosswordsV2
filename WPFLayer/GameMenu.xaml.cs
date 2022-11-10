@@ -26,6 +26,7 @@ namespace WPFLayer
         {
             InitializeComponent();
             this.UserLogin = user;
+
         }
 
         private void Button_NewGame_Click(object sender, RoutedEventArgs e)
@@ -64,6 +65,11 @@ namespace WPFLayer
         }
 
         public void ForceExitToRoom()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnterGame()
         {
             throw new NotImplementedException();
         }

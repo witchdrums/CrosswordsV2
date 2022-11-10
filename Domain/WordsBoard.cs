@@ -24,7 +24,7 @@ namespace Domain
         [DataMember]
         public byte yEnd { get; set; }
         [DataMember]
-        public virtual Domain.Board Board { get; set; }
+        public virtual Domain.Boards Board { get; set; }
         [DataMember]
         public virtual Domain.Word Word { get; set; }
 

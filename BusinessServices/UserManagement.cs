@@ -65,7 +65,7 @@ namespace BusinessServices
             return player;
         }
 
-        private Players GetPlayerInformation(Players player)
+        public Players GetPlayerInformation(Players player)
         {
             using (var context = new CrosswordsContext())
             {

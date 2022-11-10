@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Domain" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Domain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Domain" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Domain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="Users">
     <xs:sequence>
       <xs:element minOccurs="0" name="credential" type="xs:boolean" />
@@ -13,6 +14,7 @@
   <xs:element name="Users" nillable="true" type="tns:Users" />
   <xs:complexType name="Players">
     <xs:sequence>
+      <xs:element minOccurs="0" name="hasTurn" type="xs:boolean" />
       <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
       <xs:element minOccurs="0" name="playerDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="playerLevel" type="xs:int" />
@@ -22,14 +24,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Players" nillable="true" type="tns:Players" />
-  <xs:complexType name="Board">
+  <xs:complexType name="Boards">
     <xs:sequence>
       <xs:element minOccurs="0" name="WordsBoards" nillable="true" type="tns:ArrayOfWordsBoard" />
       <xs:element minOccurs="0" name="boardMatrix" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idBoard" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Board" nillable="true" type="tns:Board" />
+  <xs:element name="Boards" nillable="true" type="tns:Boards" />
   <xs:complexType name="ArrayOfWordsBoard">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="WordsBoard" nillable="true" type="tns:WordsBoard" />
@@ -38,7 +40,7 @@
   <xs:element name="ArrayOfWordsBoard" nillable="true" type="tns:ArrayOfWordsBoard" />
   <xs:complexType name="WordsBoard">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Board" nillable="true" type="tns:Board" />
+      <xs:element minOccurs="0" name="Board" nillable="true" type="tns:Boards" />
       <xs:element minOccurs="0" name="Word" nillable="true" type="tns:Word" />
       <xs:element minOccurs="0" name="idBoard" type="xs:int" />
       <xs:element minOccurs="0" name="idWord" type="xs:int" />
@@ -64,4 +66,30 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
+  <xs:complexType name="Games">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GamesPlayers" nillable="true" type="tns:ArrayOfGamesPlayers" />
+      <xs:element minOccurs="0" name="gameDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gameTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="idGame" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Games" nillable="true" type="tns:Games" />
+  <xs:complexType name="ArrayOfGamesPlayers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GamesPlayers" nillable="true" type="tns:GamesPlayers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGamesPlayers" nillable="true" type="tns:ArrayOfGamesPlayers" />
+  <xs:complexType name="GamesPlayers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Game" nillable="true" type="tns:Games" />
+      <xs:element minOccurs="0" name="Player" nillable="true" type="tns:Players" />
+      <xs:element minOccurs="0" name="gameRank" type="xs:int" />
+      <xs:element minOccurs="0" name="gameScore" type="xs:int" />
+      <xs:element minOccurs="0" name="idGame" type="xs:int" />
+      <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GamesPlayers" nillable="true" type="tns:GamesPlayers" />
 </xs:schema>

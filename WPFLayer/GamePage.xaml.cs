@@ -32,30 +32,30 @@ namespace WPFLayer
         private TimeSpan timeSpan = new TimeSpan();
         private UniformGrid crosswordGrid;
         private Label[,] labelMatrix = new Label[20, 20];
-        private Board board;
+        private ServicesImplementation.Boards board;
         private List<Label> selectedWordLabels = new List<Label>();
         private List<Label> selectedWordLabelsCopy = new List<Label>();
         private bool hasTurn;
 
         //room info
+        private List<ServicesImplementation.Players> playersRoom = new List<ServicesImplementation.Players>();
         private List<ServicesImplementation.Users> usersRoom = new List<ServicesImplementation.Users>();
         private Users userLogin;
         private int idRoom;
 
-        public GamePage() // should receive room info as parameters
+        public GamePage(Users userLogin, int idRoom, List<Users> usersRoom) // should receive room info as parameters
         {
-
+            this.userLogin = userLogin;
+            this.idRoom = idRoom;
+            this.usersRoom = usersRoom;
+            GetPlayerRoom();
+            JoinGame();
 
             Brush colorSorroundingLetters = System.Windows.Media.Brushes.Gray;
             InitializeComponent();
             GameSetup();
 
-            userLogin = new Users();
-            userLogin.idUser = 1062;
-            userLogin.username = "vito";
-            usersRoom.Add(userLogin);
-            JoinGame(); //this one is not necessary i think
-
+            
             InitializeBoard(colorSorroundingLetters);
             //InitializeWordList(colorSorroundingLetters);
 
@@ -64,6 +64,23 @@ namespace WPFLayer
             //ParseWordMatrix();
             PlaceAllWordsInBoard();
             IsMyTurn(true);
+            this.usersRoom = usersRoom;
+        }
+
+        private void GetPlayerRoom()
+        {
+            ServicesImplementation.UsersManagerClient userManagerclient = new UsersManagerClient(new InstanceContext(this));
+
+            foreach (Users user in this.usersRoom)
+            {
+                Players newPlayer = new Players();
+                newPlayer.user = user;
+                newPlayer = userManagerclient.GetPlayerInformation(newPlayer);
+                this.playersRoom.Add(newPlayer);
+
+                ServicesImplementation.GameManagementClient gameManagementClient = new GameManagementClient(new InstanceContext(this));
+                
+            }
         }
 
         private void GameSetup()
@@ -100,6 +117,7 @@ namespace WPFLayer
             InstanceContext instanceContext = new InstanceContext(this);
             GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
             MessagesClient messagesClient = new MessagesClient(instanceContext);
+            GameRoomManagementClient roomManagementClient = new GameRoomManagementClient(instanceContext);
             gameManagementClient.JoinGame(this.userLogin);
             messagesClient.ConnectMessages(this.userLogin);
         }
@@ -270,8 +288,8 @@ namespace WPFLayer
 
                 selectedWord.Word.isSolved = true;
                 InstanceContext instanceContext = new InstanceContext(this);
-                GameManagementClient client = new GameManagementClient(instanceContext);
-                client.SendSolvedWordsBoard(this.usersRoom.ToArray(), this.userLogin, selectedWord);
+                GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
+                gameManagementClient.SendSolvedWordsBoard(this.usersRoom.ToArray(), this.userLogin, selectedWord);
                 ClearSelectedWordLabels(selectedWord);
             }
             else
@@ -404,6 +422,16 @@ namespace WPFLayer
         }
 
         public void UpdateRoom(Users[] usersInRoom)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ForceExitToRoom()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnterGame()
         {
             throw new NotImplementedException();
         }

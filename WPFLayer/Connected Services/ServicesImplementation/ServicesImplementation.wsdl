@@ -170,6 +170,12 @@
   <wsdl:message name="IUsersManager_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_GetPlayerInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerInformation" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetPlayerInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerInformationResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
@@ -199,6 +205,12 @@
   </wsdl:message>
   <wsdl:message name="IGameManagement_JoinGame_InputMessage">
     <wsdl:part name="parameters" element="tns:JoinGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_GetGames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGames" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_GetGames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGamesResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveSolvedWordsBoard" />
@@ -233,6 +245,9 @@
   <wsdl:message name="IGameRoomManagement_DeleteRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRoom" />
   </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
   <wsdl:message name="IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReciveInvitationToRoom" />
   </wsdl:message>
@@ -250,6 +265,12 @@
   </wsdl:message>
   <wsdl:message name="IGameRoomManagement_ForceExitToRoom_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ForceExitToRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_EnterGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:EnterGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_EnterGame_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:EnterGameResponse" />
   </wsdl:message>
   <wsdl:message name="IMessages_SendChatMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendChatMessage" />
@@ -279,6 +300,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/Login" message="tns:IUsersManager_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/LoginResponse" message="tns:IUsersManager_Login_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetPlayerInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetPlayerInformation" message="tns:IUsersManager_GetPlayerInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetPlayerInformationResponse" message="tns:IUsersManager_GetPlayerInformation_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Response">
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ResponseResponse" message="tns:IUsersManager_Response_InputCallbackMessage" />
@@ -304,6 +329,10 @@
     </wsdl:operation>
     <wsdl:operation name="JoinGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/JoinGame" message="tns:IGameManagement_JoinGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetGames" message="tns:IGameManagement_GetGames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/GetGamesResponse" message="tns:IGameManagement_GetGames_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" message="tns:IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage" />
@@ -334,6 +363,9 @@
     <wsdl:operation name="DeleteRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/DeleteRoom" message="tns:IGameRoomManagement_DeleteRoom_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/StartGame" message="tns:IGameRoomManagement_StartGame_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReciveInvitationToRoom">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" message="tns:IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoomResponse" message="tns:IGameRoomManagement_ReciveInvitationToRoom_InputCallbackMessage" />
@@ -345,6 +377,10 @@
     <wsdl:operation name="ForceExitToRoom">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ForceExitToRoom" message="tns:IGameRoomManagement_ForceExitToRoom_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/ForceExitToRoomResponse" message="tns:IGameRoomManagement_ForceExitToRoom_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnterGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/EnterGame" message="tns:IGameRoomManagement_EnterGame_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/EnterGameResponse" message="tns:IGameRoomManagement_EnterGame_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMessages">
@@ -385,6 +421,15 @@
     </wsdl:operation>
     <wsdl:operation name="Login">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerInformation">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetPlayerInformation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -448,6 +493,15 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetGames">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetGames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" style="document" />
       <wsdl:output>
@@ -509,6 +563,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/StartGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="ReciveInvitationToRoom">
       <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" style="document" />
       <wsdl:input>
@@ -529,6 +589,15 @@
     </wsdl:operation>
     <wsdl:operation name="ForceExitToRoom">
       <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ForceExitToRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnterGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/EnterGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -574,7 +643,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -583,7 +652,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -592,7 +661,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -601,7 +670,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -610,7 +679,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

@@ -34,6 +34,13 @@ namespace Services
             return result;
         }
 
+        public Players GetPlayerInformation(Players player)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Players foundPlayer = userManagement.GetPlayerInformation(player);
+            return foundPlayer;
+        }
+
         public Players Login(Users user)
         {
             Players playerLogin = new Players();
@@ -137,6 +144,15 @@ namespace Services
         {
             connectionMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
         }
+
+        public void StartGame(List<Users> usersRoom)
+        {
+            foreach (Users user in usersRoom)
+            {
+                Console.WriteLine("sadf");
+                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame();
+            }
+        }
     }
 
     public partial class ServicesImplementation : IGameManagement
@@ -148,9 +164,9 @@ namespace Services
             connectionMapGameManagement.SaveUser(user.idUser, OperationContext.Current);
         }
 
-        public Domain.Board GetBoardById(int idBoard)
+        public Domain.Boards GetBoardById(int idBoard)
         {
-            Domain.Board foundBoard = new Domain.Board();
+            Domain.Boards foundBoard = new Domain.Boards();
             BusinessServices.GameManagement gameManagement = new BusinessServices.GameManagement();
             foundBoard = gameManagement.GetBoardById(idBoard);
 
@@ -166,6 +182,11 @@ namespace Services
                 OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(user.idUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(usersOrigin, solvedWordsBoard);
             }
+        }
+
+        public Domain.Games GetGames()
+        {
+            return new Games();
         }
     }
 

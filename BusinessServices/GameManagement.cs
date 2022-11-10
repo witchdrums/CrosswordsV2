@@ -10,10 +10,10 @@ namespace BusinessServices
 {
     public class GameManagement
     {
-        public Domain.Board GetBoardById(int idBoard)
+        public Domain.Boards GetBoardById(int idBoard)
         {
 
-            Domain.Board domainBoard = new Domain.Board();
+            Domain.Boards domainBoard = new Domain.Boards();
             using (var context = new CrosswordsContext())
             {
                 BusinessLogic.Board foundBoard = new BusinessLogic.Board();

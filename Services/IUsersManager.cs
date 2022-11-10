@@ -21,6 +21,9 @@ namespace Services
         bool FindUserByEmail(String userEmail);
         [OperationContract]
         Players Login(Users user);
+
+        [OperationContract]
+        Players GetPlayerInformation(Players player);
     }
 
     [ServiceContract]
