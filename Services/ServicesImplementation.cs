@@ -149,7 +149,6 @@ namespace Services
         {
             foreach (Users user in usersRoom)
             {
-                Console.WriteLine("sadf");
                 connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame();
             }
         }
@@ -158,6 +157,7 @@ namespace Services
     public partial class ServicesImplementation : IGameManagement
     {
         private static readonly ConnectionMap connectionMapGameManagement = new ConnectionMap();
+        private static readonly GamePlayerQueue gamePlayerQueue = new GamePlayerQueue();
 
         public void JoinGame(Users user)
         {
@@ -184,9 +184,51 @@ namespace Services
             }
         }
 
-        public Domain.Games GetGames()
+        public GamePlayerQueue GetQueue()
         {
-            return new Games();
+            return new GamePlayerQueue();
+        }
+
+        public void PassTurn(List<GamesPlayers> gamePlayers, int currentPlayerIndex)
+        {
+            int playerIndexLimit = gamePlayers.Count - 1;
+            if (currentPlayerIndex == playerIndexLimit)
+            {
+                currentPlayerIndex = 0;
+            }
+            else if (playerIndexLimit > 0)
+            {
+                currentPlayerIndex += 1;
+            }
+            int nextIdUser = gamePlayers.ElementAt(currentPlayerIndex).Player.user.idUser;
+
+            OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
+            userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
+
+            foreach (GamesPlayers gamePlayer in gamePlayers)
+            {
+                int idUser = gamePlayer.Player.user.idUser;
+                userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().SetCurrentPlayerIndex(currentPlayerIndex);
+            }
+            Console.WriteLine(currentPlayerIndex);
+        }
+
+        public void InitializeGamePlayerQueue(List<GamesPlayers> room)
+        {
+            gamePlayerQueue.Initialize(room);
+        }
+
+        public GamesPlayers GetGamesPlayers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetFirstTurn(List<GamesPlayers> gamePlayers)
+        {
+            int firstIdUser = gamePlayers.ElementAt(0).Player.user.idUser;
+            OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(firstIdUser);
+            userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
         }
     }
 
