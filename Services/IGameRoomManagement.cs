@@ -26,7 +26,10 @@ namespace Services
         void ExitToRoom(int idRoom, Users user);
         [OperationContract(IsOneWay = true)]
         void DeleteRoom(int idRoom);
-        
+
+        [OperationContract(IsOneWay = true)]
+        void StartGame(List<Users> usersRoom);
+
     }
     
     [ServiceContract]
@@ -39,6 +42,8 @@ namespace Services
         [OperationContract]
         void ForceExitToRoom();
 
+        [OperationContract]
+        void EnterGame();
     }
   
 }

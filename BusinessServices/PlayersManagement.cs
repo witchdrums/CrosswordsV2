@@ -13,7 +13,7 @@ namespace BusinessServices
         public Players GetPlayerFor(Users user)
         {
             Players foundPlayer = new Players();
-            BusinessLogic.Player businessLogicPlayer = new Player();
+            BusinessLogic.Player businessLogicPlayer = new BusinessLogic.Player();
             using (var context = new CrosswordsContext())
             {
                 int idUser = user.idUser;
@@ -23,13 +23,13 @@ namespace BusinessServices
                                        select player)
                                        .ToList()
                                        .ElementAt(0);
-                foundPlayer = BusinessToDomain(businessLogicPlayer);
+                foundPlayer = ParseToDomain(businessLogicPlayer);
                 foundPlayer.user = user;
             }
             return foundPlayer;
         }
 
-        private Players BusinessToDomain(BusinessLogic.Player businessLogicPlayer)
+        private Domain.Players ParseToDomain(BusinessLogic.Player businessLogicPlayer)
         {
             Players domainPlayer = new Players();
             domainPlayer.idPlayer = businessLogicPlayer.idPlayer;

@@ -11,7 +11,7 @@ namespace Services
     public interface IGameManagement
     {
         [OperationContract]
-        Domain.Board GetBoardById(int idBoard);
+        Domain.Boards GetBoardById(int idBoard);
 
         [OperationContract(IsOneWay = true)]
         void SendSolvedWordsBoard
@@ -23,6 +23,9 @@ namespace Services
 
         [OperationContract(IsOneWay = true)]
         void JoinGame(Users user);
+
+        [OperationContract]
+        Domain.Games GetGames();
 
     }
 
