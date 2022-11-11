@@ -4,6 +4,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using Services;
 
 namespace Services
 {
@@ -24,8 +25,23 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void JoinGame(Users user);
 
+        [OperationContract(IsOneWay = true)]
+        void PassTurn(List<GamesPlayers>gamePlayers,int currentPlayerIndex);
+
+
+        [OperationContract(IsOneWay = true)]
+        void InitializeGamePlayerQueue(List<GamesPlayers> room);
+
+        [OperationContract(IsOneWay = true)]
+        void GetFirstTurn(List<GamesPlayers> gamePlayers);
+
         [OperationContract]
-        Domain.Games GetGames();
+        GamePlayerQueue GetQueue();
+
+        [OperationContract]
+        GamesPlayers GetGamesPlayers();
+
+
 
     }
 
@@ -37,5 +53,11 @@ namespace Services
             Users usersOrigin,
             WordsBoard solvedWordsBoard
         );
+
+        [OperationContract(IsOneWay = true)]
+        void ReceiveTurn();
+
+        [OperationContract(IsOneWay = true)]
+        void SetCurrentPlayerIndex(int currentPlayerIndex);
     }
 }

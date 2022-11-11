@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionMap.cs" />
+    <Compile Include="GamePlayerQueue.cs" />
     <Compile Include="IGameManagement.cs" />
     <Compile Include="IGameRoomManagement.cs" />
     <Compile Include="IMessages.cs" />

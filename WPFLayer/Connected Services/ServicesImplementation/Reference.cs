@@ -608,99 +608,6 @@ namespace WPFLayer.ServicesImplementation {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Games", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
-    [System.SerializableAttribute()]
-    public partial class Games : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WPFLayer.ServicesImplementation.GamesPlayers[] GamesPlayersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime gameDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.TimeSpan gameTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idGameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WPFLayer.ServicesImplementation.GamesPlayers[] GamesPlayers {
-            get {
-                return this.GamesPlayersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GamesPlayersField, value) != true)) {
-                    this.GamesPlayersField = value;
-                    this.RaisePropertyChanged("GamesPlayers");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime gameDate {
-            get {
-                return this.gameDateField;
-            }
-            set {
-                if ((this.gameDateField.Equals(value) != true)) {
-                    this.gameDateField = value;
-                    this.RaisePropertyChanged("gameDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.TimeSpan gameTime {
-            get {
-                return this.gameTimeField;
-            }
-            set {
-                if ((this.gameTimeField.Equals(value) != true)) {
-                    this.gameTimeField = value;
-                    this.RaisePropertyChanged("gameTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int idGame {
-            get {
-                return this.idGameField;
-            }
-            set {
-                if ((this.idGameField.Equals(value) != true)) {
-                    this.idGameField = value;
-                    this.RaisePropertyChanged("idGame");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GamesPlayers", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
     [System.SerializableAttribute()]
     public partial class GamesPlayers : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -811,6 +718,128 @@ namespace WPFLayer.ServicesImplementation {
                     this.idPlayerField = value;
                     this.RaisePropertyChanged("idPlayer");
                 }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Games", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
+    [System.SerializableAttribute()]
+    public partial class Games : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.GamesPlayers[] GamesPlayersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime gameDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan gameTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idGameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.GamesPlayers[] GamesPlayers {
+            get {
+                return this.GamesPlayersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GamesPlayersField, value) != true)) {
+                    this.GamesPlayersField = value;
+                    this.RaisePropertyChanged("GamesPlayers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime gameDate {
+            get {
+                return this.gameDateField;
+            }
+            set {
+                if ((this.gameDateField.Equals(value) != true)) {
+                    this.gameDateField = value;
+                    this.RaisePropertyChanged("gameDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan gameTime {
+            get {
+                return this.gameTimeField;
+            }
+            set {
+                if ((this.gameTimeField.Equals(value) != true)) {
+                    this.gameTimeField = value;
+                    this.RaisePropertyChanged("gameTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idGame {
+            get {
+                return this.idGameField;
+            }
+            set {
+                if ((this.idGameField.Equals(value) != true)) {
+                    this.idGameField = value;
+                    this.RaisePropertyChanged("idGame");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GamePlayerQueue", Namespace="http://schemas.datacontract.org/2004/07/Services")]
+    [System.SerializableAttribute()]
+    public partial class GamePlayerQueue : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
             }
         }
         
@@ -1004,11 +1033,35 @@ namespace WPFLayer.ServicesImplementation {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/JoinGame")]
         System.Threading.Tasks.Task JoinGameAsync(WPFLayer.ServicesImplementation.Users user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetGames", ReplyAction="http://tempuri.org/IGameManagement/GetGamesResponse")]
-        WPFLayer.ServicesImplementation.Games GetGames();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/PassTurn")]
+        void PassTurn(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers, int currentPlayerIndex);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetGames", ReplyAction="http://tempuri.org/IGameManagement/GetGamesResponse")]
-        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Games> GetGamesAsync();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/PassTurn")]
+        System.Threading.Tasks.Task PassTurnAsync(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers, int currentPlayerIndex);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/InitializeGamePlayerQueue")]
+        void InitializeGamePlayerQueue(WPFLayer.ServicesImplementation.GamesPlayers[] room);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/InitializeGamePlayerQueue")]
+        System.Threading.Tasks.Task InitializeGamePlayerQueueAsync(WPFLayer.ServicesImplementation.GamesPlayers[] room);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetFirstTurn")]
+        void GetFirstTurn(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/GetFirstTurn")]
+        System.Threading.Tasks.Task GetFirstTurnAsync(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetQueue", ReplyAction="http://tempuri.org/IGameManagement/GetQueueResponse")]
+        WPFLayer.ServicesImplementation.GamePlayerQueue GetQueue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetQueue", ReplyAction="http://tempuri.org/IGameManagement/GetQueueResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.GamePlayerQueue> GetQueueAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetGamesPlayers", ReplyAction="http://tempuri.org/IGameManagement/GetGamesPlayersResponse")]
+        WPFLayer.ServicesImplementation.GamesPlayers GetGamesPlayers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/GetGamesPlayers", ReplyAction="http://tempuri.org/IGameManagement/GetGamesPlayersResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.GamesPlayers> GetGamesPlayersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1016,6 +1069,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard")]
         void ReceiveSolvedWordsBoard(WPFLayer.ServicesImplementation.Users usersOrigin, WPFLayer.ServicesImplementation.WordsBoard solvedWordsBoard);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ReceiveTurn")]
+        void ReceiveTurn();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SetCurrentPlayerIndex")]
+        void SetCurrentPlayerIndex(int currentPlayerIndex);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1070,12 +1129,44 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.JoinGameAsync(user);
         }
         
-        public WPFLayer.ServicesImplementation.Games GetGames() {
-            return base.Channel.GetGames();
+        public void PassTurn(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers, int currentPlayerIndex) {
+            base.Channel.PassTurn(gamePlayers, currentPlayerIndex);
         }
         
-        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Games> GetGamesAsync() {
-            return base.Channel.GetGamesAsync();
+        public System.Threading.Tasks.Task PassTurnAsync(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers, int currentPlayerIndex) {
+            return base.Channel.PassTurnAsync(gamePlayers, currentPlayerIndex);
+        }
+        
+        public void InitializeGamePlayerQueue(WPFLayer.ServicesImplementation.GamesPlayers[] room) {
+            base.Channel.InitializeGamePlayerQueue(room);
+        }
+        
+        public System.Threading.Tasks.Task InitializeGamePlayerQueueAsync(WPFLayer.ServicesImplementation.GamesPlayers[] room) {
+            return base.Channel.InitializeGamePlayerQueueAsync(room);
+        }
+        
+        public void GetFirstTurn(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers) {
+            base.Channel.GetFirstTurn(gamePlayers);
+        }
+        
+        public System.Threading.Tasks.Task GetFirstTurnAsync(WPFLayer.ServicesImplementation.GamesPlayers[] gamePlayers) {
+            return base.Channel.GetFirstTurnAsync(gamePlayers);
+        }
+        
+        public WPFLayer.ServicesImplementation.GamePlayerQueue GetQueue() {
+            return base.Channel.GetQueue();
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.GamePlayerQueue> GetQueueAsync() {
+            return base.Channel.GetQueueAsync();
+        }
+        
+        public WPFLayer.ServicesImplementation.GamesPlayers GetGamesPlayers() {
+            return base.Channel.GetGamesPlayers();
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.GamesPlayers> GetGamesPlayersAsync() {
+            return base.Channel.GetGamesPlayersAsync();
         }
     }
     

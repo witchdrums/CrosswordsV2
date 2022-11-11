@@ -26,7 +26,7 @@ namespace WPFLayer
         [   ] Turn into PAGE
         [   ] Connect this with the lobby window
      */
-    public partial class GamePage : Window, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback
+    public partial class GamePage : Window, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
@@ -36,10 +36,13 @@ namespace WPFLayer
         private List<Label> selectedWordLabels = new List<Label>();
         private List<Label> selectedWordLabelsCopy = new List<Label>();
         private bool hasTurn;
+        private int currentPlayerIndex = 0;
 
         //room info
-        private List<ServicesImplementation.Players> playersRoom = new List<ServicesImplementation.Players>();
-        private List<ServicesImplementation.Users> usersRoom = new List<ServicesImplementation.Users>();
+        private List<ServicesImplementation.GamesPlayers> gamePlayersRoom = 
+            new List<ServicesImplementation.GamesPlayers>();
+        private List<ServicesImplementation.Users> usersRoom =
+            new List<ServicesImplementation.Users>();
         private Users userLogin;
         private int idRoom;
 
@@ -48,49 +51,52 @@ namespace WPFLayer
             this.userLogin = userLogin;
             this.idRoom = idRoom;
             this.usersRoom = usersRoom;
-            GetPlayerRoom();
+            GetGamePlayersRoom(usersRoom);
             JoinGame();
 
             Brush colorSorroundingLetters = System.Windows.Media.Brushes.Gray;
             InitializeComponent();
             GameSetup();
-
             
             InitializeBoard(colorSorroundingLetters);
             //InitializeWordList(colorSorroundingLetters);
 
-
             GetBoard();
             //ParseWordMatrix();
             PlaceAllWordsInBoard();
-            IsMyTurn(true);
-            this.usersRoom = usersRoom;
+            
         }
 
-        private void GetPlayerRoom()
+        private void GetGamePlayersRoom(List<Users> usersRoom)
         {
             ServicesImplementation.UsersManagerClient userManagerclient = new UsersManagerClient(new InstanceContext(this));
 
-            foreach (Users user in this.usersRoom)
+            foreach (Users user in usersRoom)
             {
-                Players newPlayer = new Players();
-                newPlayer.user = user;
-                newPlayer = userManagerclient.GetPlayerInformation(newPlayer);
-                this.playersRoom.Add(newPlayer);
-
-                ServicesImplementation.GameManagementClient gameManagementClient = new GameManagementClient(new InstanceContext(this));
+                Players userPlayer = new Players();
+                userPlayer.user = user;
+                userPlayer = userManagerclient.GetPlayerInformation(userPlayer);
                 
+
+                GamesPlayers gamesPlayer = new GamesPlayers();
+                gamesPlayer.idPlayer = userPlayer.idPlayer;
+                gamesPlayer.Player = userPlayer;
+
+                this.gamePlayersRoom.Add(gamesPlayer);
             }
         }
 
         private void GameSetup()
         {
-            timeSpan = TimeSpan.FromSeconds(6);
+            timeSpan = TimeSpan.FromSeconds(20);
             gameTimer.Interval = TimeSpan.FromSeconds(1);
 
             gameTimer.Tick += SecondPasses;
             gameTimer.Start();
             this.ListView_HorizontalClueList.SelectedIndex = 0;
+            IsMyTurn(false);
+            GameManagementClient gameManagementClient = GetGameManagementClient();
+            gameManagementClient.GetFirstTurn(this.gamePlayersRoom.ToArray());
         }
 
         private void RestartGameTimer()
@@ -101,8 +107,12 @@ namespace WPFLayer
 
         private void SecondPasses(object sender, EventArgs e)
         {
-            if (timeSpan == TimeSpan.FromSeconds(1)) RestartGameTimer();
-            else
+            if (timeSpan == TimeSpan.FromSeconds(1)) 
+            {
+                
+                PassTurn();
+            }
+            else if (hasTurn)
             {
                 timeSpan = timeSpan.Add(TimeSpan.FromSeconds(-1));
                 this.Label_Timer.Content = timeSpan.ToString("c");
@@ -122,10 +132,15 @@ namespace WPFLayer
             messagesClient.ConnectMessages(this.userLogin);
         }
 
-        private void GetBoard()
+        private GameManagementClient GetGameManagementClient()
         {
             InstanceContext instanceContext = new InstanceContext(this);
-            ServicesImplementation.GameManagementClient client = new GameManagementClient(instanceContext);
+            return new GameManagementClient(instanceContext);
+        }
+
+        private void GetBoard()
+        {
+            ServicesImplementation.GameManagementClient client = GetGameManagementClient();
             this.board = client.GetBoardById(1);
             foreach (WordsBoard wordsBoards in board.WordsBoards)
             {
@@ -290,7 +305,9 @@ namespace WPFLayer
                 InstanceContext instanceContext = new InstanceContext(this);
                 GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
                 gameManagementClient.SendSolvedWordsBoard(this.usersRoom.ToArray(), this.userLogin, selectedWord);
+                PassTurn();
                 ClearSelectedWordLabels(selectedWord);
+                RestartGameTimer();
             }
             else
             {
@@ -416,6 +433,15 @@ namespace WPFLayer
             }
         }
 
+        private void PassTurn()
+        {
+            RestartGameTimer();
+            IsMyTurn(false);
+            InstanceContext instanceContext = new InstanceContext(this);
+            GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
+            gameManagementClient.PassTurn(this.gamePlayersRoom.ToArray(), this.currentPlayerIndex);
+        }
+
         public void ReciveInvitationToRoom(int idRoom)
         {
             throw new NotImplementedException();
@@ -434,6 +460,21 @@ namespace WPFLayer
         public void EnterGame()
         {
             throw new NotImplementedException();
+        }
+
+        public void Response([MessageParameter(Name = "response")] bool response1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceiveTurn()
+        {
+            IsMyTurn(true);
+        }
+
+        public void SetCurrentPlayerIndex(int currentPlayerIndex)
+        {
+            this.currentPlayerIndex = currentPlayerIndex;
         }
     }
 }

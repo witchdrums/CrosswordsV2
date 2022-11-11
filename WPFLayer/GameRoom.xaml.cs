@@ -24,7 +24,7 @@ namespace WPFLayer
         public int IdRoom { set; get; }
         public ServicesImplementation.Users UserLogin { set; get; }
         public List<ServicesImplementation.Users> UsersRoom { set; get; }
-        public GameRoom(int idRoom,ServicesImplementation.Users userLogin)
+        public GameRoom(int idRoom, ServicesImplementation.Users userLogin)
         {
             InitializeComponent();
             this.UsersRoom = new List<ServicesImplementation.Users>();
@@ -83,14 +83,16 @@ namespace WPFLayer
         {
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
-            if (this.IdRoom != this.UserLogin.idUser){
+            if (this.IdRoom != this.UserLogin.idUser)
+            {
                 gameRoomClient.ExitToRoom(this.IdRoom, this.UserLogin);
                 this.NavigationService.GoBack();
-            }else
+            }
+            else
             {
                 gameRoomClient.DeleteRoom(this.IdRoom);
             }
-            
+
 
         }
 
@@ -106,7 +108,7 @@ namespace WPFLayer
 
         private void Button_StartGame_Click(object sender, RoutedEventArgs @event)
         {
-            Console.WriteLine("start game");
+
             InstanceContext instanceContext = new InstanceContext(this);
             GameRoomManagementClient gameRoomManagementClient = new GameRoomManagementClient(instanceContext);
             gameRoomManagementClient.StartGame(this.UsersRoom.ToArray());

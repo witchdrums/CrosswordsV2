@@ -137,11 +137,17 @@
     <None Include="Connected Services\ServicesImplementation\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServicesImplementation\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServicesImplementation\ServicesImplementation.wsdl" />
     <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Boards.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Games1.datasource">
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.GamePlayerQueue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.GamesPlayers.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource">
@@ -180,6 +186,10 @@
     <ProjectReference Include="..\Email\Email.csproj">
       <Project>{d8653bc9-a644-4b85-b1d0-99acf03f479a}</Project>
       <Name>Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngine\GameEngine.csproj">
+      <Project>{b9dd2cd2-2306-407e-b7b5-5badfa4f248d}</Project>
+      <Name>GameEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{582a1f29-18b4-41ad-8974-f218729ef079}</Project>
