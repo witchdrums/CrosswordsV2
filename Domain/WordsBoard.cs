@@ -23,6 +23,7 @@ namespace Domain
         public byte yStart { get; set; }
         [DataMember]
         public byte yEnd { get; set; }
+
         [DataMember]
         public virtual Domain.Boards Board { get; set; }
         [DataMember]

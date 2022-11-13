@@ -9,8 +9,7 @@ using BusinessLogic;
 using System.Runtime.Remoting.Contexts;
 using System.Data.Entity.Validation;
 using BusinessServices;
-
-
+using System.Runtime.Serialization;
 
 namespace Services
 {
@@ -145,91 +144,98 @@ namespace Services
             connectionMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
         }
 
-        public void StartGame(List<Users> usersRoom)
+        public void LaunchGamePage(GameConfiguration gameConfiguration)
         {
-            foreach (Users user in usersRoom)
+            
+            foreach (Users user in gameConfiguration.UsersRoom)
             {
-                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame();
+                connectionMapRoomManagement.GetOperationContextForId(user.idUser)
+                    .GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
             }
         }
+
+        public Domain.Boards GetBoardById(int idBoard)
+        {
+
+            Domain.Boards domainBoard = new Domain.Boards();
+            using (var context = new CrosswordsContext())
+            {
+                BusinessLogic.Board foundBoard = new BusinessLogic.Board();
+                foundBoard = (from board in context.Boards
+                              where board.idBoard == idBoard
+                              select board)
+                                .ToList()
+                                .ElementAt(0);
+
+
+                domainBoard.idBoard = foundBoard.idBoard;
+                domainBoard.boardMatrix = foundBoard.boardMatrix;
+
+                foreach (BusinessLogic.WordsBoard businessWordBoard in foundBoard.WordsBoards)
+                {
+                    Domain.WordsBoard domainWordBoard = new Domain.WordsBoard();
+                    domainWordBoard.idBoard = idBoard;
+                    domainWordBoard.xStart = businessWordBoard.xStart;
+                    domainWordBoard.xEnd = businessWordBoard.xEnd;
+                    domainWordBoard.yStart = businessWordBoard.yStart;
+                    domainWordBoard.yEnd = businessWordBoard.yEnd;
+
+                    Domain.Word domainWord = new Domain.Word();
+                    domainWord.term = businessWordBoard.Word.word1;
+                    domainWord.clue = businessWordBoard.Word.clue;
+                    domainWordBoard.Word = domainWord;
+
+                    domainBoard.WordsBoards.Add(domainWordBoard);
+                }
+            }
+
+
+
+            return domainBoard;
+
+        }
+
     }
 
     public partial class ServicesImplementation : IGameManagement
     {
         private static readonly ConnectionMap connectionMapGameManagement = new ConnectionMap();
-        private static readonly GamePlayerQueue gamePlayerQueue = new GamePlayerQueue();
 
-        public void JoinGame(Users user)
+        public void JoinGame(GamesPlayers gamePlayer)
         {
-            connectionMapGameManagement.SaveUser(user.idUser, OperationContext.Current);
+            int idUser = gamePlayer.Player.user.idUser;
+            connectionMapGameManagement.SaveUser(idUser, OperationContext.Current);
         }
 
-        public Domain.Boards GetBoardById(int idBoard)
-        {
-            Domain.Boards foundBoard = new Domain.Boards();
-            BusinessServices.GameManagement gameManagement = new BusinessServices.GameManagement();
-            foundBoard = gameManagement.GetBoardById(idBoard);
-
-            return foundBoard;
-
-        }
-
-        public void SendSolvedWordsBoard(List<Users> room, Users usersOrigin, Domain.WordsBoard solvedWordsBoard)
+        public void SendSolvedWordsBoard(Queue<GamesPlayers> gamePlayersQueue, GamesPlayers solver, Domain.WordsBoard solvedWordsBoard)
         {
 
-            foreach (Users user in room)
+            foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(user.idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(usersOrigin, solvedWordsBoard);
+                int idUser = gamePlayer.Player.user.idUser;
+                OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(solver, solvedWordsBoard);
             }
         }
 
-        public GamePlayerQueue GetQueue()
+        public void PassTurn(Queue<GamesPlayers> gamePlayersQueue, int currentTurns)
         {
-            return new GamePlayerQueue();
-        }
 
-        public void PassTurn(List<GamesPlayers> gamePlayers, int currentPlayerIndex)
-        {
-            int playerIndexLimit = gamePlayers.Count - 1;
-            if (currentPlayerIndex == playerIndexLimit)
-            {
-                currentPlayerIndex = 0;
-            }
-            else if (playerIndexLimit > 0)
-            {
-                currentPlayerIndex += 1;
-            }
-            int nextIdUser = gamePlayers.ElementAt(currentPlayerIndex).Player.user.idUser;
+            OperationContext userContext;
 
-            OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
-            userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
-
-            foreach (GamesPlayers gamePlayer in gamePlayers)
+            currentTurns -= 1;
+            gamePlayersQueue.Enqueue(gamePlayersQueue.Dequeue());
+            foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
                 int idUser = gamePlayer.Player.user.idUser;
                 userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().SetCurrentPlayerIndex(currentPlayerIndex);
+                userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayersQueue, currentTurns);
             }
-            Console.WriteLine(currentPlayerIndex);
-        }
-
-        public void InitializeGamePlayerQueue(List<GamesPlayers> room)
-        {
-            gamePlayerQueue.Initialize(room);
-        }
-
-        public GamesPlayers GetGamesPlayers()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetFirstTurn(List<GamesPlayers> gamePlayers)
-        {
-            int firstIdUser = gamePlayers.ElementAt(0).Player.user.idUser;
-            OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(firstIdUser);
+            int nextIdUser = gamePlayersQueue.Peek().Player.user.idUser;
+            userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
             userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
         }
+
     }
 
     public partial class ServicesImplementation : IPlayersManagement

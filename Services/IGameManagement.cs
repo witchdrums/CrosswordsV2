@@ -11,35 +11,19 @@ namespace Services
     [ServiceContract(CallbackContract = typeof(IGameManagementCallback))]
     public interface IGameManagement
     {
-        [OperationContract]
-        Domain.Boards GetBoardById(int idBoard);
-
         [OperationContract(IsOneWay = true)]
         void SendSolvedWordsBoard
         (
-            List<Users> room,
-            Users usersOrigin,
-            Domain.WordsBoard solvedWordsBoard
+            Queue<GamesPlayers> gamePlayersQueue,
+            GamesPlayers solver,
+            WordsBoard solvedWordsBoard
         );
 
         [OperationContract(IsOneWay = true)]
-        void JoinGame(Users user);
+        void JoinGame(GamesPlayers gamePlayer);
 
         [OperationContract(IsOneWay = true)]
-        void PassTurn(List<GamesPlayers>gamePlayers,int currentPlayerIndex);
-
-
-        [OperationContract(IsOneWay = true)]
-        void InitializeGamePlayerQueue(List<GamesPlayers> room);
-
-        [OperationContract(IsOneWay = true)]
-        void GetFirstTurn(List<GamesPlayers> gamePlayers);
-
-        [OperationContract]
-        GamePlayerQueue GetQueue();
-
-        [OperationContract]
-        GamesPlayers GetGamesPlayers();
+        void PassTurn(Queue<GamesPlayers>gamePlayers, int currentTurns);
 
 
 
@@ -50,14 +34,14 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void ReceiveSolvedWordsBoard
         (
-            Users usersOrigin,
+            GamesPlayers solver,
             WordsBoard solvedWordsBoard
         );
 
         [OperationContract(IsOneWay = true)]
         void ReceiveTurn();
-
         [OperationContract(IsOneWay = true)]
-        void SetCurrentPlayerIndex(int currentPlayerIndex);
+        void UpdateGamePlayersQueue(Queue<GamesPlayers> gamePlayers, int remainingTurns);
+
     }
 }

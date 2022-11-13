@@ -19,7 +19,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for GameRoom.xaml
     /// </summary>
-    public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback
+    public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IUsersManagerCallback
     {
         public int IdRoom { set; get; }
         public ServicesImplementation.Users UserLogin { set; get; }
@@ -108,17 +108,49 @@ namespace WPFLayer
 
         private void Button_StartGame_Click(object sender, RoutedEventArgs @event)
         {
-
+            
             InstanceContext instanceContext = new InstanceContext(this);
+            GameRoomManagementClient gameRoomClient = new GameRoomManagementClient(instanceContext);
+            GameConfiguration gameConfiguration = new GameConfiguration();
+            gameConfiguration.GamePlayerQueue = GetGamesPlayersQueue(this.UsersRoom);
+            gameConfiguration.Board = gameRoomClient.GetBoardById(1);
+            gameConfiguration.UsersRoom = this.UsersRoom.ToArray();
+            gameConfiguration.TurnAmount = 300;
             GameRoomManagementClient gameRoomManagementClient = new GameRoomManagementClient(instanceContext);
-            gameRoomManagementClient.StartGame(this.UsersRoom.ToArray());
+            gameRoomManagementClient.LaunchGamePage(gameConfiguration);
 
         }
 
-        public void EnterGame()
+        public Queue<GamesPlayers> GetGamesPlayersQueue(List<Users> userRoom)
         {
-            GamePage gamePage = new GamePage(this.UserLogin, this.IdRoom, this.UsersRoom);
+            InstanceContext context = new InstanceContext(this);
+            UsersManagerClient usersManagerClient = new UsersManagerClient(context);
+            Queue<GamesPlayers> gamePlayersQueue = new Queue<GamesPlayers>();
+            foreach (Users user in userRoom)
+            {
+                Players userPlayer = new Players();
+                userPlayer.user = user;
+                userPlayer = usersManagerClient.GetPlayerInformation(userPlayer);
+
+
+                GamesPlayers gamePlayer = new GamesPlayers();
+                gamePlayer.idPlayer = userPlayer.idPlayer;
+                gamePlayer.Player = userPlayer;
+
+                gamePlayersQueue.Enqueue(gamePlayer);
+            }
+            return gamePlayersQueue;
+        }
+
+        public void EnterGame(GameConfiguration gameConfiguration)
+        {
+            GamePage gamePage = new GamePage(this.UserLogin, this.IdRoom, gameConfiguration);
             gamePage.Show();
+        }
+
+        public void Response([MessageParameter(Name = "response")] bool response1)
+        {
+            throw new NotImplementedException();
         }
     }
 }
