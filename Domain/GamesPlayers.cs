@@ -21,5 +21,7 @@ namespace Domain
         public Games Game { get; set; }
         [DataMember]
         public Domain.Players Player { get; set; }
+        [DataMember]
+        public bool hasTurn { get; set; }
     }
 }

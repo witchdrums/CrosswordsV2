@@ -8,6 +8,7 @@
       mc:Ignorable="d" 
   
       Title="{x:Static p:Resources.LogIn_LogIn}" Height="450" Width="800">
+
     <Grid Background="White">
         <Label 
             x:Name="Label_CrossWords" 

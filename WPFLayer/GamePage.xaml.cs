@@ -30,78 +30,72 @@ namespace WPFLayer
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
-        private UniformGrid crosswordGrid;
         private Label[,] labelMatrix = new Label[20, 20];
         private ServicesImplementation.Boards board;
         private List<Label> selectedWordLabels = new List<Label>();
         private List<Label> selectedWordLabelsCopy = new List<Label>();
+        private List<TextBlock> enemyNames = new List<TextBlock>();
+        private List<Label> enemyScores = new List<Label>();
+        private List<GamesPlayers> enemies;
         private bool hasTurn;
-        private int currentPlayerIndex = 0;
+        private int remainingTurns = 0;
 
         //room info
-        private List<ServicesImplementation.GamesPlayers> gamePlayersRoom = 
-            new List<ServicesImplementation.GamesPlayers>();
+        private Queue<GamesPlayers> gamePlayersQueue = new Queue<GamesPlayers>();
         private List<ServicesImplementation.Users> usersRoom =
             new List<ServicesImplementation.Users>();
         private Users userLogin;
         private int idRoom;
 
-        public GamePage(Users userLogin, int idRoom, List<Users> usersRoom) // should receive room info as parameters
+        private GamesPlayers player;
+        private GameConfiguration gameConfiguration;
+
+        public GamePage(Users userLogin, int idRoom, GameConfiguration gameConfiguration) // should receive room info as parameters
         {
+            InitializeComponent();
             this.userLogin = userLogin;
             this.idRoom = idRoom;
-            this.usersRoom = usersRoom;
-            GetGamePlayersRoom(usersRoom);
+            this.gameConfiguration = gameConfiguration;
+            this.remainingTurns = gameConfiguration.TurnAmount;
+            GetGamePlayer();
             JoinGame();
 
             Brush colorSorroundingLetters = System.Windows.Media.Brushes.Gray;
-            InitializeComponent();
             GameSetup();
-            
+            InitializeEnemyPortraits();
             InitializeBoard(colorSorroundingLetters);
-            //InitializeWordList(colorSorroundingLetters);
-
             GetBoard();
-            //ParseWordMatrix();
             PlaceAllWordsInBoard();
-            
+            EndTurn();
         }
 
-        private void GetGamePlayersRoom(List<Users> usersRoom)
+        private void GetGamePlayer()
         {
-            ServicesImplementation.UsersManagerClient userManagerclient = new UsersManagerClient(new InstanceContext(this));
-
-            foreach (Users user in usersRoom)
+            this.gamePlayersQueue = gameConfiguration.GamePlayerQueue;
+            foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                Players userPlayer = new Players();
-                userPlayer.user = user;
-                userPlayer = userManagerclient.GetPlayerInformation(userPlayer);
-                
-
-                GamesPlayers gamesPlayer = new GamesPlayers();
-                gamesPlayer.idPlayer = userPlayer.idPlayer;
-                gamesPlayer.Player = userPlayer;
-
-                this.gamePlayersRoom.Add(gamesPlayer);
+                if (gamePlayer.Player.user.idUser == this.userLogin.idUser)
+                {
+                    this.player = gamePlayer;
+                }
             }
         }
 
         private void GameSetup()
         {
-            timeSpan = TimeSpan.FromSeconds(20);
+            timeSpan = TimeSpan.FromSeconds(1);
             gameTimer.Interval = TimeSpan.FromSeconds(1);
 
             gameTimer.Tick += SecondPasses;
             gameTimer.Start();
             this.ListView_HorizontalClueList.SelectedIndex = 0;
+            
             IsMyTurn(false);
-            GameManagementClient gameManagementClient = GetGameManagementClient();
-            gameManagementClient.GetFirstTurn(this.gamePlayersRoom.ToArray());
         }
 
         private void RestartGameTimer()
         {
-            timeSpan = TimeSpan.FromSeconds(6);
+            timeSpan = TimeSpan.FromSeconds(30);
             gameTimer.Start();
         }
 
@@ -110,7 +104,7 @@ namespace WPFLayer
             if (timeSpan == TimeSpan.FromSeconds(1)) 
             {
                 
-                PassTurn();
+                EndTurn();
             }
             else if (hasTurn)
             {
@@ -123,13 +117,48 @@ namespace WPFLayer
         private void JoinGame()
         {
 
-
+            this.TextBlock_Player.Text = this.player.Player.playerName;
+            this.Label_PlayerScore.Content = this.player.gameScore;
             InstanceContext instanceContext = new InstanceContext(this);
             GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
             MessagesClient messagesClient = new MessagesClient(instanceContext);
             GameRoomManagementClient roomManagementClient = new GameRoomManagementClient(instanceContext);
-            gameManagementClient.JoinGame(this.userLogin);
+            gameManagementClient.JoinGame(this.player);
             messagesClient.ConnectMessages(this.userLogin);
+        }
+
+        private void InitializeEnemyPortraits()
+        {
+            this.enemies = 
+                this.gamePlayersQueue.Where(enemy => enemy.Player.idPlayer != this.player.Player.idPlayer).ToList();
+            this.enemyNames.Add(this.TextBlock_Enemy1);
+            this.enemyNames.Add(this.TextBlock_Enemy2);
+            this.enemyNames.Add(this.TextBlock_Enemy3);
+
+            this.enemyScores.Add(this.Label_Enemy1Score);
+            this.enemyScores.Add(this.Label_Enemy2Score);
+            this.enemyScores.Add(this.Label_Enemy3Score);
+
+            enemyScores.ForEach(label => label.Tag = 0);
+
+            for (int enemyIndex = 0; enemyIndex < enemies.Count; enemyIndex++)
+            {
+                enemyNames[enemyIndex].Text = enemies[enemyIndex].Player.playerName;
+                enemyScores[enemyIndex].Tag = enemies[enemyIndex].Player.idPlayer;
+            }
+        }
+
+        private void AddScoreToSolver(GamesPlayers solver)
+        {
+            Console.WriteLine("addscore");
+            foreach (Label enemyScore in this.enemyScores)
+            {
+                if (((int)enemyScore.Tag) == solver.idPlayer)
+                {
+                    enemyScore.Content = solver.gameScore;
+                    break;
+                }
+            }
         }
 
         private GameManagementClient GetGameManagementClient()
@@ -140,8 +169,7 @@ namespace WPFLayer
 
         private void GetBoard()
         {
-            ServicesImplementation.GameManagementClient client = GetGameManagementClient();
-            this.board = client.GetBoardById(1);
+            this.board = this.gameConfiguration.Board;
             foreach (WordsBoard wordsBoards in board.WordsBoards)
             {
                 ListViewItem wordItem = new ListViewItem();
@@ -156,7 +184,7 @@ namespace WPFLayer
         private void InitializeBoard(Brush colorSorroundingLetters)
         {
             int gridSize = 20;
-            this.crosswordGrid = new UniformGrid() { Columns = gridSize, Rows = gridSize };
+            UniformGrid crosswordGrid = new UniformGrid() { Columns = gridSize, Rows = gridSize };
             for (int rowIndex = 0; rowIndex < gridSize; rowIndex++)
             {
                 for (int columnIndex = 0; columnIndex < gridSize; columnIndex++)
@@ -172,9 +200,10 @@ namespace WPFLayer
                         FontWeight = FontWeights.Bold,
                         Content = "",
                         Padding = padding,
+                        
                     };
                     labelMatrix[columnIndex, rowIndex] = cell;
-                    this.crosswordGrid.Children.Add(cell);
+                    crosswordGrid.Children.Add(cell);
                 }
             }
             this.Grid_CrosswordPanel.Children.Add(crosswordGrid);
@@ -192,6 +221,7 @@ namespace WPFLayer
                     this.selectedWordLabels.ElementAt(xIndex).Content = this.TextBox_WordGuess.Text[xIndex];
                 }
             }
+            
 
         }
 
@@ -300,14 +330,13 @@ namespace WPFLayer
             if (playerGuess == selectedWord.Word.term)
             {
 
+                AddScore(selectedWord);
+
 
                 selectedWord.Word.isSolved = true;
-                InstanceContext instanceContext = new InstanceContext(this);
-                GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
-                gameManagementClient.SendSolvedWordsBoard(this.usersRoom.ToArray(), this.userLogin, selectedWord);
-                PassTurn();
+                GetGameManagementClient().SendSolvedWordsBoard(this.gamePlayersQueue, this.player, selectedWord);
+                
                 ClearSelectedWordLabels(selectedWord);
-                RestartGameTimer();
             }
             else
             {
@@ -315,7 +344,15 @@ namespace WPFLayer
                 RestoreIntersectedWords();
             }
 
+            EndTurn();
             this.TextBox_WordGuess.Text = "";
+        }
+
+        private void AddScore(WordsBoard solvedWord)
+        {
+            int score = solvedWord.Word.term.Length * 100;
+            this.player.gameScore += score;               
+            this.Label_PlayerScore.Content = this.player.gameScore;
         }
 
         private void IsMyTurn(bool isMyTurn)
@@ -359,10 +396,11 @@ namespace WPFLayer
                 InstanceContext context = new InstanceContext(this);
                 ServicesImplementation.IMessages messages = new ServicesImplementation.MessagesClient(context);
                 messages.SendChatMessage(this.usersRoom.ToArray(), this.userLogin, TextBox_Message.Text);
+               
             }
         }
 
-        public void ReceiveSolvedWordsBoard(Users usersOrigin, WordsBoard solvedWordsBoard)
+        public void ReceiveSolvedWordsBoard(GamesPlayers solver, WordsBoard solvedWordsBoard)
         {
             WordsBoard localSolvedWordsBoard = new WordsBoard();
             ListViewItem solvedItem = new ListViewItem();
@@ -380,6 +418,7 @@ namespace WPFLayer
             solvedItem.Foreground = System.Windows.Media.Brushes.LightGray;
 
             PlaceWordInBoard(localSolvedWordsBoard);
+            AddScoreToSolver(solver);
         }
 
         private void PlaceWordInBoard(WordsBoard word)
@@ -416,7 +455,6 @@ namespace WPFLayer
             }
             else if ((keyEvent.Key == Key.Delete) || (keyEvent.Key == Key.Back))
             {
-                Console.WriteLine("Backspace");
                 this.TextBox_WordGuess.Text = "";
 
                 RestoreIntersectedWords();
@@ -433,13 +471,39 @@ namespace WPFLayer
             }
         }
 
-        private void PassTurn()
+        private void EndTurn()
         {
             RestartGameTimer();
             IsMyTurn(false);
-            InstanceContext instanceContext = new InstanceContext(this);
-            GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
-            gameManagementClient.PassTurn(this.gamePlayersRoom.ToArray(), this.currentPlayerIndex);
+            if (ThereAreWordsToBeSolvedStill() && remainingTurns > 0)
+            {
+                GetGameManagementClient().PassTurn(this.gamePlayersQueue, this.remainingTurns);
+            }
+            else 
+            {
+                FinishGame();
+            }
+            
+        }
+
+        private void FinishGame()
+        {
+            MessageBox.Show("das it mayne");
+        }
+
+        private bool ThereAreWordsToBeSolvedStill()
+        {
+            int wordsToBeSolved = 0;
+            foreach (ListViewItem item in this.ListView_HorizontalClueList.Items)
+            {
+                WordsBoard word = item.Tag as WordsBoard;
+                if (word.Word.isSolved == false)
+                {
+                    wordsToBeSolved += 1;
+                }
+                
+            }
+            return wordsToBeSolved > 0;
         }
 
         public void ReciveInvitationToRoom(int idRoom)
@@ -457,7 +521,7 @@ namespace WPFLayer
             throw new NotImplementedException();
         }
 
-        public void EnterGame()
+        public void EnterGame(GameConfiguration gameConfiguration)
         {
             throw new NotImplementedException();
         }
@@ -472,9 +536,13 @@ namespace WPFLayer
             IsMyTurn(true);
         }
 
-        public void SetCurrentPlayerIndex(int currentPlayerIndex)
+
+        public void UpdateGamePlayersQueue(Queue<GamesPlayers> gamePlayers, int remainingTurns)
         {
-            this.currentPlayerIndex = currentPlayerIndex;
+            this.gamePlayersQueue = gamePlayers;
+            this.remainingTurns = remainingTurns;
+            this.Label_Turns.Content = remainingTurns;
         }
     }
+
 }

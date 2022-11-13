@@ -27,8 +27,7 @@ namespace Domain
         public string playerRank { get; set; }
         [DataMember]
         public Domain.Users user { get; set; }
-        [DataMember]
-        public bool hasTurn { get; set; }
+
         public override bool Equals(object @object)
         {
             bool isEquals = true;

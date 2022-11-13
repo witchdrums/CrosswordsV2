@@ -150,7 +150,8 @@
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Domain" />
-      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Services" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Services" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUsersManager_AddUser_InputMessage">
@@ -195,12 +196,6 @@
   <wsdl:message name="IPlayersManagement_GetPlayerFor_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerForResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_GetBoardById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetBoardById" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetBoardById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetBoardByIdResponse" />
-  </wsdl:message>
   <wsdl:message name="IGameManagement_SendSolvedWordsBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:SendSolvedWordsBoard" />
   </wsdl:message>
@@ -210,32 +205,14 @@
   <wsdl:message name="IGameManagement_PassTurn_InputMessage">
     <wsdl:part name="parameters" element="tns:PassTurn" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_InitializeGamePlayerQueue_InputMessage">
-    <wsdl:part name="parameters" element="tns:InitializeGamePlayerQueue" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetFirstTurn_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetFirstTurn" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetQueue_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetQueue" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetQueue_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetQueueResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetGamesPlayers_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGamesPlayers" />
-  </wsdl:message>
-  <wsdl:message name="IGameManagement_GetGamesPlayers_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGamesPlayersResponse" />
-  </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveSolvedWordsBoard" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveTurn_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveTurn" />
   </wsdl:message>
-  <wsdl:message name="IGameManagement_SetCurrentPlayerIndex_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:SetCurrentPlayerIndex" />
+  <wsdl:message name="IGameManagement_UpdateGamePlayersQueue_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGamePlayersQueue" />
   </wsdl:message>
   <wsdl:message name="IGameRoomManagement_SendInvitationToRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:SendInvitationToRoom" />
@@ -267,8 +244,14 @@
   <wsdl:message name="IGameRoomManagement_DeleteRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRoom" />
   </wsdl:message>
-  <wsdl:message name="IGameRoomManagement_StartGame_InputMessage">
-    <wsdl:part name="parameters" element="tns:StartGame" />
+  <wsdl:message name="IGameRoomManagement_LaunchGamePage_InputMessage">
+    <wsdl:part name="parameters" element="tns:LaunchGamePage" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_GetBoardById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoardById" />
+  </wsdl:message>
+  <wsdl:message name="IGameRoomManagement_GetBoardById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoardByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReciveInvitationToRoom" />
@@ -342,10 +325,6 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagement">
-    <wsdl:operation name="GetBoardById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetBoardById" message="tns:IGameManagement_GetBoardById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/GetBoardByIdResponse" message="tns:IGameManagement_GetBoardById_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="SendSolvedWordsBoard">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/SendSolvedWordsBoard" message="tns:IGameManagement_SendSolvedWordsBoard_InputMessage" />
     </wsdl:operation>
@@ -355,28 +334,14 @@
     <wsdl:operation name="PassTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/PassTurn" message="tns:IGameManagement_PassTurn_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InitializeGamePlayerQueue">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/InitializeGamePlayerQueue" message="tns:IGameManagement_InitializeGamePlayerQueue_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetFirstTurn">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetFirstTurn" message="tns:IGameManagement_GetFirstTurn_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetQueue">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetQueue" message="tns:IGameManagement_GetQueue_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/GetQueueResponse" message="tns:IGameManagement_GetQueue_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGamesPlayers">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/GetGamesPlayers" message="tns:IGameManagement_GetGamesPlayers_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/GetGamesPlayersResponse" message="tns:IGameManagement_GetGamesPlayers_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" message="tns:IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceiveTurn">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveTurn" message="tns:IGameManagement_ReceiveTurn_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetCurrentPlayerIndex">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/SetCurrentPlayerIndex" message="tns:IGameManagement_SetCurrentPlayerIndex_OutputCallbackMessage" />
+    <wsdl:operation name="UpdateGamePlayersQueue">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/UpdateGamePlayersQueue" message="tns:IGameManagement_UpdateGamePlayersQueue_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameRoomManagement">
@@ -404,8 +369,12 @@
     <wsdl:operation name="DeleteRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/DeleteRoom" message="tns:IGameRoomManagement_DeleteRoom_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="StartGame">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/StartGame" message="tns:IGameRoomManagement_StartGame_InputMessage" />
+    <wsdl:operation name="LaunchGamePage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/LaunchGamePage" message="tns:IGameRoomManagement_LaunchGamePage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBoardById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameRoomManagement/GetBoardById" message="tns:IGameRoomManagement_GetBoardById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/GetBoardByIdResponse" message="tns:IGameRoomManagement_GetBoardById_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReciveInvitationToRoom">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" message="tns:IGameRoomManagement_ReciveInvitationToRoom_OutputCallbackMessage" />
@@ -513,15 +482,6 @@
   <wsdl:binding name="NetTcpBinding_IGameManagement" type="tns:IGameManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IGameManagement_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetBoardById">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetBoardById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SendSolvedWordsBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/SendSolvedWordsBoard" style="document" />
       <wsdl:input>
@@ -540,36 +500,6 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="InitializeGamePlayerQueue">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/InitializeGamePlayerQueue" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="GetFirstTurn">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetFirstTurn" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="GetQueue">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetQueue" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGamesPlayers">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/GetGamesPlayers" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" style="document" />
       <wsdl:output>
@@ -582,8 +512,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetCurrentPlayerIndex">
-      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SetCurrentPlayerIndex" style="document" />
+    <wsdl:operation name="UpdateGamePlayersQueue">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/UpdateGamePlayersQueue" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -643,11 +573,20 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="StartGame">
-      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/StartGame" style="document" />
+    <wsdl:operation name="LaunchGamePage">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/LaunchGamePage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetBoardById">
+      <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/GetBoardById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ReciveInvitationToRoom">
       <soap12:operation soapAction="http://tempuri.org/IGameRoomManagement/ReciveInvitationToRoom" style="document" />

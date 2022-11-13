@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using Domain;
-
+using System.Runtime.Serialization;
 
 namespace Services
 {
@@ -28,7 +28,12 @@ namespace Services
         void DeleteRoom(int idRoom);
 
         [OperationContract(IsOneWay = true)]
-        void StartGame(List<Users> usersRoom);
+        void LaunchGamePage(GameConfiguration gameConfiguration);
+
+        [OperationContract]
+        Domain.Boards GetBoardById(int idBoard);
+
+
 
     }
     
@@ -43,7 +48,26 @@ namespace Services
         void ForceExitToRoom();
 
         [OperationContract]
-        void EnterGame();
+        void EnterGame(GameConfiguration gameConfiguration);
     }
-  
+
+    [DataContract]
+    public class GameConfiguration
+    {
+        [DataMember]
+        public Boards Board { get; set; }
+        [DataMember]
+        public int TurnAmount { get; set; }
+
+        [DataMember]
+        public int TurnSeconds { get; set; }
+
+        [DataMember]
+        public Queue<GamesPlayers> GamePlayerQueue { get; set; }
+
+        [DataMember]
+        public List<Users> UsersRoom { get; set; }
+
+    }
+
 }

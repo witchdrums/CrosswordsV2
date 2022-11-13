@@ -30,11 +30,12 @@
 
 
         <Viewbox Grid.Column="2" Grid.Row="1">
-            <StackPanel  Orientation="Vertical">
-                <DockPanel>
 
-                    <TextBlock Text="Jugador" HorizontalAlignment="Center"/>
-                </DockPanel>
+            <StackPanel  Orientation="Vertical">
+
+
+                <TextBlock  x:Name="TextBlock_Player" Text="Jugador" HorizontalAlignment="Center"/>
+
                 <Button Height="70" Width="70">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -42,7 +43,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <TextBlock Text=""/>
+                <Label x:Name="Label_PlayerScore" Content="0" Width="100" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Viewbox>
 
@@ -57,7 +58,7 @@
                 <StackPanel  Orientation="Vertical">
                     <DockPanel>
 
-                        <TextBlock Text="Jugador" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="TextBlock_Enemy3" Text="Jugador" HorizontalAlignment="Center"/>
                     </DockPanel>
                     <Button Height="70" Width="70">
                         <Button.Resources>
@@ -66,16 +67,15 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <TextBlock Text=""/>
+                    <Label x:Name="Label_Enemy3Score" Content="0" Width="100" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Viewbox>
 
             <Viewbox Grid.Column="1">
                 <StackPanel  Orientation="Vertical">
-                    <DockPanel>
 
-                        <TextBlock Text="Jugador" HorizontalAlignment="Center"/>
-                    </DockPanel>
+                    <TextBlock x:Name="TextBlock_Enemy2" Text="Jugador" HorizontalAlignment="Center"/>
+
                     <Button Height="70" Width="70">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -83,32 +83,17 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <TextBlock Text=""/>
-                </StackPanel>
-            </Viewbox>
-            <Viewbox Grid.Column="2">
-                <StackPanel  Orientation="Vertical">
-                    <DockPanel>
-
-                        <TextBlock Text="Jugador" HorizontalAlignment="Center"/>
-                    </DockPanel>
-                    <Button Height="70" Width="70">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="100"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <TextBlock Text=""/>
+                    <Label x:Name="Label_Enemy2Score" Content="0" Width="100" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Viewbox>
 
+
             <Viewbox Grid.Column="2">
                 <StackPanel  Orientation="Vertical">
-                    <DockPanel>
 
-                        <TextBlock Text="Jugador" HorizontalAlignment="Center"/>
-                    </DockPanel>
+
+                    <TextBlock x:Name="TextBlock_Enemy1" Text="Jugador" HorizontalAlignment="Center"/>
+
                     <Button Height="70" Width="70">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -116,7 +101,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <TextBlock Text=""/>
+                    <Label x:Name="Label_Enemy1Score" Content="0" Width="100" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Viewbox>
         </Grid>
@@ -199,6 +184,7 @@
                 </ListView>
             </Grid>
         </Grid>
-        <Label x:Name="Label_Timer" FontSize="20" Content="0" HorizontalAlignment="Left" Margin="117,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label x:Name="Label_Timer" FontSize="20" Content="0" HorizontalAlignment="Center" Margin="0,513,0,0" VerticalAlignment="Top" Width="109" Grid.RowSpan="2"/>
+        <Label x:Name="Label_Turns" FontSize="20" Content="0" HorizontalAlignment="Center" Margin="0,39,0,0" VerticalAlignment="Top" Width="109" Grid.Row="1"/>
     </Grid>
 </Window>

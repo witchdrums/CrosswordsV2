@@ -73,5 +73,10 @@ namespace WPFLayer
         {
             throw new NotImplementedException();
         }
+
+        public void EnterGame(GameConfiguration gameConfiguration)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
