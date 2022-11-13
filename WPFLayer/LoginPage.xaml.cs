@@ -86,7 +86,6 @@ namespace WPFLayer
             if (playerLogin.user.credential)
             {
                 GameMenu gameMenuPage = new GameMenu(playerLogin.user);
-                //gameMenuPage.UserLogin = playerLogin.user;
                 this.NavigationService.Navigate(gameMenuPage);
             }
             else
@@ -111,9 +110,12 @@ namespace WPFLayer
         {
             ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
-            playerLogin.playerName = "Guest" + new Random().Next(1,1000);
+            //playerLogin.playerName = "Guest" + new Random().Next(1,1000);
             userLogin.idUserType = 10;
+            userLogin.username = "Guest" + new Random().Next(1, 1000);
             playerLogin.user = userLogin;
+            GameMenu gameMenuPage = new GameMenu(playerLogin.user);
+            this.NavigationService.Navigate(gameMenuPage);
         }
 
         private void Button_ForgotYourPassword_Click(object sender, RoutedEventArgs e)
