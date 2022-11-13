@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:WPFLayer"
       xmlns:p ="clr-namespace:WPFLayer.Properties"
       mc:Ignorable="d" 
-  
       Title="{x:Static p:Resources.LogIn_LogIn}" Height="700" Width="600">
     <Grid Background="White">
         <Label 
@@ -79,7 +78,7 @@
             VerticalAlignment="Top" 
             Width="225" 
             Height="34" 
-            FontWeight="Bold"/>
+            FontWeight="Bold" Click="Button_PlayAsGuest_Click"/>
         <Button 
             x:Name="Button_ForgotYourPassword" 
             Content="{x:Static p:Resources.LogIn_Button_ForgotYourPassword}" 
@@ -92,7 +91,7 @@
             FontStyle="Italic" 
             Foreground="Black" 
             Background="#0000FFFF"
-            BorderBrush="#0000FFFF"/>
+            BorderBrush="#0000FFFF" Click="Button_ForgotYourPassword_Click"/>
 
         <Label 
             x:Name="Label_UsernameInvalid" 

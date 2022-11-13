@@ -41,6 +41,20 @@ namespace Services
             playerLogin = userManagement.FindUserByUserNameAndPassword(user);
             return playerLogin;
         }
+
+        public bool RecoverPassword(Users user)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool userFound = userManagement.FindUserByEmailAndUsername(user);
+            return userFound;
+        }
+
+        public bool RegisterRecoveredPassword(Users user)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool passwordRegistered = userManagement.RegisterRecoveredPasswordUser(user);
+            return passwordRegistered;
+        }
     }
 
     public partial class ServicesImplementation : IMessages

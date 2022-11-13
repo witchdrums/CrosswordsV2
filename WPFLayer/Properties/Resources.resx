@@ -258,12 +258,6 @@
   <data name="LogIn_Button_PlayAsGuest" xml:space="preserve">
     <value>Play as guest</value>
   </data>
-  <data name="LogIn_Label_PasswordRecovery1" xml:space="preserve">
-    <value>Enter your e-mail address. If we have it on our system, we´ll send you instructions to re-establish your password.</value>
-  </data>
-  <data name="LogIn_Label_PasswordRecovery2" xml:space="preserve">
-    <value>We sent you an e-mail to: </value>
-  </data>
   <data name="LogIn_LogIn" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -275,5 +269,20 @@
   </data>
   <data name="Message_SignUpSuccess" xml:space="preserve">
     <value>Thank you for signing up. Have fun!</value>
+  </data>
+  <data name="RecoverPassword_Button_Recover" xml:space="preserve">
+    <value>Recover</value>
+  </data>
+  <data name="RecoverPassword_Label_Email" xml:space="preserve">
+    <value>Enter your email:</value>
+  </data>
+  <data name="RecoverPassword_Label_Username" xml:space="preserve">
+    <value>Enter your username:</value>
+  </data>
+  <data name="RecoverPassword_RecoverYourPassword" xml:space="preserve">
+    <value>Recover Your Password</value>
+  </data>
+  <data name="RecoverPassword_TextBlock_RecoverPasswordMessage" xml:space="preserve">
+    <value>Enter your e-mail address and username. If we have it on our system, we´ll send you instructions to re-establish your password.</value>
   </data>
 </root>

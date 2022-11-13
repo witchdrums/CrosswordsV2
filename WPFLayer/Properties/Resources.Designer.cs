@@ -484,24 +484,6 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter your e-mail address. If we have it on our system, we´ll send you instructions to re-establish your password..
-        /// </summary>
-        public static string LogIn_Label_PasswordRecovery1 {
-            get {
-                return ResourceManager.GetString("LogIn_Label_PasswordRecovery1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We sent you an e-mail to: .
-        /// </summary>
-        public static string LogIn_Label_PasswordRecovery2 {
-            get {
-                return ResourceManager.GetString("LogIn_Label_PasswordRecovery2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Log in.
         /// </summary>
         public static string LogIn_LogIn {
@@ -534,6 +516,51 @@ namespace WPFLayer.Properties {
         public static string Message_SignUpSuccess {
             get {
                 return ResourceManager.GetString("Message_SignUpSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover.
+        /// </summary>
+        public static string RecoverPassword_Button_Recover {
+            get {
+                return ResourceManager.GetString("RecoverPassword_Button_Recover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your email:.
+        /// </summary>
+        public static string RecoverPassword_Label_Email {
+            get {
+                return ResourceManager.GetString("RecoverPassword_Label_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your username:.
+        /// </summary>
+        public static string RecoverPassword_Label_Username {
+            get {
+                return ResourceManager.GetString("RecoverPassword_Label_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover Your Password.
+        /// </summary>
+        public static string RecoverPassword_RecoverYourPassword {
+            get {
+                return ResourceManager.GetString("RecoverPassword_RecoverYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your e-mail address and username. If we have it on our system, we´ll send you instructions to re-establish your password..
+        /// </summary>
+        public static string RecoverPassword_TextBlock_RecoverPasswordMessage {
+            get {
+                return ResourceManager.GetString("RecoverPassword_TextBlock_RecoverPasswordMessage", resourceCulture);
             }
         }
     }
