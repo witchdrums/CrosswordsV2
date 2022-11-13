@@ -14,7 +14,13 @@ namespace Services
 
         public void SaveUser(int idUser, OperationContext operationContext)
         {
-            usersMap.Add(idUser, operationContext);
+            if(usersMap.ContainsKey(idUser))
+            {
+                usersMap[idUser] = operationContext;
+            }else
+            {
+                usersMap.Add(idUser, operationContext);
+            } 
         }
         //To do : Define Override <3
        /* public override OperationContext GetOperationContextForId(Users user)

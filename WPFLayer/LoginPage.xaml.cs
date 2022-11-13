@@ -85,10 +85,9 @@ namespace WPFLayer
             playerLogin = client.Login(playerLogin.user);
             if (playerLogin.user.credential)
             {
-                //Mandar el player a la aventana principal
-                /*SignUpPage signUpPage = new SignUpPage();
-                this.NavigationService.Navigate(signUpPage);*/
-                //MessageBox.Show("Usuario con acceso");
+                GameMenu gameMenuPage = new GameMenu(playerLogin.user);
+                //gameMenuPage.UserLogin = playerLogin.user;
+                this.NavigationService.Navigate(gameMenuPage);
             }
             else
             {

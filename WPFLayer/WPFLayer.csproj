@@ -62,8 +62,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="GameMenu.xaml.cs">
+      <DependentUpon>GameMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameRoom.xaml.cs">
+      <DependentUpon>GameRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -74,9 +80,32 @@
     <Compile Include="SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Assets\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\LightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GameRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
@@ -101,6 +130,10 @@
     <Page Include="SignUpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -130,7 +163,16 @@
     <None Include="Connected Services\ServicesImplementation\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServicesImplementation\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicesImplementation\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServicesImplementation\ServicesImplementation.wsdl" />
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Boards.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -168,6 +210,10 @@
       <Project>{d8653bc9-a644-4b85-b1d0-99acf03f479a}</Project>
       <Name>Email</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GameEngine\GameEngine.csproj">
+      <Project>{b9dd2cd2-2306-407e-b7b5-5badfa4f248d}</Project>
+      <Name>GameEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{582a1f29-18b4-41ad-8974-f218729ef079}</Project>
       <Name>Security</Name>
@@ -176,6 +222,21 @@
       <Project>{69c25a37-3367-48a4-b91c-2c5be423fd6f}</Project>
       <Name>Validation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\glasses.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\lostpencils.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
