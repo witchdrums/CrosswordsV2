@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPFLayer"
       xmlns:p ="clr-namespace:WPFLayer.Properties"
       mc:Ignorable="d"
-      Title="{x:Static p:Resources.LogIn_LogIn}" Height="450" Width="800">
+      Title="{x:Static p:Resources.LogIn_LogIn}" Height="500" Width="800">
     <Grid Background="White">
         <Label 
             x:Name="Label_CrossWords" 
@@ -83,7 +83,7 @@
             x:Name="Button_ForgotYourPassword" 
             Content="{x:Static p:Resources.LogIn_Button_ForgotYourPassword}" 
             HorizontalAlignment="Left" 
-            Margin="190,486,0,0"
+            Margin="303,421,0,0"
             VerticalAlignment="Top"
             Width="225"
             Height="34"

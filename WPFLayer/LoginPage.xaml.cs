@@ -110,12 +110,10 @@ namespace WPFLayer
         private void Button_PlayAsGuest_Click(object sender, RoutedEventArgs e)
         {
             ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
+            ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             playerLogin.playerName = "Guest" + new Random().Next(1,1000);
-            playerLogin.idPlayer = 0;
-            //MessageBox.Show(playerLogin.playerName);
-            //Mandar el player a la ventana siguiente
-            /*GamePage gamePage = new GamePage();
-            this.NavigationService.Navigate(gamePage);*/
+            userLogin.idUserType = 10;
+            playerLogin.user = userLogin;
         }
 
         private void Button_ForgotYourPassword_Click(object sender, RoutedEventArgs e)

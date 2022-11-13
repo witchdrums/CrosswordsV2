@@ -172,6 +172,18 @@
   <wsdl:message name="IUsersManager_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_RecoverPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverPassword" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RecoverPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RegisterRecoveredPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterRecoveredPassword" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RegisterRecoveredPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterRecoveredPasswordResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersManager_GetPlayerInformation_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerInformation" />
   </wsdl:message>
@@ -305,6 +317,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/Login" message="tns:IUsersManager_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/LoginResponse" message="tns:IUsersManager_Login_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RecoverPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/RecoverPassword" message="tns:IUsersManager_RecoverPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/RecoverPasswordResponse" message="tns:IUsersManager_RecoverPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterRecoveredPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/RegisterRecoveredPassword" message="tns:IUsersManager_RegisterRecoveredPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/RegisterRecoveredPasswordResponse" message="tns:IUsersManager_RegisterRecoveredPassword_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetPlayerInformation">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetPlayerInformation" message="tns:IUsersManager_GetPlayerInformation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetPlayerInformationResponse" message="tns:IUsersManager_GetPlayerInformation_OutputMessage" />
@@ -431,6 +451,24 @@
     </wsdl:operation>
     <wsdl:operation name="Login">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecoverPassword">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/RecoverPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterRecoveredPassword">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/RegisterRecoveredPassword" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -662,7 +700,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -671,7 +709,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -680,7 +718,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -689,7 +727,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -698,7 +736,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
