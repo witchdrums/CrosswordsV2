@@ -37,7 +37,7 @@ namespace BusinessServices
                                  where user.email == userEmail
                                  select user).ToList();
                 result = foundUsers.Count == 0;
-                Console.WriteLine(foundUsers.Count);
+              
             }
             return result;
         }
@@ -83,5 +83,35 @@ namespace BusinessServices
             }
             return player;
         }
+
+        public bool FindUserByEmailAndUsername(Users user)
+        {
+            bool userFound = false;
+            using (var context = new CrosswordsContext())
+            {
+                var foundUsers= (from users in context.Users
+                                    where users.username == user.username && users.email == user.email
+                                    select users).ToList();
+                if (foundUsers.Count > 0)
+                {
+                    userFound = true;
+                }
+            }
+            return userFound;
+        }
+
+        public bool RegisterRecoveredPasswordUser(Users user)
+        {
+            bool passwordRegistered = false;
+            using (var context = new CrosswordsContext())
+            {
+                var foundUsers = context.Users.Where(users => users.username == user.username && users.email == user.email).First();
+                foundUsers.username = user.username;
+                foundUsers.password = user.password;
+                passwordRegistered = context.SaveChanges()>=1;
+            }
+            return passwordRegistered;
+        }
+
     }
 }
