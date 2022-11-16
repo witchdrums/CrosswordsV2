@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ServiceModel;
 using Validation;
 using Security;
+using Email;
 
 namespace WPFLayer
 {
@@ -79,14 +80,12 @@ namespace WPFLayer
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             userLogin.username = this.TextBox_Username.Text;
             EncryptionService encriptador = new EncryptionService();
-            //userLogin.credential = false;
             userLogin.password = encriptador.StringToSHA512(this.PasswordBox_Password.Password);
             playerLogin.user = userLogin;
             playerLogin = client.Login(playerLogin.user);
             if (playerLogin.user.credential)
             {
                 GameMenu gameMenuPage = new GameMenu(playerLogin.user);
-                //gameMenuPage.UserLogin = playerLogin.user;
                 this.NavigationService.Navigate(gameMenuPage);
             }
             else
@@ -100,12 +99,29 @@ namespace WPFLayer
         {
             SignUpPage signUpPage = new SignUpPage();
             this.NavigationService.Navigate(signUpPage);
-            //this.Close();
         }
 
         public void Response([MessageParameter(Name = "response")] bool response1)
         {
             throw new NotImplementedException();
+        }
+
+        private void Button_PlayAsGuest_Click(object sender, RoutedEventArgs e)
+        {
+            ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
+            ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
+            //playerLogin.playerName = "Guest" + new Random().Next(1,1000);
+            userLogin.idUserType = 10;
+            userLogin.username = "Guest" + new Random().Next(1, 1000);
+            playerLogin.user = userLogin;
+            GameMenu gameMenuPage = new GameMenu(playerLogin.user);
+            this.NavigationService.Navigate(gameMenuPage);
+        }
+
+        private void Button_ForgotYourPassword_Click(object sender, RoutedEventArgs e)
+        {
+            RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage();
+            this.NavigationService.Navigate(recoverPasswordPage);
         }
     }
 }

@@ -77,6 +77,7 @@ namespace Services
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
             return userManagement.RegisterReport(report);
         }
+
     }
 
     public partial class ServicesImplementation : IMessages

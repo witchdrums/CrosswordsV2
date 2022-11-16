@@ -1157,6 +1157,18 @@ namespace WPFLayer.ServicesImplementation {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/Login", ReplyAction="http://tempuri.org/IUsersManager/LoginResponse")]
         System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> LoginAsync(WPFLayer.ServicesImplementation.Users user);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RecoverPassword", ReplyAction="http://tempuri.org/IUsersManager/RecoverPasswordResponse")]
+        bool RecoverPassword(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RecoverPassword", ReplyAction="http://tempuri.org/IUsersManager/RecoverPasswordResponse")]
+        System.Threading.Tasks.Task<bool> RecoverPasswordAsync(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RegisterRecoveredPassword", ReplyAction="http://tempuri.org/IUsersManager/RegisterRecoveredPasswordResponse")]
+        bool RegisterRecoveredPassword(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RegisterRecoveredPassword", ReplyAction="http://tempuri.org/IUsersManager/RegisterRecoveredPasswordResponse")]
+        System.Threading.Tasks.Task<bool> RegisterRecoveredPasswordAsync(WPFLayer.ServicesImplementation.Users user);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetPlayerInformation", ReplyAction="http://tempuri.org/IUsersManager/GetPlayerInformationResponse")]
         WPFLayer.ServicesImplementation.Players GetPlayerInformation(WPFLayer.ServicesImplementation.Players player);
         
@@ -1233,6 +1245,22 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> LoginAsync(WPFLayer.ServicesImplementation.Users user) {
             return base.Channel.LoginAsync(user);
+        }
+        
+        public bool RecoverPassword(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.RecoverPassword(user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RecoverPasswordAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.RecoverPasswordAsync(user);
+        }
+        
+        public bool RegisterRecoveredPassword(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.RegisterRecoveredPassword(user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterRecoveredPasswordAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.RegisterRecoveredPasswordAsync(user);
         }
         
         public WPFLayer.ServicesImplementation.Players GetPlayerInformation(WPFLayer.ServicesImplementation.Players player) {
