@@ -12,24 +12,17 @@ namespace BusinessLogic
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class User
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Category()
         {
-            this.Players = new ObservableCollection<Player>();
             this.Reports = new ObservableCollection<Report>();
         }
     
-        public int idUser { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public int idUserType { get; set; }
+        public int idCategory { get; set; }
+        public string description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Player> Players { get; set; }
-        public virtual UserType UserType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Report> Reports { get; set; }
     }

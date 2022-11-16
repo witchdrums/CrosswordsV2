@@ -12,16 +12,26 @@ namespace BusinessServices
     public class UserManagement
     {
         CrosswordsContext context = new CrosswordsContext();
-        
-        public Boolean RegisterUser(Users user){
+
+        public Boolean RegisterUser(Users user)
+        {
             Boolean result = false;
             BusinessLogic.User businessLogicUser = new BusinessLogic.User();
             businessLogicUser.password = user.password;
             businessLogicUser.email = user.email;
             businessLogicUser.username = user.username;
             businessLogicUser.idUserType = 1;
-            using(context)
+
+            Player businessLogicPlayer = new Player();
+            businessLogicPlayer.playerName = user.email;
+            businessLogicPlayer.User = businessLogicUser;
+            businessLogicPlayer.idUser = businessLogicUser.idUser;
+            businessLogicPlayer.playerRank = "fdsa";
+            businessLogicPlayer.playerLevel = 1;
+
+            using (context)
             {
+                context.Players.Add(businessLogicPlayer);
                 context.Users.Add(businessLogicUser);
                 result = context.SaveChanges() > 0;
             }
@@ -34,8 +44,8 @@ namespace BusinessServices
             using (context)
             {
                 var foundUsers = (from user in context.Users
-                                 where user.email == userEmail
-                                 select user).ToList();
+                                  where user.email == userEmail
+                                  select user).ToList();
                 result = foundUsers.Count == 0;
               
             }
@@ -48,8 +58,8 @@ namespace BusinessServices
             using (var context = new CrosswordsContext())
             {
                 var foundUsers = (from users in context.Users
-                            where users.username == user.username && users.password == user.password
-                            select users).ToList();
+                                  where users.username == user.username && users.password == user.password
+                                  select users).ToList();
                 if (foundUsers.Count > 0)
                 {
                     user.credential = true;
@@ -58,7 +68,7 @@ namespace BusinessServices
                     user.email = foundUsers[0].email;
                     player.user = user;
                     player = GetPlayerInformation(player);
-                    
+
                 }
             }
 
@@ -70,8 +80,8 @@ namespace BusinessServices
             using (var context = new CrosswordsContext())
             {
                 var foundPlayers = (from players in context.Players
-                                  where players.idUser == player.user.idUser 
-                                  select players).ToList();
+                                    where players.idUser == player.user.idUser
+                                    select players).ToList();
                 if (foundPlayers.Count > 0)
                 {
                     player.idPlayer = foundPlayers[0].idPlayer;
@@ -89,6 +99,7 @@ namespace BusinessServices
             bool userFound = false;
             using (var context = new CrosswordsContext())
             {
+
                 var foundUsers= (from users in context.Users
                                     where users.username == user.username && users.email == user.email
                                     select users).ToList();
@@ -111,6 +122,39 @@ namespace BusinessServices
                 passwordRegistered = context.SaveChanges()>=1;
             }
             return passwordRegistered;
+        }
+
+        public List<Categories> GetReportCategories()
+        {
+            List<Categories> categories = new List<Categories>();
+            using (var context = new CrosswordsContext())
+            {
+                List<Category> businessLogicCategories = context.Categories.ToList();
+                foreach (Category category in businessLogicCategories)
+                {
+                    Categories domainCategory = new Categories();
+                    domainCategory.idCategory = category.idCategory;
+                    domainCategory.description = category.description;
+                    categories.Add(domainCategory);
+                }
+            }
+            return categories;
+        }
+
+        public bool RegisterReport(Reports report)
+        {
+            bool confirmation = false;
+            using (var context = new CrosswordsContext())
+            {
+                Report businessLogicReport = new Report();
+                businessLogicReport.chatLog = report.chatLog;
+                businessLogicReport.idCategory = report.idCategory;
+                businessLogicReport.idUser = report.idUser;
+
+                context.Reports.Add(businessLogicReport);
+                confirmation = context.SaveChanges() > 0;
+            }
+            return confirmation;
         }
 
     }

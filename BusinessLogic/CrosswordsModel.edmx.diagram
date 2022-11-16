@@ -21,6 +21,10 @@
         <EntityTypeShape EntityType="CrosswordsModel.WordsBoard" Width="1.5" PointX="3" PointY="7.375" />
         <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Boards" />
         <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Words" />
+        <EntityTypeShape EntityType="CrosswordsModel.Category" Width="1.5" PointX="6" PointY="10.875" />
+        <EntityTypeShape EntityType="CrosswordsModel.Report" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="CrosswordsModel.FK_Reports_Categories" />
+        <AssociationConnector Association="CrosswordsModel.FK_Reports_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

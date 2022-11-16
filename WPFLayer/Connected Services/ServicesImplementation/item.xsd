@@ -23,6 +23,37 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Players" nillable="true" type="tns:Players" />
+  <xs:complexType name="ArrayOfCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Categories" nillable="true" type="tns:Categories" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategories" nillable="true" type="tns:ArrayOfCategories" />
+  <xs:complexType name="Categories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReports" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idCategory" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Categories" nillable="true" type="tns:Categories" />
+  <xs:complexType name="ArrayOfReports">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reports" nillable="true" type="tns:Reports" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReports" nillable="true" type="tns:ArrayOfReports" />
+  <xs:complexType name="Reports">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Categories" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:Users" />
+      <xs:element minOccurs="0" name="chatLog" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="idReport" type="xs:int" />
+      <xs:element minOccurs="0" name="idUser" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Reports" nillable="true" type="tns:Reports" />
   <xs:complexType name="ArrayOfGamesPlayers">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="GamesPlayers" nillable="true" type="tns:GamesPlayers" />

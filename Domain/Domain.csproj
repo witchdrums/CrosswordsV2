@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boards.cs" />
+    <Compile Include="Categories.cs" />
     <Compile Include="Games.cs" />
     <Compile Include="GamesPlayers.cs" />
     <Compile Include="Players.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Word.cs" />
     <Compile Include="WordsBoard.cs" />

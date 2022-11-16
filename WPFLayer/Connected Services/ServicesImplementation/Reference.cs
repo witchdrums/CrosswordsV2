@@ -265,6 +265,208 @@ namespace WPFLayer.ServicesImplementation {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Categories", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
+    [System.SerializableAttribute()]
+    public partial class Categories : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.Reports[] ReportsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idCategoryField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.Reports[] Reports {
+            get {
+                return this.ReportsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReportsField, value) != true)) {
+                    this.ReportsField = value;
+                    this.RaisePropertyChanged("Reports");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
+                    this.descriptionField = value;
+                    this.RaisePropertyChanged("description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idCategory {
+            get {
+                return this.idCategoryField;
+            }
+            set {
+                if ((this.idCategoryField.Equals(value) != true)) {
+                    this.idCategoryField = value;
+                    this.RaisePropertyChanged("idCategory");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Reports", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
+    [System.SerializableAttribute()]
+    public partial class Reports : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.Categories CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.Users UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string chatLogField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idCategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idReportField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idUserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.Categories Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.Users User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string chatLog {
+            get {
+                return this.chatLogField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.chatLogField, value) != true)) {
+                    this.chatLogField = value;
+                    this.RaisePropertyChanged("chatLog");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idCategory {
+            get {
+                return this.idCategoryField;
+            }
+            set {
+                if ((this.idCategoryField.Equals(value) != true)) {
+                    this.idCategoryField = value;
+                    this.RaisePropertyChanged("idCategory");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idReport {
+            get {
+                return this.idReportField;
+            }
+            set {
+                if ((this.idReportField.Equals(value) != true)) {
+                    this.idReportField = value;
+                    this.RaisePropertyChanged("idReport");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idUser {
+            get {
+                return this.idUserField;
+            }
+            set {
+                if ((this.idUserField.Equals(value) != true)) {
+                    this.idUserField = value;
+                    this.RaisePropertyChanged("idUser");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GamesPlayers", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
     [System.SerializableAttribute()]
     public partial class GamesPlayers : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -972,6 +1174,18 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetPlayerInformation", ReplyAction="http://tempuri.org/IUsersManager/GetPlayerInformationResponse")]
         System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> GetPlayerInformationAsync(WPFLayer.ServicesImplementation.Players player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetReportCategories", ReplyAction="http://tempuri.org/IUsersManager/GetReportCategoriesResponse")]
+        WPFLayer.ServicesImplementation.Categories[] GetReportCategories();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetReportCategories", ReplyAction="http://tempuri.org/IUsersManager/GetReportCategoriesResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Categories[]> GetReportCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RegisterReport", ReplyAction="http://tempuri.org/IUsersManager/RegisterReportResponse")]
+        bool RegisterReport(WPFLayer.ServicesImplementation.Reports report);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RegisterReport", ReplyAction="http://tempuri.org/IUsersManager/RegisterReportResponse")]
+        System.Threading.Tasks.Task<bool> RegisterReportAsync(WPFLayer.ServicesImplementation.Reports report);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1055,6 +1269,22 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> GetPlayerInformationAsync(WPFLayer.ServicesImplementation.Players player) {
             return base.Channel.GetPlayerInformationAsync(player);
+        }
+        
+        public WPFLayer.ServicesImplementation.Categories[] GetReportCategories() {
+            return base.Channel.GetReportCategories();
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Categories[]> GetReportCategoriesAsync() {
+            return base.Channel.GetReportCategoriesAsync();
+        }
+        
+        public bool RegisterReport(WPFLayer.ServicesImplementation.Reports report) {
+            return base.Channel.RegisterReport(report);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterReportAsync(WPFLayer.ServicesImplementation.Reports report) {
+            return base.Channel.RegisterReportAsync(report);
         }
     }
     

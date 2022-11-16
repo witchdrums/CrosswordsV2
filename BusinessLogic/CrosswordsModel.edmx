@@ -12,6 +12,13 @@
           <Property Name="idBoard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="boardMatrix" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'crosswordsBranch.dbo.Friends' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Friends">
@@ -54,6 +61,15 @@ warning 6002: The table/view 'crosswordsBranch.dbo.GamesPlayers' does not have a
           <Property Name="playerLevel" Type="int" Nullable="false" />
           <Property Name="playerRank" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="idUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="idReport" />
+          </Key>
+          <Property Name="idReport" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idCategory" Type="int" Nullable="false" />
+          <Property Name="chatLog" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -168,6 +184,30 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reports_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_UserTypes">
           <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -206,8 +246,10 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
         </Association>
         <EntityContainer Name="CrosswordsModelStoreContainer">
           <EntitySet Name="Boards" EntityType="Self.Boards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
@@ -255,6 +297,14 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <AssociationSet Name="FK_Players_Users" Association="Self.FK_Players_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Categories" Association="Self.FK_Reports_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Users" Association="Self.FK_Reports_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_UserTypes" Association="Self.FK_Users_UserTypes">
             <End Role="UserTypes" EntitySet="UserTypes" />
@@ -318,6 +368,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <Property Name="idUserType" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Players" Relationship="Self.FK_Players_Users" FromRole="Users" ToRole="Players" />
           <NavigationProperty Name="UserType" Relationship="Self.FK_Users_UserTypes" FromRole="Users" ToRole="UserTypes" />
+          <NavigationProperty Name="Reports" Relationship="CrosswordsModel.FK_Reports_Users" FromRole="User" ToRole="Report" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -440,6 +491,16 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             <End Role="Word" EntitySet="Words" />
             <End Role="WordsBoard" EntitySet="WordsBoards" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="CrosswordsModel.Category" />
+          <EntitySet Name="Reports" EntityType="CrosswordsModel.Report" />
+          <AssociationSet Name="FK_Reports_Categories" Association="CrosswordsModel.FK_Reports_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Users" Association="CrosswordsModel.FK_Reports_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Board">
           <Key>
@@ -488,6 +549,49 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             </Principal>
             <Dependent Role="WordsBoard">
               <PropertyRef Name="idWord" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reports" Relationship="CrosswordsModel.FK_Reports_Categories" FromRole="Category" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="idReport" />
+          </Key>
+          <Property Name="idReport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idCategory" Type="Int32" Nullable="false" />
+          <Property Name="chatLog" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="CrosswordsModel.FK_Reports_Categories" FromRole="Report" ToRole="Category" />
+          <NavigationProperty Name="User" Relationship="CrosswordsModel.FK_Reports_Users" FromRole="Report" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Reports_Categories">
+          <End Type="CrosswordsModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="CrosswordsModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Users">
+          <End Type="CrosswordsModel.User" Role="User" Multiplicity="1" />
+          <End Type="CrosswordsModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="idUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -592,6 +696,24 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
                 <ScalarProperty Name="xStart" ColumnName="xStart" />
                 <ScalarProperty Name="idBoard" ColumnName="idBoard" />
                 <ScalarProperty Name="idWord" ColumnName="idWord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CrosswordsModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="CrosswordsModel.Report">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="chatLog" ColumnName="chatLog" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idReport" ColumnName="idReport" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

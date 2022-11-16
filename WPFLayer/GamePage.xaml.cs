@@ -57,6 +57,7 @@ namespace WPFLayer
             this.idRoom = idRoom;
             this.gameConfiguration = gameConfiguration;
             this.remainingTurns = gameConfiguration.TurnAmount;
+            this.usersRoom = gameConfiguration.UsersRoom.ToList();
             GetGamePlayer();
             JoinGame();
 
