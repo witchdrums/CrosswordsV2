@@ -178,6 +178,18 @@
   <wsdl:message name="IUsersManager_GetPlayerInformation_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerInformationResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_GetReportCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportCategories" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetReportCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RegisterReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterReport" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_RegisterReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterReportResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
@@ -308,6 +320,14 @@
     <wsdl:operation name="GetPlayerInformation">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetPlayerInformation" message="tns:IUsersManager_GetPlayerInformation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetPlayerInformationResponse" message="tns:IUsersManager_GetPlayerInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetReportCategories" message="tns:IUsersManager_GetReportCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetReportCategoriesResponse" message="tns:IUsersManager_GetReportCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/RegisterReport" message="tns:IUsersManager_RegisterReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/RegisterReportResponse" message="tns:IUsersManager_RegisterReport_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Response">
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
@@ -440,6 +460,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetPlayerInformation">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetPlayerInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportCategories">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetReportCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterReport">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/RegisterReport" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -74,24 +74,12 @@
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfileWindow.xaml.cs">
+      <DependentUpon>ProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Test.xaml.cs">
-      <DependentUpon>Test.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Assets\Icons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\LightTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\MainStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GameMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,13 +108,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SignUpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +152,9 @@
     </None>
     <None Include="Connected Services\ServicesImplementation\ServicesImplementation.wsdl" />
     <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Boards.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Categories.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource">
@@ -217,19 +208,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\glasses.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\cat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Images\lostpencils.jpg" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

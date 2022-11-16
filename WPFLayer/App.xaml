@@ -4,14 +4,6 @@
              xmlns:local="clr-namespace:WPFLayer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Assets/LightTheme.xaml"/>
-                <ResourceDictionary Source="Assets/Icons.xaml"/>
 
-
-                <ResourceDictionary Source="Assets/MainStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
     </Application.Resources>
 </Application>

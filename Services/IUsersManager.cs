@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 using BusinessLogic;
 
 namespace Services
-{ 
+{
 
     [ServiceContract(CallbackContract = typeof(IUsersManagerCallback))]
     public interface IUsersManager
@@ -24,6 +24,11 @@ namespace Services
 
         [OperationContract]
         Players GetPlayerInformation(Players player);
+        [OperationContract]
+        List<Categories> GetReportCategories();
+
+        [OperationContract]
+        bool RegisterReport(Reports report);
     }
 
     [ServiceContract]

@@ -53,6 +53,9 @@
     <Compile Include="Board.cs">
       <DependentUpon>CrosswordsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>CrosswordsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CrosswordsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +81,9 @@
       <DependentUpon>CrosswordsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs">
+      <DependentUpon>CrosswordsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>CrosswordsModel.tt</DependentUpon>
     </Compile>

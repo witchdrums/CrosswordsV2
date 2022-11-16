@@ -40,16 +40,42 @@ namespace Services
             return foundPlayer;
         }
 
+        public List<Categories> GetReportCategories()
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            return userManagement.GetReportCategories();
+        }
+
         public Players Login(Users user)
         {
             Players playerLogin = new Players();
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
             playerLogin = userManagement.FindUserByUserNameAndPassword(user);
-            if(playerLogin.user.credential)
+            if (playerLogin.user.credential)
             {
                 connectionMap.SaveUser(playerLogin.user.idUser, OperationContext.Current);
             }
             return playerLogin;
+        }
+
+        public bool RecoverPassword(Users user)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool userFound = userManagement.FindUserByEmailAndUsername(user);
+            return userFound;
+        }
+
+        public bool RegisterRecoveredPassword(Users user)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool passwordRegistered = userManagement.RegisterRecoveredPasswordUser(user);
+            return passwordRegistered;
+        }
+
+        public bool RegisterReport(Reports report)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            return userManagement.RegisterReport(report);
         }
     }
 
@@ -65,7 +91,7 @@ namespace Services
         {
             foreach (Users user in room)
             {
-                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin,message);
+                connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin, message);
             }
         }
 
@@ -83,23 +109,24 @@ namespace Services
         public bool CheckRoomAvailability(int idRoom)
         {
             bool response = true;
-            if(!(roomMap.ExistRoom(idRoom)))
+            if (!(roomMap.ExistRoom(idRoom)))
             {
                 response = false;
-            }else
+            }
+            else
             {
-                if(roomMap.IsFullRoom(idRoom))
+                if (roomMap.IsFullRoom(idRoom))
                 {
                     response = false;
                 }
             }
-           
+
             return response;
         }
 
         public void ConnectGameRoomManagement(Users users)
         {
-            connectionMapRoomManagement.SaveUser(users.idUser,OperationContext.Current);
+            connectionMapRoomManagement.SaveUser(users.idUser, OperationContext.Current);
         }
 
         public int CreateRoom(Users user)
@@ -129,14 +156,14 @@ namespace Services
             }
         }
 
-        public void JoinToRoom(int idRoom,Users newUser)
+        public void JoinToRoom(int idRoom, Users newUser)
         {
             roomMap.AddUserToRoom(idRoom, newUser);
             List<Users> usersRoom = roomMap.GetUsersInRoom(idRoom);
             foreach (Users user in usersRoom)
             {
                 connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().UpdateRoom(usersRoom);
-            }            
+            }
         }
 
         public void SendInvitationToRoom(int idRoom, Users userTarget)
@@ -146,9 +173,10 @@ namespace Services
 
         public void LaunchGamePage(GameConfiguration gameConfiguration)
         {
-            
+
             foreach (Users user in gameConfiguration.UsersRoom)
             {
+                Console.WriteLine(user.idUser);
                 connectionMapRoomManagement.GetOperationContextForId(user.idUser)
                     .GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
             }

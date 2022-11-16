@@ -34,5 +34,7 @@ namespace BusinessLogic
         public virtual DbSet<GamesPlayer> GamesPlayers { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<WordsBoard> WordsBoards { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
     }
 }
