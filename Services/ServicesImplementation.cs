@@ -217,9 +217,6 @@ namespace Services
                     domainBoard.WordsBoards.Add(domainWordBoard);
                 }
             }
-
-
-
             return domainBoard;
 
         }
@@ -269,6 +266,12 @@ namespace Services
 
     public partial class ServicesImplementation : IPlayersManagement
     {
+        public List<Players> GetFilteredPlayers(string nameFilter)
+        {
+            BusinessServices.PlayersManagement playersManagement = new PlayersManagement();
+            return playersManagement.GetPlayersFilteredName(nameFilter);
+        }
+
         public Players GetPlayerFor(Users user)
         {
             throw new NotImplementedException();
@@ -277,6 +280,13 @@ namespace Services
         public Players RegisterPlayer(Users user)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Players> GetFriendList(Players player)
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            List<Players> friendList = playersManagement.GetFriendsPlayersOfPlayerByUser(player);
+            return friendList;
         }
     }
 
