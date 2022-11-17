@@ -157,5 +157,14 @@ namespace BusinessServices
             return confirmation;
         }
 
+        public Domain.Users ParseToDomain(BusinessLogic.User businessLogicUser)
+        {
+            Domain.Users domainUsers = new Domain.Users();
+            domainUsers.idUser = businessLogicUser.idUser;
+            domainUsers.username = businessLogicUser.username;
+            return domainUsers;
+
+        }
+
     }
 }
