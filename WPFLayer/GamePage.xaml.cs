@@ -26,7 +26,7 @@ namespace WPFLayer
         [   ] Turn into PAGE
         [   ] Connect this with the lobby window
      */
-    public partial class GamePage : Window, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
+    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
@@ -67,29 +67,6 @@ namespace WPFLayer
             GetBoard();
             PlaceAllWordsInBoard();
             WaitForHostToStart();
-
-            GamesPlayers g1 = new GamesPlayers();
-            g1.gameScore = 54;
-            GamesPlayers g2 = new GamesPlayers();
-            g2.gameScore = 23;
-            GamesPlayers g3 = new GamesPlayers();
-            g3.gameScore = 99;
-
-
-            List<GamesPlayers> finalPlayerPositions = new List<GamesPlayers>();
-            finalPlayerPositions.Add(g1);
-            finalPlayerPositions.Add(g2);
-            finalPlayerPositions.Add(g3);
-
-            finalPlayerPositions.Sort((a, b) => b.gameScore.CompareTo(a.gameScore));
-
-            int gameRank = 1;
-            foreach (GamesPlayers player in finalPlayerPositions)
-            {
-                player.gameRank = gameRank;
-                gameRank = gameRank + 1;
-                Console.WriteLine(player.gameRank+": " + player.gameScore);
-            }
         }
 
         private void WaitForHostToStart()
@@ -118,6 +95,8 @@ namespace WPFLayer
         {
             this.Button_PlayerAvatar.Content = "";
             this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Gray;
+            this.Button_PlayerAvatar.Click -= (StartGame);
+            this.Button_PlayerAvatar.Click += new RoutedEventHandler(Button_Avatar_Click);
             EndTurn();
         }
 
@@ -154,7 +133,7 @@ namespace WPFLayer
 
         private void JoinGame()
         {
-
+            this.Button_PlayerAvatar.Tag = this.player;
             this.TextBlock_Player.Text = this.player.Player.playerName;
             this.Label_PlayerScore.Content = this.player.gameScore;
             InstanceContext instanceContext = new InstanceContext(this);
@@ -178,12 +157,18 @@ namespace WPFLayer
             this.enemyScores.Add(this.Label_Enemy2Score);
             this.enemyScores.Add(this.Label_Enemy3Score);
 
+            List<Button> enemyAvatars = new List<Button>();
+            enemyAvatars.Add(this.Button_AvatarEnemy1);
+            enemyAvatars.Add(this.Button_AvatarEnemy2);
+            enemyAvatars.Add(this.Button_AvatarEnemy3);
+
             enemyScores.ForEach(label => label.Tag = 0);
 
             for (int enemyIndex = 0; enemyIndex < enemies.Count; enemyIndex++)
             {
                 enemyNames[enemyIndex].Text = enemies[enemyIndex].Player.playerName;
                 enemyScores[enemyIndex].Tag = enemies[enemyIndex].Player.idPlayer;
+                enemyAvatars[enemyIndex].Tag = enemies[enemyIndex];
             }
         }
 
@@ -518,12 +503,12 @@ namespace WPFLayer
             }
             else 
             {
-                FinishGame();
+                SortPlayersByScore();
             }
             
         }
 
-        private void FinishGame()
+        private void SortPlayersByScore()
         {
             List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
             finalPlayerPositions.Sort((a,b) => b.gameScore.CompareTo(a.gameScore));
@@ -600,6 +585,12 @@ namespace WPFLayer
                 message += player.gameRank + ". " + player.Player.playerName + " = " + player.gameScore + "\n";
             }
             MessageBox.Show(message);
+        }
+
+        private void Button_Avatar_Click(object sender, RoutedEventArgs e)
+        {
+            GamesPlayers chosenPlayer = ((Button)sender).Tag as GamesPlayers;
+            new ProfileWindow(chosenPlayer.Player).Show();
         }
     }
 

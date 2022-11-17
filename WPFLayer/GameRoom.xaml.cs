@@ -116,9 +116,7 @@ namespace WPFLayer
             gameConfiguration.Board = gameRoomClient.GetBoardById(1);
             gameConfiguration.UsersRoom = this.UsersRoom.ToArray();
             gameConfiguration.TurnAmount = 300;
-            Console.WriteLine("before launch");
             gameRoomClient.LaunchGamePage(gameConfiguration, this.IdRoom);
-            Console.WriteLine("after launch");
 
         }
 
@@ -146,7 +144,7 @@ namespace WPFLayer
         public void EnterGame(GameConfiguration gameConfiguration)
         {
             GamePage gamePage = new GamePage(this.UserLogin, this.IdRoom, gameConfiguration);
-            gamePage.Show();
+            NavigationService.Navigate(gamePage);
         }
 
         public void Response([MessageParameter(Name = "response")] bool response1)
