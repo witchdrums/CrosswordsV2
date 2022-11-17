@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9f18b1c8a7a54d36b8cf711bb2059656" Name="Diagram1">
+      <Diagram DiagramId="9f18b1c8a7a54d36b8cf711bb2059656" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="CrosswordsModel.Game" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CrosswordsModel.Player" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CrosswordsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
@@ -22,7 +22,7 @@
         <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Boards" />
         <AssociationConnector Association="CrosswordsModel.FK_WordsBoards_Words" />
         <EntityTypeShape EntityType="CrosswordsModel.Category" Width="1.5" PointX="6" PointY="10.875" />
-        <EntityTypeShape EntityType="CrosswordsModel.Report" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="CrosswordsModel.Report" Width="1.5" PointX="9.75" PointY="1.25" />
         <AssociationConnector Association="CrosswordsModel.FK_Reports_Categories" />
         <AssociationConnector Association="CrosswordsModel.FK_Reports_Users" />
       </Diagram>
