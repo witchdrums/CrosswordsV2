@@ -25,7 +25,8 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void PassTurn(Queue<GamesPlayers>gamePlayers, int currentTurns);
 
-
+        [OperationContract(IsOneWay = true)]
+        void EndGame(List<GamesPlayers> playerRanks);
 
     }
 
@@ -42,6 +43,7 @@ namespace Services
         void ReceiveTurn();
         [OperationContract(IsOneWay = true)]
         void UpdateGamePlayersQueue(Queue<GamesPlayers> gamePlayers, int remainingTurns);
-
+        [OperationContract(IsOneWay = true)]
+        void ShowPlayerRanks(List<GamesPlayers> playerRanks);
     }
 }

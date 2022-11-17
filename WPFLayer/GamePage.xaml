@@ -36,7 +36,7 @@
 
                 <TextBlock  x:Name="TextBlock_Player" Text="Jugador" HorizontalAlignment="Center"/>
 
-                <Button Height="70" Width="70">
+                <Button x:Name="Button_PlayerAvatar" Height="70" Width="70">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="100"/>
