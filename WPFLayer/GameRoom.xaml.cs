@@ -110,14 +110,15 @@ namespace WPFLayer
         {
             
             InstanceContext instanceContext = new InstanceContext(this);
-            GameRoomManagementClient gameRoomClient = new GameRoomManagementClient(instanceContext);
+            GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(instanceContext);
             GameConfiguration gameConfiguration = new GameConfiguration();
             gameConfiguration.GamePlayerQueue = GetGamesPlayersQueue(this.UsersRoom);
             gameConfiguration.Board = gameRoomClient.GetBoardById(1);
             gameConfiguration.UsersRoom = this.UsersRoom.ToArray();
             gameConfiguration.TurnAmount = 300;
-            GameRoomManagementClient gameRoomManagementClient = new GameRoomManagementClient(instanceContext);
-            gameRoomManagementClient.LaunchGamePage(gameConfiguration);
+            Console.WriteLine("before launch");
+            gameRoomClient.LaunchGamePage(gameConfiguration, this.IdRoom);
+            Console.WriteLine("after launch");
 
         }
 

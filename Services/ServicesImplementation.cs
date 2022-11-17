@@ -13,7 +13,7 @@ using System.Runtime.Serialization;
 
 namespace Services
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
 
     public partial class ServicesImplementation : IUsersManager
     {
@@ -92,6 +92,7 @@ namespace Services
         {
             foreach (Users user in room)
             {
+                
                 connectionMapMessages.GetOperationContextForId(user.idUser).GetCallbackChannel<IMessagesCallback>().ReciveChatMessage(userOrigin, message);
             }
         }
@@ -172,15 +173,15 @@ namespace Services
             connectionMap.GetOperationContextForId(userTarget.idUser).GetCallbackChannel<IGameRoomManagementCallback>().ReciveInvitationToRoom(idRoom);
         }
 
-        public void LaunchGamePage(GameConfiguration gameConfiguration)
+        public void LaunchGamePage(GameConfiguration gameConfiguration, int idRoom)
         {
-
-            foreach (Users user in gameConfiguration.UsersRoom)
+            List<Users> usersInRoom = roomMap.GetUsersInRoom(idRoom);
+            foreach (Users user in usersInRoom)
             {
-                Console.WriteLine(user.idUser);
-                connectionMapRoomManagement.GetOperationContextForId(user.idUser)
-                    .GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
+                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
             }
+
+
         }
 
         public Domain.Boards GetBoardById(int idBoard)
@@ -265,6 +266,16 @@ namespace Services
             userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
         }
 
+        public void EndGame(List<GamesPlayers> playerRanks)
+        {
+            OperationContext userContext;
+            foreach (GamesPlayers player in playerRanks)
+            {
+                int idUser = player.Player.user.idUser;
+                userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().ShowPlayerRanks(playerRanks);
+            }
+        }
     }
 
     public partial class ServicesImplementation : IPlayersManagement
