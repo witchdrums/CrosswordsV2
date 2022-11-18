@@ -46,6 +46,12 @@ namespace Services
             return userManagement.GetReportCategories();
         }
 
+        public Users GetUserByPlayer(Players player)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            return userManagement.GetUserInformationForPlayer(player);
+        }
+
         public Players Login(Users user)
         {
             Players playerLogin = new Players();
@@ -287,6 +293,22 @@ namespace Services
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
             List<Players> friendList = playersManagement.GetFriendsPlayersOfPlayerByUser(player);
             return friendList;
+        }
+
+        public bool AddFriend(Players playerOrigin, Players playerTarget)
+        {
+            bool result = false;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+
+            if (playerOrigin.idPlayer != playerTarget.idPlayer)
+            {
+                if (!playersManagement.IsFriend(playerOrigin, playerTarget))
+                {
+                    playersManagement.AddFriendPlayer(playerOrigin, playerTarget);
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 
