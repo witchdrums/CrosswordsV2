@@ -22,10 +22,12 @@ namespace WPFLayer
     public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback
     {
         public ServicesImplementation.Users UserLogin { get; set; }
-        public GameMenu(ServicesImplementation.Users user)
+        public ServicesImplementation.Players PlayerLogin { get; set; }
+        public GameMenu(ServicesImplementation.Players player)
         {
             InitializeComponent();
-            this.UserLogin = user;
+            this.PlayerLogin = player;
+            this.UserLogin = player.user;
 
         }
 
@@ -34,7 +36,7 @@ namespace WPFLayer
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
             int idNewRoom = gameRoomClient.CreateRoom(UserLogin);
-            GameRoom gameRoomPage = new GameRoom(idNewRoom,this.UserLogin);
+            GameRoom gameRoomPage = new GameRoom(idNewRoom,this.UserLogin,this.PlayerLogin);
             this.NavigationService.Navigate(gameRoomPage);
         }
         private void JoinGame_Click(object sender, RoutedEventArgs e)
@@ -44,11 +46,11 @@ namespace WPFLayer
             int idNewRoom = int.Parse(this.TextBox_IdGameToJoin.Text);
             if(gameRoomClient.CheckRoomAvailability(idNewRoom))
             {
-                GameRoom gameRoomPage = new GameRoom(idNewRoom, this.UserLogin);
+                GameRoom gameRoomPage = new GameRoom(idNewRoom, this.UserLogin,this.PlayerLogin);
                 this.NavigationService.Navigate(gameRoomPage);
             }else
             {
-                MessageBox.Show("Hechale ganas mijo");
+                MessageBox.Show("La sala no está disponible intente mas tarde");
             }
 
 
@@ -77,6 +79,12 @@ namespace WPFLayer
         public void EnterGame(GameConfiguration gameConfiguration)
         {
             throw new NotImplementedException();
+        }
+
+        private void Friends_Button_Click(object sender, RoutedEventArgs e)
+        {
+            FriendsPage friendsPage = new FriendsPage(PlayerLogin);
+            this.NavigationService.Navigate(friendsPage);
         }
     }
 }

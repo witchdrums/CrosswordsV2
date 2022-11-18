@@ -23,19 +23,23 @@ namespace WPFLayer
     {
         public int IdRoom { set; get; }
         public ServicesImplementation.Users UserLogin { set; get; }
+        public ServicesImplementation.Players PlayerLogin { set; get; }
         public List<ServicesImplementation.Users> UsersRoom { set; get; }
-        public GameRoom(int idRoom, ServicesImplementation.Users userLogin)
+        private InvitationWindow invitationWindow;
+        public GameRoom(int idRoom, ServicesImplementation.Users userLogin, Players playerLogin)
         {
             InitializeComponent();
             this.UsersRoom = new List<ServicesImplementation.Users>();
             this.IdRoom = idRoom;
             this.UserLogin = userLogin;
+            this.PlayerLogin = playerLogin;
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
             ServicesImplementation.MessagesClient messagesClient = new ServicesImplementation.MessagesClient(context);
             messagesClient.ConnectMessages(userLogin);
             gameRoomClient.ConnectGameRoomManagement(userLogin);
             gameRoomClient.JoinToRoom(this.IdRoom, UserLogin);
+
         }
 
         public void ReciveChatMessage(Users userOrigin, string message)
@@ -86,29 +90,39 @@ namespace WPFLayer
             if (this.IdRoom != this.UserLogin.idUser)
             {
                 gameRoomClient.ExitToRoom(this.IdRoom, this.UserLogin);
+                if (this.invitationWindow != null)
+                {
+                    this.invitationWindow.Close();
+                }
                 this.NavigationService.GoBack();
             }
             else
             {
                 gameRoomClient.DeleteRoom(this.IdRoom);
             }
-
-
         }
 
         public void ForceExitToRoom()
         {
+            if(this.invitationWindow != null){
+                this.invitationWindow.Close();
+            }
+            
             this.NavigationService.GoBack();
+            
         }
 
         private void TextBlock_Chat_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
-
+            
         }
 
         private void Button_StartGame_Click(object sender, RoutedEventArgs @event)
         {
-            
+            if (this.invitationWindow != null)
+            {
+                this.invitationWindow.Close();
+            }
             InstanceContext instanceContext = new InstanceContext(this);
             GameRoomManagementClient gameRoomClient = new GameRoomManagementClient(instanceContext);
             GameConfiguration gameConfiguration = new GameConfiguration();
@@ -151,6 +165,12 @@ namespace WPFLayer
         public void Response([MessageParameter(Name = "response")] bool response1)
         {
             throw new NotImplementedException();
+        }
+
+        private void Button_Invite_Click(object sender, RoutedEventArgs e)
+        {
+            this.invitationWindow = new InvitationWindow(this.IdRoom,this.PlayerLogin);
+            this.invitationWindow.Show();
         }
     }
 }
