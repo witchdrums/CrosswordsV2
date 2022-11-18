@@ -62,7 +62,7 @@ namespace BusinessServices
                 List<BusinessLogic.Player> businessLogicPlayer = context.Players.ToList();
                 foreach (BusinessLogic.Player player in businessLogicPlayer)
                 {
-                    if(player.playerName.IndexOf(nameFilter)>-1)
+                    if(player.playerName.ToLower().IndexOf(nameFilter.ToLower())>-1)
                     {
                         Domain.Players filteredPlayer = new Domain.Players();
                         filteredPlayer = this.ParseToDomain(player);
@@ -83,7 +83,6 @@ namespace BusinessServices
                 BusinessLogic.Player playerBussinessService = (from players in context.Players
                                            where players.idPlayer == player.idPlayer
                                            select players).ToList().ElementAt(0);
-                //friendListBusinessLogic = playerBussinessService.Players1; 
                 foreach(Player playerQuery in playerBussinessService.Players1)
                 {
                     Domain.Players parsePlayer = new Domain.Players();
@@ -125,16 +124,6 @@ namespace BusinessServices
                 new SqlParameter("idPlayer", playerSource.idPlayer),
                 new SqlParameter("idPlayerFriend", playerTarget.idPlayer)
                 )!=0;
-                /*
-                BusinessLogic.Player playerBussinessService = (from players in context.Players
-                                                               where players.idPlayer == playerSource.idPlayer
-                                                               select players).ToList().ElementAt(0);
-
-                var playerBussiness = context.Players.Where(players => players.idPlayer == playerSource.idPlayer).First();
-                BusinessLogic.Player businessFriend = new BusinessLogic.Player();
-                businessFriend.idPlayer = playerTarget.idPlayer;
-                playerBussiness.Players1.Add(businessFriend);
-                response = context.SaveChanges() >= 1;*/
             }
             return response;
         }

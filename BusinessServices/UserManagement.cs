@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,6 +165,25 @@ namespace BusinessServices
             domainUsers.username = businessLogicUser.username;
             return domainUsers;
 
+        }
+
+        public Domain.Users GetUserInformationForPlayer(Domain.Players player)
+        {
+            Domain.Users domainUser = new Domain.Users();
+            BusinessLogic.User bussinesLogicUser = new BusinessLogic.User();
+            BusinessLogic.Player bussinesLogicPlayer = new BusinessLogic.Player();
+            int idUser = player.idPlayer;
+            using (var context = new CrosswordsContext())
+            {
+                bussinesLogicPlayer = (from players in context.Players
+                                    where players.idPlayer == player.idPlayer
+                                    select players).First();
+                domainUser.idUser = bussinesLogicPlayer.User.idUser;
+                domainUser.idUserType = bussinesLogicPlayer.User.idUserType;
+                domainUser.username = bussinesLogicPlayer.User.username;
+                domainUser.email = bussinesLogicPlayer.User.email;
+            }
+            return domainUser;
         }
 
     }
