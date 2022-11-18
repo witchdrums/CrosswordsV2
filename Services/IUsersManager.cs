@@ -32,6 +32,8 @@ namespace Services
 
         [OperationContract]
         bool RegisterReport(Reports report);
+        [OperationContract]
+        Domain.Users GetUserByPlayer(Domain.Players player);
     }
 
     [ServiceContract]

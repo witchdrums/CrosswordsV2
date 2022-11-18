@@ -113,6 +113,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetUserByPlayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="player" nillable="true" type="q10:Players" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByPlayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetUserByPlayerResult" nillable="true" type="q11:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Response">
     <xs:complexType>
       <xs:sequence>
@@ -123,6 +137,20 @@
   <xs:element name="ResponseResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFriendList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="player" nillable="true" type="q12:Players" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFriendListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetFriendListResult" nillable="true" type="q13:ArrayOfPlayers" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterPlayer">
@@ -149,7 +177,36 @@
   <xs:element name="GetPlayerForResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetPlayerForResult" nillable="true" type="q13:Players" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetPlayerForResult" nillable="true" type="q17:Players" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilteredPlayers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nameFilter" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilteredPlayersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetFilteredPlayersResult" nillable="true" type="q18:ArrayOfPlayers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFriend">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerOrigin" nillable="true" type="q19:Players" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerTarget" nillable="true" type="q20:Players" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFriendResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddFriendResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

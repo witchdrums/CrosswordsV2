@@ -85,7 +85,7 @@ namespace WPFLayer
             playerLogin = client.Login(playerLogin.user);
             if (playerLogin.user.credential)
             {
-                GameMenu gameMenuPage = new GameMenu(playerLogin.user);
+                GameMenu gameMenuPage = new GameMenu(playerLogin);
                 this.NavigationService.Navigate(gameMenuPage);
             }
             else
@@ -114,7 +114,7 @@ namespace WPFLayer
             userLogin.idUserType = 10;
             userLogin.username = "Guest" + new Random().Next(1, 1000);
             playerLogin.user = userLogin;
-            GameMenu gameMenuPage = new GameMenu(playerLogin.user);
+            GameMenu gameMenuPage = new GameMenu(playerLogin);
             this.NavigationService.Navigate(gameMenuPage);
         }
 

@@ -11,6 +11,8 @@ namespace Services
     [ServiceContract]
     public interface IPlayersManagement
     {
+        [OperationContract]
+        List<Players> GetFriendList(Players player);
 
         [OperationContract]
         Players RegisterPlayer(Users user);
@@ -18,6 +20,9 @@ namespace Services
         [OperationContract]
         Players GetPlayerFor(Users user);
 
-
+        [OperationContract]
+        List<Players> GetFilteredPlayers(String nameFilter);
+        [OperationContract]
+        bool AddFriend (Players playerOrigin,Players playerTarget);
     }
 }
