@@ -1186,6 +1186,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/RegisterReport", ReplyAction="http://tempuri.org/IUsersManager/RegisterReportResponse")]
         System.Threading.Tasks.Task<bool> RegisterReportAsync(WPFLayer.ServicesImplementation.Reports report);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetUserByPlayer", ReplyAction="http://tempuri.org/IUsersManager/GetUserByPlayerResponse")]
+        WPFLayer.ServicesImplementation.Users GetUserByPlayer(WPFLayer.ServicesImplementation.Players player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetUserByPlayer", ReplyAction="http://tempuri.org/IUsersManager/GetUserByPlayerResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> GetUserByPlayerAsync(WPFLayer.ServicesImplementation.Players player);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1286,11 +1292,25 @@ namespace WPFLayer.ServicesImplementation {
         public System.Threading.Tasks.Task<bool> RegisterReportAsync(WPFLayer.ServicesImplementation.Reports report) {
             return base.Channel.RegisterReportAsync(report);
         }
+        
+        public WPFLayer.ServicesImplementation.Users GetUserByPlayer(WPFLayer.ServicesImplementation.Players player) {
+            return base.Channel.GetUserByPlayer(player);
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> GetUserByPlayerAsync(WPFLayer.ServicesImplementation.Players player) {
+            return base.Channel.GetUserByPlayerAsync(player);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IPlayersManagement")]
     public interface IPlayersManagement {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetFriendList", ReplyAction="http://tempuri.org/IPlayersManagement/GetFriendListResponse")]
+        WPFLayer.ServicesImplementation.Players[] GetFriendList(WPFLayer.ServicesImplementation.Players player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetFriendList", ReplyAction="http://tempuri.org/IPlayersManagement/GetFriendListResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players[]> GetFriendListAsync(WPFLayer.ServicesImplementation.Players player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/RegisterPlayer", ReplyAction="http://tempuri.org/IPlayersManagement/RegisterPlayerResponse")]
         WPFLayer.ServicesImplementation.Players RegisterPlayer(WPFLayer.ServicesImplementation.Users user);
@@ -1303,6 +1323,18 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetPlayerFor", ReplyAction="http://tempuri.org/IPlayersManagement/GetPlayerForResponse")]
         System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> GetPlayerForAsync(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetFilteredPlayers", ReplyAction="http://tempuri.org/IPlayersManagement/GetFilteredPlayersResponse")]
+        WPFLayer.ServicesImplementation.Players[] GetFilteredPlayers(string nameFilter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/GetFilteredPlayers", ReplyAction="http://tempuri.org/IPlayersManagement/GetFilteredPlayersResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players[]> GetFilteredPlayersAsync(string nameFilter);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/AddFriend", ReplyAction="http://tempuri.org/IPlayersManagement/AddFriendResponse")]
+        bool AddFriend(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/AddFriend", ReplyAction="http://tempuri.org/IPlayersManagement/AddFriendResponse")]
+        System.Threading.Tasks.Task<bool> AddFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1332,6 +1364,14 @@ namespace WPFLayer.ServicesImplementation {
                 base(binding, remoteAddress) {
         }
         
+        public WPFLayer.ServicesImplementation.Players[] GetFriendList(WPFLayer.ServicesImplementation.Players player) {
+            return base.Channel.GetFriendList(player);
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players[]> GetFriendListAsync(WPFLayer.ServicesImplementation.Players player) {
+            return base.Channel.GetFriendListAsync(player);
+        }
+        
         public WPFLayer.ServicesImplementation.Players RegisterPlayer(WPFLayer.ServicesImplementation.Users user) {
             return base.Channel.RegisterPlayer(user);
         }
@@ -1346,6 +1386,22 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players> GetPlayerForAsync(WPFLayer.ServicesImplementation.Users user) {
             return base.Channel.GetPlayerForAsync(user);
+        }
+        
+        public WPFLayer.ServicesImplementation.Players[] GetFilteredPlayers(string nameFilter) {
+            return base.Channel.GetFilteredPlayers(nameFilter);
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Players[]> GetFilteredPlayersAsync(string nameFilter) {
+            return base.Channel.GetFilteredPlayersAsync(nameFilter);
+        }
+        
+        public bool AddFriend(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget) {
+            return base.Channel.AddFriend(playerOrigin, playerTarget);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget) {
+            return base.Channel.AddFriendAsync(playerOrigin, playerTarget);
         }
     }
     

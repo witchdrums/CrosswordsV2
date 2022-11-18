@@ -202,11 +202,23 @@
   <wsdl:message name="IUsersManager_RegisterReport_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterReportResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_GetUserByPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetUserByPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByPlayerResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
   <wsdl:message name="IUsersManager_Response_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_GetFriendList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendList" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_GetFriendList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendListResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayersManagement_RegisterPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterPlayer" />
@@ -219,6 +231,18 @@
   </wsdl:message>
   <wsdl:message name="IPlayersManagement_GetPlayerFor_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerForResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_GetFilteredPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilteredPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_GetFilteredPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilteredPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_AddFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFriend" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_AddFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFriendResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_SendSolvedWordsBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:SendSolvedWordsBoard" />
@@ -349,12 +373,20 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/RegisterReport" message="tns:IUsersManager_RegisterReport_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/RegisterReportResponse" message="tns:IUsersManager_RegisterReport_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserByPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetUserByPlayer" message="tns:IUsersManager_GetUserByPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetUserByPlayerResponse" message="tns:IUsersManager_GetUserByPlayer_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Response">
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ResponseResponse" message="tns:IUsersManager_Response_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IPlayersManagement">
+    <wsdl:operation name="GetFriendList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/GetFriendList" message="tns:IPlayersManagement_GetFriendList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/GetFriendListResponse" message="tns:IPlayersManagement_GetFriendList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RegisterPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/RegisterPlayer" message="tns:IPlayersManagement_RegisterPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/RegisterPlayerResponse" message="tns:IPlayersManagement_RegisterPlayer_OutputMessage" />
@@ -362,6 +394,14 @@
     <wsdl:operation name="GetPlayerFor">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/GetPlayerFor" message="tns:IPlayersManagement_GetPlayerFor_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/GetPlayerForResponse" message="tns:IPlayersManagement_GetPlayerFor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilteredPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/GetFilteredPlayers" message="tns:IPlayersManagement_GetFilteredPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/GetFilteredPlayersResponse" message="tns:IPlayersManagement_GetFilteredPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/AddFriend" message="tns:IPlayersManagement_AddFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/AddFriendResponse" message="tns:IPlayersManagement_AddFriend_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagement">
@@ -523,6 +563,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserByPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetUserByPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Response">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/Response" style="document" />
       <wsdl:input>
@@ -536,6 +585,15 @@
   <wsdl:binding name="NetTcpBinding_IPlayersManagement" type="tns:IPlayersManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IPlayersManagement_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetFriendList">
+      <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/GetFriendList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegisterPlayer">
       <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/RegisterPlayer" style="document" />
       <wsdl:input>
@@ -547,6 +605,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetPlayerFor">
       <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/GetPlayerFor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilteredPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/GetFilteredPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFriend">
+      <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/AddFriend" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -738,7 +814,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -747,7 +823,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -756,7 +832,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -765,7 +841,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -774,7 +850,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
