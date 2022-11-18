@@ -26,7 +26,7 @@ namespace WPFLayer
         [   ] Turn into PAGE
         [   ] Connect this with the lobby window
      */
-    public partial class GamePage : Window, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
+    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
@@ -34,7 +34,6 @@ namespace WPFLayer
         private ServicesImplementation.Boards board;
         private List<Label> selectedWordLabels = new List<Label>();
         private List<Label> selectedWordLabelsCopy = new List<Label>();
-        private List<TextBlock> enemyNames = new List<TextBlock>();
         private List<Label> enemyScores = new List<Label>();
         private List<GamesPlayers> enemies;
         private bool hasTurn;
@@ -67,7 +66,17 @@ namespace WPFLayer
             InitializeBoard(colorSorroundingLetters);
             GetBoard();
             PlaceAllWordsInBoard();
-            EndTurn();
+            WaitForHostToStart();
+        }
+
+        private void WaitForHostToStart()
+        {
+            if (this.userLogin.idUser == this.idRoom)
+            {
+                this.Button_PlayerAvatar.Content = "Start Game!";
+                this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Blue;
+                this.Button_PlayerAvatar.Click += new RoutedEventHandler(StartGame);
+            }
         }
 
         private void GetGamePlayer()
@@ -82,13 +91,21 @@ namespace WPFLayer
             }
         }
 
+        private void StartGame(object sender, EventArgs e)
+        {
+            this.Button_PlayerAvatar.Content = "";
+            this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Gray;
+            this.Button_PlayerAvatar.Click -= (StartGame);
+            this.Button_PlayerAvatar.Click += new RoutedEventHandler(Button_Avatar_Click);
+            EndTurn();
+        }
+
         private void GameSetup()
         {
             timeSpan = TimeSpan.FromSeconds(1);
             gameTimer.Interval = TimeSpan.FromSeconds(1);
 
             gameTimer.Tick += SecondPasses;
-            gameTimer.Start();
             this.ListView_HorizontalClueList.SelectedIndex = 0;
             
             IsMyTurn(false);
@@ -104,7 +121,6 @@ namespace WPFLayer
         {
             if (timeSpan == TimeSpan.FromSeconds(1)) 
             {
-                
                 EndTurn();
             }
             else if (hasTurn)
@@ -117,13 +133,12 @@ namespace WPFLayer
 
         private void JoinGame()
         {
-
+            this.Button_PlayerAvatar.Tag = this.player;
             this.TextBlock_Player.Text = this.player.Player.playerName;
             this.Label_PlayerScore.Content = this.player.gameScore;
             InstanceContext instanceContext = new InstanceContext(this);
             GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
             MessagesClient messagesClient = new MessagesClient(instanceContext);
-            GameRoomManagementClient roomManagementClient = new GameRoomManagementClient(instanceContext);
             gameManagementClient.JoinGame(this.player);
             messagesClient.ConnectMessages(this.userLogin);
         }
@@ -132,13 +147,20 @@ namespace WPFLayer
         {
             this.enemies = 
                 this.gamePlayersQueue.Where(enemy => enemy.Player.idPlayer != this.player.Player.idPlayer).ToList();
-            this.enemyNames.Add(this.TextBlock_Enemy1);
-            this.enemyNames.Add(this.TextBlock_Enemy2);
-            this.enemyNames.Add(this.TextBlock_Enemy3);
+
+            List<TextBlock> enemyNames = new List<TextBlock>();
+            enemyNames.Add(this.TextBlock_Enemy1);
+            enemyNames.Add(this.TextBlock_Enemy2);
+            enemyNames.Add(this.TextBlock_Enemy3);
 
             this.enemyScores.Add(this.Label_Enemy1Score);
             this.enemyScores.Add(this.Label_Enemy2Score);
             this.enemyScores.Add(this.Label_Enemy3Score);
+
+            List<Button> enemyAvatars = new List<Button>();
+            enemyAvatars.Add(this.Button_AvatarEnemy1);
+            enemyAvatars.Add(this.Button_AvatarEnemy2);
+            enemyAvatars.Add(this.Button_AvatarEnemy3);
 
             enemyScores.ForEach(label => label.Tag = 0);
 
@@ -146,12 +168,13 @@ namespace WPFLayer
             {
                 enemyNames[enemyIndex].Text = enemies[enemyIndex].Player.playerName;
                 enemyScores[enemyIndex].Tag = enemies[enemyIndex].Player.idPlayer;
+                enemyAvatars[enemyIndex].Tag = enemies[enemyIndex];
             }
         }
 
         private void AddScoreToSolver(GamesPlayers solver)
         {
-            Console.WriteLine("addscore");
+            
             foreach (Label enemyScore in this.enemyScores)
             {
                 if (((int)enemyScore.Tag) == solver.idPlayer)
@@ -160,6 +183,7 @@ namespace WPFLayer
                     break;
                 }
             }
+
         }
 
         private GameManagementClient GetGameManagementClient()
@@ -278,10 +302,12 @@ namespace WPFLayer
 
         {
             this.TextBox_WordGuess.IsEnabled = false;
+            this.Button_Guess.IsEnabled = false;
             if (!selectedWord.Word.isSolved && hasTurn)
             {
                 this.TextBox_WordGuess.Text = "";
                 this.TextBox_WordGuess.IsEnabled = true;
+                this.Button_Guess.IsEnabled = true;
                 this.TextBox_WordGuess.MaxLength = selectedWord.Word.term.Length;
             }
         }
@@ -316,35 +342,21 @@ namespace WPFLayer
             }
         }
 
-
-        private void Button_Guess_Click(object sender, RoutedEventArgs e)
-        {
-            GuessWord();
-        }
-
         private void GuessWord()
         {
             String playerGuess = this.TextBox_WordGuess.Text.ToUpperInvariant();
             WordsBoard selectedWord = GetSelectedWordInClueList();
-
-            //IsMyTurn(false);
             if (playerGuess == selectedWord.Word.term)
             {
-
                 AddScore(selectedWord);
-
-
                 selectedWord.Word.isSolved = true;
                 GetGameManagementClient().SendSolvedWordsBoard(this.gamePlayersQueue, this.player, selectedWord);
-                
                 ClearSelectedWordLabels(selectedWord);
             }
             else
             {
-                this.selectedWordLabelsCopy.ForEach(label => Console.WriteLine(label.Content));
                 RestoreIntersectedWords();
             }
-
             EndTurn();
             this.TextBox_WordGuess.Text = "";
         }
@@ -352,8 +364,17 @@ namespace WPFLayer
         private void AddScore(WordsBoard solvedWord)
         {
             int score = solvedWord.Word.term.Length * 100;
-            this.player.gameScore += score;               
+            this.player.gameScore += score;
             this.Label_PlayerScore.Content = this.player.gameScore;
+            foreach (GamesPlayers player in gamePlayersQueue)
+            {
+                if (player.idPlayer == this.player.idPlayer)
+                {
+                    player.gameScore += score;
+                }
+            }
+            
+
         }
 
         private void IsMyTurn(bool isMyTurn)
@@ -366,11 +387,6 @@ namespace WPFLayer
 
         private void ClearSelectedWordLabels(WordsBoard word)
         {
-            Console.WriteLine(word.Word.term);
-            Console.WriteLine(word.Word.isSolved);
-
-
-
             this.selectedWordLabels.Clear();
             this.selectedWordLabelsCopy.Clear();
         }
@@ -462,6 +478,11 @@ namespace WPFLayer
             }
         }
 
+        private void Button_Guess_Click(object sender, RoutedEventArgs e)
+        {
+            GuessWord();
+        }
+
         private void RestoreIntersectedWords()
         {
             for (int selectedWordLabelIndex = 0; selectedWordLabelIndex < selectedWordLabelsCopy.Count; selectedWordLabelIndex++)
@@ -482,14 +503,22 @@ namespace WPFLayer
             }
             else 
             {
-                FinishGame();
+                SortPlayersByScore();
             }
             
         }
 
-        private void FinishGame()
+        private void SortPlayersByScore()
         {
-            MessageBox.Show("das it mayne");
+            List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
+            finalPlayerPositions.Sort((a,b) => b.gameScore.CompareTo(a.gameScore));
+            int gameRank = 1;
+            foreach (GamesPlayers player in finalPlayerPositions)
+            {
+                player.gameRank = gameRank;
+                gameRank = gameRank + 1;
+            }
+            GetGameManagementClient().EndGame(finalPlayerPositions.ToArray());
         }
 
         private bool ThereAreWordsToBeSolvedStill()
@@ -506,6 +535,8 @@ namespace WPFLayer
             }
             return wordsToBeSolved > 0;
         }
+
+
 
         public void ReciveInvitationToRoom(int idRoom)
         {
@@ -535,6 +566,7 @@ namespace WPFLayer
         public void ReceiveTurn()
         {
             IsMyTurn(true);
+            RestartGameTimer();
         }
 
 
@@ -543,6 +575,22 @@ namespace WPFLayer
             this.gamePlayersQueue = gamePlayers;
             this.remainingTurns = remainingTurns;
             this.Label_Turns.Content = remainingTurns;
+        }
+
+        public void ShowPlayerRanks(GamesPlayers[] playerRanks)
+        {
+            String message = "";
+            foreach (GamesPlayers player in playerRanks)
+            {
+                message += player.gameRank + ". " + player.Player.playerName + " = " + player.gameScore + "\n";
+            }
+            MessageBox.Show(message);
+        }
+
+        private void Button_Avatar_Click(object sender, RoutedEventArgs e)
+        {
+            GamesPlayers chosenPlayer = ((Button)sender).Tag as GamesPlayers;
+            new ProfileWindow(chosenPlayer.Player).Show();
         }
     }
 

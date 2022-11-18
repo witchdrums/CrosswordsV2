@@ -28,7 +28,7 @@ namespace Services
         void DeleteRoom(int idRoom);
 
         [OperationContract(IsOneWay = true)]
-        void LaunchGamePage(GameConfiguration gameConfiguration);
+        void LaunchGamePage(GameConfiguration gameConfiguration, int idRoom);
 
         [OperationContract]
         Domain.Boards GetBoardById(int idBoard);

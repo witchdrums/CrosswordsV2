@@ -1426,6 +1426,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/PassTurn")]
         System.Threading.Tasks.Task PassTurnAsync(System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers, int currentTurns);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/EndGame")]
+        void EndGame(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/EndGame")]
+        System.Threading.Tasks.Task EndGameAsync(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1439,6 +1445,9 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/UpdateGamePlayersQueue")]
         void UpdateGamePlayersQueue(System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers, int remainingTurns);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ShowPlayerRanks")]
+        void ShowPlayerRanks(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1492,6 +1501,14 @@ namespace WPFLayer.ServicesImplementation {
         public System.Threading.Tasks.Task PassTurnAsync(System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers, int currentTurns) {
             return base.Channel.PassTurnAsync(gamePlayers, currentTurns);
         }
+        
+        public void EndGame(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks) {
+            base.Channel.EndGame(playerRanks);
+        }
+        
+        public System.Threading.Tasks.Task EndGameAsync(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks) {
+            return base.Channel.EndGameAsync(playerRanks);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1541,10 +1558,10 @@ namespace WPFLayer.ServicesImplementation {
         System.Threading.Tasks.Task DeleteRoomAsync(int idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/LaunchGamePage")]
-        void LaunchGamePage(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration);
+        void LaunchGamePage(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration, int idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameRoomManagement/LaunchGamePage")]
-        System.Threading.Tasks.Task LaunchGamePageAsync(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration);
+        System.Threading.Tasks.Task LaunchGamePageAsync(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration, int idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameRoomManagement/GetBoardById", ReplyAction="http://tempuri.org/IGameRoomManagement/GetBoardByIdResponse")]
         WPFLayer.ServicesImplementation.Boards GetBoardById(int idBoard);
@@ -1653,12 +1670,12 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.DeleteRoomAsync(idRoom);
         }
         
-        public void LaunchGamePage(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration) {
-            base.Channel.LaunchGamePage(gameConfiguration);
+        public void LaunchGamePage(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration, int idRoom) {
+            base.Channel.LaunchGamePage(gameConfiguration, idRoom);
         }
         
-        public System.Threading.Tasks.Task LaunchGamePageAsync(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration) {
-            return base.Channel.LaunchGamePageAsync(gameConfiguration);
+        public System.Threading.Tasks.Task LaunchGamePageAsync(WPFLayer.ServicesImplementation.GameConfiguration gameConfiguration, int idRoom) {
+            return base.Channel.LaunchGamePageAsync(gameConfiguration, idRoom);
         }
         
         public WPFLayer.ServicesImplementation.Boards GetBoardById(int idBoard) {

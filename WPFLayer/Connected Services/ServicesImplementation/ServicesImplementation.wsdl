@@ -253,6 +253,9 @@
   <wsdl:message name="IGameManagement_PassTurn_InputMessage">
     <wsdl:part name="parameters" element="tns:PassTurn" />
   </wsdl:message>
+  <wsdl:message name="IGameManagement_EndGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndGame" />
+  </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveSolvedWordsBoard" />
   </wsdl:message>
@@ -261,6 +264,9 @@
   </wsdl:message>
   <wsdl:message name="IGameManagement_UpdateGamePlayersQueue_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateGamePlayersQueue" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_ShowPlayerRanks_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowPlayerRanks" />
   </wsdl:message>
   <wsdl:message name="IGameRoomManagement_SendInvitationToRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:SendInvitationToRoom" />
@@ -414,6 +420,9 @@
     <wsdl:operation name="PassTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/PassTurn" message="tns:IGameManagement_PassTurn_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/EndGame" message="tns:IGameManagement_EndGame_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" message="tns:IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage" />
     </wsdl:operation>
@@ -422,6 +431,9 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateGamePlayersQueue">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/UpdateGamePlayersQueue" message="tns:IGameManagement_UpdateGamePlayersQueue_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowPlayerRanks">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ShowPlayerRanks" message="tns:IGameManagement_ShowPlayerRanks_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameRoomManagement">
@@ -652,6 +664,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/EndGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" style="document" />
       <wsdl:output>
@@ -666,6 +684,12 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateGamePlayersQueue">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/UpdateGamePlayersQueue" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowPlayerRanks">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/ShowPlayerRanks" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -814,7 +838,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -823,7 +847,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -832,7 +856,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -841,7 +865,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -850,7 +874,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

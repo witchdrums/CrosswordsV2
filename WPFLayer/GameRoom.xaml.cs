@@ -124,14 +124,13 @@ namespace WPFLayer
                 this.invitationWindow.Close();
             }
             InstanceContext instanceContext = new InstanceContext(this);
-            GameRoomManagementClient gameRoomClient = new GameRoomManagementClient(instanceContext);
+            GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(instanceContext);
             GameConfiguration gameConfiguration = new GameConfiguration();
             gameConfiguration.GamePlayerQueue = GetGamesPlayersQueue(this.UsersRoom);
             gameConfiguration.Board = gameRoomClient.GetBoardById(1);
             gameConfiguration.UsersRoom = this.UsersRoom.ToArray();
             gameConfiguration.TurnAmount = 300;
-            GameRoomManagementClient gameRoomManagementClient = new GameRoomManagementClient(instanceContext);
-            gameRoomManagementClient.LaunchGamePage(gameConfiguration);
+            gameRoomClient.LaunchGamePage(gameConfiguration, this.IdRoom);
 
         }
 
@@ -159,7 +158,7 @@ namespace WPFLayer
         public void EnterGame(GameConfiguration gameConfiguration)
         {
             GamePage gamePage = new GamePage(this.UserLogin, this.IdRoom, gameConfiguration);
-            gamePage.Show();
+            NavigationService.Navigate(gamePage);
         }
 
         public void Response([MessageParameter(Name = "response")] bool response1)
