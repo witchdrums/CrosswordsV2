@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
@@ -15,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPFLayer.ServicesImplementation;
@@ -49,7 +51,7 @@ namespace WPFLayer
         private GamesPlayers player;
         private GameConfiguration gameConfiguration;
 
-        public GamePage(Users userLogin, int idRoom, GameConfiguration gameConfiguration) // should receive room info as parameters
+        public GamePage(Users userLogin, int idRoom, GameConfiguration gameConfiguration)
         {
             InitializeComponent();
             this.userLogin = userLogin;
@@ -60,7 +62,7 @@ namespace WPFLayer
             GetGamePlayer();
             JoinGame();
 
-            Brush colorSorroundingLetters = System.Windows.Media.Brushes.Gray;
+            Brush colorSorroundingLetters = System.Windows.Media.Brushes.Black;
             GameSetup();
             InitializeEnemyPortraits();
             InitializeBoard(colorSorroundingLetters);
@@ -96,9 +98,11 @@ namespace WPFLayer
             this.Button_PlayerAvatar.Content = "";
             this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Gray;
             this.Button_PlayerAvatar.Click -= (StartGame);
-            this.Button_PlayerAvatar.Click += new RoutedEventHandler(Button_Avatar_Click);
+            //this.Button_PlayerAvatar.Click += new RoutedEventHandler(SortPlayersByScore);
             EndTurn();
         }
+
+
 
         private void GameSetup()
         {
@@ -167,8 +171,11 @@ namespace WPFLayer
             for (int enemyIndex = 0; enemyIndex < enemies.Count; enemyIndex++)
             {
                 enemyNames[enemyIndex].Text = enemies[enemyIndex].Player.playerName;
+                enemyNames[enemyIndex].Visibility = Visibility.Visible;
                 enemyScores[enemyIndex].Tag = enemies[enemyIndex].Player.idPlayer;
+                enemyScores[enemyIndex].Visibility = Visibility.Visible;
                 enemyAvatars[enemyIndex].Tag = enemies[enemyIndex];
+                enemyAvatars[enemyIndex].Visibility = Visibility.Visible;
             }
         }
 
@@ -195,13 +202,7 @@ namespace WPFLayer
         private void GetBoard()
         {
             this.board = this.gameConfiguration.Board;
-            foreach (WordsBoard wordsBoards in board.WordsBoards)
-            {
-                ListViewItem wordItem = new ListViewItem();
-                wordItem.Tag = wordsBoards;
-                wordItem.Content = wordsBoards.Word.clue;
-                this.ListView_HorizontalClueList.Items.Add(wordItem);
-            }
+            this.ListView_HorizontalClueList.ItemsSource = this.board.WordsBoards;
 
         }
 
@@ -301,13 +302,9 @@ namespace WPFLayer
         private void InitializeTextBoxToSolveWord(WordsBoard selectedWord)
 
         {
-            this.TextBox_WordGuess.IsEnabled = false;
-            this.Button_Guess.IsEnabled = false;
-            if (!selectedWord.Word.isSolved && hasTurn)
+            if (!selectedWord.Word.isSolved)
             {
                 this.TextBox_WordGuess.Text = "";
-                this.TextBox_WordGuess.IsEnabled = true;
-                this.Button_Guess.IsEnabled = true;
                 this.TextBox_WordGuess.MaxLength = selectedWord.Word.term.Length;
             }
         }
@@ -355,7 +352,7 @@ namespace WPFLayer
             }
             else
             {
-                RestoreIntersectedWords();
+                DeleteGuess();
             }
             EndTurn();
             this.TextBox_WordGuess.Text = "";
@@ -394,8 +391,7 @@ namespace WPFLayer
 
         private WordsBoard GetSelectedWordInClueList()
         {
-            ListViewItem item = (ListViewItem)this.ListView_HorizontalClueList.SelectedItem;
-            WordsBoard selectedWord = (WordsBoard)item.Tag;
+            WordsBoard selectedWord = this.ListView_HorizontalClueList.SelectedItem as WordsBoard;
             return selectedWord;
         }
 
@@ -419,22 +415,19 @@ namespace WPFLayer
 
         public void ReceiveSolvedWordsBoard(GamesPlayers solver, WordsBoard solvedWordsBoard)
         {
-            WordsBoard localSolvedWordsBoard = new WordsBoard();
-            ListViewItem solvedItem = new ListViewItem();
-            foreach (ListViewItem item in ListView_HorizontalClueList.Items)
+            WordsBoard solvedItem = new WordsBoard();
+            foreach (WordsBoard item in ListView_HorizontalClueList.Items)
             {
-                localSolvedWordsBoard = (WordsBoard)item.Tag;
-                if (localSolvedWordsBoard.Word.term == solvedWordsBoard.Word.term)
+                if (item.Word.term == solvedWordsBoard.Word.term)
                 {
                     solvedItem = item;
-                    localSolvedWordsBoard.Word.isSolved = true;
+                    item.Word.isSolved = true;
                     break;
                 }
             }
 
-            solvedItem.Foreground = System.Windows.Media.Brushes.LightGray;
 
-            PlaceWordInBoard(localSolvedWordsBoard);
+            PlaceWordInBoard(solvedItem);
             AddScoreToSolver(solver);
         }
 
@@ -474,8 +467,41 @@ namespace WPFLayer
             {
                 this.TextBox_WordGuess.Text = "";
 
-                RestoreIntersectedWords();
+                DeleteGuess();
             }
+        }
+
+        private void KeyDownKeyboard(object sender, KeyEventArgs keyEvent)
+        { 
+            
+            if (hasTurn)
+            {
+                HandleUserKeyboardInput(keyEvent);
+            }
+        }
+
+        private void HandleUserKeyboardInput(KeyEventArgs keyEvent)
+        {
+            int keyValue = (int)keyEvent.Key;
+            if (keyValue >= 44 && keyValue <= 69 )
+            {
+                int currentLettersInGuess = this.TextBox_WordGuess.Text.Length;
+                WordsBoard selectedWord = this.ListView_HorizontalClueList.SelectedItem as WordsBoard;
+
+                if (this.TextBox_WordGuess.MaxLength > currentLettersInGuess && !selectedWord.Word.isSolved)
+                {
+                    this.TextBox_WordGuess.Text += keyEvent.Key.ToString();
+                }
+            }
+            else if (keyEvent.Key == Key.Back)
+            {
+                DeleteGuess();
+            }
+            else if (keyEvent.Key == Key.Enter)
+            {
+                GuessWord();
+            }
+            keyEvent.Handled = true;
         }
 
         private void Button_Guess_Click(object sender, RoutedEventArgs e)
@@ -483,8 +509,9 @@ namespace WPFLayer
             GuessWord();
         }
 
-        private void RestoreIntersectedWords()
+        private void DeleteGuess()
         {
+            this.TextBox_WordGuess.Clear();
             for (int selectedWordLabelIndex = 0; selectedWordLabelIndex < selectedWordLabelsCopy.Count; selectedWordLabelIndex++)
             {
 
@@ -503,12 +530,12 @@ namespace WPFLayer
             }
             else 
             {
-                SortPlayersByScore();
+                SortPlayersByScore(new object(), new RoutedEventArgs());
             }
             
         }
 
-        private void SortPlayersByScore()
+        private void SortPlayersByScore(object sender, RoutedEventArgs e)
         {
             List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
             finalPlayerPositions.Sort((a,b) => b.gameScore.CompareTo(a.gameScore));
@@ -524,9 +551,8 @@ namespace WPFLayer
         private bool ThereAreWordsToBeSolvedStill()
         {
             int wordsToBeSolved = 0;
-            foreach (ListViewItem item in this.ListView_HorizontalClueList.Items)
+            foreach (WordsBoard word in this.ListView_HorizontalClueList.Items)
             {
-                WordsBoard word = item.Tag as WordsBoard;
                 if (word.Word.isSolved == false)
                 {
                     wordsToBeSolved += 1;
@@ -579,12 +605,9 @@ namespace WPFLayer
 
         public void ShowPlayerRanks(GamesPlayers[] playerRanks)
         {
-            String message = "";
-            foreach (GamesPlayers player in playerRanks)
-            {
-                message += player.gameRank + ". " + player.Player.playerName + " = " + player.gameScore + "\n";
-            }
-            MessageBox.Show(message);
+
+            PodiumPage podiumPage = new PodiumPage(playerRanks.ToList());
+            NavigationService.Navigate(podiumPage);
         }
 
         private void Button_Avatar_Click(object sender, RoutedEventArgs e)

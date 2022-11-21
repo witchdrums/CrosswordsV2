@@ -1,0 +1,82 @@
+﻿<Page x:Class="WPFLayer.PodiumPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFLayer"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Background="White"
+      Title="PodiumPage">
+      <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Opacity="0.4">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="Assets\Images\podium.png" Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Grid.Row="1" Fill="Black"/>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="The winner is..." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+            <Ellipse Height="180" Width="190" Stroke="Black" StrokeThickness="7">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="ImageBrush_Avatar1" ImageSource="\Assets\Images\timer.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock x:Name="TextBlock_PlayerName1" Text="playerName" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" FontWeight="Bold"/>
+            <TextBlock x:Name="TextBlock_PlayerScore1" Text="playerScore" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" />
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="2nd" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+                <Ellipse Height="100" Width="100" Stroke="White" StrokeThickness="5">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="ImageBrush_Avatar2" ImageSource="\Assets\Images\timer.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock x:Name="TextBlock_PlayerName2" Text="playerName" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlock_PlayerScore2" Text="playerScore2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="3rd" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+
+                <Ellipse Height="100" Width="100" Stroke="White" StrokeThickness="5">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="ImageBrush_Avatar3" ImageSource="\Assets\Images\timer.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock x:Name="TextBlock_PlayerName3" Text="playerName" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+                <TextBlock x:Name="TextBlock_PlayerScore3" Text="playerScore3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="4th" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+
+                <Ellipse Height="100" Width="100 " Stroke="White" StrokeThickness="5">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="ImageBrush_Avatar4" ImageSource="\Assets\Images\timer.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock x:Name="TextBlock_PlayerName4" FontWeight="Bold" Text="playerName" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+                <TextBlock x:Name="TextBlock_PlayerScore4" Text="playerScore4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White"/>
+
+            </StackPanel>
+        </Grid>
+
+        <Button x:Name="Button_ReturnToMenu" Content="Return to main menu" FontSize="30" Grid.Row="2" Click="Button_ReturnToMenu_Click"/>
+    </Grid>
+</Page>

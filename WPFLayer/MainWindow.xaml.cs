@@ -24,5 +24,15 @@ namespace WPFLayer
         {
             InitializeComponent();
         }
+
+
+        private void HandleNavigating(object sender, NavigatingCancelEventArgs e)
+        {
+            /*
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                e.Cancel = true;
+            }*/
+        }
     }
 }
