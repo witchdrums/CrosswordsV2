@@ -23,13 +23,19 @@ namespace Services
         void JoinGame(GamesPlayers gamePlayer);
 
         [OperationContract(IsOneWay = true)]
-        void PassTurn(Queue<GamesPlayers>gamePlayers, int currentTurns);
+        void PassTurn(Queue<GamesPlayers> gamePlayers, int currentTurns);
 
         [OperationContract(IsOneWay = true)]
-        void EndGame(List<GamesPlayers> playerRanks);
+        void EndGame(int idRoom, List<GamesPlayers> playerRanks);
 
+        [OperationContract(IsOneWay = true)]
+        void RemovePlayer(Players leavingPlayer, Queue<GamesPlayers> gamePlayers);
+
+        [OperationContract(IsOneWay = true)]
+        void RemoveHost(GamesPlayers host, Queue<GamesPlayers> gamePlayers);
     }
 
+    [ServiceContract]
     public interface IGameManagementCallback
     {
         [OperationContract(IsOneWay = true)]
@@ -45,5 +51,14 @@ namespace Services
         void UpdateGamePlayersQueue(Queue<GamesPlayers> gamePlayers, int remainingTurns);
         [OperationContract(IsOneWay = true)]
         void ShowPlayerRanks(List<GamesPlayers> playerRanks);
+
+        [OperationContract(IsOneWay = true)]
+        void RemoveLeavingUser(Players leavingPlayer, Queue<GamesPlayers> updatedQueue);
+
+        [OperationContract(IsOneWay = true)]
+        void SendLeavingUserToMainMenu();
+
+        [OperationContract(IsOneWay = true)]
+        void StopGame();
     }
 }

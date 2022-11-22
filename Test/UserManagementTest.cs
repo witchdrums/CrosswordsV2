@@ -279,6 +279,7 @@ namespace Test
 
 
             Assert.ThrowsException<System.Data.Entity.Infrastructure.DbUpdateException>(() => userManagement.RegisterReport(report));
+        }
 
         [TestMethod]
         public void GetUserInformationForPlayer_Test_Success()
@@ -291,5 +292,6 @@ namespace Test
 
             Assert.AreEqual(getItUser.idUser, 30);
         }
+        
     }
 }

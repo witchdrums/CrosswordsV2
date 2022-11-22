@@ -15,14 +15,13 @@ namespace BusinessServices
             Domain.Boards domainBoard = new Domain.Boards();
             using (var context = new CrosswordsContext())
             {
-                BusinessLogic.Board foundBoard = new BusinessLogic.Board();
                 var foundBoards = (from board in context.Boards
                               where board.idBoard == idBoard
                               select board)
                                 .ToList();
                 if (foundBoards.Count == 1)
                 {
-                    foundBoard = foundBoards.First();
+                    BusinessLogic.Board foundBoard = foundBoards.First();
                     domainBoard.idBoard = foundBoard.idBoard;
                     domainBoard.boardMatrix = foundBoard.boardMatrix;
 

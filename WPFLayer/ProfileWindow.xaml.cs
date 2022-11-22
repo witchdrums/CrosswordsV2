@@ -22,14 +22,22 @@ namespace WPFLayer
     public partial class ProfileWindow : Window, IUsersManagerCallback
     {
         private Players chosenPlayer;
-        public ProfileWindow(Players chosenPlayer)
+        private GamePage gamePage;
+        
+        public ProfileWindow(GamePage gamePage, Players chosenPlayer )
         {
             InitializeComponent();
             this.chosenPlayer = chosenPlayer;
+            this.gamePage = gamePage;
+            
             this.TextBlock_PlayerName.Text = chosenPlayer.playerName;
             this.TextBlock_UserID.Text = chosenPlayer.user.idUser.ToString();
             this.TextBlock_Username.Text = chosenPlayer.user.username;
             this.TextBlock_PlayerDescription.Text = chosenPlayer.playerDescription;
+            if (gamePage.IdRoom == gamePage.Player.Player.user.idUser)
+            { 
+                this.Button_Kick.Visibility = Visibility.Visible;
+            }
 
             InstanceContext instanceContext = new InstanceContext(this);
             UsersManagerClient usersManagerClient = new UsersManagerClient(instanceContext);
@@ -66,5 +74,14 @@ namespace WPFLayer
             }
         }
 
+        private void Button_Kick_Click(object sender, RoutedEventArgs e)
+        {
+            gamePage.KickPlayer(this.chosenPlayer);
+        }
+
+        private void Combobox_ReportCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Button_SendReport.IsEnabled = true;
+        }
     }
 }

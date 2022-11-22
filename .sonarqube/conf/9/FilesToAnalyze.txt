@@ -1,0 +1,10 @@
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\Test\GameRoomManagementTest.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Test\PlayerManagementTest.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Test\UserManagementTest.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Test\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\packages\MSTest.TestAdapter.2.2.7\build\_common\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\52228\source\repos\CrosswordsV2-test\packages\MSTest.TestAdapter.2.2.7\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\52228\source\repos\CrosswordsV2-test\packages\MSTest.TestAdapter.2.2.7\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\52228\source\repos\CrosswordsV2-test\packages\MSTest.TestAdapter.2.2.7\build\net45\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\Users\52228\source\repos\CrosswordsV2-test\Test\App.config
+C:\Users\52228\source\repos\CrosswordsV2-test\Test\packages.config

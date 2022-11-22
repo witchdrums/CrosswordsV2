@@ -12,8 +12,8 @@ namespace Email
     {
         public void SendEmailToUser(String userEmail, String subject, String header, String body)
         {
-            String senderEmail = "codycofysoft@gmail.com";
-            String senderPassword = "qijsbnmhagualwar";
+            String senderEmail = Properties.EmailCredentials.EmailAddress;
+            String senderPassword = Properties.EmailCredentials.Password;
             MailMessage message = new MailMessage();
             message.From = new MailAddress(senderEmail);
             message.Subject = subject;

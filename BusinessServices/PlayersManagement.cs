@@ -15,20 +15,20 @@ namespace BusinessServices
     {
         public Players GetPlayerFor(Users user)
         {
-            Players foundPlayer = new Players();
-            BusinessLogic.Player businessLogicPlayer = new BusinessLogic.Player();
+            Player businessLogicPlayer;
             using (var context = new CrosswordsContext())
             {
                 int idUser = user.idUser;
 
                 businessLogicPlayer = (from player in context.Players
-                                       where player.idUser == idUser
-                                       select player)
-                                       .ToList()
-                                       .ElementAt(0);
-                foundPlayer = ParseToDomain(businessLogicPlayer);
-                foundPlayer.user = user;
+                                        where player.idUser == idUser
+                                        select player)
+                                        .AsEnumerable()
+                                        .ElementAt(0);
+
             }
+            Players foundPlayer = ParseToDomain(businessLogicPlayer);
+            foundPlayer.user = user;
             return foundPlayer;
         }
 

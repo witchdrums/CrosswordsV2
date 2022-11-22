@@ -256,6 +256,12 @@
   <wsdl:message name="IGameManagement_EndGame_InputMessage">
     <wsdl:part name="parameters" element="tns:EndGame" />
   </wsdl:message>
+  <wsdl:message name="IGameManagement_RemovePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePlayer" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_RemoveHost_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveHost" />
+  </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveSolvedWordsBoard" />
   </wsdl:message>
@@ -267,6 +273,15 @@
   </wsdl:message>
   <wsdl:message name="IGameManagement_ShowPlayerRanks_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ShowPlayerRanks" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_RemoveLeavingUser_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLeavingUser" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_SendLeavingUserToMainMenu_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendLeavingUserToMainMenu" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_StopGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StopGame" />
   </wsdl:message>
   <wsdl:message name="IGameRoomManagement_SendInvitationToRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:SendInvitationToRoom" />
@@ -423,6 +438,12 @@
     <wsdl:operation name="EndGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/EndGame" message="tns:IGameManagement_EndGame_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RemovePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RemovePlayer" message="tns:IGameManagement_RemovePlayer_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveHost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RemoveHost" message="tns:IGameManagement_RemoveHost_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" message="tns:IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage" />
     </wsdl:operation>
@@ -434,6 +455,15 @@
     </wsdl:operation>
     <wsdl:operation name="ShowPlayerRanks">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ShowPlayerRanks" message="tns:IGameManagement_ShowPlayerRanks_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLeavingUser">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/RemoveLeavingUser" message="tns:IGameManagement_RemoveLeavingUser_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendLeavingUserToMainMenu">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/SendLeavingUserToMainMenu" message="tns:IGameManagement_SendLeavingUserToMainMenu_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/StopGame" message="tns:IGameManagement_StopGame_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameRoomManagement">
@@ -670,6 +700,18 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="RemovePlayer">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RemovePlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveHost">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RemoveHost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" style="document" />
       <wsdl:output>
@@ -690,6 +732,24 @@
     </wsdl:operation>
     <wsdl:operation name="ShowPlayerRanks">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ShowPlayerRanks" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLeavingUser">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RemoveLeavingUser" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendLeavingUserToMainMenu">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/SendLeavingUserToMainMenu" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/StopGame" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

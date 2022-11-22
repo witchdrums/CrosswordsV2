@@ -1428,10 +1428,22 @@ namespace WPFLayer.ServicesImplementation {
         System.Threading.Tasks.Task PassTurnAsync(System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers, int currentTurns);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/EndGame")]
-        void EndGame(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
+        void EndGame(int idRoom, WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/EndGame")]
-        System.Threading.Tasks.Task EndGameAsync(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
+        System.Threading.Tasks.Task EndGameAsync(int idRoom, WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/RemovePlayer")]
+        void RemovePlayer(WPFLayer.ServicesImplementation.Players leavingPlayer, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/RemovePlayer")]
+        System.Threading.Tasks.Task RemovePlayerAsync(WPFLayer.ServicesImplementation.Players leavingPlayer, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/RemoveHost")]
+        void RemoveHost(WPFLayer.ServicesImplementation.GamesPlayers host, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/RemoveHost")]
+        System.Threading.Tasks.Task RemoveHostAsync(WPFLayer.ServicesImplementation.GamesPlayers host, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1448,6 +1460,15 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/ShowPlayerRanks")]
         void ShowPlayerRanks(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/RemoveLeavingUser")]
+        void RemoveLeavingUser(WPFLayer.ServicesImplementation.Players leavingPlayer, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> updatedQueue);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/SendLeavingUserToMainMenu")]
+        void SendLeavingUserToMainMenu();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/StopGame")]
+        void StopGame();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1502,12 +1523,28 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.PassTurnAsync(gamePlayers, currentTurns);
         }
         
-        public void EndGame(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks) {
-            base.Channel.EndGame(playerRanks);
+        public void EndGame(int idRoom, WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks) {
+            base.Channel.EndGame(idRoom, playerRanks);
         }
         
-        public System.Threading.Tasks.Task EndGameAsync(WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks) {
-            return base.Channel.EndGameAsync(playerRanks);
+        public System.Threading.Tasks.Task EndGameAsync(int idRoom, WPFLayer.ServicesImplementation.GamesPlayers[] playerRanks) {
+            return base.Channel.EndGameAsync(idRoom, playerRanks);
+        }
+        
+        public void RemovePlayer(WPFLayer.ServicesImplementation.Players leavingPlayer, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers) {
+            base.Channel.RemovePlayer(leavingPlayer, gamePlayers);
+        }
+        
+        public System.Threading.Tasks.Task RemovePlayerAsync(WPFLayer.ServicesImplementation.Players leavingPlayer, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers) {
+            return base.Channel.RemovePlayerAsync(leavingPlayer, gamePlayers);
+        }
+        
+        public void RemoveHost(WPFLayer.ServicesImplementation.GamesPlayers host, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers) {
+            base.Channel.RemoveHost(host, gamePlayers);
+        }
+        
+        public System.Threading.Tasks.Task RemoveHostAsync(WPFLayer.ServicesImplementation.GamesPlayers host, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers) {
+            return base.Channel.RemoveHostAsync(host, gamePlayers);
         }
     }
     

@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         d:DesignHeight="700" d:DesignWidth="1000"
         KeyDown="KeyDownKeyboard"
-        
 
         Title="Crosswords" Background="White">
     <Grid>
@@ -44,7 +43,7 @@
                 x:Name="Button_LeaveGame"
                 Margin="20,0,20,0" 
                 Height="40" 
-                Content="{x:Static p:Resources.Game_Button_LeaveGame}"/>
+                Content="{x:Static p:Resources.Game_Button_LeaveGame}" Click="Button_LeaveGame_Click"/>
 
 
         </Grid>
@@ -139,8 +138,14 @@
             </Grid.RowDefinitions>
 
 
-            <ScrollViewer x:Name="ScrollViewer_Chat" Grid.Row="0">
-                <ListView  Background="LightGray" x:Name="TextBlock_Chat"  FontSize="15"/>
+            <ScrollViewer x:Name="ScrollViewer_Chat" Grid.Row="0" >
+                <ListView  Background="LightGray" x:Name="TextBlock_Chat"  FontSize="15" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=.}" TextWrapping="Wrap"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </ScrollViewer>
             
             <Grid Grid.Row="2">
@@ -176,13 +181,12 @@
                             TextChanged="TextBox_WordGuess_TextChanged"
                             Focusable="True"
                             CharacterCasing="Upper"
-                            KeyDown="OnKeyDownHandler"
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center"
                             FontSize="35"
                             Text=""
                             Grid.Column="0"
-                            Visibility="Visible"/>
+                            Visibility="Collapsed"/>
 
 
                         <Button  
@@ -191,7 +195,7 @@
                             Content="{x:Static p:Resources.Game_Button_Guess}" 
                             Click="Button_Guess_Click"
                             Grid.Column="1"
-                            Visibility="Visible"/>
+                            Visibility="Collapsed"/>
                 </Grid >
             </Grid>
 
