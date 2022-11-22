@@ -54,6 +54,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Reports" nillable="true" type="tns:Reports" />
+  <xs:complexType name="ArrayOfPlayers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Players" nillable="true" type="tns:Players" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayers" nillable="true" type="tns:ArrayOfPlayers" />
   <xs:complexType name="ArrayOfGamesPlayers">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="GamesPlayers" nillable="true" type="tns:GamesPlayers" />

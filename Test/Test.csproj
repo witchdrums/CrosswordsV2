@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameRoomManagementTest.cs" />
+    <Compile Include="PlayerManagementTest.cs" />
     <Compile Include="UserManagementTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

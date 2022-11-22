@@ -279,6 +279,17 @@ namespace Test
 
 
             Assert.ThrowsException<System.Data.Entity.Infrastructure.DbUpdateException>(() => userManagement.RegisterReport(report));
+
+        [TestMethod]
+        public void GetUserInformationForPlayer_Test_Success()
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerQuery = new Players();
+            playerQuery.idPlayer = 8080;
+            Domain.Users getItUser = new Users();
+            getItUser = userManagement.GetUserInformationForPlayer(playerQuery);
+
+            Assert.AreEqual(getItUser.idUser, 30);
         }
     }
 }
