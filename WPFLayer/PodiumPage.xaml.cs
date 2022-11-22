@@ -21,11 +21,9 @@ namespace WPFLayer
     /// </summary>
     public partial class PodiumPage : Page
     {
-        private List<GamesPlayers> players;
         public PodiumPage(List<GamesPlayers> players)
         {
             InitializeComponent();
-            this.players = players;
 
             List<TextBlock> playerNames = new List<TextBlock>();
             playerNames.Add(TextBlock_PlayerName1);

@@ -23,11 +23,7 @@ using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    /* by witchdrums
-     * TO DO
-        [   ] Turn into PAGE
-        [   ] Connect this with the lobby window
-     */
+
     public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
@@ -37,6 +33,7 @@ namespace WPFLayer
         private List<Label> selectedWordLabels = new List<Label>();
         private List<Label> selectedWordLabelsCopy = new List<Label>();
         private List<Label> enemyScores = new List<Label>();
+        private Dictionary<int, EnemyPortrait> enemyPortraits = new Dictionary<int, EnemyPortrait>();
         private List<GamesPlayers> enemies;
         private bool hasTurn;
         private int remainingTurns = 0;
@@ -46,16 +43,16 @@ namespace WPFLayer
         private List<ServicesImplementation.Users> usersRoom =
             new List<ServicesImplementation.Users>();
         private Users userLogin;
-        private int idRoom;
+        public int IdRoom { get; set; }
 
-        private GamesPlayers player;
+        public GamesPlayers Player { get; set; }
         private GameConfiguration gameConfiguration;
 
         public GamePage(Users userLogin, int idRoom, GameConfiguration gameConfiguration)
         {
             InitializeComponent();
             this.userLogin = userLogin;
-            this.idRoom = idRoom;
+            this.IdRoom = idRoom;
             this.gameConfiguration = gameConfiguration;
             this.remainingTurns = gameConfiguration.TurnAmount;
             this.usersRoom = gameConfiguration.UsersRoom.ToList();
@@ -73,7 +70,7 @@ namespace WPFLayer
 
         private void WaitForHostToStart()
         {
-            if (this.userLogin.idUser == this.idRoom)
+            if (this.userLogin.idUser == this.IdRoom)
             {
                 this.Button_PlayerAvatar.Content = "Start Game!";
                 this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Blue;
@@ -88,7 +85,7 @@ namespace WPFLayer
             {
                 if (gamePlayer.Player.user.idUser == this.userLogin.idUser)
                 {
-                    this.player = gamePlayer;
+                    this.Player = gamePlayer;
                 }
             }
         }
@@ -98,7 +95,6 @@ namespace WPFLayer
             this.Button_PlayerAvatar.Content = "";
             this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Gray;
             this.Button_PlayerAvatar.Click -= (StartGame);
-            //this.Button_PlayerAvatar.Click += new RoutedEventHandler(SortPlayersByScore);
             EndTurn();
         }
 
@@ -110,8 +106,8 @@ namespace WPFLayer
             gameTimer.Interval = TimeSpan.FromSeconds(1);
 
             gameTimer.Tick += SecondPasses;
-            this.ListView_HorizontalClueList.SelectedIndex = 0;
-            
+            this.ListView_HorizontalClueList.ItemsSource = new List<string>();
+
             IsMyTurn(false);
         }
 
@@ -137,20 +133,20 @@ namespace WPFLayer
 
         private void JoinGame()
         {
-            this.Button_PlayerAvatar.Tag = this.player;
-            this.TextBlock_Player.Text = this.player.Player.playerName;
-            this.Label_PlayerScore.Content = this.player.gameScore;
+            this.Button_PlayerAvatar.Tag = this.Player;
+            this.TextBlock_Player.Text = this.Player.Player.playerName;
+            this.Label_PlayerScore.Content = this.Player.gameScore;
             InstanceContext instanceContext = new InstanceContext(this);
             GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
             MessagesClient messagesClient = new MessagesClient(instanceContext);
-            gameManagementClient.JoinGame(this.player);
+            gameManagementClient.JoinGame(this.Player);
             messagesClient.ConnectMessages(this.userLogin);
         }
 
         private void InitializeEnemyPortraits()
         {
             this.enemies = 
-                this.gamePlayersQueue.Where(enemy => enemy.Player.idPlayer != this.player.Player.idPlayer).ToList();
+                this.gamePlayersQueue.Where(enemy => enemy.Player.idPlayer != this.Player.Player.idPlayer).ToList();
 
             List<TextBlock> enemyNames = new List<TextBlock>();
             enemyNames.Add(this.TextBlock_Enemy1);
@@ -170,18 +166,24 @@ namespace WPFLayer
 
             for (int enemyIndex = 0; enemyIndex < enemies.Count; enemyIndex++)
             {
-                enemyNames[enemyIndex].Text = enemies[enemyIndex].Player.playerName;
+                GamesPlayers currentEnemy = enemies[enemyIndex];
+                enemyNames[enemyIndex].Text = currentEnemy.Player.playerName;
                 enemyNames[enemyIndex].Visibility = Visibility.Visible;
-                enemyScores[enemyIndex].Tag = enemies[enemyIndex].Player.idPlayer;
+                enemyScores[enemyIndex].Tag = currentEnemy.Player.idPlayer;
                 enemyScores[enemyIndex].Visibility = Visibility.Visible;
-                enemyAvatars[enemyIndex].Tag = enemies[enemyIndex];
+                enemyAvatars[enemyIndex].Tag = currentEnemy;
                 enemyAvatars[enemyIndex].Visibility = Visibility.Visible;
+                EnemyPortrait enemyPortrait = new EnemyPortrait();
+                enemyPortrait.enemyAvatar = enemyAvatars[enemyIndex];
+                enemyPortrait.enemyScore = enemyScores[enemyIndex];
+                enemyPortrait.enemyName = enemyNames[enemyIndex];
+                this.enemyPortraits.Add(currentEnemy.Player.idPlayer, enemyPortrait);
             }
         }
 
         private void AddScoreToSolver(GamesPlayers solver)
         {
-            
+           
             foreach (Label enemyScore in this.enemyScores)
             {
                 if (((int)enemyScore.Tag) == solver.idPlayer)
@@ -203,6 +205,7 @@ namespace WPFLayer
         {
             this.board = this.gameConfiguration.Board;
             this.ListView_HorizontalClueList.ItemsSource = this.board.WordsBoards;
+            this.ListView_HorizontalClueList.SelectedIndex = 0;
 
         }
 
@@ -223,6 +226,7 @@ namespace WPFLayer
                         BorderThickness = borderThickness,
                         Background = colorSorroundingLetters,
                         HorizontalContentAlignment = HorizontalAlignment.Center,
+                        VerticalContentAlignment = VerticalAlignment.Center,
                         FontWeight = FontWeights.Bold,
                         Content = "",
                         Padding = padding,
@@ -237,7 +241,6 @@ namespace WPFLayer
 
         private void TextBox_WordGuess_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             this.selectedWordLabels.ForEach(label => label.Content = "");
             for (int xIndex = 0; xIndex < this.TextBox_WordGuess.Text.Length; xIndex++)
             {
@@ -247,12 +250,11 @@ namespace WPFLayer
                     this.selectedWordLabels.ElementAt(xIndex).Content = this.TextBox_WordGuess.Text[xIndex];
                 }
             }
-            
-
         }
 
         private void ListView_HorizontalClueList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DeleteGuess();
             SelectWordLabels();
         }
 
@@ -347,7 +349,7 @@ namespace WPFLayer
             {
                 AddScore(selectedWord);
                 selectedWord.Word.isSolved = true;
-                GetGameManagementClient().SendSolvedWordsBoard(this.gamePlayersQueue, this.player, selectedWord);
+                GetGameManagementClient().SendSolvedWordsBoard(this.gamePlayersQueue, this.Player, selectedWord);
                 ClearSelectedWordLabels(selectedWord);
             }
             else
@@ -361,11 +363,11 @@ namespace WPFLayer
         private void AddScore(WordsBoard solvedWord)
         {
             int score = solvedWord.Word.term.Length * 100;
-            this.player.gameScore += score;
-            this.Label_PlayerScore.Content = this.player.gameScore;
+            this.Player.gameScore += score;
+            this.Label_PlayerScore.Content = this.Player.gameScore;
             foreach (GamesPlayers player in gamePlayersQueue)
             {
-                if (player.idPlayer == this.player.idPlayer)
+                if (player.idPlayer == this.Player.idPlayer)
                 {
                     player.gameScore += score;
                 }
@@ -397,6 +399,7 @@ namespace WPFLayer
 
         public void ReciveChatMessage(Users userOrigin, string message)
         {
+            
             this.TextBlock_Chat.Items.Add(userOrigin.username + ": " + message);
             this.ScrollViewer_Chat.ScrollToBottom();
 
@@ -409,7 +412,7 @@ namespace WPFLayer
                 InstanceContext context = new InstanceContext(this);
                 ServicesImplementation.IMessages messages = new ServicesImplementation.MessagesClient(context);
                 messages.SendChatMessage(this.usersRoom.ToArray(), this.userLogin, TextBox_Message.Text);
-               
+                this.TextBox_Message.Clear();
             }
         }
 
@@ -457,24 +460,11 @@ namespace WPFLayer
             }
 
         }
-        private void OnKeyDownHandler(object sender, KeyEventArgs keyEvent)
-        {
-            if (keyEvent.Key == Key.Enter)
-            {
-                GuessWord();
-            }
-            else if ((keyEvent.Key == Key.Delete) || (keyEvent.Key == Key.Back))
-            {
-                this.TextBox_WordGuess.Text = "";
-
-                DeleteGuess();
-            }
-        }
 
         private void KeyDownKeyboard(object sender, KeyEventArgs keyEvent)
         { 
             
-            if (hasTurn)
+            if (hasTurn && !this.TextBox_Message.IsFocused)
             {
                 HandleUserKeyboardInput(keyEvent);
             }
@@ -482,11 +472,12 @@ namespace WPFLayer
 
         private void HandleUserKeyboardInput(KeyEventArgs keyEvent)
         {
+            
             int keyValue = (int)keyEvent.Key;
             if (keyValue >= 44 && keyValue <= 69 )
             {
                 int currentLettersInGuess = this.TextBox_WordGuess.Text.Length;
-                WordsBoard selectedWord = this.ListView_HorizontalClueList.SelectedItem as WordsBoard;
+                WordsBoard selectedWord = GetSelectedWordInClueList() as WordsBoard;
 
                 if (this.TextBox_WordGuess.MaxLength > currentLettersInGuess && !selectedWord.Word.isSolved)
                 {
@@ -545,7 +536,7 @@ namespace WPFLayer
                 player.gameRank = gameRank;
                 gameRank = gameRank + 1;
             }
-            GetGameManagementClient().EndGame(finalPlayerPositions.ToArray());
+            GetGameManagementClient().EndGame(this.IdRoom,finalPlayerPositions.ToArray());
         }
 
         private bool ThereAreWordsToBeSolvedStill()
@@ -613,7 +604,65 @@ namespace WPFLayer
         private void Button_Avatar_Click(object sender, RoutedEventArgs e)
         {
             GamesPlayers chosenPlayer = ((Button)sender).Tag as GamesPlayers;
-            new ProfileWindow(chosenPlayer.Player).Show();
+            new ProfileWindow(this, chosenPlayer.Player).Show();
+        }
+
+        public void KickPlayer(Players chosenPlayer) 
+        {
+            GameManagementClient gameManagementClient = GetGameManagementClient();
+            gameManagementClient.PassTurn(this.gamePlayersQueue, this.remainingTurns);
+            GetGameManagementClient().RemovePlayer(chosenPlayer, this.gamePlayersQueue);
+        }
+
+        private void Button_LeaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to leave the game?", "Leave game", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+
+                if (IdRoom == this.Player.Player.user.idUser)
+                {
+                    GetGameManagementClient().RemoveHost(this.Player, this.gamePlayersQueue);
+                    SendLeavingUserToMainMenu();
+                }
+                else 
+                {
+                    GetGameManagementClient().RemovePlayer(this.Player.Player, this.gamePlayersQueue);
+                }  
+            }
+        }
+
+        public void RemoveLeavingUser(Players leavingPlayer, Queue<GamesPlayers> updatedQueue)
+        {
+            EnemyPortrait leavingEnemyPortrait = this.enemyPortraits[leavingPlayer.idPlayer];
+            
+            leavingEnemyPortrait.enemyScore.Visibility = Visibility.Hidden;
+            leavingEnemyPortrait.enemyAvatar.Visibility = Visibility.Hidden;
+            leavingEnemyPortrait.enemyName.Visibility = Visibility.Hidden;
+            this.enemyPortraits.Remove(leavingPlayer.idPlayer);
+
+            this.enemyScores.Remove(leavingEnemyPortrait.enemyScore);
+            this.gamePlayersQueue = updatedQueue;
+            
+        }
+
+        public void StopGame()
+        {
+            MessageBox.Show("The host left the game. You'll return to the main menu.", "Host left");
+            SendLeavingUserToMainMenu();
+        }
+
+        public void SendLeavingUserToMainMenu()
+        {
+            NavigationService.RemoveBackEntry();
+            NavigationService.GoBack();
+        }
+
+        internal class EnemyPortrait
+        {
+            public TextBlock enemyName;
+            public Label enemyScore;
+            public Button enemyAvatar;
         }
     }
 

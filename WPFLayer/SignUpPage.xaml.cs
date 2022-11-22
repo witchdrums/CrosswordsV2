@@ -64,7 +64,7 @@ namespace WPFLayer
                     RegisterUser();
                 }
             }
-            catch (EndpointNotFoundException enfException)
+            catch (EndpointNotFoundException)
             {
                 
                 MessageBox.Show(Properties.Resources.Exception_ServerFailure);
@@ -121,7 +121,7 @@ namespace WPFLayer
             string emailInput = this.TextBox_Email.Text;
 
             bool emailIsNew = client.FindUserByEmail(emailInput);
-            if (emailIsNew == false)
+            if (!emailIsNew)
             {
                 this.TextBox_Email.BorderBrush = System.Windows.Media.Brushes.Red;
                 this.Label_EmailAlreadyInDatabase.Visibility = Visibility.Visible;
@@ -135,7 +135,7 @@ namespace WPFLayer
             string email = this.TextBox_Email.Text.ToString();
             IUsersValidationService usersValidationService = new UsersValidationService();
             bool emailFormatIsValid = usersValidationService.ValidateEmailFormat(email);
-            if (emailFormatIsValid == false)
+            if (!emailFormatIsValid)
             {
                 this.TextBox_Email.BorderBrush = System.Windows.Media.Brushes.Red;
                 this.Label_EmailInvalid.Visibility = Visibility.Visible;
@@ -149,7 +149,7 @@ namespace WPFLayer
             string password = this.PasswordBox_Password.Password.ToString();
             IUsersValidationService usersValidationService = new UsersValidationService();
             bool passwordFormatIsValid = usersValidationService.ValidatePasswordFormat(password);
-            if (passwordFormatIsValid == false)
+            if (!passwordFormatIsValid)
             {
                 this.PasswordBox_Password.BorderBrush = System.Windows.Media.Brushes.Red;
                 this.Label_PasswordInvalid.Visibility = Visibility.Visible;
@@ -163,7 +163,7 @@ namespace WPFLayer
             string passwordConfirmation = this.PasswordBox_PasswordConfirmation.Password.ToString();
             IUsersValidationService usersValidationService = new UsersValidationService();
             bool passwordsMAtch = usersValidationService.ValidateMatchingPasswords(password, passwordConfirmation);
-            if (passwordsMAtch == false)
+            if (!passwordsMAtch)
             {
                 this.PasswordBox_Password.BorderBrush = System.Windows.Media.Brushes.Red;
                 this.PasswordBox_PasswordConfirmation.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -172,9 +172,9 @@ namespace WPFLayer
             return passwordsMAtch;
         }
 
-        public void Response(bool response)
+        public void Response(bool response1)
         {
-            if (response == true)
+            if (response1)
             {
                 MessageBox.Show("User has been added!");
             }

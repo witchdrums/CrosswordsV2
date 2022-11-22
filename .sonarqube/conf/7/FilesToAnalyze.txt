@@ -1,0 +1,11 @@
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\Services\ConnectionMap.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IGameManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IGameRoomManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IMessages.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IPlayersManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IUsersManager.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\RoomMap.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\ServicesImplementation.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\App.config
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\packages.config

@@ -12,8 +12,6 @@ namespace BusinessServices
 {
     public class UserManagement
     {
-        CrosswordsContext context = new CrosswordsContext();
-
         public Boolean RegisterUser(Users user)
         {
             Boolean result = false;
@@ -30,7 +28,7 @@ namespace BusinessServices
             businessLogicPlayer.playerRank = "fdsa";
             businessLogicPlayer.playerLevel = 1;
 
-            using (context)
+            using (var context = new CrosswordsContext())
             {
                 context.Players.Add(businessLogicPlayer);
                 context.Users.Add(businessLogicUser);
@@ -42,7 +40,7 @@ namespace BusinessServices
         public Boolean FindUserByEmail(String userEmail)
         {
             Boolean result = false;
-            using (context)
+            using (var context = new CrosswordsContext())
             {
                 var foundUsers = (from user in context.Users
                                   where user.email == userEmail

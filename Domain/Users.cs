@@ -30,7 +30,6 @@ namespace Domain
 
         [DataMember]
         public int idUserType { get; set; }
-        //public  ObservableCollection<Players> Players { get; set; }
 
     }
 }

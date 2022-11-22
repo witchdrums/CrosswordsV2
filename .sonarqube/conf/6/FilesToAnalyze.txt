@@ -1,0 +1,6 @@
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\GameRoomManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\PlayersManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\UserManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\App.config
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\packages.config

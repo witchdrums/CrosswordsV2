@@ -10,6 +10,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Data.Entity.Validation;
 using BusinessServices;
 using System.Runtime.Serialization;
+using System.Data.Entity;
 
 namespace Services
 {
@@ -18,7 +19,6 @@ namespace Services
     public partial class ServicesImplementation : IUsersManager
     {
         private static readonly ConnectionMap connectionMap = new ConnectionMap();
-        CrosswordsContext context = new CrosswordsContext();
         public bool AddUser(Users user)
         {
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
@@ -237,8 +237,9 @@ namespace Services
             userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
         }
 
-        public void EndGame(List<GamesPlayers> playerRanks)
+        public void EndGame(int idRoom, List<GamesPlayers> playerRanks)
         {
+            roomMap.DeleteRoom(idRoom);
             OperationContext userContext;
             foreach (GamesPlayers player in playerRanks)
             {
@@ -247,6 +248,54 @@ namespace Services
                 userContext.GetCallbackChannel<IGameManagementCallback>().ShowPlayerRanks(playerRanks);
             }
         }
+
+
+        public void RemovePlayer(Players leavingPlayer, Queue<GamesPlayers> gamePlayers)
+        {
+            OperationContext userContext;
+            userContext = connectionMapGameManagement.GetOperationContextForId(leavingPlayer.user.idUser);
+            userContext.GetCallbackChannel<IGameManagementCallback>().SendLeavingUserToMainMenu();
+
+            connectionMapGameManagement.DeteleUserForId(leavingPlayer.user.idUser);
+            int playerCount = gamePlayers.Count;
+
+            for (int playerIndex = 0; playerIndex < playerCount; playerIndex++)
+            {
+                if (gamePlayers.Peek().idPlayer != leavingPlayer.idPlayer)
+                {
+                    gamePlayers.Enqueue(gamePlayers.Dequeue());
+                }
+                else
+                {
+                    gamePlayers.Dequeue();
+                }
+            }
+            
+            foreach (GamesPlayers player in gamePlayers)
+            {
+                int idUser = player.Player.user.idUser;
+                userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().RemoveLeavingUser(leavingPlayer, gamePlayers);
+            }
+        }
+
+        public void RemoveHost(GamesPlayers host, Queue<GamesPlayers> gamePlayers)
+        {
+            roomMap.DeleteRoom(host.Player.user.idUser);
+            OperationContext userContext;
+            foreach (GamesPlayers player in gamePlayers)
+            {
+                int idUser = player.Player.user.idUser;
+                if (idUser != host.Player.user.idUser)
+                {
+                    userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                    userContext.GetCallbackChannel<IGameManagementCallback>().StopGame();
+                    connectionMapGameManagement.DeteleUserForId(idUser);
+                }
+            }
+        }
+
+
     }
 
     public partial class ServicesImplementation : IPlayersManagement

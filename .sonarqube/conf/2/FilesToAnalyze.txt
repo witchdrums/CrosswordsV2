@@ -1,0 +1,10 @@
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Boards.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Categories.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Games.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\GamesPlayers.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Players.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Reports.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Users.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\Word.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Domain\WordsBoard.cs
