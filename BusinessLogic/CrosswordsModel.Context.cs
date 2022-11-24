@@ -36,5 +36,7 @@ namespace BusinessLogic
         public virtual DbSet<WordsBoard> WordsBoards { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<ProfileImage> ProfileImages { get; set; }
+        public virtual DbSet<Rank> Ranks { get; set; }
     }
 }

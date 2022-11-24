@@ -57,9 +57,9 @@ namespace Services
             Players playerLogin = new Players();
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
             playerLogin = userManagement.FindUserByUserNameAndPassword(user);
-            if (playerLogin.user.credential)
+            if (playerLogin.User.credential)
             {
-                connectionMap.SaveUser(playerLogin.user.idUser, OperationContext.Current);
+                connectionMap.SaveUser(playerLogin.User.idUser, OperationContext.Current);
             }
             return playerLogin;
         }
@@ -204,7 +204,7 @@ namespace Services
 
         public void JoinGame(GamesPlayers gamePlayer)
         {
-            int idUser = gamePlayer.Player.user.idUser;
+            int idUser = gamePlayer.Player.User.idUser;
             connectionMapGameManagement.SaveUser(idUser, OperationContext.Current);
         }
 
@@ -213,7 +213,7 @@ namespace Services
 
             foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                int idUser = gamePlayer.Player.user.idUser;
+                int idUser = gamePlayer.Player.User.idUser;
                 OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(solver, solvedWordsBoard);
             }
@@ -228,11 +228,11 @@ namespace Services
             gamePlayersQueue.Enqueue(gamePlayersQueue.Dequeue());
             foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                int idUser = gamePlayer.Player.user.idUser;
+                int idUser = gamePlayer.Player.User.idUser;
                 userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayersQueue, currentTurns);
             }
-            int nextIdUser = gamePlayersQueue.Peek().Player.user.idUser;
+            int nextIdUser = gamePlayersQueue.Peek().Player.User.idUser;
             userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
             userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
         }
@@ -243,7 +243,7 @@ namespace Services
             OperationContext userContext;
             foreach (GamesPlayers player in playerRanks)
             {
-                int idUser = player.Player.user.idUser;
+                int idUser = player.Player.User.idUser;
                 userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().ShowPlayerRanks(playerRanks);
             }
@@ -253,10 +253,10 @@ namespace Services
         public void RemovePlayer(Players leavingPlayer, Queue<GamesPlayers> gamePlayers)
         {
             OperationContext userContext;
-            userContext = connectionMapGameManagement.GetOperationContextForId(leavingPlayer.user.idUser);
+            userContext = connectionMapGameManagement.GetOperationContextForId(leavingPlayer.User.idUser);
             userContext.GetCallbackChannel<IGameManagementCallback>().SendLeavingUserToMainMenu();
 
-            connectionMapGameManagement.DeteleUserForId(leavingPlayer.user.idUser);
+            connectionMapGameManagement.DeteleUserForId(leavingPlayer.User.idUser);
             int playerCount = gamePlayers.Count;
 
             for (int playerIndex = 0; playerIndex < playerCount; playerIndex++)
@@ -273,7 +273,7 @@ namespace Services
             
             foreach (GamesPlayers player in gamePlayers)
             {
-                int idUser = player.Player.user.idUser;
+                int idUser = player.Player.User.idUser;
                 userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().RemoveLeavingUser(leavingPlayer, gamePlayers);
             }
@@ -281,12 +281,12 @@ namespace Services
 
         public void RemoveHost(GamesPlayers host, Queue<GamesPlayers> gamePlayers)
         {
-            roomMap.DeleteRoom(host.Player.user.idUser);
+            roomMap.DeleteRoom(host.Player.User.idUser);
             OperationContext userContext;
             foreach (GamesPlayers player in gamePlayers)
             {
-                int idUser = player.Player.user.idUser;
-                if (idUser != host.Player.user.idUser)
+                int idUser = player.Player.User.idUser;
+                if (idUser != host.Player.User.idUser)
                 {
                     userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
                     userContext.GetCallbackChannel<IGameManagementCallback>().StopGame();

@@ -180,6 +180,9 @@
   <data name="General_Button_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="General_Button_MyProfile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
   <data name="General_Button_No" xml:space="preserve">
     <value>No</value>
   </data>

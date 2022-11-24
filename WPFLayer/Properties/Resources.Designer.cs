@@ -250,6 +250,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My profile.
+        /// </summary>
+        public static string General_Button_MyProfile {
+            get {
+                return ResourceManager.GetString("General_Button_MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string General_Button_No {

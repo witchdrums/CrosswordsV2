@@ -28,7 +28,7 @@ namespace BusinessServices
 
             }
             Players foundPlayer = ParseToDomain(businessLogicPlayer);
-            foundPlayer.user = user;
+            foundPlayer.User = user;
             return foundPlayer;
         }
 
@@ -37,7 +37,6 @@ namespace BusinessServices
             Players domainPlayer = new Players();
             domainPlayer.idPlayer = businessLogicPlayer.idPlayer;
             domainPlayer.playerName = businessLogicPlayer.playerName;
-            domainPlayer.playerRank = businessLogicPlayer.playerRank;
             return domainPlayer;
         }
 
@@ -66,7 +65,7 @@ namespace BusinessServices
                     {
                         Domain.Players filteredPlayer = new Domain.Players();
                         filteredPlayer = this.ParseToDomain(player);
-                        filteredPlayer.user = userManagement.ParseToDomain(player.User);
+                        filteredPlayer.User = userManagement.ParseToDomain(player.User);
                         playersFiltered.Add(filteredPlayer);
                     }
                 }
@@ -87,7 +86,7 @@ namespace BusinessServices
                 {
                     Domain.Players parsePlayer = new Domain.Players();
                     parsePlayer = this.ParseToDomain(playerQuery);
-                    parsePlayer.user = userManagement.ParseToDomain(playerQuery.User);
+                    parsePlayer.User = userManagement.ParseToDomain(playerQuery.User);
                     friendListDomain.Add(parsePlayer);
                 }
             }

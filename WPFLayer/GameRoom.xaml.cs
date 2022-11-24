@@ -142,7 +142,7 @@ namespace WPFLayer
             foreach (Users user in userRoom)
             {
                 Players userPlayer = new Players();
-                userPlayer.user = user;
+                userPlayer.User = user;
                 userPlayer = usersManagerClient.GetPlayerInformation(userPlayer);
 
 

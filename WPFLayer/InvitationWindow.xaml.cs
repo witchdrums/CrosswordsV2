@@ -59,8 +59,8 @@ namespace WPFLayer
             }else if(true == true)
                 {
                     ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
-                    playerTarget.user = usersManagerClient.GetUserByPlayer(playerTarget);
-                    this.SendEmail(playerTarget.user.email);
+                    playerTarget.User = usersManagerClient.GetUserByPlayer(playerTarget);
+                    this.SendEmail(playerTarget.User.email);
                 }
         }
 

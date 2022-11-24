@@ -31,10 +31,10 @@ namespace WPFLayer
             this.gamePage = gamePage;
             
             this.TextBlock_PlayerName.Text = chosenPlayer.playerName;
-            this.TextBlock_UserID.Text = chosenPlayer.user.idUser.ToString();
-            this.TextBlock_Username.Text = chosenPlayer.user.username;
+            this.TextBlock_UserID.Text = chosenPlayer.User.idUser.ToString();
+            this.TextBlock_Username.Text = chosenPlayer.User.username;
             this.TextBlock_PlayerDescription.Text = chosenPlayer.playerDescription;
-            if (gamePage.IdRoom == gamePage.Player.Player.user.idUser)
+            if (gamePage.IdRoom == gamePage.Player.Player.User.idUser)
             { 
                 this.Button_Kick.Visibility = Visibility.Visible;
             }
@@ -65,7 +65,7 @@ namespace WPFLayer
             Categories selectedCategory = ((ComboBoxItem)this.Combobox_ReportCategories.SelectedItem).Tag as Categories;
             Reports report = new Reports();
             report.idCategory = selectedCategory.idCategory;
-            report.idUser = this.chosenPlayer.user.idUser;
+            report.idUser = this.chosenPlayer.User.idUser;
             report.chatLog = ";";
 
             if (usersManagerClient.RegisterReport(report))
