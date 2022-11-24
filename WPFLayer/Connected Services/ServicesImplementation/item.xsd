@@ -14,15 +14,36 @@
   <xs:element name="Users" nillable="true" type="tns:Users" />
   <xs:complexType name="Players">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ProfileImage" nillable="true" type="tns:ProfileImages" />
+      <xs:element minOccurs="0" name="Rank" nillable="true" type="tns:Ranks" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:Users" />
+      <xs:element minOccurs="0" name="gamesPlayed" type="xs:int" />
+      <xs:element minOccurs="0" name="gamesWon" type="xs:int" />
       <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+      <xs:element minOccurs="0" name="idProfileImage" type="xs:int" />
+      <xs:element minOccurs="0" name="idRank" type="xs:int" />
       <xs:element minOccurs="0" name="playerDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="playerLevel" type="xs:int" />
       <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="playerRank" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="user" nillable="true" type="tns:Users" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Players" nillable="true" type="tns:Players" />
+  <xs:complexType name="ProfileImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idProfileImage" type="xs:int" />
+      <xs:element minOccurs="0" name="profileImageName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProfileImages" nillable="true" type="tns:ProfileImages" />
+  <xs:complexType name="Ranks">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idRank" type="xs:int" />
+      <xs:element minOccurs="0" name="rankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rankPoints" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ranks" nillable="true" type="tns:Ranks" />
   <xs:complexType name="ArrayOfCategories">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Categories" nillable="true" type="tns:Categories" />

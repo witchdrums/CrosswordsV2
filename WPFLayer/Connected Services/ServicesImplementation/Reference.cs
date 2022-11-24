@@ -148,7 +148,28 @@ namespace WPFLayer.ServicesImplementation {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.ProfileImages ProfileImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.Ranks RankField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WPFLayer.ServicesImplementation.Users UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int gamesPlayedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int gamesWonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idPlayerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idProfileImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idRankField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string playerDescriptionField;
@@ -162,9 +183,6 @@ namespace WPFLayer.ServicesImplementation {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string playerRankField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WPFLayer.ServicesImplementation.Users userField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -172,6 +190,71 @@ namespace WPFLayer.ServicesImplementation {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.ProfileImages ProfileImage {
+            get {
+                return this.ProfileImageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProfileImageField, value) != true)) {
+                    this.ProfileImageField = value;
+                    this.RaisePropertyChanged("ProfileImage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.Ranks Rank {
+            get {
+                return this.RankField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RankField, value) != true)) {
+                    this.RankField = value;
+                    this.RaisePropertyChanged("Rank");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WPFLayer.ServicesImplementation.Users User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int gamesPlayed {
+            get {
+                return this.gamesPlayedField;
+            }
+            set {
+                if ((this.gamesPlayedField.Equals(value) != true)) {
+                    this.gamesPlayedField = value;
+                    this.RaisePropertyChanged("gamesPlayed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int gamesWon {
+            get {
+                return this.gamesWonField;
+            }
+            set {
+                if ((this.gamesWonField.Equals(value) != true)) {
+                    this.gamesWonField = value;
+                    this.RaisePropertyChanged("gamesWon");
+                }
             }
         }
         
@@ -184,6 +267,32 @@ namespace WPFLayer.ServicesImplementation {
                 if ((this.idPlayerField.Equals(value) != true)) {
                     this.idPlayerField = value;
                     this.RaisePropertyChanged("idPlayer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idProfileImage {
+            get {
+                return this.idProfileImageField;
+            }
+            set {
+                if ((this.idProfileImageField.Equals(value) != true)) {
+                    this.idProfileImageField = value;
+                    this.RaisePropertyChanged("idProfileImage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idRank {
+            get {
+                return this.idRankField;
+            }
+            set {
+                if ((this.idRankField.Equals(value) != true)) {
+                    this.idRankField = value;
+                    this.RaisePropertyChanged("idRank");
                 }
             }
         }
@@ -240,15 +349,140 @@ namespace WPFLayer.ServicesImplementation {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WPFLayer.ServicesImplementation.Users user {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProfileImages", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
+    [System.SerializableAttribute()]
+    public partial class ProfileImages : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idProfileImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string profileImageNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.userField;
+                return this.extensionDataField;
             }
             set {
-                if ((object.ReferenceEquals(this.userField, value) != true)) {
-                    this.userField = value;
-                    this.RaisePropertyChanged("user");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idProfileImage {
+            get {
+                return this.idProfileImageField;
+            }
+            set {
+                if ((this.idProfileImageField.Equals(value) != true)) {
+                    this.idProfileImageField = value;
+                    this.RaisePropertyChanged("idProfileImage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string profileImageName {
+            get {
+                return this.profileImageNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.profileImageNameField, value) != true)) {
+                    this.profileImageNameField = value;
+                    this.RaisePropertyChanged("profileImageName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Ranks", Namespace="http://schemas.datacontract.org/2004/07/Domain")]
+    [System.SerializableAttribute()]
+    public partial class Ranks : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idRankField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string rankNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int rankPointsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idRank {
+            get {
+                return this.idRankField;
+            }
+            set {
+                if ((this.idRankField.Equals(value) != true)) {
+                    this.idRankField = value;
+                    this.RaisePropertyChanged("idRank");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string rankName {
+            get {
+                return this.rankNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.rankNameField, value) != true)) {
+                    this.rankNameField = value;
+                    this.RaisePropertyChanged("rankName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int rankPoints {
+            get {
+                return this.rankPointsField;
+            }
+            set {
+                if ((this.rankPointsField.Equals(value) != true)) {
+                    this.rankPointsField = value;
+                    this.RaisePropertyChanged("rankPoints");
                 }
             }
         }
