@@ -83,7 +83,7 @@ namespace WPFLayer
             this.gamePlayersQueue = gameConfiguration.GamePlayerQueue;
             foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                if (gamePlayer.Player.user.idUser == this.userLogin.idUser)
+                if (gamePlayer.Player.User.idUser == this.userLogin.idUser)
                 {
                     this.Player = gamePlayer;
                 }
@@ -620,7 +620,7 @@ namespace WPFLayer
             if (messageBoxResult == MessageBoxResult.Yes)
             {
 
-                if (IdRoom == this.Player.Player.user.idUser)
+                if (IdRoom == this.Player.Player.User.idUser)
                 {
                     GetGameManagementClient().RemoveHost(this.Player, this.gamePlayersQueue);
                     SendLeavingUserToMainMenu();

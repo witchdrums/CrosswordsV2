@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -86,8 +87,21 @@
     <Compile Include="PodiumPage.xaml.cs">
       <DependentUpon>PodiumPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfileWindow.xaml.cs">
       <DependentUpon>ProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ResourcesPlayerRankImages.Designer.cs">
+      <DependentUpon>ResourcesPlayerRankImages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\ResourcesProfileImages.Designer.cs">
+      <DependentUpon>ResourcesProfileImages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="RecoverPasswordPage.xaml.cs">
       <DependentUpon>RecoverPasswordPage.xaml</DependentUpon>
@@ -139,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +184,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\ResourcesPlayerRankImages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesPlayerRankImages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourcesProfileImages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesProfileImages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -250,6 +276,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\podium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\PlayerRankImages\Bronce.png" />
+    <Resource Include="Assets\PlayerRankImages\BronceII.png" />
+    <Resource Include="Assets\PlayerRankImages\BronceIII.png" />
+    <Resource Include="Assets\PlayerRankImages\Oro.png" />
+    <Resource Include="Assets\PlayerRankImages\OroII.png" />
+    <Resource Include="Assets\PlayerRankImages\OroIII.png" />
+    <Resource Include="Assets\PlayerRankImages\Plata.png" />
+    <Resource Include="Assets\PlayerRankImages\PlataII.png" />
+    <Resource Include="Assets\PlayerRankImages\PlataIII.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ProfileImages\Lemon.jpg" />
+    <Resource Include="Assets\ProfileImages\PurpleBoo.jpg" />
+    <Resource Include="Assets\ProfileImages\RedRobot.jpg" />
+    <Resource Include="Assets\ProfileImages\SurprisedEgg.jpg" />
+    <Resource Include="Assets\ProfileImages\WaterDrop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\PlayerRankImages\Maestro.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

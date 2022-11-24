@@ -13,7 +13,9 @@ namespace Domain
     {
         public Players()
         {
-            this.user = new Users();
+            User = new Users();
+            Rank = new Ranks();
+            ProfileImage = new ProfileImages();
         }
         [DataMember]
         public int idPlayer { get; set; }
@@ -25,9 +27,26 @@ namespace Domain
         public int playerLevel { get; set; }
         [DataMember]
         public string playerRank { get; set; }
+
         [DataMember]
-        public Domain.Users user { get; set; }
+        public int idRank { get; set; }
 
+        [DataMember]
+        public int idProfileImage { get; set; }
 
+        [DataMember]
+        public int gamesPlayed { get; set; }
+
+        [DataMember]
+        public int gamesWon { get; set; }
+
+        [DataMember]
+        public Domain.Users User { get; set; }
+
+        [DataMember]
+        public Domain.Ranks Rank { get; set; }
+
+        [DataMember]
+        public Domain.ProfileImages ProfileImage { get; set; }
     }
 }

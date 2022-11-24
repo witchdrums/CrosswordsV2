@@ -81,9 +81,9 @@ namespace WPFLayer
             userLogin.username = this.TextBox_Username.Text;
             EncryptionService encriptador = new EncryptionService();
             userLogin.password = encriptador.StringToSHA512(this.PasswordBox_Password.Password);
-            playerLogin.user = userLogin;
-            playerLogin = client.Login(playerLogin.user);
-            if (playerLogin.user.credential)
+            playerLogin.User = userLogin;
+            playerLogin = client.Login(playerLogin.User);
+            if (playerLogin.User.credential)
             {
                 GameMenu gameMenuPage = new GameMenu(playerLogin);
                 this.NavigationService.Navigate(gameMenuPage);
@@ -113,7 +113,7 @@ namespace WPFLayer
             //playerLogin.playerName = "Guest" + new Random().Next(1,1000);
             userLogin.idUserType = 10;
             userLogin.username = "Guest" + new Random().Next(1, 1000);
-            playerLogin.user = userLogin;
+            playerLogin.User = userLogin;
             GameMenu gameMenuPage = new GameMenu(playerLogin);
             this.NavigationService.Navigate(gameMenuPage);
         }

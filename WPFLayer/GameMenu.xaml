@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFLayer"
+        xmlns:p ="clr-namespace:WPFLayer.Properties"
         mc:Ignorable="d"
         Title="GameMenu" Height="450" Width="800">
     <Grid>
@@ -11,5 +12,11 @@
         <Button x:Name="JoinGame" Content="Join!!!!!" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" Width="516" Click="JoinGame_Click"/>
         <TextBox x:Name="TextBox_IdGameToJoin" HorizontalAlignment="Left" Height="21" Margin="305,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="270"/>
         <Button x:Name="Friends_Button" Content="Friends" HorizontalAlignment="Left" Margin="120,91,0,0" VerticalAlignment="Top" Click="Friends_Button_Click"/>
+        <Button x:Name="Button_MyProfile"
+                Content="{x:Static p:Resources.General_Button_MyProfile}" 
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="680,42,0,0" 
+                Height="31" Width="91"
+                FontWeight="Bold" Click="Button_MyProfile_Click"/>
     </Grid>
 </Page>

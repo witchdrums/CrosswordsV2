@@ -27,7 +27,7 @@ namespace WPFLayer
         {
             InitializeComponent();
             this.PlayerLogin = player;
-            this.UserLogin = player.user;
+            this.UserLogin = player.User;
 
         }
 
@@ -54,6 +54,12 @@ namespace WPFLayer
             }
 
 
+        }
+
+        private void Button_MyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            ProfilePage profilePage = new ProfilePage(this.PlayerLogin);
+            this.NavigationService.Navigate(profilePage);
         }
 
         public void ReciveInvitationToRoom(int idRoom)

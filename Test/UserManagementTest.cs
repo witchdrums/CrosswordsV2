@@ -17,11 +17,11 @@ namespace Test
             Domain.Users user = new Users();
             user.idUser = 1063;
             Domain.Players actualPlayer = new Players();
-            actualPlayer.user = user;
+            actualPlayer.User = user;
             actualPlayer = userManagement.GetPlayerInformation(actualPlayer);
 
             Domain.Players expectedPlayer = new Players();
-            expectedPlayer.user = user;
+            expectedPlayer.User = user;
             expectedPlayer.playerName = "vito";
             expectedPlayer.playerDescription = "asdf";
             expectedPlayer.playerLevel = 1;
@@ -37,11 +37,11 @@ namespace Test
             Domain.Users user = new Users();
             user.idUser = 1060;
             Domain.Players actualPlayer = new Players();
-            actualPlayer.user = user;
+            actualPlayer.User = user;
             actualPlayer = userManagement.GetPlayerInformation(actualPlayer);
 
             Domain.Players expectedPlayer = new Players();
-            expectedPlayer.user = user;
+            expectedPlayer.User = user;
             expectedPlayer.playerName = "vito";
             expectedPlayer.playerDescription = "asdf";
             expectedPlayer.playerLevel = 1;
@@ -57,11 +57,11 @@ namespace Test
             Domain.Users user = new Users();
             user.idUser = 0;
             Domain.Players actualPlayer = new Players();
-            actualPlayer.user = user;
+            actualPlayer.User = user;
             actualPlayer = userManagement.GetPlayerInformation(actualPlayer);
 
             Domain.Players expectedPlayer = new Players();
-            expectedPlayer.user = user;
+            expectedPlayer.User = user;
             expectedPlayer.playerName = "vito";
             expectedPlayer.playerDescription = "asdf";
             expectedPlayer.playerLevel = 1;

@@ -57,10 +57,28 @@ warning 6002: The table/view 'crosswordsBranch.dbo.GamesPlayers' does not have a
           </Key>
           <Property Name="idPlayer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="playerName" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="playerDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="playerDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="playerLevel" Type="int" Nullable="false" />
-          <Property Name="playerRank" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="idRank" Type="int" Nullable="false" />
           <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idProfileImage" Type="int" Nullable="false" />
+          <Property Name="playerRankPoints" Type="int" Nullable="false" />
+          <Property Name="playerLevelPoints" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileImages">
+          <Key>
+            <PropertyRef Name="idProfileImage" />
+          </Key>
+          <Property Name="idProfileImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="profileImageName" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ranks">
+          <Key>
+            <PropertyRef Name="idRank" />
+          </Key>
+          <Property Name="idRank" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rankName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="rankPoints" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -172,6 +190,42 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Players_Players">
+          <End Role="Players" Type="Self.Players" Multiplicity="1" />
+          <End Role="Players1" Type="Self.Players" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="idPlayer" />
+            </Principal>
+            <Dependent Role="Players1">
+              <PropertyRef Name="idPlayer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players_ProfileImages">
+          <End Role="ProfileImages" Type="Self.ProfileImages" Multiplicity="1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileImages">
+              <PropertyRef Name="idProfileImage" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="idProfileImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players_Ranks">
+          <End Role="Ranks" Type="Self.Ranks" Multiplicity="1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ranks">
+              <PropertyRef Name="idRank" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="idRank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Players_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Players" Type="Self.Players" Multiplicity="*" />
@@ -249,6 +303,8 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileImages" EntityType="Self.ProfileImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ranks" EntityType="Self.Ranks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -294,6 +350,18 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             <End Role="Players" EntitySet="Players" />
             <End Role="GamesPlayers" EntitySet="GamesPlayers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Players_Players" Association="Self.FK_Players_Players">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Players1" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players_ProfileImages" Association="Self.FK_Players_ProfileImages">
+            <End Role="ProfileImages" EntitySet="ProfileImages" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players_Ranks" Association="Self.FK_Players_Ranks">
+            <End Role="Ranks" EntitySet="Ranks" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
           <AssociationSet Name="FK_Players_Users" Association="Self.FK_Players_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Players" EntitySet="Players" />
@@ -338,14 +406,21 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           </Key>
           <Property Name="idPlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="playerName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="playerDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="playerDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="playerLevel" Type="Int32" Nullable="false" />
-          <Property Name="playerRank" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="idUser" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GamesPlayers" Relationship="Self.FK_GamesPlayers_Players" FromRole="Players" ToRole="GamesPlayers" />
           <NavigationProperty Name="User" Relationship="Self.FK_Players_Users" FromRole="Players" ToRole="Users" />
           <NavigationProperty Name="Players1" Relationship="Self.Friends" FromRole="Players" ToRole="Players1" />
           <NavigationProperty Name="Players" Relationship="Self.Friends" FromRole="Players1" ToRole="Players" />
+          <Property Name="idRank" Type="Int32" Nullable="false" />
+          <Property Name="idProfileImage" Type="Int32" Nullable="false" />
+          <Property Name="playerRankPoints" Type="Int32" Nullable="false" />
+          <Property Name="playerLevelPoints" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Players11" Relationship="CrosswordsModel.FK_Players_Players" FromRole="Player" ToRole="Player1" />
+          <NavigationProperty Name="Player1" Relationship="CrosswordsModel.FK_Players_Players" FromRole="Player1" ToRole="Player" />
+          <NavigationProperty Name="ProfileImage" Relationship="CrosswordsModel.FK_Players_ProfileImages" FromRole="Player" ToRole="ProfileImage" />
+          <NavigationProperty Name="Rank" Relationship="CrosswordsModel.FK_Players_Ranks" FromRole="Player" ToRole="Rank" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -501,6 +576,20 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             <End Role="User" EntitySet="Users" />
             <End Role="Report" EntitySet="Reports" />
           </AssociationSet>
+          <EntitySet Name="ProfileImages" EntityType="CrosswordsModel.ProfileImage" />
+          <EntitySet Name="Ranks" EntityType="CrosswordsModel.Rank" />
+          <AssociationSet Name="FK_Players_Players" Association="CrosswordsModel.FK_Players_Players">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Player1" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players_ProfileImages" Association="CrosswordsModel.FK_Players_ProfileImages">
+            <End Role="ProfileImage" EntitySet="ProfileImages" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players_Ranks" Association="CrosswordsModel.FK_Players_Ranks">
+            <End Role="Rank" EntitySet="Ranks" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Board">
           <Key>
@@ -595,6 +684,59 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProfileImage">
+          <Key>
+            <PropertyRef Name="idProfileImage" />
+          </Key>
+          <Property Name="idProfileImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="profileImageName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Players" Relationship="CrosswordsModel.FK_Players_ProfileImages" FromRole="ProfileImage" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Rank">
+          <Key>
+            <PropertyRef Name="idRank" />
+          </Key>
+          <Property Name="idRank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rankName" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rankPoints" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="CrosswordsModel.FK_Players_Ranks" FromRole="Rank" ToRole="Player" />
+        </EntityType>
+        <Association Name="FK_Players_Players">
+          <End Type="CrosswordsModel.Player" Role="Player" Multiplicity="1" />
+          <End Type="CrosswordsModel.Player" Role="Player1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="idPlayer" />
+            </Principal>
+            <Dependent Role="Player1">
+              <PropertyRef Name="idPlayer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players_ProfileImages">
+          <End Type="CrosswordsModel.ProfileImage" Role="ProfileImage" Multiplicity="1" />
+          <End Type="CrosswordsModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileImage">
+              <PropertyRef Name="idProfileImage" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="idProfileImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players_Ranks">
+          <End Type="CrosswordsModel.Rank" Role="Rank" Multiplicity="1" />
+          <End Type="CrosswordsModel.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rank">
+              <PropertyRef Name="idRank" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="idRank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -613,11 +755,14 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="CrosswordsModel.Player">
               <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="playerLevelPoints" ColumnName="playerLevelPoints" />
+                <ScalarProperty Name="playerRankPoints" ColumnName="playerRankPoints" />
+                <ScalarProperty Name="idProfileImage" ColumnName="idProfileImage" />
+                <ScalarProperty Name="idRank" ColumnName="idRank" />
                 <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
                 <ScalarProperty Name="playerName" ColumnName="playerName" />
                 <ScalarProperty Name="playerDescription" ColumnName="playerDescription" />
                 <ScalarProperty Name="playerLevel" ColumnName="playerLevel" />
-                <ScalarProperty Name="playerRank" ColumnName="playerRank" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -714,6 +859,23 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
                 <ScalarProperty Name="idCategory" ColumnName="idCategory" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
                 <ScalarProperty Name="idReport" ColumnName="idReport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileImages">
+            <EntityTypeMapping TypeName="CrosswordsModel.ProfileImage">
+              <MappingFragment StoreEntitySet="ProfileImages">
+                <ScalarProperty Name="profileImageName" ColumnName="profileImageName" />
+                <ScalarProperty Name="idProfileImage" ColumnName="idProfileImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ranks">
+            <EntityTypeMapping TypeName="CrosswordsModel.Rank">
+              <MappingFragment StoreEntitySet="Ranks">
+                <ScalarProperty Name="rankPoints" ColumnName="rankPoints" />
+                <ScalarProperty Name="rankName" ColumnName="rankName" />
+                <ScalarProperty Name="idRank" ColumnName="idRank" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

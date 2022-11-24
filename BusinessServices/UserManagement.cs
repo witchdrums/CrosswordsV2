@@ -25,7 +25,6 @@ namespace BusinessServices
             businessLogicPlayer.playerName = user.email;
             businessLogicPlayer.User = businessLogicUser;
             businessLogicPlayer.idUser = businessLogicUser.idUser;
-            businessLogicPlayer.playerRank = "fdsa";
             businessLogicPlayer.playerLevel = 1;
 
             using (var context = new CrosswordsContext())
@@ -65,9 +64,8 @@ namespace BusinessServices
                     user.idUser = foundUsers[0].idUser;
                     user.idUserType = foundUsers[0].idUserType;
                     user.email = foundUsers[0].email;
-                    player.user = user;
+                    player.User = user;
                     player = GetPlayerInformation(player);
-
                 }
             }
 
@@ -79,7 +77,7 @@ namespace BusinessServices
             using (var context = new CrosswordsContext())
             {
                 var foundPlayers = (from players in context.Players
-                                    where players.idUser == player.user.idUser
+                                    where players.idUser == player.User.idUser
                                     select players).ToList();
                 if (foundPlayers.Count > 0)
                 {
@@ -87,8 +85,76 @@ namespace BusinessServices
                     player.playerName = foundPlayers[0].playerName;
                     player.playerDescription = foundPlayers[0].playerDescription;
                     player.playerLevel = foundPlayers[0].playerLevel;
-                    player.playerRank = foundPlayers[0].playerRank;
+                    player.idRank = foundPlayers[0].idRank;
+                    player.idProfileImage = foundPlayers[0].idProfileImage;
+                    player = GetPlayerRank(player);
+                    player = GetPlayerProfileImage(player);
+                    player = GetPlayerGames(player);
                 }
+            }
+            return player;
+        }
+
+        public Players GetPlayerRank(Players player)
+        {
+            using (var context = new CrosswordsContext())
+            {
+                var foundRank = (from ranks in context.Ranks
+                                    where ranks.idRank == player.idRank
+                                    select ranks).ToList();
+                if (foundRank.Count > 0)
+                {
+                    player.Rank.idRank = foundRank[0].idRank;
+                    player.Rank.rankName = foundRank[0].rankName;
+                }
+            }
+            return player;
+        }
+
+        public Players GetPlayerProfileImage(Players player)
+        {
+            using (var context = new CrosswordsContext())
+            {
+                var foundProfileImage = (from profileImages in context.ProfileImages
+                                 where profileImages.idProfileImage == player.idProfileImage
+                                 select profileImages).ToList();
+                if (foundProfileImage.Count > 0)
+                {
+                    player.ProfileImage.idProfileImage = foundProfileImage[0].idProfileImage;
+                    player.ProfileImage.profileImageName = foundProfileImage[0].profileImageName;
+                }
+            }
+            return player;
+        }
+        public Players GetPlayerGames(Players player)
+        {
+            using (var context = new CrosswordsContext())
+            {
+                var foundPlayerGames = (from gamesPlayer in context.GamesPlayers
+                                           where gamesPlayer.idPlayer == player.idPlayer
+                                           select gamesPlayer).ToList();
+                player.gamesPlayed = foundPlayerGames.Count;
+                if (foundPlayerGames.Count > 0)
+                {
+                    player = GetPlayerGamesWon(player);
+                }
+                else 
+                {
+                    player.gamesWon = 0;
+                }
+            }
+            return player;
+        }
+
+        public Players GetPlayerGamesWon(Players player)
+        {
+            int primerLugar = 1;
+            using (var context = new CrosswordsContext())
+            {
+                var foundPlayerGamesWon = (from gamesPlayer in context.GamesPlayers
+                                           where gamesPlayer.gameRank == primerLugar && gamesPlayer.idPlayer == player.idPlayer
+                                           select gamesPlayer).ToList();
+                player.gamesWon = foundPlayerGamesWon.Count;
             }
             return player;
         }

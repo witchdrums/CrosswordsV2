@@ -26,8 +26,11 @@ namespace BusinessLogic
         public string playerName { get; set; }
         public string playerDescription { get; set; }
         public int playerLevel { get; set; }
-        public string playerRank { get; set; }
         public int idUser { get; set; }
+        public int idRank { get; set; }
+        public int idProfileImage { get; set; }
+        public int playerRankPoints { get; set; }
+        public int playerLevelPoints { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<GamesPlayer> GamesPlayers { get; set; }
@@ -36,5 +39,9 @@ namespace BusinessLogic
         public virtual ObservableCollection<Player> Players1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Player> Players { get; set; }
+        public virtual Player Players11 { get; set; }
+        public virtual Player Player1 { get; set; }
+        public virtual ProfileImage ProfileImage { get; set; }
+        public virtual Rank Rank { get; set; }
     }
 }
