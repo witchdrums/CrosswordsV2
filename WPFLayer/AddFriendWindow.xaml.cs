@@ -63,7 +63,7 @@ namespace WPFLayer
                 }
                 else
                 {
-                    MessageBox.Show("Se ha añadido el jugador" + playerTarget.playerName + " a su lista de amigos");
+                    MessageBox.Show("Se ha añadido el jugador " + playerTarget.playerName + " a su lista de amigos");
                 }
             }else
             {

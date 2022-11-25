@@ -28,7 +28,7 @@ namespace Test
         public void GetFriendsPlayersOfPlayerByUser_Test_Success()
         {
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
-            
+
             Domain.Players playerTest = new Domain.Players();
             playerTest.idPlayer = 8010;
 
@@ -57,9 +57,9 @@ namespace Test
 
             Assert.AreEqual(expected, result);
         }
+
         //Los test de inserción solo se ejecutan al momento de la demostración para evitar conflictos
-        /*
-        [TestMethod]
+        //[TestMethod]
         public void AddFriendPlayer_Test_Success()
         {
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
@@ -71,11 +71,28 @@ namespace Test
             playerTarget.idPlayer = 8010;
 
             bool expected = true;
-            bool result = playersManagement.AddFriendPlayer(playerOrigin,playerTarget);
+            bool result = playersManagement.AddFriendPlayer(playerOrigin, playerTarget);
 
 
             Assert.AreEqual(expected, result);
-        }*/
+        }
+        //[TestMethod]
+        public void DeleteFriendPlayer_Test_Success()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+
+            Domain.Players playerOrigin = new Domain.Players();
+            Domain.Players playerTarget = new Domain.Players();
+
+            playerOrigin.idPlayer = 1;
+            playerTarget.idPlayer = 1001;
+
+            bool expected = true;
+            bool result = playersManagement.DeleteFriendPlayer(playerOrigin, playerTarget);
+
+
+            Assert.AreEqual(expected, result);
+        }
         
     }
 }

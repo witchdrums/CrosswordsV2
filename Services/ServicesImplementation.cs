@@ -345,6 +345,14 @@ namespace Services
             }
             return result;
         }
+
+        public bool RemoveFriend(Players playerOrigin, Players playerTarget)
+        {
+            bool result = false;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            result = playersManagement.DeleteFriendPlayer(playerOrigin, playerTarget);
+            return result;
+        }
     }
 
 }

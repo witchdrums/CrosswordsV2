@@ -65,7 +65,24 @@ namespace WPFLayer
 
         private void Button_DeleteFriend_Click(object sender, RoutedEventArgs e)
         {
-
+            ServicesImplementation.PlayersManagementClient playersManagementClient = new ServicesImplementation.PlayersManagementClient();
+            ListViewItem itemSelected = (ListViewItem)this.ListView_Friends.SelectedItem;
+            if(itemSelected != null)
+            {
+                ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
+                if (playersManagementClient.RemoveFriend(PlayerLogin, playerTarget))
+                {
+                    MessageBox.Show("Se ha eliminado el jugador " + playerTarget.playerName + " de su lista de amigos");
+                    this.UpdateFriends();
+                }else
+                    {
+                    MessageBox.Show("No se ha podido realizar la operación");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione Primero al Jugador que desea remover de amigo");
+            }
         }
     }
 }

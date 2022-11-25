@@ -244,6 +244,12 @@
   <wsdl:message name="IPlayersManagement_AddFriend_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddFriendResponse" />
   </wsdl:message>
+  <wsdl:message name="IPlayersManagement_RemoveFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFriend" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_RemoveFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFriendResponse" />
+  </wsdl:message>
   <wsdl:message name="IGameManagement_SendSolvedWordsBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:SendSolvedWordsBoard" />
   </wsdl:message>
@@ -423,6 +429,10 @@
     <wsdl:operation name="AddFriend">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/AddFriend" message="tns:IPlayersManagement_AddFriend_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/AddFriendResponse" message="tns:IPlayersManagement_AddFriend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/RemoveFriend" message="tns:IPlayersManagement_RemoveFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/RemoveFriendResponse" message="tns:IPlayersManagement_RemoveFriend_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagement">
@@ -672,6 +682,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RemoveFriend">
+      <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/RemoveFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IGameManagement" type="tns:IGameManagement">
     <wsp:PolicyReference URI="#NetTcpBinding_IGameManagement_policy" />
@@ -898,7 +917,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -907,7 +926,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -916,7 +935,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -925,7 +944,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -934,7 +953,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>JAVI\THE CHAVI’S</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
