@@ -104,6 +104,7 @@ namespace BusinessServices
                                     select ranks).ToList();
                 if (foundRank.Count > 0)
                 {
+                    player.Rank = new Ranks();
                     player.Rank.idRank = foundRank[0].idRank;
                     player.Rank.rankName = foundRank[0].rankName;
                 }
@@ -120,6 +121,7 @@ namespace BusinessServices
                                  select profileImages).ToList();
                 if (foundProfileImage.Count > 0)
                 {
+                    player.ProfileImage = new ProfileImages();
                     player.ProfileImage.idProfileImage = foundProfileImage[0].idProfileImage;
                     player.ProfileImage.profileImageName = foundProfileImage[0].profileImageName;
                 }
@@ -164,7 +166,6 @@ namespace BusinessServices
             bool userFound = false;
             using (var context = new CrosswordsContext())
             {
-
                 var foundUsers= (from users in context.Users
                                     where users.username == user.username && users.email == user.email
                                     select users).ToList();
