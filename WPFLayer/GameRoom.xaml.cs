@@ -69,15 +69,13 @@ namespace WPFLayer
             InstanceContext context = new InstanceContext(this);
             UsersManagerClient usersManagerClient = new UsersManagerClient(context);
             Players playerUser = new Players();
-            playerUser.idPlayer = 1;
-            playerUser.playerName = "hola";
-            playerUser.playerRank = "hola";
-            playerUser.gamesWon = 1;
-            playerUser.idRank = 2;
-            playerUser.idProfileImage = 2;
-            playerUser.User = usersList[0];   
-            this.PlayersRoom.Add(usersManagerClient.GetPlayerInformation(playerUser));
-            
+            foreach (Users user in usersList)
+            {
+                Players userPlayer = new Players();
+                userPlayer.User = user;
+                userPlayer = usersManagerClient.GetPlayerInformation(userPlayer);
+                this.PlayersRoom.Add(userPlayer);
+            }           
         }
 
         private void RefreshListView()
