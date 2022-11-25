@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFLayer"
+        xmlns:p ="clr-namespace:WPFLayer.Properties"
         mc:Ignorable="d"
         Title="FriendsPage" Height="450" Width="800">
     <Grid Background="LightGray">
@@ -14,7 +15,7 @@
         <Grid x:Name="Friends" Grid.Column="0">
 
             <ListView x:Name="ListView_Friends" Margin="10,70,10,30"/>
-            <Label Content="Friend List" HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top" Width="380" FontSize="18"/>
+            <Label Content="{x:Static p:Resources.General_Label_FriendList}" HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top" Width="380" FontSize="18"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -25,8 +26,9 @@
 
             </Grid>
             <Grid x:Name="Buttons" Grid.Row="1">
-                <Button x:Name="Back_Button" Background="LightSalmon" Content="Back" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" Width="184" Click="Back_Button_Click"/>
-                <Button x:Name="AddFriend_Button" Content="AddFriend" HorizontalAlignment="Center" Margin="0,135,0,0" VerticalAlignment="Top" Width="184" Click="AddFriend_Button_Click"/>
+                <Button x:Name="Button_Back" Background="LightSalmon" Content="{x:Static p:Resources.General_Button_Back}" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" Width="184" Click="Button_Back_Click"/>
+                <Button x:Name="Button_AddFriend" Content="{x:Static p:Resources.Friends_Button_AddFriend}" HorizontalAlignment="Center" Margin="0,135,0,0" VerticalAlignment="Top" Width="184" Click="Button_AddFriend_Click"/>
+                <Button x:Name="Button_DeleteFriend" Content="{x:Static p:Resources.General_Button_Unfriend}" HorizontalAlignment="Center" Margin="0,106,0,0" VerticalAlignment="Top" Width="184" Click="Button_DeleteFriend_Click" />
 
             </Grid>
         </Grid>

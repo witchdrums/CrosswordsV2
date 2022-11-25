@@ -51,16 +51,21 @@ namespace WPFLayer
             this.RefreshFriendsListView();
         }
 
-        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
         }
 
-        private void AddFriend_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_AddFriend_Click(object sender, RoutedEventArgs e)
         {
             AddFriendWindow addFriendWindow = new AddFriendWindow(PlayerLogin);
             addFriendWindow.ShowDialog();
             this.UpdateFriends();
+        }
+
+        private void Button_DeleteFriend_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
