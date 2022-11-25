@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Credentials.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="IEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +56,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailCredentials.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Credentials.crd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{582A1F29-18B4-41AD-8974-F218729EF079}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

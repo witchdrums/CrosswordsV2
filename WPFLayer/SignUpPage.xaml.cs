@@ -82,7 +82,7 @@ namespace WPFLayer
             ServicesImplementation.Users newUser = new ServicesImplementation.Users();
             newUser.email = this.TextBox_Email.Text;
             IEncryptionService encryptionService = new EncryptionService();
-            newUser.password = encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
+            newUser.password = encryptionService.SHA512_Encrypt(this.PasswordBox_Password.Password);
             newUser.username = this.TextBox_Email.Text;
 
             if (client.AddUser(newUser))

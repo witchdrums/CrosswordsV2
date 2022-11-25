@@ -8,6 +8,7 @@ namespace Email
 {
     public interface IEmailService
     {
-        void SendEmailToUser(String userEmail, String subject, String header, String body); 
+        void SendEmailToUser(String userEmail, String subject, String header, String body);
+
     }
 }
