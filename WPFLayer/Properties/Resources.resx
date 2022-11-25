@@ -180,8 +180,17 @@
   <data name="General_Button_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="General_Button_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="General_Button_Join" xml:space="preserve">
+    <value>Join to Game!</value>
+  </data>
   <data name="General_Button_MyProfile" xml:space="preserve">
     <value>My profile</value>
+  </data>
+  <data name="General_Button_NewGame" xml:space="preserve">
+    <value>New Game!</value>
   </data>
   <data name="General_Button_No" xml:space="preserve">
     <value>No</value>
@@ -221,6 +230,9 @@
   </data>
   <data name="General_Label_UsernameInvalid" xml:space="preserve">
     <value>Invalid username</value>
+  </data>
+  <data name="General_Text_Code" xml:space="preserve">
+    <value>Codigo</value>
   </data>
   <data name="Label_Friends" xml:space="preserve">
     <value>Friends</value>

@@ -250,11 +250,38 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friends.
+        /// </summary>
+        public static string General_Button_Friends {
+            get {
+                return ResourceManager.GetString("General_Button_Friends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join to Game!.
+        /// </summary>
+        public static string General_Button_Join {
+            get {
+                return ResourceManager.GetString("General_Button_Join", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My profile.
         /// </summary>
         public static string General_Button_MyProfile {
             get {
                 return ResourceManager.GetString("General_Button_MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Game!.
+        /// </summary>
+        public static string General_Button_NewGame {
+            get {
+                return ResourceManager.GetString("General_Button_NewGame", resourceCulture);
             }
         }
         
@@ -372,6 +399,15 @@ namespace WPFLayer.Properties {
         public static string General_Label_UsernameInvalid {
             get {
                 return ResourceManager.GetString("General_Label_UsernameInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Codigo.
+        /// </summary>
+        public static string General_Text_Code {
+            get {
+                return ResourceManager.GetString("General_Text_Code", resourceCulture);
             }
         }
         

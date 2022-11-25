@@ -8,10 +8,10 @@
         mc:Ignorable="d"
         Title="GameMenu" Height="450" Width="800">
     <Grid>
-        <Button x:Name="NewGame" Content="Play!!!!!" Margin="120,303,120,33" Click="Button_NewGame_Click"/>
-        <Button x:Name="JoinGame" Content="Join!!!!!" HorizontalAlignment="Center" Margin="0,278,0,0" VerticalAlignment="Top" Width="516" Click="JoinGame_Click"/>
-        <TextBox x:Name="TextBox_IdGameToJoin" HorizontalAlignment="Left" Height="21" Margin="305,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="270"/>
-        <Button x:Name="Friends_Button" Content="Friends" HorizontalAlignment="Left" Margin="120,91,0,0" VerticalAlignment="Top" Click="Friends_Button_Click"/>
+        <Button x:Name="NewGame" Content="{x:Static p:Resources.General_Button_NewGame}" Margin="463,337,46,78" Click="Button_NewGame_Click"/>
+        <Button x:Name="JoinGame" Content="{x:Static p:Resources.General_Button_Join}" HorizontalAlignment="Left" Margin="463,377,0,0" VerticalAlignment="Top" Width="126" Click="JoinGame_Click" Height="35"/>
+        <TextBox x:Name="TextBox_IdGameToJoin" HorizontalAlignment="Left" Height="35" Margin="608,377,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" PreviewTextInput="NumberValidationTextBox" />
+        <Button x:Name="Button_Friends" Content="{x:Static p:Resources.General_Button_Friends}" HorizontalAlignment="Left" Margin="680,78,0,0" VerticalAlignment="Top" Click="Button_Friends_Click" Width="91" Height="28"/>
         <Button x:Name="Button_MyProfile"
                 Content="{x:Static p:Resources.General_Button_MyProfile}" 
                 HorizontalAlignment="Left" VerticalAlignment="Top"
