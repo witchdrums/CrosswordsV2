@@ -124,15 +124,6 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unfriend.
-        /// </summary>
-        public static string Button_Unfriend {
-            get {
-                return ResourceManager.GetString("Button_Unfriend", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View profile.
         /// </summary>
         public static string Button_ViewProfile {
@@ -174,6 +165,15 @@ namespace WPFLayer.Properties {
         public static string Exception_ServerFailure {
             get {
                 return ResourceManager.GetString("Exception_ServerFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Friend.
+        /// </summary>
+        public static string Friends_Button_AddFriend {
+            get {
+                return ResourceManager.GetString("Friends_Button_AddFriend", resourceCulture);
             }
         }
         
@@ -241,6 +241,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string General_Button_Back {
+            get {
+                return ResourceManager.GetString("General_Button_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string General_Button_Cancel {
@@ -250,11 +259,38 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friends.
+        /// </summary>
+        public static string General_Button_Friends {
+            get {
+                return ResourceManager.GetString("General_Button_Friends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join to Game!.
+        /// </summary>
+        public static string General_Button_Join {
+            get {
+                return ResourceManager.GetString("General_Button_Join", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My profile.
         /// </summary>
         public static string General_Button_MyProfile {
             get {
                 return ResourceManager.GetString("General_Button_MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Game!.
+        /// </summary>
+        public static string General_Button_NewGame {
+            get {
+                return ResourceManager.GetString("General_Button_NewGame", resourceCulture);
             }
         }
         
@@ -273,6 +309,33 @@ namespace WPFLayer.Properties {
         public static string General_Button_Report {
             get {
                 return ResourceManager.GetString("General_Button_Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string General_Button_Search {
+            get {
+                return ResourceManager.GetString("General_Button_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string General_Button_Send {
+            get {
+                return ResourceManager.GetString("General_Button_Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfriend.
+        /// </summary>
+        public static string General_Button_Unfriend {
+            get {
+                return ResourceManager.GetString("General_Button_Unfriend", resourceCulture);
             }
         }
         
@@ -318,6 +381,15 @@ namespace WPFLayer.Properties {
         public static string General_Label_EmailInvalid {
             get {
                 return ResourceManager.GetString("General_Label_EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friend List.
+        /// </summary>
+        public static string General_Label_FriendList {
+            get {
+                return ResourceManager.GetString("General_Label_FriendList", resourceCulture);
             }
         }
         
@@ -372,6 +444,24 @@ namespace WPFLayer.Properties {
         public static string General_Label_UsernameInvalid {
             get {
                 return ResourceManager.GetString("General_Label_UsernameInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Codigo.
+        /// </summary>
+        public static string General_Text_Code {
+            get {
+                return ResourceManager.GetString("General_Text_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Invitation.
+        /// </summary>
+        public static string Invite_Button_Invite {
+            get {
+                return ResourceManager.GetString("Invite_Button_Invite", resourceCulture);
             }
         }
         
@@ -570,6 +660,24 @@ namespace WPFLayer.Properties {
         public static string RecoverPassword_TextBlock_RecoverPasswordMessage {
             get {
                 return ResourceManager.GetString("RecoverPassword_TextBlock_RecoverPasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invite Player.
+        /// </summary>
+        public static string Room_Button_Invite {
+            get {
+                return ResourceManager.GetString("Room_Button_Invite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting Game.
+        /// </summary>
+        public static string Room_Button_SettingGame {
+            get {
+                return ResourceManager.GetString("Room_Button_SettingGame", resourceCulture);
             }
         }
     }

@@ -126,5 +126,19 @@ namespace BusinessServices
             }
             return response;
         }
+
+        public Boolean DeleteFriendPlayer(Domain.Players playerSource, Domain.Players playerTarget)
+        {
+            Boolean response = false;
+            using (var context = new CrosswordsContext())
+            {
+                response = context.Database.ExecuteSqlCommand(
+                "DELETE FROM Friends WHERE idPlayer = @idPlayer AND idPlayerFriend = @idPlayerFriend;",
+                new SqlParameter("idPlayer", playerSource.idPlayer),
+                new SqlParameter("idPlayerFriend", playerTarget.idPlayer)
+                ) != 0;
+            }
+            return response;
+        }
     }
 }

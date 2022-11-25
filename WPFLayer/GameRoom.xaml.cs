@@ -22,29 +22,29 @@ namespace WPFLayer
     public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IUsersManagerCallback
     {
         public int IdRoom { set; get; }
-        public ServicesImplementation.Users UserLogin { set; get; }
         public ServicesImplementation.Players PlayerLogin { set; get; }
         public List<ServicesImplementation.Users> UsersRoom { set; get; }
+        public List<ServicesImplementation.Players> PlayersRoom { set;get; }
         private InvitationWindow invitationWindow;
         public GameRoom(int idRoom, ServicesImplementation.Users userLogin, Players playerLogin)
         {
             InitializeComponent();
             this.UsersRoom = new List<ServicesImplementation.Users>();
+            this.PlayersRoom = new List<ServicesImplementation.Players>();
             this.IdRoom = idRoom;
-            this.UserLogin = userLogin;
             this.PlayerLogin = playerLogin;
+            this.PlayerLogin.User = userLogin;
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
             ServicesImplementation.MessagesClient messagesClient = new ServicesImplementation.MessagesClient(context);
             messagesClient.ConnectMessages(userLogin);
             gameRoomClient.ConnectGameRoomManagement(userLogin);
-            gameRoomClient.JoinToRoom(this.IdRoom, UserLogin);
+            gameRoomClient.JoinToRoom(this.IdRoom, PlayerLogin.User);
 
         }
 
         public void ReciveChatMessage(Users userOrigin, string message)
         {
-            //this.ListBox_Chat.Items.Add(userOrigin.username + " : " + message + "\n");
             this.TextBlock_Chat.Text += userOrigin.username + " : " + message + "\n";
         }
 
@@ -54,20 +54,39 @@ namespace WPFLayer
 
         public void UpdateRoom(Users[] usersInRoom)
         {
+            InstanceContext context = new InstanceContext(this);
+            UsersManagerClient usersManagerClient = new UsersManagerClient(context);
             this.UsersRoom.Clear();
+            this.PlayersRoom.Clear();
             this.UsersRoom.AddRange(usersInRoom);
+            this.LoadPlayersOfUsersInRoom(usersInRoom);
             this.RefreshListView();
+        }
+
+        public void LoadPlayersOfUsersInRoom(Users[] usersList)
+        {
+            
+            InstanceContext context = new InstanceContext(this);
+            UsersManagerClient usersManagerClient = new UsersManagerClient(context);
+            Players playerUser = new Players();
+            foreach (Users user in usersList)
+            {
+                Players userPlayer = new Players();
+                userPlayer.User = user;
+                userPlayer = usersManagerClient.GetPlayerInformation(userPlayer);
+                this.PlayersRoom.Add(userPlayer);
+            }           
         }
 
         private void RefreshListView()
         {
             this.ListView_Users.Items.Clear();
-            foreach (Users user in this.UsersRoom)
+            foreach (Players player in this.PlayersRoom)
             {
-                ListViewItem usersDisplay = new ListViewItem();
-                usersDisplay.Tag = user;
-                usersDisplay.Content = user.username;
-                this.ListView_Users.Items.Add(usersDisplay);
+                ListViewItem playerDisplay = new ListViewItem();
+                playerDisplay.Tag = player;
+                playerDisplay.Content = player.playerName;
+                this.ListView_Users.Items.Add(playerDisplay);
             }
         }
         private void Button_SendMessage_Click(object sender, RoutedEventArgs e)
@@ -76,7 +95,7 @@ namespace WPFLayer
             {
                 InstanceContext context = new InstanceContext(this);
                 ServicesImplementation.MessagesClient messages = new ServicesImplementation.MessagesClient(context);
-                messages.SendChatMessage(UsersRoom.ToArray(), this.UserLogin, this.TextBox_Message.Text);
+                messages.SendChatMessage(UsersRoom.ToArray(), this.PlayerLogin.User, this.TextBox_Message.Text);
             }
             this.TextBox_Message.Clear();
         }
@@ -87,9 +106,9 @@ namespace WPFLayer
         {
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
-            if (this.IdRoom != this.UserLogin.idUser)
+            if (this.IdRoom != this.PlayerLogin.User.idUser)
             {
-                gameRoomClient.ExitToRoom(this.IdRoom, this.UserLogin);
+                gameRoomClient.ExitToRoom(this.IdRoom, this.PlayerLogin.User);
                 if (this.invitationWindow != null)
                 {
                     this.invitationWindow.Close();
@@ -150,14 +169,14 @@ namespace WPFLayer
                 gamePlayer.idPlayer = userPlayer.idPlayer;
                 gamePlayer.Player = userPlayer;
 
-                gamePlayersQueue.Enqueue(gamePlayer);
+                gamePlayersQueue.Enqueue(gamePlayer);           
             }
             return gamePlayersQueue;
         }
 
         public void EnterGame(GameConfiguration gameConfiguration)
         {
-            GamePage gamePage = new GamePage(this.UserLogin, this.IdRoom, gameConfiguration);
+            GamePage gamePage = new GamePage(this.PlayerLogin.User, this.IdRoom, gameConfiguration);
             NavigationService.Navigate(gamePage);
         }
 

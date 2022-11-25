@@ -11,10 +11,12 @@ namespace Services
     public class RoomMap
     {
         private Dictionary<int, List<Users>> roomMap = new Dictionary<int, List<Users>>();
+        private Dictionary<int, bool> roomMapStatus = new Dictionary<int, bool>();
 
         public void NewRoom(int idRoom)
         {
             roomMap.Add(idRoom, new List<Users>());
+            roomMapStatus.Add(idRoom, true);
         }
         public void AddUserToRoom(int idRoom,Users user)
         {
@@ -40,6 +42,7 @@ namespace Services
         public void DeleteRoom(int idRoom)
         {
             roomMap.Remove(idRoom);
+            roomMapStatus.Remove(idRoom);
         }
         public void UpdateList(int idRoom,List<Users> usersList)
         {
@@ -73,6 +76,21 @@ namespace Services
                 response = true;
             }
             return response;
+        }
+
+        public bool isRoomAvailable(int idRoom)
+        {
+            bool response = false;
+            if (roomMapStatus[idRoom] == true)
+            {
+                response = true;
+            }
+            return response;
+        }
+
+        public void makeRoomUnavailable(int idRoom)
+        {
+            roomMapStatus[idRoom] = false;
         }
     }
 }

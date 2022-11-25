@@ -138,9 +138,6 @@
   <data name="Button_Start" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="Button_Unfriend" xml:space="preserve">
-    <value>Unfriend</value>
-  </data>
   <data name="Button_ViewProfile" xml:space="preserve">
     <value>View profile</value>
   </data>
@@ -155,6 +152,9 @@
   </data>
   <data name="Exception_ServerFailure" xml:space="preserve">
     <value>We couldn't reach our servers. Please, try again later.</value>
+  </data>
+  <data name="Friends_Button_AddFriend" xml:space="preserve">
+    <value>Add Friend</value>
   </data>
   <data name="Game_Button_Guess" xml:space="preserve">
     <value>Guess</value>
@@ -177,17 +177,38 @@
   <data name="General_Button_Accept" xml:space="preserve">
     <value>Accept</value>
   </data>
+  <data name="General_Button_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="General_Button_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="General_Button_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="General_Button_Join" xml:space="preserve">
+    <value>Join to Game!</value>
+  </data>
   <data name="General_Button_MyProfile" xml:space="preserve">
     <value>My profile</value>
+  </data>
+  <data name="General_Button_NewGame" xml:space="preserve">
+    <value>New Game!</value>
   </data>
   <data name="General_Button_No" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="General_Button_Report" xml:space="preserve">
     <value>Report</value>
+  </data>
+  <data name="General_Button_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="General_Button_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="General_Button_Unfriend" xml:space="preserve">
+    <value>Unfriend</value>
   </data>
   <data name="General_Button_ViewProfile" xml:space="preserve">
     <value>View profile</value>
@@ -203,6 +224,9 @@
   </data>
   <data name="General_Label_EmailInvalid" xml:space="preserve">
     <value>Invalid e-mail address</value>
+  </data>
+  <data name="General_Label_FriendList" xml:space="preserve">
+    <value>Friend List</value>
   </data>
   <data name="General_Label_Password" xml:space="preserve">
     <value>Password</value>
@@ -221,6 +245,12 @@
   </data>
   <data name="General_Label_UsernameInvalid" xml:space="preserve">
     <value>Invalid username</value>
+  </data>
+  <data name="General_Text_Code" xml:space="preserve">
+    <value>Codigo</value>
+  </data>
+  <data name="Invite_Button_Invite" xml:space="preserve">
+    <value>Send Invitation</value>
   </data>
   <data name="Label_Friends" xml:space="preserve">
     <value>Friends</value>
@@ -287,5 +317,11 @@
   </data>
   <data name="RecoverPassword_TextBlock_RecoverPasswordMessage" xml:space="preserve">
     <value>Enter your e-mail address and username. If we have it on our system, we´ll send you instructions to re-establish your password.</value>
+  </data>
+  <data name="Room_Button_Invite" xml:space="preserve">
+    <value>Invite Player</value>
+  </data>
+  <data name="Room_Button_SettingGame" xml:space="preserve">
+    <value>Setting Game</value>
   </data>
 </root>

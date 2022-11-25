@@ -210,26 +210,41 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RemoveFriend">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerOrigin" nillable="true" type="q21:Players" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerTarget" nillable="true" type="q22:Players" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFriendResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveFriendResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendSolvedWordsBoard">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayersQueue" nillable="true" type="q21:QueueOfGamesPlayersWUeOuCFA" />
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solver" nillable="true" type="q22:GamesPlayers" />
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solvedWordsBoard" nillable="true" type="q23:WordsBoard" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayersQueue" nillable="true" type="q23:QueueOfGamesPlayersWUeOuCFA" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solver" nillable="true" type="q24:GamesPlayers" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solvedWordsBoard" nillable="true" type="q25:WordsBoard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="JoinGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="gamePlayer" nillable="true" type="q24:GamesPlayers" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="gamePlayer" nillable="true" type="q26:GamesPlayers" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PassTurn">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q25:QueueOfGamesPlayersWUeOuCFA" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q27:QueueOfGamesPlayersWUeOuCFA" />
         <xs:element minOccurs="0" name="currentTurns" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -238,31 +253,31 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerRanks" nillable="true" type="q26:ArrayOfGamesPlayers" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerRanks" nillable="true" type="q28:ArrayOfGamesPlayers" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemovePlayer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="leavingPlayer" nillable="true" type="q27:Players" />
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q28:QueueOfGamesPlayersWUeOuCFA" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="leavingPlayer" nillable="true" type="q29:Players" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q30:QueueOfGamesPlayersWUeOuCFA" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveHost">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="host" nillable="true" type="q29:GamesPlayers" />
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q30:QueueOfGamesPlayersWUeOuCFA" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="host" nillable="true" type="q31:GamesPlayers" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q32:QueueOfGamesPlayersWUeOuCFA" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReceiveSolvedWordsBoard">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solver" nillable="true" type="q31:GamesPlayers" />
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solvedWordsBoard" nillable="true" type="q32:WordsBoard" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solver" nillable="true" type="q33:GamesPlayers" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solvedWordsBoard" nillable="true" type="q34:WordsBoard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -274,7 +289,7 @@
   <xs:element name="UpdateGamePlayersQueue">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q33:QueueOfGamesPlayersWUeOuCFA" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q35:QueueOfGamesPlayersWUeOuCFA" />
         <xs:element minOccurs="0" name="remainingTurns" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -282,15 +297,15 @@
   <xs:element name="ShowPlayerRanks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerRanks" nillable="true" type="q34:ArrayOfGamesPlayers" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerRanks" nillable="true" type="q36:ArrayOfGamesPlayers" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveLeavingUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="leavingPlayer" nillable="true" type="q35:Players" />
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="updatedQueue" nillable="true" type="q36:QueueOfGamesPlayersWUeOuCFA" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="leavingPlayer" nillable="true" type="q37:Players" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="updatedQueue" nillable="true" type="q38:QueueOfGamesPlayersWUeOuCFA" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -308,7 +323,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userTarget" nillable="true" type="q37:Users" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userTarget" nillable="true" type="q39:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -316,7 +331,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="newUser" nillable="true" type="q38:Users" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="newUser" nillable="true" type="q40:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -337,7 +352,7 @@
   <xs:element name="CreateRoom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q39:Users" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q41:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -351,7 +366,7 @@
   <xs:element name="ConnectGameRoomManagement">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="users" nillable="true" type="q40:Users" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="users" nillable="true" type="q42:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -364,7 +379,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q41:Users" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q43:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -378,7 +393,7 @@
   <xs:element name="LaunchGamePage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameConfiguration" nillable="true" type="q42:GameConfiguration" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameConfiguration" nillable="true" type="q44:GameConfiguration" />
         <xs:element minOccurs="0" name="idRoom" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -393,7 +408,7 @@
   <xs:element name="GetBoardByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetBoardByIdResult" nillable="true" type="q43:Boards" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetBoardByIdResult" nillable="true" type="q45:Boards" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -412,7 +427,7 @@
   <xs:element name="UpdateRoom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="usersInRoom" nillable="true" type="q44:ArrayOfUsers" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="usersInRoom" nillable="true" type="q46:ArrayOfUsers" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -434,7 +449,7 @@
   <xs:element name="EnterGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameConfiguration" nillable="true" type="q45:GameConfiguration" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameConfiguration" nillable="true" type="q47:GameConfiguration" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -446,8 +461,8 @@
   <xs:element name="SendChatMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="room" nillable="true" type="q46:ArrayOfUsers" />
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q47:Users" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="room" nillable="true" type="q48:ArrayOfUsers" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q49:Users" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -455,8 +470,8 @@
   <xs:element name="SendPrivateMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q48:Users" />
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userDestination" nillable="true" type="q49:Users" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q50:Users" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userDestination" nillable="true" type="q51:Users" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -464,7 +479,7 @@
   <xs:element name="ConnectMessages">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q50:Users" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q52:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -476,7 +491,7 @@
   <xs:element name="ReciveChatMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q51:Users" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q53:Users" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

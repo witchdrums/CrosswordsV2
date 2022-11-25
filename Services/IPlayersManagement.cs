@@ -23,6 +23,8 @@ namespace Services
         [OperationContract]
         List<Players> GetFilteredPlayers(String nameFilter);
         [OperationContract]
-        bool AddFriend (Players playerOrigin,Players playerTarget);
+        bool AddFriend(Players playerOrigin, Players playerTarget);
+        [OperationContract]
+        bool RemoveFriend(Players playerOrigin, Players playerTarget);
     }
 }

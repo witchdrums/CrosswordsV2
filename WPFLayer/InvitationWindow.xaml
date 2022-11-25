@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFLayer"
+        xmlns:p ="clr-namespace:WPFLayer.Properties"
         mc:Ignorable="d"
         Title="InvitationWindow" Height="450" Width="450">
     <Grid Background="LightGray">
@@ -13,14 +14,14 @@
             <RowDefinition Height=".8*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="Search" Grid.Row="0">
-            <Label Content="Friend List" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18"/>
+            <Label Content="{x:Static p:Resources.General_Label_FriendList}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18"/>
         </Grid>
         <Grid x:Name="PlayersSearch" Grid.Row="1">
             <ListView x:Name="ListView_Friends" Margin="10,10,10,10"/>
         </Grid>
         <Grid x:Name="Buttons" Grid.Row="2">
-            <Button x:Name="Button_SendInvitation"  Content="Send Invitation" HorizontalAlignment="Left" Margin="203,0,0,0" VerticalAlignment="Center" Width="116" Click="Button_SendInvitation_Click"/>
-            <Button x:Name="Button_Back" Content="Back" Background="LightSalmon" HorizontalAlignment="Left" Margin="324,0,0,0" VerticalAlignment="Center" Width="116" Click="Button_Back_Click" />
+            <Button x:Name="Button_SendInvitation"  Content="{x:Static p:Resources.Invite_Button_Invite}" HorizontalAlignment="Left" Margin="203,0,0,0" VerticalAlignment="Center" Width="116" Click="Button_SendInvitation_Click"/>
+            <Button x:Name="Button_Back" Content="{x:Static p:Resources.General_Button_Back}" Background="LightSalmon" HorizontalAlignment="Left" Margin="324,0,0,0" VerticalAlignment="Center" Width="116" Click="Button_Back_Click" />
 
         </Grid>
     </Grid>

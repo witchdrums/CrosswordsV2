@@ -1569,6 +1569,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/AddFriend", ReplyAction="http://tempuri.org/IPlayersManagement/AddFriendResponse")]
         System.Threading.Tasks.Task<bool> AddFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/RemoveFriend", ReplyAction="http://tempuri.org/IPlayersManagement/RemoveFriendResponse")]
+        bool RemoveFriend(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/RemoveFriend", ReplyAction="http://tempuri.org/IPlayersManagement/RemoveFriendResponse")]
+        System.Threading.Tasks.Task<bool> RemoveFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1636,6 +1642,14 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<bool> AddFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget) {
             return base.Channel.AddFriendAsync(playerOrigin, playerTarget);
+        }
+        
+        public bool RemoveFriend(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget) {
+            return base.Channel.RemoveFriend(playerOrigin, playerTarget);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget) {
+            return base.Channel.RemoveFriendAsync(playerOrigin, playerTarget);
         }
     }
     

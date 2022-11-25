@@ -126,6 +126,12 @@ namespace Services
                 if (roomMap.IsFullRoom(idRoom))
                 {
                     response = false;
+                }else
+                {
+                    if(!roomMap.isRoomAvailable(idRoom))
+                    {
+                        response = false;
+                    }
                 }
             }
 
@@ -185,6 +191,7 @@ namespace Services
             foreach (Users user in usersInRoom)
             {
                 connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
+                roomMap.makeRoomUnavailable(idRoom);
             }
 
 
@@ -336,6 +343,14 @@ namespace Services
                     result = true;
                 }
             }
+            return result;
+        }
+
+        public bool RemoveFriend(Players playerOrigin, Players playerTarget)
+        {
+            bool result = false;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            result = playersManagement.DeleteFriendPlayer(playerOrigin, playerTarget);
             return result;
         }
     }

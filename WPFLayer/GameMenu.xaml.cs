@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ServiceModel;
 using WPFLayer.ServicesImplementation;
+using System.Text.RegularExpressions;
+
 
 namespace WPFLayer
 {
@@ -26,6 +28,7 @@ namespace WPFLayer
         public GameMenu(ServicesImplementation.Players player)
         {
             InitializeComponent();
+            this.TextBox_IdGameToJoin.MaxLength = 8;
             this.PlayerLogin = player;
             this.UserLogin = player.User;
 
@@ -74,23 +77,26 @@ namespace WPFLayer
 
         public void ForceExitToRoom()
         {
-            throw new NotImplementedException();
         }
 
         public void EnterGame()
         {
-            throw new NotImplementedException();
         }
 
         public void EnterGame(GameConfiguration gameConfiguration)
         {
-            throw new NotImplementedException();
         }
 
-        private void Friends_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Friends_Click(object sender, RoutedEventArgs e)
         {
             FriendsPage friendsPage = new FriendsPage(PlayerLogin);
             this.NavigationService.Navigate(friendsPage);
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
