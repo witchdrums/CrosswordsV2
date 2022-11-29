@@ -9,7 +9,7 @@ namespace Security
     public interface IEncryptionService
     {
     
-        String SHA512_Encrypt(String stringInput);
+        String StringToSHA512(String stringInput);
 
     
     }

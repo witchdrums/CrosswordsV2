@@ -22,15 +22,10 @@ namespace BusinessServices
             businessLogicUser.idUserType = 1;
 
             Player businessLogicPlayer = new Player();
-            businessLogicPlayer.User = businessLogicUser;
             businessLogicPlayer.playerName = user.email;
-            businessLogicPlayer.playerDescription = "-";
-            businessLogicPlayer.playerLevel = 1;
-            businessLogicPlayer.idRank = 1;
+            businessLogicPlayer.User = businessLogicUser;
             businessLogicPlayer.idUser = businessLogicUser.idUser;
-            businessLogicPlayer.idProfileImage = 1;
-            businessLogicPlayer.playerRankPoints = 0;
-            businessLogicPlayer.playerLevelPoints = 0;
+            businessLogicPlayer.playerLevel = 1;
 
             using (var context = new CrosswordsContext())
             {

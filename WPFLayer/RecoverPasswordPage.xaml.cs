@@ -65,7 +65,7 @@ namespace WPFLayer
         {
             EncryptionService encriptador = new EncryptionService();
             string randomPassword = GenerateRandomPassword();
-            userLogin.password = encriptador.SHA512_Encrypt(randomPassword);
+            userLogin.password = encriptador.StringToSHA512(randomPassword);
             if (client.RegisterRecoveredPassword(userLogin))
             {
                 EmailService emailService = new EmailService();

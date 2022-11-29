@@ -16,9 +16,6 @@ using System.ServiceModel;
 using Validation;
 using Security;
 using Email;
-using System.IO;
-using System.Security.Cryptography;
-using System.Xml.Serialization;
 
 namespace WPFLayer
 {
@@ -83,7 +80,7 @@ namespace WPFLayer
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             userLogin.username = this.TextBox_Username.Text;
             EncryptionService encriptador = new EncryptionService();
-            userLogin.password = encriptador.SHA512_Encrypt(this.PasswordBox_Password.Password);
+            userLogin.password = encriptador.StringToSHA512(this.PasswordBox_Password.Password);
             playerLogin.User = userLogin;
             playerLogin = client.Login(playerLogin.User);
             if (playerLogin.User.credential)
@@ -126,7 +123,5 @@ namespace WPFLayer
             RecoverPasswordPage recoverPasswordPage = new RecoverPasswordPage();
             this.NavigationService.Navigate(recoverPasswordPage);
         }
-
-
     }
 }
