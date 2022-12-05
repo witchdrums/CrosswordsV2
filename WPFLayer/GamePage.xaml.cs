@@ -113,7 +113,7 @@ namespace WPFLayer
 
         private void RestartGameTimer()
         {
-            timeSpan = TimeSpan.FromSeconds(30);
+            timeSpan = TimeSpan.FromSeconds(this.gameConfiguration.TurnSeconds);
             gameTimer.Start();
         }
 

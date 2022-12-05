@@ -9,15 +9,22 @@ namespace Validation
 {
     public class UsersValidationService : IUsersValidationService
     {
+        private readonly Regex validEmailRegex = new Regex
+        (
+            "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +
+            "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:" +
+            "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+" +
+            "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+        );
+
+        private readonly Regex validPasswordRegex = new Regex
+        (
+            "^.*(?=.{10,})(?=.*\\d)(?=.*[a-z])" +
+            "(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$"
+        );
 
         public bool ValidateEmailFormat(string email)
         {
-            Regex validEmailRegex = new Regex(
-                "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +
-                "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:" +
-                "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+" +
-                "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-            );
             bool emailIsValid = validEmailRegex.IsMatch(email);
             return emailIsValid;
         }
@@ -35,8 +42,6 @@ namespace Validation
 
         public bool ValidatePasswordFormat(string password)
         {
-            Regex validPasswordRegex = new Regex("^.*(?=.{10,})" +
-            "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$");
             bool passwordIsValid = validPasswordRegex.IsMatch(password);
             return passwordIsValid;
         }

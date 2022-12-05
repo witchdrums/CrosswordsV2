@@ -156,6 +156,18 @@
   <data name="Friends_Button_AddFriend" xml:space="preserve">
     <value>Add Friend</value>
   </data>
+  <data name="GameConfiguration_Button_SaveConfiguration" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="GameConfiguration_Label_GameConfiguration" xml:space="preserve">
+    <value>Game configuration</value>
+  </data>
+  <data name="GameConfiguration_Label_Turns" xml:space="preserve">
+    <value>Turns</value>
+  </data>
+  <data name="GameConfiguration_TextBlock_Seconds" xml:space="preserve">
+    <value>Seconds per turn</value>
+  </data>
   <data name="Game_Button_Guess" xml:space="preserve">
     <value>Guess</value>
   </data>
