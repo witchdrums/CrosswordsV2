@@ -232,6 +232,42 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string GameConfiguration_Button_SaveConfiguration {
+            get {
+                return ResourceManager.GetString("GameConfiguration_Button_SaveConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game configuration.
+        /// </summary>
+        public static string GameConfiguration_Label_GameConfiguration {
+            get {
+                return ResourceManager.GetString("GameConfiguration_Label_GameConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turns.
+        /// </summary>
+        public static string GameConfiguration_Label_Turns {
+            get {
+                return ResourceManager.GetString("GameConfiguration_Label_Turns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seconds per turn.
+        /// </summary>
+        public static string GameConfiguration_TextBlock_Seconds {
+            get {
+                return ResourceManager.GetString("GameConfiguration_TextBlock_Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string General_Button_Accept {

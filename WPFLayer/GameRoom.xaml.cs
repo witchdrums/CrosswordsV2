@@ -26,6 +26,9 @@ namespace WPFLayer
         public List<ServicesImplementation.Users> UsersRoom { set; get; }
         public List<ServicesImplementation.Players> PlayersRoom { set;get; }
         private InvitationWindow invitationWindow;
+
+        private GameConfiguration gameConfiguration;
+        private GameConfigurationWindow gameConfigurationWindow;
         public GameRoom(int idRoom, ServicesImplementation.Users userLogin, Players playerLogin)
         {
             InitializeComponent();
@@ -41,6 +44,9 @@ namespace WPFLayer
             gameRoomClient.ConnectGameRoomManagement(userLogin);
             gameRoomClient.JoinToRoom(this.IdRoom, PlayerLogin.User);
 
+            this.gameConfiguration = new GameConfiguration();
+            this.gameConfiguration.TurnSeconds = 30;
+            this.gameConfiguration.TurnAmount = 30;
         }
 
         public void ReciveChatMessage(Users userOrigin, string message)
@@ -142,13 +148,18 @@ namespace WPFLayer
             {
                 this.invitationWindow.Close();
             }
+            if (this.gameConfigurationWindow.IsLoaded)
+            {
+                this.gameConfigurationWindow.Close();
+                this.gameConfigurationWindow = null;
+            }
             InstanceContext instanceContext = new InstanceContext(this);
             GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(instanceContext);
-            GameConfiguration gameConfiguration = new GameConfiguration();
-            gameConfiguration.GamePlayerQueue = GetGamesPlayersQueue(this.UsersRoom);
-            gameConfiguration.Board = gameRoomClient.GetBoardById(1);
-            gameConfiguration.UsersRoom = this.UsersRoom.ToArray();
-            gameConfiguration.TurnAmount = 300;
+            
+            this.gameConfiguration.GamePlayerQueue = GetGamesPlayersQueue(this.UsersRoom);
+            this.gameConfiguration.Board = gameRoomClient.GetBoardById(1);
+            this.gameConfiguration.UsersRoom = this.UsersRoom.ToArray();
+            
             gameRoomClient.LaunchGamePage(gameConfiguration, this.IdRoom);
 
         }
@@ -189,6 +200,13 @@ namespace WPFLayer
         {
             this.invitationWindow = new InvitationWindow(this.IdRoom,this.PlayerLogin);
             this.invitationWindow.Show();
+        }
+
+        private void Button_SettingGame_Click(object sender, RoutedEventArgs e)
+        {
+            this.gameConfigurationWindow = new GameConfigurationWindow(this.gameConfiguration);
+            this.gameConfigurationWindow.Show();
+            
         }
     }
 }

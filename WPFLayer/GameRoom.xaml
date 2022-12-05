@@ -31,7 +31,7 @@
             <Grid x:Name="Buttons" Grid.Column="1">
                 <Button x:Name="Button_StartGame" Background="LightGreen" Content="{x:Static p:Resources.General_Button_NewGame}" HorizontalAlignment="Center" Margin="0,166,0,0" VerticalAlignment="Top" Width="192" Click="Button_StartGame_Click"/>
                 <Button x:Name="Button_Back" Background="LightSalmon" Content="{x:Static p:Resources.General_Button_Back}" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="192" Click="Button_Back_Click"/>
-                <Button Content="{x:Static p:Resources.Room_Button_SettingGame}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="192"/>
+                <Button x:Name="Button_SettingGame" Content="{x:Static p:Resources.Room_Button_SettingGame}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="192" Click="Button_SettingGame_Click"/>
                 <Button x:Name="Button_Invite" Content="{x:Static p:Resources.Room_Button_Invite}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" Width="192" Click="Button_Invite_Click"/>
             </Grid>
         </Grid>
