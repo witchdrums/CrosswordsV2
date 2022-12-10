@@ -208,6 +208,18 @@
   <wsdl:message name="IUsersManager_GetUserByPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByPlayerResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_GetReportedUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportedUsers" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetReportedUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportedUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_UpdateUserBanStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserBanStatus" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_UpdateUserBanStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserBanStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
@@ -403,6 +415,14 @@
     <wsdl:operation name="GetUserByPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetUserByPlayer" message="tns:IUsersManager_GetUserByPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetUserByPlayerResponse" message="tns:IUsersManager_GetUserByPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportedUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetReportedUsers" message="tns:IUsersManager_GetReportedUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetReportedUsersResponse" message="tns:IUsersManager_GetReportedUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserBanStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/UpdateUserBanStatus" message="tns:IUsersManager_UpdateUserBanStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/UpdateUserBanStatusResponse" message="tns:IUsersManager_UpdateUserBanStatus_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Response">
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
@@ -617,6 +637,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserByPlayer">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetUserByPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportedUsers">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetReportedUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserBanStatus">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/UpdateUserBanStatus" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -917,7 +955,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -926,7 +964,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -935,7 +973,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -944,7 +982,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -953,7 +991,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+          <Upn>DESKTOP-54PBLF8\52228</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

@@ -148,7 +148,7 @@ namespace WPFLayer
             {
                 this.invitationWindow.Close();
             }
-            if (this.gameConfigurationWindow.IsLoaded)
+            if (this.gameConfigurationWindow != null)
             {
                 this.gameConfigurationWindow.Close();
                 this.gameConfigurationWindow = null;

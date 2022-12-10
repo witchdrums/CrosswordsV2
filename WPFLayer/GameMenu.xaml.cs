@@ -14,13 +14,11 @@ using System.Windows.Shapes;
 using System.ServiceModel;
 using WPFLayer.ServicesImplementation;
 using System.Text.RegularExpressions;
+using Validation;
 
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for GameMenu.xaml
-    /// </summary>
     public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback
     {
         public ServicesImplementation.Users UserLogin { get; set; }
@@ -31,7 +29,17 @@ namespace WPFLayer
             this.TextBox_IdGameToJoin.MaxLength = 8;
             this.PlayerLogin = player;
             this.UserLogin = player.User;
+            HideBanUsersButton();
+        }
 
+        private void HideBanUsersButton()
+        { 
+            bool userIsAdmin = 
+                this.UserLogin.idUserType == (int)UserTypes.ADMIN;
+            if (!userIsAdmin)
+            { 
+                this.Button_BanUsers.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Button_NewGame_Click(object sender, RoutedEventArgs e)
@@ -97,6 +105,12 @@ namespace WPFLayer
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Button_BanUsers_Click(object sender, RoutedEventArgs e)
+        {
+            BanUsersPage banUsersPage = new BanUsersPage();
+            this.NavigationService.Navigate(banUsersPage);
         }
     }
 }

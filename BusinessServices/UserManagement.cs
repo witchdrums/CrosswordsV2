@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -53,23 +54,91 @@ namespace BusinessServices
         public Players FindUserByUserNameAndPassword(Users user)
         {
             Players player = new Players();
-            using (var context = new CrosswordsContext())
+            if (user != null)
             {
-                var foundUsers = (from users in context.Users
-                                  where users.username == user.username && users.password == user.password
-                                  select users).ToList();
-                if (foundUsers.Count > 0)
+                using (var context = new CrosswordsContext())
                 {
-                    user.credential = true;
-                    user.idUser = foundUsers[0].idUser;
-                    user.idUserType = foundUsers[0].idUserType;
-                    user.email = foundUsers[0].email;
-                    player.User = user;
-                    player = GetPlayerInformation(player);
+                    var foundUsers = (from users in context.Users
+                                      where users.username == user.username && users.password == user.password
+                                      select users).ToList();
+                    if (foundUsers.Count == 1)
+                    {
+                        User foundBusinessUser = foundUsers[0];
+                        LiftBan(foundBusinessUser);
+                        user.credential = true;
+                        user.idUser = foundBusinessUser.idUser;
+                        user.idUserType = foundBusinessUser.idUserType;
+                        user.email = foundBusinessUser.email;
+                        user.isBanned = foundBusinessUser.isBanned;
+                        user.banDate = foundBusinessUser.banDate;
+
+                        player.User = user;
+                        player = GetPlayerInformation(player);
+                    }
                 }
             }
-
             return player;
+        }
+
+        
+        public List<Users> GetReportedUsers()
+        {
+            List<Users> reportedUsers = new List<Users>();
+            using (var context = new CrosswordsContext())
+            {
+                List<User> reportedBusinessUsers =
+                    (from user in context.Users
+                     join report in context.Reports
+                     on user.idUser equals report.idUser
+                     where user.idUserType != 3
+                     select user).Distinct()
+                    .ToList();
+
+
+                foreach (User businessUser in reportedBusinessUsers)
+                { 
+                    reportedUsers.Add(ParseToDomain(businessUser));
+                }
+            }
+            return reportedUsers;
+        }
+
+        public bool UpdateUserBanStatus(Users userToBan)
+        {
+            bool updateWasSuccessful = false;
+            if (userToBan.idUser > 0)
+            {
+                using (var context = new CrosswordsContext())
+                {
+                    User businessUser = context.Users.Find(userToBan.idUser);
+                    businessUser.isBanned = userToBan.isBanned;
+                    businessUser.banDate = userToBan.banDate;
+                    context.Users.AddOrUpdate(businessUser);
+                    updateWasSuccessful = context.SaveChanges() == 1;
+                }
+            }
+            return updateWasSuccessful;
+        }
+
+        public bool LiftBan(User foundBusinessUser)
+        {
+            bool updateWasSuccessful = true;
+            if (foundBusinessUser != null)
+            {
+                bool banMustBeLifted = 
+                    foundBusinessUser.isBanned 
+                    && foundBusinessUser.banDate.Date.Equals(DateTime.Now.Date);
+                if (banMustBeLifted)
+                {
+                    using (var context = new CrosswordsContext())
+                    {
+                        foundBusinessUser.isBanned = false;
+                        context.Users.AddOrUpdate(foundBusinessUser);
+                        updateWasSuccessful = context.SaveChanges() == 1;
+                    }                    
+                }
+            }
+            return updateWasSuccessful;
         }
 
         public Players GetPlayerInformation(Players player)
@@ -177,6 +246,8 @@ namespace BusinessServices
             return userFound;
         }
 
+
+
         public bool RegisterRecoveredPasswordUser(Users user)
         {
             bool passwordRegistered = false;
@@ -228,6 +299,10 @@ namespace BusinessServices
             Domain.Users domainUsers = new Domain.Users();
             domainUsers.idUser = businessLogicUser.idUser;
             domainUsers.username = businessLogicUser.username;
+            domainUsers.email = businessLogicUser.email;
+            domainUsers.idUserType = businessLogicUser.idUserType;
+            domainUsers.banDate = businessLogicUser.banDate;
+            domainUsers.isBanned = businessLogicUser.isBanned;
             return domainUsers;
 
         }

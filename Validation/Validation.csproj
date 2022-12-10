@@ -44,6 +44,7 @@
     <Compile Include="IUsersValidationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersValidationService.cs" />
+    <Compile Include="UserTypes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

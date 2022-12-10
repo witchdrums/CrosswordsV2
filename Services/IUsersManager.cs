@@ -34,6 +34,12 @@ namespace Services
         bool RegisterReport(Reports report);
         [OperationContract]
         Domain.Users GetUserByPlayer(Domain.Players player);
+
+        [OperationContract]
+        List<Users> GetReportedUsers();
+
+        [OperationContract]
+        bool UpdateUserBanStatus(Users user);
     }
 
     [ServiceContract]

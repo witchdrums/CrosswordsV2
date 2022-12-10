@@ -61,6 +61,42 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ban.
+        /// </summary>
+        public static string BanUser_Header_Ban {
+            get {
+                return ResourceManager.GetString("BanUser_Header_Ban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string BanUser_Header_Duration {
+            get {
+                return ResourceManager.GetString("BanUser_Header_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string BanUser_Header_Username {
+            get {
+                return ResourceManager.GetString("BanUser_Header_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ban users.
+        /// </summary>
+        public static string BanUser_Label_BanUsers {
+            get {
+                return ResourceManager.GetString("BanUser_Label_BanUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add friend.
         /// </summary>
         public static string Button_AddFriend {
@@ -268,6 +304,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ban users.
+        /// </summary>
+        public static string GameMenu_Button_BanUsers {
+            get {
+                return ResourceManager.GetString("GameMenu_Button_BanUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string General_Button_Accept {
@@ -345,6 +390,15 @@ namespace WPFLayer.Properties {
         public static string General_Button_Report {
             get {
                 return ResourceManager.GetString("General_Button_Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes.
+        /// </summary>
+        public static string General_Button_SaveChanges {
+            get {
+                return ResourceManager.GetString("General_Button_SaveChanges", resourceCulture);
             }
         }
         
