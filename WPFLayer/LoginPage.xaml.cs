@@ -1,27 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ServiceModel;
 using Validation;
 using Security;
-using Email;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for LoginPage.xaml
-    /// </summary>
     public partial class LoginPage : Page, ServicesImplementation.IUsersManagerCallback
     {
         public LoginPage()
@@ -75,7 +60,8 @@ namespace WPFLayer
         private void UserValidation()
         {
             InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient client = 
+                new ServicesImplementation.UsersManagerClient(context);
             ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             userLogin.username = this.TextBox_Username.Text;
@@ -83,7 +69,12 @@ namespace WPFLayer
             userLogin.password = encriptador.StringToSHA512(this.PasswordBox_Password.Password);
             playerLogin.User = userLogin;
             playerLogin = client.Login(playerLogin.User);
-            if (playerLogin.User.credential)
+            if (playerLogin.User.isBanned)
+            {
+                MessageBox.Show("Tu ban expira: " + playerLogin.User.banDate.Date,
+                                "Estás baneado", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (playerLogin.User.credential)
             {
                 GameMenu gameMenuPage = new GameMenu(playerLogin);
                 this.NavigationService.Navigate(gameMenuPage);

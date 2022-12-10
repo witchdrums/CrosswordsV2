@@ -3,10 +3,12 @@
   <xs:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="Users">
     <xs:sequence>
+      <xs:element minOccurs="0" name="banDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="credential" type="xs:boolean" />
       <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idUser" type="xs:int" />
       <xs:element minOccurs="0" name="idUserType" type="xs:int" />
+      <xs:element minOccurs="0" name="isBanned" type="xs:boolean" />
       <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -75,6 +77,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Reports" nillable="true" type="tns:Reports" />
+  <xs:complexType name="ArrayOfUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Users" nillable="true" type="tns:Users" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
   <xs:complexType name="ArrayOfPlayers">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Players" nillable="true" type="tns:Players" />
@@ -144,10 +152,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Word" nillable="true" type="tns:Word" />
-  <xs:complexType name="ArrayOfUsers">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Users" nillable="true" type="tns:Users" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
 </xs:schema>

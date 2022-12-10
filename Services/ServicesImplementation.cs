@@ -84,6 +84,18 @@ namespace Services
             return userManagement.RegisterReport(report);
         }
 
+        public List<Users> GetReportedUsers()
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            return userManagement.GetReportedUsers();
+        }
+
+        public bool UpdateUserBanStatus(Users user)
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            return userManagement.UpdateUserBanStatus(user);
+        }
+
     }
 
     public partial class ServicesImplementation : IMessages

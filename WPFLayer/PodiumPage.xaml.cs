@@ -48,7 +48,6 @@ namespace WPFLayer
 
         private void Button_ReturnToMenu_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Going BACK!!!");
             NavigationService.RemoveBackEntry();
             NavigationService.RemoveBackEntry();
             NavigationService.GoBack();

@@ -23,6 +23,9 @@ namespace WPFLayer.ServicesImplementation {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime banDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool credentialField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -33,6 +36,9 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idUserTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isBannedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string passwordField;
@@ -47,6 +53,19 @@ namespace WPFLayer.ServicesImplementation {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime banDate {
+            get {
+                return this.banDateField;
+            }
+            set {
+                if ((this.banDateField.Equals(value) != true)) {
+                    this.banDateField = value;
+                    this.RaisePropertyChanged("banDate");
+                }
             }
         }
         
@@ -98,6 +117,19 @@ namespace WPFLayer.ServicesImplementation {
                 if ((this.idUserTypeField.Equals(value) != true)) {
                     this.idUserTypeField = value;
                     this.RaisePropertyChanged("idUserType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isBanned {
+            get {
+                return this.isBannedField;
+            }
+            set {
+                if ((this.isBannedField.Equals(value) != true)) {
+                    this.isBannedField = value;
+                    this.RaisePropertyChanged("isBanned");
                 }
             }
         }
@@ -1426,6 +1458,18 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetUserByPlayer", ReplyAction="http://tempuri.org/IUsersManager/GetUserByPlayerResponse")]
         System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> GetUserByPlayerAsync(WPFLayer.ServicesImplementation.Players player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetReportedUsers", ReplyAction="http://tempuri.org/IUsersManager/GetReportedUsersResponse")]
+        WPFLayer.ServicesImplementation.Users[] GetReportedUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetReportedUsers", ReplyAction="http://tempuri.org/IUsersManager/GetReportedUsersResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users[]> GetReportedUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/UpdateUserBanStatus", ReplyAction="http://tempuri.org/IUsersManager/UpdateUserBanStatusResponse")]
+        bool UpdateUserBanStatus(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/UpdateUserBanStatus", ReplyAction="http://tempuri.org/IUsersManager/UpdateUserBanStatusResponse")]
+        System.Threading.Tasks.Task<bool> UpdateUserBanStatusAsync(WPFLayer.ServicesImplementation.Users user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1533,6 +1577,22 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users> GetUserByPlayerAsync(WPFLayer.ServicesImplementation.Players player) {
             return base.Channel.GetUserByPlayerAsync(player);
+        }
+        
+        public WPFLayer.ServicesImplementation.Users[] GetReportedUsers() {
+            return base.Channel.GetReportedUsers();
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.Users[]> GetReportedUsersAsync() {
+            return base.Channel.GetReportedUsersAsync();
+        }
+        
+        public bool UpdateUserBanStatus(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.UpdateUserBanStatus(user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateUserBanStatusAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.UpdateUserBanStatusAsync(user);
         }
     }
     

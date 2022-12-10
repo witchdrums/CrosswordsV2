@@ -26,6 +26,8 @@ namespace BusinessLogic
         public string email { get; set; }
         public string password { get; set; }
         public int idUserType { get; set; }
+        public bool isBanned { get; set; }
+        public System.DateTime banDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Player> Players { get; set; }

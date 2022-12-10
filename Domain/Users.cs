@@ -31,5 +31,11 @@ namespace Domain
         [DataMember]
         public int idUserType { get; set; }
 
+        [DataMember]
+        public bool isBanned { get; set; }
+        
+        [DataMember]
+        public DateTime banDate { get; set; }
+
     }
 }
