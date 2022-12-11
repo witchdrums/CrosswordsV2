@@ -4,6 +4,7 @@ using BusinessServices;
 using Domain;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using BusinessLogic;
 
 namespace Test
 {
@@ -292,6 +293,175 @@ namespace Test
 
             Assert.AreEqual(getItUser.idUser, 30);
         }
-        
+
+
+        [TestMethod]
+        public void GetReportedPlayers_Test_Success()
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            int expectedResult = 2;
+            int actualResult = userManagement.GetReportedUsers().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void UpdateBanStatus_Test_Success_Ban()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 1043;
+            userToBan.isBanned = true;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool expectedResult = true;
+            bool actualResult = userManagement.UpdateUserBanStatus(userToBan);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void UpdateBanStatus_Test_Success_Unban()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 1043;
+            userToBan.banDate = DateTime.Now.AddDays(2);
+            userToBan.isBanned = false;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool expectedResult = true;
+            bool actualResult = userManagement.UpdateUserBanStatus(userToBan);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void UpdateBanStatus_Test_Failure1()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 0;
+            userToBan.banDate = DateTime.Now.AddDays(2);
+            userToBan.isBanned = false;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool expectedResult = false;
+            bool actualResult = userManagement.UpdateUserBanStatus(userToBan);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void UpdateBanStatus_Test_Failure2()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 99999;
+            userToBan.banDate = DateTime.Now.AddDays(2);
+            userToBan.isBanned = false;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool expectedResult = false;
+            bool actualResult = userManagement.UpdateUserBanStatus(userToBan);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void UpdateBanStatus_Test_Failure3()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = -1;
+            userToBan.banDate = DateTime.Now.AddDays(2);
+            userToBan.isBanned = false;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool expectedResult = false;
+            bool actualResult = userManagement.UpdateUserBanStatus(userToBan);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void UpdateBanStatus_Test_Failure4()
+        {
+            Users userToBan = null;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            bool expectedResult = false;
+            bool actualResult = userManagement.UpdateUserBanStatus(userToBan);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LiftBan_Test_Success()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 1043;
+            userToBan.banDate = DateTime.Now;
+            userToBan.isBanned = true;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.UpdateUserBanStatus(userToBan);
+
+            User businessUser = new User();
+            using (var context = new CrosswordsContext())
+            {
+                businessUser = context.Users.Find(userToBan.idUser);
+            }
+            businessUser.banDate = userToBan.banDate;
+            businessUser.isBanned = userToBan.isBanned;
+
+            bool expectedResult = true;
+            bool actualResult = userManagement.LiftBan(businessUser);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void LiftBan_Test_Failure1()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 1043;
+            userToBan.banDate = DateTime.Now.AddDays(5);
+            userToBan.isBanned = true;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.UpdateUserBanStatus(userToBan);
+
+            User businessUser = new User();
+            using (var context = new CrosswordsContext())
+            {
+                businessUser = context.Users.Find(userToBan.idUser);
+            }
+            businessUser.banDate = userToBan.banDate;
+            businessUser.isBanned = userToBan.isBanned;
+
+            Assert.IsFalse(userManagement.LiftBan(businessUser));
+        }
+
+        [TestMethod]
+        public void LiftBan_Test_Failure2()
+        {
+            Users userToBan = new Users();
+            userToBan.idUser = 1043;
+            userToBan.banDate = DateTime.Now.AddDays(5);
+            userToBan.isBanned = true;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.UpdateUserBanStatus(userToBan);
+
+            User businessUser = new User();
+            using (var context = new CrosswordsContext())
+            {
+                businessUser = context.Users.Find(userToBan.idUser);
+            }
+            businessUser.idUser = 0;
+            businessUser.banDate = userToBan.banDate;
+            businessUser.isBanned = userToBan.isBanned;
+
+            Assert.IsFalse(userManagement.LiftBan(businessUser));
+        }
+
+        [TestMethod]
+        public void LiftBan_Test_Failure3()
+        {
+            User businessUser = new User();
+            using (var context = new CrosswordsContext())
+            {
+                businessUser = context.Users.Find(1043);
+            }
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsFalse(userManagement.LiftBan(businessUser));
+        }
     }
+
 }
+
