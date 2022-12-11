@@ -34,11 +34,20 @@ namespace WPFLayer
             this.TextBlock_UserID.Text = chosenPlayer.User.idUser.ToString();
             this.TextBlock_Username.Text = chosenPlayer.User.username;
             this.TextBlock_PlayerDescription.Text = chosenPlayer.playerDescription;
+            this.Label_PlayedGames.Content = this.chosenPlayer.gamesPlayed;
+            this.Label_WonGames.Content = this.chosenPlayer.gamesWon;
             if (gamePage.IdRoom == gamePage.Player.Player.User.idUser)
             { 
                 this.Button_Kick.Visibility = Visibility.Visible;
             }
 
+            GetReportCategories();
+
+
+        }
+
+        private void GetReportCategories()
+        {
             InstanceContext instanceContext = new InstanceContext(this);
             UsersManagerClient usersManagerClient = new UsersManagerClient(instanceContext);
             Categories[] reportCategories = usersManagerClient.GetReportCategories();
@@ -49,7 +58,6 @@ namespace WPFLayer
                 item.Tag = category;
                 this.Combobox_ReportCategories.Items.Add(item);
             }
-
         }
 
         public void Response([MessageParameter(Name = "response")] bool response1)

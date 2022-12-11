@@ -8,6 +8,7 @@ using Domain;
 using System.ComponentModel.Design;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Contexts;
+using System.Data.Entity.Migrations;
 
 namespace BusinessServices
 {
@@ -147,6 +148,70 @@ namespace BusinessServices
                 ) != 0;
             }
             return response;
+        }
+
+        public bool RegisterGamesPlayer(GamesPlayers gamePlayer)
+        {
+            bool updateWasSuccessful = false;
+            if (gamePlayer != null 
+                && gamePlayer.idPlayer > 0
+                && gamePlayer.idGame > 0 
+                && gamePlayer.gameRank > 0
+                && gamePlayer.gameRank < 5
+                && gamePlayer.gameScore >= 0)
+            {
+                using (var context = new CrosswordsContext())
+                {
+                    GamesPlayer businessGamesPlayer = new GamesPlayer();
+                    businessGamesPlayer.idPlayer = gamePlayer.idPlayer;
+                    businessGamesPlayer.idGame = gamePlayer.idGame;
+                    businessGamesPlayer.gameRank = gamePlayer.gameRank;
+                    businessGamesPlayer.gameScore = gamePlayer.gameScore;
+                    UpdatePlayerPoints(gamePlayer);
+                    context.GamesPlayers.Add(businessGamesPlayer);
+                    updateWasSuccessful = context.SaveChanges() == 1;
+                }
+            }
+            return updateWasSuccessful;
+        }
+
+        public bool UpdatePlayerPoints(GamesPlayers gamePlayer)
+        {
+            bool updateWasSuccessful = false;
+            if (gamePlayer != null
+                && gamePlayer.idPlayer > 0)
+            {
+                using (var context = new CrosswordsContext())
+                {
+                    Player businessPlayer = context.Players.Find(gamePlayer.idPlayer);
+                    if (businessPlayer != null)
+                    {
+                        businessPlayer.playerLevelPoints += 1;
+                        businessPlayer.playerLevel += 1;
+                        if (gamePlayer.gameRank == 1)
+                        {
+                            businessPlayer.idRank = GetNextRank(businessPlayer);
+                        }
+                        context.Players.AddOrUpdate(businessPlayer);
+                        updateWasSuccessful = context.SaveChanges() == 1;
+                    }
+                }
+            }
+            return updateWasSuccessful;
+        }
+
+        private int GetNextRank(Player player)
+        {
+            int currentIdRank = player.idRank;
+            if (currentIdRank < 3)
+            {
+                currentIdRank += 1;
+            }
+            else
+            {
+                currentIdRank = 6;
+            }
+            return currentIdRank;
         }
     }
 }

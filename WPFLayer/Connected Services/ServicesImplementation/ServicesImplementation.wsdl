@@ -280,6 +280,12 @@
   <wsdl:message name="IGameManagement_RemoveHost_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveHost" />
   </wsdl:message>
+  <wsdl:message name="IGameManagement_RegisterGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagement_RegisterGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterGameResponse" />
+  </wsdl:message>
   <wsdl:message name="IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveSolvedWordsBoard" />
   </wsdl:message>
@@ -473,6 +479,10 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveHost">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RemoveHost" message="tns:IGameManagement_RemoveHost_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagement/RegisterGame" message="tns:IGameManagement_RegisterGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/RegisterGameResponse" message="tns:IGameManagement_RegisterGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" message="tns:IGameManagement_ReceiveSolvedWordsBoard_OutputCallbackMessage" />
@@ -768,6 +778,15 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagement/RegisterGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ReceiveSolvedWordsBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManagement/ReceiveSolvedWordsBoard" style="document" />

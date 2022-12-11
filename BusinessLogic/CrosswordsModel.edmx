@@ -37,15 +37,11 @@ warning 6002: The table/view 'crosswordsBranch.dbo.Friends' does not have a prim
           <Property Name="gameDate" Type="date" Nullable="false" />
           <Property Name="gameTime" Type="time" Precision="4" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'crosswordsBranch.dbo.GamesPlayers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GamesPlayers">
           <Key>
-            <PropertyRef Name="idPlayer" />
-            <PropertyRef Name="idGame" />
-            <PropertyRef Name="gameScore" />
-            <PropertyRef Name="gameRank" />
+            <PropertyRef Name="idGamePlayer" />
           </Key>
+          <Property Name="idGamePlayer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idPlayer" Type="int" Nullable="false" />
           <Property Name="idGame" Type="int" Nullable="false" />
           <Property Name="gameScore" Type="int" Nullable="false" />
@@ -304,6 +300,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <EntitySet Name="Boards" EntityType="Self.Boards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GamesPlayers" EntityType="Self.GamesPlayers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfileImages" EntityType="Self.ProfileImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ranks" EntityType="Self.Ranks" Schema="dbo" store:Type="Tables" />
@@ -317,14 +314,6 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
     [Friends].[idPlayer] AS [idPlayer], 
     [Friends].[idPlayerFriend] AS [idPlayerFriend]
     FROM [dbo].[Friends] AS [Friends]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="GamesPlayers" EntityType="Self.GamesPlayers" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [GamesPlayers].[idPlayer] AS [idPlayer], 
-    [GamesPlayers].[idGame] AS [idGame], 
-    [GamesPlayers].[gameScore] AS [gameScore], 
-    [GamesPlayers].[gameRank] AS [gameRank]
-    FROM [dbo].[GamesPlayers] AS [GamesPlayers]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="WordsBoards" EntityType="Self.WordsBoards" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -468,10 +457,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
         </EntityType>
         <EntityType Name="GamesPlayer">
           <Key>
-            <PropertyRef Name="idPlayer" />
-            <PropertyRef Name="idGame" />
-            <PropertyRef Name="gameScore" />
-            <PropertyRef Name="gameRank" />
+            <PropertyRef Name="idGamePlayer" />
           </Key>
           <Property Name="idPlayer" Type="Int32" Nullable="false" />
           <Property Name="idGame" Type="Int32" Nullable="false" />
@@ -479,6 +465,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <Property Name="gameRank" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Game" Relationship="Self.FK_GamesPlayers_Games" FromRole="GamesPlayers" ToRole="Games" />
           <NavigationProperty Name="Player" Relationship="Self.FK_GamesPlayers_Players" FromRole="GamesPlayers" ToRole="Players" />
+          <Property Name="idGamePlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK_GamesPlayers_Games">
           <End Role="Games" Type="Self.Game" Multiplicity="1" />
@@ -815,6 +802,7 @@ warning 6002: The table/view 'crosswordsBranch.dbo.WordsBoards' does not have a 
           <EntitySetMapping Name="GamesPlayers">
             <EntityTypeMapping TypeName="CrosswordsModel.GamesPlayer">
               <MappingFragment StoreEntitySet="GamesPlayers">
+                <ScalarProperty Name="idGamePlayer" ColumnName="idGamePlayer" />
                 <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
                 <ScalarProperty Name="idGame" ColumnName="idGame" />
                 <ScalarProperty Name="gameScore" ColumnName="gameScore" />

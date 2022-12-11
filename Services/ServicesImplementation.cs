@@ -260,9 +260,12 @@ namespace Services
         {
             roomMap.DeleteRoom(idRoom);
             OperationContext userContext;
+            PlayersManagement playerManagement = new PlayersManagement();
             foreach (GamesPlayers player in playerRanks)
             {
+                playerManagement.RegisterGamesPlayer(player);
                 int idUser = player.Player.User.idUser;
+
                 userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().ShowPlayerRanks(playerRanks);
             }
@@ -314,7 +317,11 @@ namespace Services
             }
         }
 
-
+        public int RegisterGame(Games game)
+        {
+            GameManagement gameManagement = new GameManagement();
+            return gameManagement.RegisterGame(game);
+        }
     }
 
     public partial class ServicesImplementation : IPlayersManagement

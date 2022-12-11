@@ -18,6 +18,7 @@ namespace BusinessLogic
         public int idGame { get; set; }
         public int gameScore { get; set; }
         public int gameRank { get; set; }
+        public int idGamePlayer { get; set; }
     
         public virtual Game Game { get; set; }
         public virtual Player Player { get; set; }
