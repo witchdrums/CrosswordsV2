@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameManagement.cs" />
     <Compile Include="GameRoomManagement.cs" />
     <Compile Include="PlayersManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

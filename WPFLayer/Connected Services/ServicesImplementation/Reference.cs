@@ -1752,6 +1752,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagement/RemoveHost")]
         System.Threading.Tasks.Task RemoveHostAsync(WPFLayer.ServicesImplementation.GamesPlayers host, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/RegisterGame", ReplyAction="http://tempuri.org/IGameManagement/RegisterGameResponse")]
+        int RegisterGame(WPFLayer.ServicesImplementation.Games game);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagement/RegisterGame", ReplyAction="http://tempuri.org/IGameManagement/RegisterGameResponse")]
+        System.Threading.Tasks.Task<int> RegisterGameAsync(WPFLayer.ServicesImplementation.Games game);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1853,6 +1859,14 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task RemoveHostAsync(WPFLayer.ServicesImplementation.GamesPlayers host, System.Collections.Generic.Queue<WPFLayer.ServicesImplementation.GamesPlayers> gamePlayers) {
             return base.Channel.RemoveHostAsync(host, gamePlayers);
+        }
+        
+        public int RegisterGame(WPFLayer.ServicesImplementation.Games game) {
+            return base.Channel.RegisterGame(game);
+        }
+        
+        public System.Threading.Tasks.Task<int> RegisterGameAsync(WPFLayer.ServicesImplementation.Games game) {
+            return base.Channel.RegisterGameAsync(game);
         }
     }
     

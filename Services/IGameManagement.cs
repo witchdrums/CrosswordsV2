@@ -33,6 +33,9 @@ namespace Services
 
         [OperationContract(IsOneWay = true)]
         void RemoveHost(GamesPlayers host, Queue<GamesPlayers> gamePlayers);
+
+        [OperationContract]
+        int RegisterGame(Games game);
     }
 
     [ServiceContract]

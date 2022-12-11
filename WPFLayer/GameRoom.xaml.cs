@@ -176,7 +176,6 @@ namespace WPFLayer
                 userPlayer.User = user;
                 userPlayer = usersManagerClient.GetPlayerInformation(userPlayer);
 
-
                 GamesPlayers gamePlayer = new GamesPlayers();
                 gamePlayer.idPlayer = userPlayer.idPlayer;
                 gamePlayer.Player = userPlayer;

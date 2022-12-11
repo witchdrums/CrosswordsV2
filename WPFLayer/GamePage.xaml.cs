@@ -95,6 +95,7 @@ namespace WPFLayer
             this.Button_PlayerAvatar.Content = "";
             this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Gray;
             this.Button_PlayerAvatar.Click -= (StartGame);
+            this.Button_PlayerAvatar.Click += SortPlayersByScore;
             EndTurn();
         }
 
@@ -528,6 +529,9 @@ namespace WPFLayer
 
         private void SortPlayersByScore(object sender, RoutedEventArgs e)
         {
+
+            int idGame = RegisterGame();
+
             List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
             finalPlayerPositions.Sort((a,b) => b.gameScore.CompareTo(a.gameScore));
             int gameRank = 1;
@@ -535,8 +539,22 @@ namespace WPFLayer
             {
                 player.gameRank = gameRank;
                 gameRank = gameRank + 1;
+                player.idGame = idGame;
             }
             GetGameManagementClient().EndGame(this.IdRoom,finalPlayerPositions.ToArray());
+        }
+
+        private int RegisterGame()
+        {
+            int spentTurns =
+            this.gameConfiguration.TurnAmount - remainingTurns;
+            int turnSeconds = this.gameConfiguration.TurnSeconds;
+            Games game = new Games()
+            {
+                gameDate = DateTime.Now.Date,
+                gameTime = TimeSpan.FromSeconds(spentTurns * turnSeconds),
+            };
+            return GetGameManagementClient().RegisterGame(game);
         }
 
         private bool ThereAreWordsToBeSolvedStill()

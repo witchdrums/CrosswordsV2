@@ -153,6 +153,138 @@ namespace Test
 
             Assert.AreEqual(expected, result);
         }
-        
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Success1()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = 1;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsTrue(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Success2()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = 0;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsTrue(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Failure1()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.RegisterGamesPlayer(null));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Failure2()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 0;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = 1;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Failure3()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 0;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = 1;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Failure4()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 0;
+            gamePlayer.gameScore = 1;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Failure5()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 5;
+            gamePlayer.gameScore = 1;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void RegisterGamesPlayers_Test_Failure6()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = -1;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.RegisterGamesPlayer(gamePlayer));
+        }
+
+        [TestMethod]
+        public void UpdatePlayerPoints_Test_Success()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = 1;
+            gamePlayer.idPlayer = 2;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsTrue(playersManagement.UpdatePlayerPoints(gamePlayer));
+        }
+
+        [TestMethod]
+        public void UpdatePlayerPoints_Test_Failure1()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.UpdatePlayerPoints(null));
+        }
+
+        [TestMethod]
+        public void UpdatePlayerPoints_Test_Failure2()
+        {
+            GamesPlayers gamePlayer = new GamesPlayers();
+            gamePlayer.idPlayer = 1;
+            gamePlayer.idGame = 5;
+            gamePlayer.gameRank = 1;
+            gamePlayer.gameScore = 1;
+            gamePlayer.idPlayer = 0;
+
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.UpdatePlayerPoints(gamePlayer));
+        }
     }
 }
