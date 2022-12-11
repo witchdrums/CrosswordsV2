@@ -15,6 +15,10 @@ namespace Services
 
         public void NewRoom(int idRoom)
         {
+            if(roomMapStatus.ContainsKey(idRoom))
+            {
+                this.DeleteRoom(idRoom);
+            }
             roomMap.Add(idRoom, new List<Users>());
             roomMapStatus.Add(idRoom, true);
         }

@@ -22,11 +22,6 @@ namespace Services
                 usersMap.Add(idUser, operationContext);
             } 
         }
-        //To do : Define Override <3
-       /* public override OperationContext GetOperationContextForId(Users user)
-        {
-            return usersMap[user.idUser];
-        }*/
         public OperationContext GetOperationContextForId(int idUser)
         {
             return usersMap[idUser];
