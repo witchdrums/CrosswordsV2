@@ -98,6 +98,7 @@ namespace WPFLayer
             this.Button_Player.Content = this.Player.Player.playerName;
             this.Button_Player.Background = System.Windows.Media.Brushes.White;
             this.Button_Player.Click -= (StartGame);
+            this.Button_Player.Click += (SortPlayersByScore);
             EndTurn();
         }
 

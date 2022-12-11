@@ -357,6 +357,21 @@
   <data name="Message_SignUpSuccess" xml:space="preserve">
     <value>Thank you for signing up. Have fun!</value>
   </data>
+  <data name="Podium_Button_MainMenu" xml:space="preserve">
+    <value>Return to main menu</value>
+  </data>
+  <data name="Podium_TextBlock_2nd" xml:space="preserve">
+    <value>2nd</value>
+  </data>
+  <data name="Podium_TextBlock_3rd" xml:space="preserve">
+    <value>3rd</value>
+  </data>
+  <data name="Podium_TextBlock_4th" xml:space="preserve">
+    <value>4th</value>
+  </data>
+  <data name="Podium_TextBlock_TheWinnerIs" xml:space="preserve">
+    <value>The winner is...</value>
+  </data>
   <data name="RecoverPassword_Button_Recover" xml:space="preserve">
     <value>Recover</value>
   </data>

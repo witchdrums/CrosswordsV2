@@ -781,6 +781,51 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return to main menu.
+        /// </summary>
+        public static string Podium_Button_MainMenu {
+            get {
+                return ResourceManager.GetString("Podium_Button_MainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2nd.
+        /// </summary>
+        public static string Podium_TextBlock_2nd {
+            get {
+                return ResourceManager.GetString("Podium_TextBlock_2nd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3rd.
+        /// </summary>
+        public static string Podium_TextBlock_3rd {
+            get {
+                return ResourceManager.GetString("Podium_TextBlock_3rd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4th.
+        /// </summary>
+        public static string Podium_TextBlock_4th {
+            get {
+                return ResourceManager.GetString("Podium_TextBlock_4th", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The winner is....
+        /// </summary>
+        public static string Podium_TextBlock_TheWinnerIs {
+            get {
+                return ResourceManager.GetString("Podium_TextBlock_TheWinnerIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recover.
         /// </summary>
         public static string RecoverPassword_Button_Recover {
