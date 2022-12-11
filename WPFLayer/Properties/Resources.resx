@@ -303,6 +303,9 @@
   <data name="General_Text_Code" xml:space="preserve">
     <value>Codigo</value>
   </data>
+  <data name="Invitation_Message_Unselected" xml:space="preserve">
+    <value>Please, select a friend to send invitation</value>
+  </data>
   <data name="Invite_Button_Invite" xml:space="preserve">
     <value>Send Invitation</value>
   </data>
@@ -353,6 +356,9 @@
   </data>
   <data name="LogIn_SignUp" xml:space="preserve">
     <value>Sign up</value>
+  </data>
+  <data name="Menu_Message_RoomUnviable" xml:space="preserve">
+    <value>The room isn't accesible. Try Again Later!</value>
   </data>
   <data name="Message_SignUpSuccess" xml:space="preserve">
     <value>Thank you for signing up. Have fun!</value>

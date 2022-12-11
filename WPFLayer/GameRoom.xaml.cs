@@ -32,6 +32,7 @@ namespace WPFLayer
         public GameRoom(int idRoom, ServicesImplementation.Users userLogin, Players playerLogin)
         {
             InitializeComponent();
+            this.TextBox_Message.MaxLength = 100;
             this.UsersRoom = new List<ServicesImplementation.Users>();
             this.PlayersRoom = new List<ServicesImplementation.Players>();
             this.IdRoom = idRoom;

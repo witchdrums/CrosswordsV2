@@ -15,6 +15,7 @@ using System.ServiceModel;
 using WPFLayer.ServicesImplementation;
 using System.Text.RegularExpressions;
 using Validation;
+using WPFLayer.Properties;
 
 
 namespace WPFLayer
@@ -64,7 +65,7 @@ namespace WPFLayer
                 }
                 else
                 {
-                    MessageBox.Show("La sala no está disponible intente mas tarde");
+                    MessageBox.Show(Properties.Resources.Menu_Message_RoomUnviable);
                 }
             }
         }

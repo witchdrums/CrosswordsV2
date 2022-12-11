@@ -27,6 +27,7 @@ namespace WPFLayer
         public AddFriendWindow(ServicesImplementation.Players player)
         {
             InitializeComponent();
+            this.TextBox_SearchPlayer.MaxLength = 50;
             this.PlayerLogin = player;
         }
 

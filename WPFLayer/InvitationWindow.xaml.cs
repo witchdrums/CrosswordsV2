@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.ServiceModel;
 using WPFLayer.ServicesImplementation;
 using Email;
+using WPFLayer.Properties;
 
 namespace WPFLayer
 {
@@ -55,7 +56,7 @@ namespace WPFLayer
             ListViewItem itemSelected = (ListViewItem)this.ListView_Friends.SelectedItem;
             if(itemSelected == null)
             {
-                MessageBox.Show("Seleeciona primero");
+                MessageBox.Show(Properties.Resources.Invitation_Message_Unselected);
             }else if(true == true)
                 {
                     ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
