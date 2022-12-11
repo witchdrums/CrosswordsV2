@@ -61,6 +61,33 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hey!, you can&apos;t added, because are friends since ever..
+        /// </summary>
+        public static string AddFriend_Message_AlrightFriend {
+            get {
+                return ResourceManager.GetString("AddFriend_Message_AlrightFriend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was added to your friend list.
+        /// </summary>
+        public static string AddFriend_Message_FriendAdded {
+            get {
+                return ResourceManager.GetString("AddFriend_Message_FriendAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, first select ha player.
+        /// </summary>
+        public static string AddFriend_Message_Selection {
+            get {
+                return ResourceManager.GetString("AddFriend_Message_Selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ban.
         /// </summary>
         public static string BanUser_Header_Ban {
@@ -201,6 +228,24 @@ namespace WPFLayer.Properties {
         public static string Exception_ServerFailure {
             get {
                 return ResourceManager.GetString("Exception_ServerFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, first select a friend.
+        /// </summary>
+        public static string FriendList_Message_FirstSelect {
+            get {
+                return ResourceManager.GetString("FriendList_Message_FirstSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alright yours aren&apos;t friends .
+        /// </summary>
+        public static string FriendList_Message_Unfriend {
+            get {
+                return ResourceManager.GetString("FriendList_Message_Unfriend", resourceCulture);
             }
         }
         
@@ -534,6 +579,15 @@ namespace WPFLayer.Properties {
         public static string General_Label_UsernameInvalid {
             get {
                 return ResourceManager.GetString("General_Label_UsernameInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We cannot do the operation.
+        /// </summary>
+        public static string General_Message_CannotOperation {
+            get {
+                return ResourceManager.GetString("General_Message_CannotOperation", resourceCulture);
             }
         }
         

@@ -72,16 +72,16 @@ namespace WPFLayer
                 ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
                 if (playersManagementClient.RemoveFriend(PlayerLogin, playerTarget))
                 {
-                    MessageBox.Show("Se ha eliminado el jugador " + playerTarget.playerName + " de su lista de amigos");
+                    MessageBox.Show(Properties.Resources.FriendList_Message_Unfriend);
                     this.UpdateFriends();
                 }else
                     {
-                    MessageBox.Show("No se ha podido realizar la operación");
+                    MessageBox.Show(Properties.Resources.General_Message_CannotOperation);
                 }
             }
             else
             {
-                MessageBox.Show("Seleccione Primero al Jugador que desea remover de amigo");
+                MessageBox.Show(Properties.Resources.FriendList_Message_FirstSelect);
             }
         }
     }
