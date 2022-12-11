@@ -53,7 +53,6 @@ namespace BusinessServices
         public List<Domain.Players> GetPlayersFilteredName(String nameFilter)
         {
             List<Domain.Players> playersFiltered = new List<Domain.Players>();
-            List<Domain.Players> players = new List<Domain.Players>();
 
             using (var context = new CrosswordsContext())
             {

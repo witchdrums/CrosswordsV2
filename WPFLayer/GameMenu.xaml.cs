@@ -54,17 +54,19 @@ namespace WPFLayer
         {
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
-            int idNewRoom = int.Parse(this.TextBox_IdGameToJoin.Text);
-            if(gameRoomClient.CheckRoomAvailability(idNewRoom))
+            if(!string.IsNullOrEmpty(this.TextBox_IdGameToJoin.Text))
             {
-                GameRoom gameRoomPage = new GameRoom(idNewRoom, this.UserLogin,this.PlayerLogin);
-                this.NavigationService.Navigate(gameRoomPage);
-            }else
-            {
-                MessageBox.Show("La sala no está disponible intente mas tarde");
+                int idNewRoom = int.Parse(this.TextBox_IdGameToJoin.Text);
+                if (gameRoomClient.CheckRoomAvailability(idNewRoom))
+                {
+                    GameRoom gameRoomPage = new GameRoom(idNewRoom, this.UserLogin, this.PlayerLogin);
+                    this.NavigationService.Navigate(gameRoomPage);
+                }
+                else
+                {
+                    MessageBox.Show("La sala no está disponible intente mas tarde");
+                }
             }
-
-
         }
 
         private void Button_MyProfile_Click(object sender, RoutedEventArgs e)

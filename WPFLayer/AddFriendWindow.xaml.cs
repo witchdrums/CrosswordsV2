@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ServiceModel;
 using WPFLayer.ServicesImplementation;
+using WPFLayer.Properties;
 
 namespace WPFLayer
 {
@@ -59,17 +60,17 @@ namespace WPFLayer
                 ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
                 if (!playersManagementClient.AddFriend(PlayerLogin, playerTarget))
                 {
-                    MessageBox.Show("No se puede añadir a ese jugador, ya se encuentra en su lista de amigos");
+                    MessageBox.Show(Properties.Resources.AddFriend_Message_AlrightFriend);
                 }
                 else
                 {
-                    MessageBox.Show("Se ha añadido el jugador " + playerTarget.playerName + " a su lista de amigos");
+                    MessageBox.Show(playerTarget.playerName + Properties.Resources.AddFriend_Message_FriendAdded);
                 }
             }else
             {
-                MessageBox.Show("Seleccione Primero al Jugador que desea añadir como amigo");
+                MessageBox.Show(Properties.Resources.AddFriend_Message_Selection);
             }
-
+ 
             }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)

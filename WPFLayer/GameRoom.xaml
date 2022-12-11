@@ -33,6 +33,8 @@
                 <Button x:Name="Button_Back" Background="LightSalmon" Content="{x:Static p:Resources.General_Button_Back}" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Width="192" Click="Button_Back_Click"/>
                 <Button x:Name="Button_SettingGame" Content="{x:Static p:Resources.Room_Button_SettingGame}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="192" Click="Button_SettingGame_Click"/>
                 <Button x:Name="Button_Invite" Content="{x:Static p:Resources.Room_Button_Invite}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" Width="192" Click="Button_Invite_Click"/>
+                <Label Content="ID" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" Width="43"/>
+                <Label x:Name="Label_IdRoom" Content="" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="139"/>
             </Grid>
         </Grid>
     </Grid>

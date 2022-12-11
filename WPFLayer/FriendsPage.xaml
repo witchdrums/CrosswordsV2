@@ -23,7 +23,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid x:Name="Image" Grid.Row="0">
-
+                <Image Source="Assets\Images\configuration.jpg" Margin="0,37,0,-37"   />
             </Grid>
             <Grid x:Name="Buttons" Grid.Row="1">
                 <Button x:Name="Button_Back" Background="LightSalmon" Content="{x:Static p:Resources.General_Button_Back}" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" Width="184" Click="Button_Back_Click"/>

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddFriend_Message_AlrightFriend" xml:space="preserve">
+    <value>Hey!, you can't added, because are friends since ever.</value>
+  </data>
+  <data name="AddFriend_Message_FriendAdded" xml:space="preserve">
+    <value>Was added to your friend list</value>
+  </data>
+  <data name="AddFriend_Message_Selection" xml:space="preserve">
+    <value>Please, first select ha player</value>
+  </data>
   <data name="BanUser_Header_Ban" xml:space="preserve">
     <value>Ban</value>
   </data>
@@ -164,6 +173,12 @@
   </data>
   <data name="Exception_ServerFailure" xml:space="preserve">
     <value>We couldn't reach our servers. Please, try again later.</value>
+  </data>
+  <data name="FriendList_Message_FirstSelect" xml:space="preserve">
+    <value>Please, first select a friend</value>
+  </data>
+  <data name="FriendList_Message_Unfriend" xml:space="preserve">
+    <value>Alright yours aren't friends </value>
   </data>
   <data name="Friends_Button_AddFriend" xml:space="preserve">
     <value>Add Friend</value>
@@ -275,6 +290,9 @@
   </data>
   <data name="General_Label_UsernameInvalid" xml:space="preserve">
     <value>Invalid username</value>
+  </data>
+  <data name="General_Message_CannotOperation" xml:space="preserve">
+    <value>We cannot do the operation</value>
   </data>
   <data name="General_Text_Code" xml:space="preserve">
     <value>Codigo</value>
