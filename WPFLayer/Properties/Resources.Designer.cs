@@ -619,6 +619,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, select a friend to send invitation.
+        /// </summary>
+        public static string Invitation_Message_Unselected {
+            get {
+                return ResourceManager.GetString("Invitation_Message_Unselected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send Invitation.
         /// </summary>
         public static string Invite_Button_Invite {
@@ -768,6 +777,15 @@ namespace WPFLayer.Properties {
         public static string LogIn_SignUp {
             get {
                 return ResourceManager.GetString("LogIn_SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The room isn&apos;t accesible. Try Again Later!.
+        /// </summary>
+        public static string Menu_Message_RoomUnviable {
+            get {
+                return ResourceManager.GetString("Menu_Message_RoomUnviable", resourceCulture);
             }
         }
         
