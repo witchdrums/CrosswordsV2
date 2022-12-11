@@ -16,15 +16,17 @@ using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for PodiumPage.xaml
-    /// </summary>
     public partial class PodiumPage : Page
     {
         public PodiumPage(List<GamesPlayers> players)
         {
             InitializeComponent();
+            InitializePlayerNamesAndScores(players);
+            InitializePlayerAvatars(players);
+        }
 
+        private void InitializePlayerNamesAndScores(List<GamesPlayers> players)
+        {
             List<TextBlock> playerNames = new List<TextBlock>();
             playerNames.Add(TextBlock_PlayerName1);
             playerNames.Add(TextBlock_PlayerName2);
@@ -37,12 +39,36 @@ namespace WPFLayer
             playerScores.Add(TextBlock_PlayerScore3);
             playerScores.Add(TextBlock_PlayerScore4);
 
+            int playerCount = players.Count;
+            for (int playerIndex = 0; playerIndex < playerCount; playerIndex++)
+            {
+                playerNames[playerIndex].Text = players[playerIndex].Player.playerName;
+                playerScores[playerIndex].Text = players[playerIndex].gameScore.ToString();
+            }
+        }
+
+        private void InitializePlayerAvatars(List<GamesPlayers> players)
+        {
+            List<StackPanel> playerPanels = new List<StackPanel>();
+            playerPanels.Add(this.StackPanel_Winner);
+            playerPanels.Add(this.StackPanel_2ndPlace);
+            playerPanels.Add(this.StackPanel_3rdPlace);
+            playerPanels.Add(this.StackPanel_4thPlace);
+
+            List<ImageBrush> playerAvatars = new List<ImageBrush>();
+            playerAvatars.Add(this.ImageBrush_PlayerAvatar1);
+            playerAvatars.Add(this.ImageBrush_PlayerAvatar2);
+            playerAvatars.Add(this.ImageBrush_PlayerAvatar3);
+            playerAvatars.Add(this.ImageBrush_PlayerAvatar4);
 
             int playerCount = players.Count;
             for (int playerIndex = 0; playerIndex < playerCount; playerIndex++)
-            { 
-                playerNames[playerIndex].Text = players[playerIndex].Player.playerName;
-                playerScores[playerIndex].Text = players[playerIndex].gameScore.ToString() ;
+            {
+                playerPanels[playerIndex].Visibility = Visibility.Visible; ;
+                GamesPlayers currenPlayer = players[playerIndex];
+                playerAvatars[playerIndex].ImageSource = 
+                    Assets.ImageHelper.GetBitmapImageFor(currenPlayer.Player.ProfileImage.profileImageName);
+
             }
         }
 
