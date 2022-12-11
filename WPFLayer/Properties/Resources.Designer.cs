@@ -268,11 +268,29 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guest player.
+        /// </summary>
+        public static string Game_Button_GuestPlayer {
+            get {
+                return ResourceManager.GetString("Game_Button_GuestPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave game.
         /// </summary>
         public static string Game_Button_LeaveGame {
             get {
                 return ResourceManager.GetString("Game_Button_LeaveGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start game!.
+        /// </summary>
+        public static string Game_Button_StartGame {
+            get {
+                return ResourceManager.GetString("Game_Button_StartGame", resourceCulture);
             }
         }
         

@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WPFLayer.Properties;
 using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
@@ -72,9 +73,9 @@ namespace WPFLayer
         {
             if (this.userLogin.idUser == this.IdRoom)
             {
-                this.Button_PlayerAvatar.Content = "Start Game!";
-                this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Blue;
-                this.Button_PlayerAvatar.Click += new RoutedEventHandler(StartGame);
+                this.Button_Player.Content = Properties.Resources.Game_Button_StartGame;
+                this.Button_Player.Background = System.Windows.Media.Brushes.Violet;
+                this.Button_Player.Click += new RoutedEventHandler(StartGame);
             }
         }
 
@@ -88,14 +89,15 @@ namespace WPFLayer
                     this.Player = gamePlayer;
                 }
             }
+            this.ImageBrush_Avatar1.ImageSource =
+                Assets.ImageHelper.GetBitmapImageFor(this.Player.Player.ProfileImage.profileImageName);
         }
 
         private void StartGame(object sender, EventArgs e)
         {
-            this.Button_PlayerAvatar.Content = "";
-            this.Button_PlayerAvatar.Background = System.Windows.Media.Brushes.Gray;
-            this.Button_PlayerAvatar.Click -= (StartGame);
-            this.Button_PlayerAvatar.Click += SortPlayersByScore;
+            this.Button_Player.Content = this.Player.Player.playerName;
+            this.Button_Player.Background = System.Windows.Media.Brushes.White;
+            this.Button_Player.Click -= (StartGame);
             EndTurn();
         }
 
@@ -120,14 +122,14 @@ namespace WPFLayer
 
         private void SecondPasses(object sender, EventArgs e)
         {
-            if (timeSpan == TimeSpan.FromSeconds(1)) 
+            if (timeSpan == TimeSpan.FromSeconds(1))
             {
                 EndTurn();
             }
             else if (hasTurn)
             {
                 timeSpan = timeSpan.Add(TimeSpan.FromSeconds(-1));
-                this.Label_Timer.Content = timeSpan.ToString("c");
+                this.Label_Timer.Content = timeSpan.TotalSeconds.ToString();
             }
         }
 
@@ -135,7 +137,7 @@ namespace WPFLayer
         private void JoinGame()
         {
             this.Button_PlayerAvatar.Tag = this.Player;
-            this.TextBlock_Player.Text = this.Player.Player.playerName;
+            this.Button_Player.Content = this.Player.Player.playerName;
             this.Label_PlayerScore.Content = this.Player.gameScore;
             InstanceContext instanceContext = new InstanceContext(this);
             GameManagementClient gameManagementClient = new GameManagementClient(instanceContext);
@@ -146,34 +148,38 @@ namespace WPFLayer
 
         private void InitializeEnemyPortraits()
         {
-            this.enemies = 
+            this.enemies =
                 this.gamePlayersQueue.Where(enemy => enemy.Player.idPlayer != this.Player.Player.idPlayer).ToList();
 
-            List<TextBlock> enemyNames = new List<TextBlock>();
-            enemyNames.Add(this.TextBlock_Enemy1);
-            enemyNames.Add(this.TextBlock_Enemy2);
-            enemyNames.Add(this.TextBlock_Enemy3);
+            List<Button> enemyNames = new List<Button>();
+            enemyNames.Add(this.Button_Enemy1);
+            enemyNames.Add(this.Button_Enemy2);
+            enemyNames.Add(this.Button_Enemy3);
 
             this.enemyScores.Add(this.Label_Enemy1Score);
             this.enemyScores.Add(this.Label_Enemy2Score);
             this.enemyScores.Add(this.Label_Enemy3Score);
 
-            List<Button> enemyAvatars = new List<Button>();
-            enemyAvatars.Add(this.Button_AvatarEnemy1);
-            enemyAvatars.Add(this.Button_AvatarEnemy2);
-            enemyAvatars.Add(this.Button_AvatarEnemy3);
+            List<Ellipse> enemyAvatars = new List<Ellipse>();
+            enemyAvatars.Add(this.Ellipse_AvatarEnemy1);
+            enemyAvatars.Add(this.Ellipse_AvatarEnemy2);
+            enemyAvatars.Add(this.Ellipse_AvatarEnemy3);
 
             enemyScores.ForEach(label => label.Tag = 0);
 
             for (int enemyIndex = 0; enemyIndex < enemies.Count; enemyIndex++)
             {
                 GamesPlayers currentEnemy = enemies[enemyIndex];
-                enemyNames[enemyIndex].Text = currentEnemy.Player.playerName;
+                enemyNames[enemyIndex].Content = currentEnemy.Player.playerName;
                 enemyNames[enemyIndex].Visibility = Visibility.Visible;
+                enemyNames[enemyIndex].Tag = currentEnemy;
+
                 enemyScores[enemyIndex].Tag = currentEnemy.Player.idPlayer;
                 enemyScores[enemyIndex].Visibility = Visibility.Visible;
-                enemyAvatars[enemyIndex].Tag = currentEnemy;
+
                 enemyAvatars[enemyIndex].Visibility = Visibility.Visible;
+                (enemyAvatars[enemyIndex].Fill as ImageBrush).ImageSource =
+                    Assets.ImageHelper.GetBitmapImageFor(currentEnemy.Player.ProfileImage.profileImageName);
                 EnemyPortrait enemyPortrait = new EnemyPortrait();
                 enemyPortrait.enemyAvatar = enemyAvatars[enemyIndex];
                 enemyPortrait.enemyScore = enemyScores[enemyIndex];
@@ -184,7 +190,7 @@ namespace WPFLayer
 
         private void AddScoreToSolver(GamesPlayers solver)
         {
-           
+
             foreach (Label enemyScore in this.enemyScores)
             {
                 if (((int)enemyScore.Tag) == solver.idPlayer)
@@ -230,13 +236,16 @@ namespace WPFLayer
                         VerticalContentAlignment = VerticalAlignment.Center,
                         FontWeight = FontWeights.Bold,
                         Content = "",
+                        FontSize = 12,
                         Padding = padding,
-                        
+
                     };
+
                     labelMatrix[columnIndex, rowIndex] = cell;
                     crosswordGrid.Children.Add(cell);
                 }
             }
+
             this.Grid_CrosswordPanel.Children.Add(crosswordGrid);
         }
 
@@ -373,7 +382,7 @@ namespace WPFLayer
                     player.gameScore += score;
                 }
             }
-            
+
 
         }
 
@@ -400,7 +409,7 @@ namespace WPFLayer
 
         public void ReciveChatMessage(Users userOrigin, string message)
         {
-            
+
             this.TextBlock_Chat.Items.Add(userOrigin.username + ": " + message);
             this.ScrollViewer_Chat.ScrollToBottom();
 
@@ -449,7 +458,7 @@ namespace WPFLayer
                 {
                     currentLabel.Content = letter;
                 }
-                currentLabel.FontSize = 15;
+                //currentLabel.FontSize = 15;
                 if (word.yStart == word.yEnd)
                 {
                     xIndex++;
@@ -463,8 +472,8 @@ namespace WPFLayer
         }
 
         private void KeyDownKeyboard(object sender, KeyEventArgs keyEvent)
-        { 
-            
+        {
+
             if (hasTurn && !this.TextBox_Message.IsFocused)
             {
                 HandleUserKeyboardInput(keyEvent);
@@ -473,9 +482,9 @@ namespace WPFLayer
 
         private void HandleUserKeyboardInput(KeyEventArgs keyEvent)
         {
-            
+
             int keyValue = (int)keyEvent.Key;
-            if (keyValue >= 44 && keyValue <= 69 )
+            if (keyValue >= 44 && keyValue <= 69)
             {
                 int currentLettersInGuess = this.TextBox_WordGuess.Text.Length;
                 WordsBoard selectedWord = GetSelectedWordInClueList() as WordsBoard;
@@ -520,41 +529,24 @@ namespace WPFLayer
             {
                 GetGameManagementClient().PassTurn(this.gamePlayersQueue, this.remainingTurns);
             }
-            else 
+            else
             {
                 SortPlayersByScore(new object(), new RoutedEventArgs());
             }
-            
+
         }
 
         private void SortPlayersByScore(object sender, RoutedEventArgs e)
         {
-
-            int idGame = RegisterGame();
-
             List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
-            finalPlayerPositions.Sort((a,b) => b.gameScore.CompareTo(a.gameScore));
+            finalPlayerPositions.Sort((a, b) => b.gameScore.CompareTo(a.gameScore));
             int gameRank = 1;
             foreach (GamesPlayers player in finalPlayerPositions)
             {
                 player.gameRank = gameRank;
                 gameRank = gameRank + 1;
-                player.idGame = idGame;
             }
-            GetGameManagementClient().EndGame(this.IdRoom,finalPlayerPositions.ToArray());
-        }
-
-        private int RegisterGame()
-        {
-            int spentTurns =
-            this.gameConfiguration.TurnAmount - remainingTurns;
-            int turnSeconds = this.gameConfiguration.TurnSeconds;
-            Games game = new Games()
-            {
-                gameDate = DateTime.Now.Date,
-                gameTime = TimeSpan.FromSeconds(spentTurns * turnSeconds),
-            };
-            return GetGameManagementClient().RegisterGame(game);
+            GetGameManagementClient().EndGame(this.IdRoom, finalPlayerPositions.ToArray());
         }
 
         private bool ThereAreWordsToBeSolvedStill()
@@ -566,7 +558,7 @@ namespace WPFLayer
                 {
                     wordsToBeSolved += 1;
                 }
-                
+
             }
             return wordsToBeSolved > 0;
         }
@@ -625,7 +617,7 @@ namespace WPFLayer
             new ProfileWindow(this, chosenPlayer.Player).Show();
         }
 
-        public void KickPlayer(Players chosenPlayer) 
+        public void KickPlayer(Players chosenPlayer)
         {
             GameManagementClient gameManagementClient = GetGameManagementClient();
             gameManagementClient.PassTurn(this.gamePlayersQueue, this.remainingTurns);
@@ -643,17 +635,17 @@ namespace WPFLayer
                     GetGameManagementClient().RemoveHost(this.Player, this.gamePlayersQueue);
                     SendLeavingUserToMainMenu();
                 }
-                else 
+                else
                 {
                     GetGameManagementClient().RemovePlayer(this.Player.Player, this.gamePlayersQueue);
-                }  
+                }
             }
         }
 
         public void RemoveLeavingUser(Players leavingPlayer, Queue<GamesPlayers> updatedQueue)
         {
             EnemyPortrait leavingEnemyPortrait = this.enemyPortraits[leavingPlayer.idPlayer];
-            
+
             leavingEnemyPortrait.enemyScore.Visibility = Visibility.Hidden;
             leavingEnemyPortrait.enemyAvatar.Visibility = Visibility.Hidden;
             leavingEnemyPortrait.enemyName.Visibility = Visibility.Hidden;
@@ -661,7 +653,7 @@ namespace WPFLayer
 
             this.enemyScores.Remove(leavingEnemyPortrait.enemyScore);
             this.gamePlayersQueue = updatedQueue;
-            
+
         }
 
         public void StopGame()
@@ -678,9 +670,9 @@ namespace WPFLayer
 
         internal class EnemyPortrait
         {
-            public TextBlock enemyName;
+            public Button enemyName;
             public Label enemyScore;
-            public Button enemyAvatar;
+            public Ellipse enemyAvatar;
         }
     }
 

@@ -1,31 +1,24 @@
 ﻿<Page x:Class="WPFLayer.GamePage"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFLayer"
-        xmlns:p ="clr-namespace:WPFLayer.Properties"
-        mc:Ignorable="d"
-        d:DesignHeight="700" d:DesignWidth="1000"
-        KeyDown="KeyDownKeyboard"
-
-        Title="Crosswords" Background="White">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:WPFLayer"
+    xmlns:p ="clr-namespace:WPFLayer.Properties"
+    mc:Ignorable="d"
+    d:DesignHeight="500" d:DesignWidth="800"
+    KeyDown="KeyDownKeyboard"
+    Title="Crosswords" Background="White">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
-
-
         <Grid Grid.Row="1" 
             Grid.Column="0">
             <Grid.RowDefinitions>
@@ -33,45 +26,57 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-
-            <Label x:Name="Label_Timer" Grid.Row="0" FontSize="20" Content="0" HorizontalAlignment="Center"/>
-            <Label x:Name="Label_Turns" Grid.Row="1" FontSize="20" Content="0" HorizontalAlignment="Center" />
-
-
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="Assets/Images/timer.png" Margin="30,2,20,2" RenderOptions.BitmapScalingMode="Fant"/>
+                <Label x:Name="Label_Timer" FontSize="15" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="Assets/Images/turn.png" Margin="30,2,20,2" RenderOptions.BitmapScalingMode="Fant"/>
+                <Label x:Name="Label_Turns"  FontSize="15" Content="0" HorizontalAlignment="Center" />
+            </StackPanel>
             <Button 
                 Grid.Row="2" 
                 x:Name="Button_LeaveGame"
                 Margin="20,0,20,0" 
                 Height="40" 
-                Content="{x:Static p:Resources.Game_Button_LeaveGame}" Click="Button_LeaveGame_Click"/>
-
-
+                Content="{x:Static p:Resources.Game_Button_LeaveGame}" 
+                Click="Button_LeaveGame_Click"/>
         </Grid>
-
-
-
-
-
         <Viewbox Grid.Column="2" Grid.Row="1">
-
             <StackPanel  Orientation="Vertical">
-
-
-                <TextBlock  x:Name="TextBlock_Player" Text="Jugador" HorizontalAlignment="Center" />
-
-                <Button x:Name="Button_PlayerAvatar" Height="70" Width="70">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="100"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Label x:Name="Label_PlayerScore" Content="0" Width="100" Padding="-20"  FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button  
+                    x:Name="Button_Player" 
+                    Content="{x:Static p:Resources.Game_Button_GuestPlayer}" 
+                    HorizontalAlignment="Center" 
+                    Background="White" 
+                    BorderBrush="White" />
+                <Ellipse 
+                    x:Name ="Button_PlayerAvatar" 
+                    Height="70" 
+                    Width="70" 
+                    Stroke="Black" 
+                    StrokeThickness="4">
+                    <Ellipse.Fill>
+                        <ImageBrush 
+                            x:Name="ImageBrush_Avatar1" 
+                            ImageSource="\Assets\Images\timer.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Label 
+                    x:Name="Label_PlayerScore" 
+                    Content="0" 
+                    Width="100" 
+                    Padding="-20"  
+                    FontWeight="Bold" 
+                    FontSize="13" 
+                    HorizontalAlignment="Center" 
+                    HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Viewbox>
-
-
-        <Grid Grid.Row="1" Grid.Column="1" Margin="10" >
+        <Grid 
+            Grid.Row="1" 
+            Grid.Column="1" 
+            Margin="10" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -79,67 +84,125 @@
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Column="0">
                 <StackPanel  Orientation="Vertical">
-
-                    <TextBlock x:Name="TextBlock_Enemy3" Text="Jugador" HorizontalAlignment="Center" Visibility="Hidden"/>
-                    <Button x:Name="Button_AvatarEnemy3" Height="70" Width="70" Click="Button_Avatar_Click" Visibility="Hidden">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="100"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Label x:Name="Label_Enemy3Score" Content="0" Width="100" Visibility="Hidden" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button 
+                        x:Name="Button_Enemy3" 
+                        Content="Jugador" 
+                        HorizontalAlignment="Center" 
+                        Background="White" 
+                        BorderBrush="White" 
+                        Click="Button_Avatar_Click" 
+                        Visibility="Hidden"/>
+                    <Ellipse 
+                        x:Name ="Ellipse_AvatarEnemy3" 
+                        Height="70" 
+                        Width="70" 
+                        Stroke="Black" 
+                        StrokeThickness="3" 
+                        Visibility="Hidden">
+                        <Ellipse.Fill>
+                            <ImageBrush 
+                                x:Name="ImageBrush_Avatar4" 
+                                ImageSource="\Assets\Images\timer.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Label 
+                        x:Name="Label_Enemy3Score" 
+                        Content="0" 
+                        Width="100" 
+                        Visibility="Hidden" 
+                        Padding="-20"  
+                        FontWeight="Bold"
+                        FontSize="13" 
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Viewbox>
-
             <Viewbox Grid.Column="1">
                 <StackPanel  Orientation="Vertical">
-
-                    <TextBlock x:Name="TextBlock_Enemy2" Text="Jugador" HorizontalAlignment="Center" Visibility="Hidden" />
-
-                    <Button x:Name="Button_AvatarEnemy2" Height="70" Width="70" Click="Button_Avatar_Click" Visibility="Hidden">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="100"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Label x:Name="Label_Enemy2Score" Content="0" Width="100" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Visibility="Hidden"/>
+                    <Button 
+                        x:Name="Button_Enemy2"
+                        Content="Jugador"
+                        HorizontalAlignment="Center" 
+                        Background="White"
+                        BorderBrush="White"
+                        Click="Button_Avatar_Click"
+                        Visibility="Hidden"/>
+                    <Ellipse 
+                        x:Name ="Ellipse_AvatarEnemy2"
+                        Height="70" 
+                        Width="70"
+                        Stroke="Black"
+                        StrokeThickness="3"
+                        Visibility="Hidden">
+                        <Ellipse.Fill>
+                            <ImageBrush 
+                                x:Name="ImageBrush_Avatar3"
+                                ImageSource="\Assets\Images\timer.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Label 
+                        x:Name="Label_Enemy2Score" 
+                        Content="0" 
+                        Width="100" 
+                        Padding="-20"  
+                        FontWeight="Bold"
+                        FontSize="13" 
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Visibility="Hidden"/>
                 </StackPanel>
             </Viewbox>
-
-
             <Viewbox Grid.Column="2">
                 <StackPanel  Orientation="Vertical">
-
-
-                    <TextBlock x:Name="TextBlock_Enemy1" Text="Jugador" HorizontalAlignment="Center" Visibility="Hidden"/>
-
-                    <Button x:Name="Button_AvatarEnemy1" Height="70" Width="70" Click="Button_Avatar_Click" Visibility="Hidden">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="100"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Label x:Name="Label_Enemy1Score" Content="0" Width="100" Padding="-20"   FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Visibility="Hidden"/>
+                    <Button
+                        x:Name="Button_Enemy1"
+                        Content="Jugador" 
+                        HorizontalAlignment="Center"
+                        Background="White" 
+                        BorderBrush="White"
+                        Click="Button_Avatar_Click"
+                        Visibility="Hidden"/>
+                    <Ellipse 
+                        x:Name ="Ellipse_AvatarEnemy1"
+                        Height="70"
+                        Width="70"
+                        Stroke="Black"
+                        StrokeThickness="3"
+                        Visibility="Hidden">
+                        <Ellipse.Fill>
+                            <ImageBrush 
+                                x:Name="ImageBrush_Avatar2" 
+                                ImageSource="\Assets\Images\timer.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Label 
+                        x:Name="Label_Enemy1Score"
+                        Content="0" 
+                        Width="100"
+                        Padding="-20" 
+                        FontWeight="Bold" 
+                        FontSize="13" 
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Visibility="Hidden"/>
                 </StackPanel>
             </Viewbox>
         </Grid>
-
-
-
-        <Grid Grid.Column="0"  x:Name="Grid_ChatPanel">
+        <Grid 
+            Grid.Column="0" 
+            x:Name="Grid_ChatPanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="1*"/>
-
-
             </Grid.RowDefinitions>
-
-
-            <ScrollViewer x:Name="ScrollViewer_Chat" Grid.Row="0" >
-                <ListView  Background="LightGray" x:Name="TextBlock_Chat"  FontSize="15" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer 
+                x:Name="ScrollViewer_Chat" 
+                Grid.Row="0" >
+                <ListView  
+                    Background="LightGray"
+                    x:Name="TextBlock_Chat"
+                    FontSize="15" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=.}" TextWrapping="Wrap"></TextBlock>
@@ -147,34 +210,42 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
-            
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-
-                <TextBox x:Name="TextBox_Message"  Grid.Column="0" TextWrapping="Wrap" FontSize="20" />
-                <Button x:Name="Button_SendMessage" Grid.Column="1"  Content="Send" Click="Button_SendMessage_Click"/>
+                <TextBox 
+                    x:Name="TextBox_Message"  
+                    Grid.Column="0" 
+                    TextWrapping="Wrap" 
+                    FontSize="20" />
+                <Button 
+                    x:Name="Button_SendMessage" 
+                    Grid.Column="1"   
+                    Click="Button_SendMessage_Click">
+                    <Image 
+                        Source="Assets/Images/plane.png"
+                        Margin="2"
+                        RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
             </Grid>
-
-
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" x:Name="Grid_CrosswordPanel"/>
+            <Grid 
+                Grid.Row="0" 
+                x:Name="Grid_CrosswordPanel"/>
             <Grid Grid.Row="1">
-
                 <Grid Grid.Row="1" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                        <TextBox  
+                    <TextBox  
                             x:Name="TextBox_WordGuess" 
                             MinWidth="230" 
                             IsEnabled="false"
@@ -187,49 +258,51 @@
                             Text=""
                             Grid.Column="0"
                             Visibility="Collapsed"/>
-
-
-                        <Button  
-                            x:Name="Button_Guess" MinWidth="62" 
-                            IsEnabled="False"
-                            Content="{x:Static p:Resources.Game_Button_Guess}" 
-                            Click="Button_Guess_Click"
-                            Grid.Column="1"
-                            Visibility="Collapsed"/>
+                    <Button  
+                        x:Name="Button_Guess" MinWidth="62" 
+                        IsEnabled="False"
+                        Content="{x:Static p:Resources.Game_Button_Guess}" 
+                        Click="Button_Guess_Click"
+                        Grid.Column="1"
+                        Visibility="Collapsed"/>
                 </Grid >
             </Grid>
-
         </Grid>
-        <Grid Grid.Column="2"  x:Name="Grid_CluePanel">
-
-
-
-                <ListView 
+        <Grid
+            Grid.Column="2" 
+            x:Name="Grid_CluePanel">
+            <ListView 
                     x:Name="ListView_HorizontalClueList" 
                     Grid.Row="1" 
                     SelectionChanged="ListView_HorizontalClueList_SelectionChanged" 
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <WrapPanel>
-                                <TextBlock Text="{Binding Word.clue}" TextWrapping="Wrap" >
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Foreground" Value="Black"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Word.isSolved}" Value="True">
-                                                    <Setter Property="Foreground" Value="LightGray"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-
-                                </TextBlock>
-
-                            </WrapPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock 
+                                Text="{Binding Word.clue}" 
+                                TextWrapping="Wrap" >
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter
+                                            Property="Foreground" 
+                                            Value="Black"/>
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Word.isSolved}" 
+                                                Value="True">
+                                                <Setter 
+                                                    Property="Foreground"
+                                                    Value="LightGray"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </Page>
