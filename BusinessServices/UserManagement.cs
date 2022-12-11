@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic;
@@ -240,13 +241,19 @@ namespace BusinessServices
             int idUser = player.idPlayer;
             using (var context = new CrosswordsContext())
             {
-                bussinesLogicPlayer = (from players in context.Players
+                var query = (from players in context.Players
                                     where players.idPlayer == player.idPlayer
-                                    select players).First();
-                domainUser.idUser = bussinesLogicPlayer.User.idUser;
-                domainUser.idUserType = bussinesLogicPlayer.User.idUserType;
-                domainUser.username = bussinesLogicPlayer.User.username;
-                domainUser.email = bussinesLogicPlayer.User.email;
+                                    select players);
+
+                if(query.First() != null)
+                {
+                    bussinesLogicPlayer = query.First();
+                    domainUser.idUser = bussinesLogicPlayer.User.idUser;
+                    domainUser.idUserType = bussinesLogicPlayer.User.idUserType;
+                    domainUser.username = bussinesLogicPlayer.User.username;
+                    domainUser.email = bussinesLogicPlayer.User.email;
+                }
+
             }
             return domainUser;
         }

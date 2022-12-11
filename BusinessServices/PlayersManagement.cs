@@ -79,16 +79,20 @@ namespace BusinessServices
             using (var context = new CrosswordsContext())
             {
                 UserManagement userManagement = new UserManagement();
-                BusinessLogic.Player playerBussinessService = (from players in context.Players
-                                           where players.idPlayer == player.idPlayer
-                                           select players).ToList().ElementAt(0);
-                foreach(Player playerQuery in playerBussinessService.Players1)
+                BusinessLogic.Player playerBussinessService;
+                var query = (from players in context.Players
+                                where players.idPlayer == player.idPlayer select players);
+                if(query.Count() > 0)
                 {
-                    Domain.Players parsePlayer = new Domain.Players();
-                    parsePlayer = this.ParseToDomain(playerQuery);
-                    parsePlayer.User = userManagement.ParseToDomain(playerQuery.User);
-                    friendListDomain.Add(parsePlayer);
-                }
+                    playerBussinessService = query.ToList().ElementAt(0);
+                    foreach (Player playerQuery in playerBussinessService.Players1)
+                    {
+                        Domain.Players parsePlayer = new Domain.Players();
+                        parsePlayer = this.ParseToDomain(playerQuery);
+                        parsePlayer.User = userManagement.ParseToDomain(playerQuery.User);
+                        friendListDomain.Add(parsePlayer);
+                    }
+                }    
             }
             return friendListDomain;
         }
@@ -99,14 +103,19 @@ namespace BusinessServices
             using (var context = new CrosswordsContext())
             {
                 UserManagement userManagement = new UserManagement();
-                BusinessLogic.Player playerBussinessService = (from players in context.Players
-                                                               where players.idPlayer == playerSource.idPlayer
-                                                               select players).ToList().ElementAt(0);
-                foreach (BusinessLogic.Player playerQuery in playerBussinessService.Players1)
-                {
-                    if(playerQuery.idPlayer == playerTarget.idPlayer)
+
+                var query= (from players in context.Players
+                        where players.idPlayer == playerSource.idPlayer
+                        select players);
+            if(query.Count() > 0)
+            {
+                    BusinessLogic.Player playerBussinessService = query.ToList().ElementAt(0);
+                    foreach (BusinessLogic.Player playerQuery in playerBussinessService.Players1)
                     {
-                        response = true;
+                        if (playerQuery.idPlayer == playerTarget.idPlayer)
+                        {
+                            response = true;
+                        }
                     }
                 }
             }
