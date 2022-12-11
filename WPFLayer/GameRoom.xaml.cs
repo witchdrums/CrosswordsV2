@@ -37,6 +37,7 @@ namespace WPFLayer
             this.IdRoom = idRoom;
             this.PlayerLogin = playerLogin;
             this.PlayerLogin.User = userLogin;
+            this.Label_IdRoom.Content = this.IdRoom.ToString();
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
             ServicesImplementation.MessagesClient messagesClient = new ServicesImplementation.MessagesClient(context);
