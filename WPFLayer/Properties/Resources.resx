@@ -283,7 +283,7 @@
     <value>The passwords must match</value>
   </data>
   <data name="General_Label_PasswordInvalid" xml:space="preserve">
-    <value>Invalid password</value>
+    <value>Password must be 10 characters or longer and contain at least: one lower case letter, one upper case letter, one number and one special character of the following type:  !*@#$%^&amp;+=</value>
   </data>
   <data name="General_Label_Username" xml:space="preserve">
     <value>Username</value>
@@ -371,5 +371,8 @@
   </data>
   <data name="Room_Button_SettingGame" xml:space="preserve">
     <value>Setting Game</value>
+  </data>
+  <data name="SignUp_Label_SignUp" xml:space="preserve">
+    <value>Sign Up!</value>
   </data>
 </root>

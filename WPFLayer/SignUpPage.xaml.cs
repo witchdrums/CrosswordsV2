@@ -23,54 +23,82 @@ namespace WPFLayer
 
     public partial class SignUpPage : Page, ServicesImplementation.IUsersManagerCallback
     {
+        private bool currentEmailIsValid;
+        private bool currentPasswordIsValid;
+        private bool currentPasswordsMatch;
         public SignUpPage()
         {
             InitializeComponent();
             HideErrorLabels();
         }
 
-        private void HideErrorLabels()
-        { 
-            this.Label_EmailInvalid.Visibility = Visibility.Hidden;
-            this.Label_EmailAlreadyInDatabase.Visibility = Visibility.Hidden;
-            this.Label_PasswordInvalid.Visibility = Visibility.Hidden;
-            this.Label_PasswordsDontMatch.Visibility = Visibility.Hidden;
+        private void EnableButton()
+        {
+            this.Button_SignUp.IsEnabled =
+                currentEmailIsValid && currentPasswordIsValid && currentPasswordsMatch;
         }
+
+        private void HideErrorLabels()
+        {
+            Visibility visibility = GetVisibility(true);
+            this.Label_EmailInvalid.Visibility = visibility;
+            this.Label_PasswordInvalid.Visibility = visibility;
+            this.Label_PasswordsDontMatch.Visibility = visibility;
+        }
+
+        private Visibility GetVisibility(bool match)
+        {
+            Visibility visibility = Visibility.Hidden;
+            if (!match)
+            {
+                visibility = Visibility.Visible;
+            }
+            return visibility;
+        }
+
         private void TextBox_Email_TextChanged(object sender, TextChangedEventArgs e)
         {
             int lengthInTextBox = this.TextBox_Email.Text.Length;
-            this.Label_EmailCharacterCount.Content = lengthInTextBox;
-            this.Label_EmailInvalid.Visibility = Visibility.Hidden;
-            this.TextBox_Email.BorderBrush = System.Windows.Media.Brushes.Gray;
+            String currentEmail = this.TextBox_Email.Text;
+            currentEmailIsValid = UsersValidationService.ValidEmailRegex.IsMatch(currentEmail);
+            this.Label_EmailInvalid.Visibility = GetVisibility(currentEmailIsValid);
+            EnableButton();
         }
 
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs eventArguments)
         {
-            this.Label_PasswordInvalid.Visibility = Visibility.Hidden;
-            this.Label_PasswordsDontMatch.Visibility = Visibility.Hidden;
-            this.PasswordBox_Password.BorderBrush = System.Windows.Media.Brushes.Gray;
-            this.PasswordBox_PasswordConfirmation.BorderBrush = System.Windows.Media.Brushes.Gray;
+            String currentPassword = this.PasswordBox_Password.Password;
+            String currentPasswordMatch = this.PasswordBox_PasswordConfirmation.Password;
+            currentPasswordIsValid = UsersValidationService.ValidPasswordRegex.IsMatch(currentPassword);
+            currentPasswordsMatch = currentPassword.Equals(currentPasswordMatch);
+            this.Label_PasswordInvalid.Visibility = GetVisibility(currentPasswordIsValid);
+            this.Label_PasswordsDontMatch.Visibility = GetVisibility(currentPasswordsMatch);
+            EnableButton();
+
         }
 
-        private void Button_SignUp_Click(object sender, RoutedEventArgs e)
+        private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs eventArguments)
+        {
+            if (eventArguments.Command == ApplicationCommands.Copy ||
+                eventArguments.Command == ApplicationCommands.Cut ||
+                eventArguments.Command == ApplicationCommands.Paste)
+            {
+                eventArguments.Handled = true;
+            }
+        }
+
+        private void Button_SignUp_Click(object sender, RoutedEventArgs eventArguments)
         {
             try
             {
-                if (ValidateEmailFormat()
-                    && ValidateEmailIsNew()
-                    && ValidatePasswordFormat()
-                    && ValidateMatchingPasswords())
-                {
-                    RegisterUser();
-                }
+                ValidateEmailIsNew();
+                RegisterUser();
             }
-            catch (EndpointNotFoundException)
+            catch (ArgumentException)
             {
-                
-                MessageBox.Show(Properties.Resources.Exception_ServerFailure);
+                MessageBox.Show(Properties.Resources.General_Label_EmailAlreadyExists,
+                "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-
         }
 
         private void RegisterUser()
@@ -91,7 +119,7 @@ namespace WPFLayer
                 MessageBox.Show(Properties.Resources.Message_SignUpSuccess);
             }
 
-            clearFields();
+            ClearFields();
         }
 
         private void WelcomeNewUserViaEmail(String userEmail)
@@ -106,16 +134,16 @@ namespace WPFLayer
             );
         }
 
-        private void clearFields()
+        private void ClearFields()
         {
             this.TextBox_Email.Text = "";
             this.PasswordBox_Password.Password = "";
             this.PasswordBox_PasswordConfirmation.Password = "";
         }
 
-        private bool ValidateEmailIsNew()
+        private void ValidateEmailIsNew()
         {
-            
+
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
             string emailInput = this.TextBox_Email.Text;
@@ -123,54 +151,10 @@ namespace WPFLayer
             bool emailIsNew = client.FindUserByEmail(emailInput);
             if (!emailIsNew)
             {
-                this.TextBox_Email.BorderBrush = System.Windows.Media.Brushes.Red;
-                this.Label_EmailAlreadyInDatabase.Visibility = Visibility.Visible;
+                throw new ArgumentException();
             }
-            return emailIsNew;
-        }
-        
-        private bool ValidateEmailFormat()
-        {
-            
-            string email = this.TextBox_Email.Text.ToString();
-            IUsersValidationService usersValidationService = new UsersValidationService();
-            bool emailFormatIsValid = usersValidationService.ValidateEmailFormat(email);
-            if (!emailFormatIsValid)
-            {
-                this.TextBox_Email.BorderBrush = System.Windows.Media.Brushes.Red;
-                this.Label_EmailInvalid.Visibility = Visibility.Visible;
-            }
-            return emailFormatIsValid;
         }
 
-        private bool ValidatePasswordFormat()
-        {
-            
-            string password = this.PasswordBox_Password.Password.ToString();
-            IUsersValidationService usersValidationService = new UsersValidationService();
-            bool passwordFormatIsValid = usersValidationService.ValidatePasswordFormat(password);
-            if (!passwordFormatIsValid)
-            {
-                this.PasswordBox_Password.BorderBrush = System.Windows.Media.Brushes.Red;
-                this.Label_PasswordInvalid.Visibility = Visibility.Visible;
-            }
-            return passwordFormatIsValid;
-        }
-
-        private bool ValidateMatchingPasswords()
-        {
-            string password = this.PasswordBox_Password.Password.ToString();
-            string passwordConfirmation = this.PasswordBox_PasswordConfirmation.Password.ToString();
-            IUsersValidationService usersValidationService = new UsersValidationService();
-            bool passwordsMAtch = usersValidationService.ValidateMatchingPasswords(password, passwordConfirmation);
-            if (!passwordsMAtch)
-            {
-                this.PasswordBox_Password.BorderBrush = System.Windows.Media.Brushes.Red;
-                this.PasswordBox_PasswordConfirmation.BorderBrush = System.Windows.Media.Brushes.Red;
-                this.Label_PasswordsDontMatch.Visibility = Visibility.Visible;
-            }
-            return passwordsMAtch;
-        }
 
         public void Response(bool response1)
         {
@@ -178,10 +162,10 @@ namespace WPFLayer
             {
                 MessageBox.Show("User has been added!");
             }
-            
+
         }
 
-        private void Button_Return_Click(object sender, RoutedEventArgs e)
+        private void Button_Return_Click(object sender, RoutedEventArgs eventArguments)
         {
             this.NavigationService.GoBack();
         }
