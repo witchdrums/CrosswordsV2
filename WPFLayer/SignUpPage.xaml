@@ -125,7 +125,12 @@
                 <Viewbox Grid.Row="3">
                     <StackPanel HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/Images/key.png" Height="36" Width="44" RenderOptions.BitmapScalingMode="Fant" Opacity="0.5"/>
+                            <Image 
+                                Source="Assets/Images/key.png" 
+                                Height="36" 
+                                Width="44" 
+                                RenderOptions.BitmapScalingMode="Fant" 
+                                Opacity="0.5"/>
 
                             <PasswordBox    
                                 x:Name="PasswordBox_PasswordConfirmation"

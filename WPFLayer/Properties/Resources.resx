@@ -201,8 +201,14 @@
   <data name="Game_Button_Guess" xml:space="preserve">
     <value>Guess</value>
   </data>
+  <data name="Game_Button_GuestPlayer" xml:space="preserve">
+    <value>Guest player</value>
+  </data>
   <data name="Game_Button_LeaveGame" xml:space="preserve">
     <value>Leave game</value>
+  </data>
+  <data name="Game_Button_StartGame" xml:space="preserve">
+    <value>Start game!</value>
   </data>
   <data name="Game_Label_Clues" xml:space="preserve">
     <value>Clues</value>

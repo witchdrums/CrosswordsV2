@@ -109,6 +109,7 @@
     <Compile Include="AddFriendWindow.xaml.cs">
       <DependentUpon>AddFriendWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\ImageHelper.cs" />
     <Compile Include="BanUsersPage.xaml.cs">
       <DependentUpon>BanUsersPage.xaml</DependentUpon>
     </Compile>
