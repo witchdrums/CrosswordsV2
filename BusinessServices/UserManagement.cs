@@ -107,15 +107,18 @@ namespace BusinessServices
         public bool UpdateUserBanStatus(Users userToBan)
         {
             bool updateWasSuccessful = false;
-            if (userToBan.idUser > 0)
+            if (userToBan != null && userToBan.idUser > 0)
             {
                 using (var context = new CrosswordsContext())
                 {
                     User businessUser = context.Users.Find(userToBan.idUser);
-                    businessUser.isBanned = userToBan.isBanned;
-                    businessUser.banDate = userToBan.banDate;
-                    context.Users.AddOrUpdate(businessUser);
-                    updateWasSuccessful = context.SaveChanges() == 1;
+                    if (businessUser != null)
+                    {
+                        businessUser.isBanned = userToBan.isBanned;
+                        businessUser.banDate = userToBan.banDate;
+                        context.Users.AddOrUpdate(businessUser);
+                        updateWasSuccessful = context.SaveChanges() == 1;
+                    }
                 }
             }
             return updateWasSuccessful;
@@ -123,7 +126,7 @@ namespace BusinessServices
 
         public bool LiftBan(User foundBusinessUser)
         {
-            bool updateWasSuccessful = true;
+            bool updateWasSuccessful = false;
             if (foundBusinessUser != null)
             {
                 bool banMustBeLifted = 
