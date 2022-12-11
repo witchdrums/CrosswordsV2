@@ -9,7 +9,7 @@ namespace Validation
 {
     public class UsersValidationService : IUsersValidationService
     {
-        private readonly Regex validEmailRegex = new Regex
+        public static readonly Regex ValidEmailRegex = new Regex
         (
             "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +
             "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:" +
@@ -17,7 +17,7 @@ namespace Validation
             "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
         );
 
-        private readonly Regex validPasswordRegex = new Regex
+        public static readonly Regex ValidPasswordRegex = new Regex
         (
             "^.*(?=.{10,})(?=.*\\d)(?=.*[a-z])" +
             "(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$"
@@ -25,7 +25,7 @@ namespace Validation
 
         public bool ValidateEmailFormat(string email)
         {
-            bool emailIsValid = validEmailRegex.IsMatch(email);
+            bool emailIsValid = ValidEmailRegex.IsMatch(email);
             return emailIsValid;
         }
 
@@ -42,7 +42,7 @@ namespace Validation
 
         public bool ValidatePasswordFormat(string password)
         {
-            bool passwordIsValid = validPasswordRegex.IsMatch(password);
+            bool passwordIsValid = ValidPasswordRegex.IsMatch(password);
             return passwordIsValid;
         }
 

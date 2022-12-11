@@ -17,23 +17,31 @@ namespace BusinessServices
         public Boolean RegisterUser(Users user)
         {
             Boolean result = false;
-            BusinessLogic.User businessLogicUser = new BusinessLogic.User();
-            businessLogicUser.password = user.password;
-            businessLogicUser.email = user.email;
-            businessLogicUser.username = user.username;
-            businessLogicUser.idUserType = 1;
-
-            Player businessLogicPlayer = new Player();
-            businessLogicPlayer.playerName = user.email;
-            businessLogicPlayer.User = businessLogicUser;
-            businessLogicPlayer.idUser = businessLogicUser.idUser;
-            businessLogicPlayer.playerLevel = 1;
-
-            using (var context = new CrosswordsContext())
+            if (user != null)
             {
-                context.Players.Add(businessLogicPlayer);
-                context.Users.Add(businessLogicUser);
-                result = context.SaveChanges() > 0;
+                BusinessLogic.User businessLogicUser = new BusinessLogic.User();
+                businessLogicUser.password = user.password;
+                businessLogicUser.email = user.email;
+                businessLogicUser.username = user.username;
+                businessLogicUser.idUserType = 1;
+                businessLogicUser.banDate = user.banDate;
+                businessLogicUser.isBanned = user.isBanned;
+
+                Player businessLogicPlayer = new Player();
+                businessLogicPlayer.playerName = user.email;
+                businessLogicPlayer.playerDescription = ".";
+                businessLogicPlayer.User = businessLogicUser;
+                businessLogicPlayer.idUser = businessLogicUser.idUser;
+                businessLogicPlayer.playerLevel = 1;
+                businessLogicPlayer.idRank = 1;
+                businessLogicPlayer.idProfileImage = 1;
+
+                using (var context = new CrosswordsContext())
+                {
+                    context.Players.Add(businessLogicPlayer);
+                    context.Users.Add(businessLogicUser);
+                    result = context.SaveChanges() == 2;
+                }
             }
             return result;
         }

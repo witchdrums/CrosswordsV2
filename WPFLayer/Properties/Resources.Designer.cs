@@ -556,7 +556,7 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid password.
+        ///   Looks up a localized string similar to Password must be 10 characters or longer and contain at least: one lower case letter, one upper case letter, one number and one special character of the following type:  !*@#$%^&amp;+=.
         /// </summary>
         public static string General_Label_PasswordInvalid {
             get {
@@ -822,6 +822,15 @@ namespace WPFLayer.Properties {
         public static string Room_Button_SettingGame {
             get {
                 return ResourceManager.GetString("Room_Button_SettingGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up!.
+        /// </summary>
+        public static string SignUp_Label_SignUp {
+            get {
+                return ResourceManager.GetString("SignUp_Label_SignUp", resourceCulture);
             }
         }
     }
