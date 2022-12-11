@@ -25,6 +25,32 @@ namespace Test
             Assert.AreEqual(expected, result);
         }
         [TestMethod]
+        public void GetPlayersFilteredName_Test_Success_2()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            String testName = "";
+            List<Domain.Players> playersTest = playersManagement.GetPlayersFilteredName(testName);
+
+            int expected = 0;
+            int result = playersTest.Count;
+
+            Assert.AreNotEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GetPlayersFilteredName_Test_Failture()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            String testName = "ElDani";
+            List<Domain.Players> playersTest = playersManagement.GetPlayersFilteredName(testName);
+
+            int expected = 1;
+            int result = playersTest.Count;
+
+            Assert.AreNotEqual(expected, result);
+        }
+
+        [TestMethod]
         public void GetFriendsPlayersOfPlayerByUser_Test_Success()
         {
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
@@ -36,6 +62,22 @@ namespace Test
 
 
             int expected = 2;
+            int result = playersTest.Count;
+
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        public void GetFriendsPlayersOfPlayerByUser_Test_Success_2()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+
+            Domain.Players playerTest = new Domain.Players();
+            playerTest.idPlayer = 8090;
+
+            List<Domain.Players> playersTest = playersManagement.GetFriendsPlayersOfPlayerByUser(playerTest);
+
+
+            int expected = 0;
             int result = playersTest.Count;
 
             Assert.AreEqual(expected, result);
@@ -58,6 +100,23 @@ namespace Test
             Assert.AreEqual(expected, result);
         }
 
+        [TestMethod]
+        public void IsFriend_Test_Failure()
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+
+            Domain.Players playerOrigin = new Domain.Players();
+            Domain.Players playerTarget = new Domain.Players();
+
+            playerOrigin.idPlayer = 1340;
+            playerTarget.idPlayer = 8080;
+
+            bool expected = true;
+            bool result = playersManagement.IsFriend(playerOrigin, playerTarget);
+
+            Assert.AreNotEqual(expected, result);
+        }
+
         //Los test de inserción solo se ejecutan al momento de la demostración para evitar conflictos
         //[TestMethod]
         public void AddFriendPlayer_Test_Success()
@@ -76,6 +135,7 @@ namespace Test
 
             Assert.AreEqual(expected, result);
         }
+
         //[TestMethod]
         public void DeleteFriendPlayer_Test_Success()
         {
