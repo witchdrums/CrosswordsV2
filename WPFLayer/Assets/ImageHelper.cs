@@ -9,19 +9,31 @@ using System.Windows.Interop;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using WPFLayer.Properties;
+using WPFLayer.ServicesImplementation;
+using Validation;
 
 namespace WPFLayer.Assets
 {
-    public class ImageHelper
+    public static class ImageHelper
     {
 
-        public static BitmapSource GetBitmapImageFor(String profileImageName)
+        public static BitmapSource GetBitmapImageFor(GamesPlayers gamePlayer)
         {
-            Bitmap bitmapProfileImage =
-                (Bitmap)ResourcesProfileImages.ResourceManager.GetObject(profileImageName);
+            Bitmap avatar = null;
+            if (gamePlayer.Player.User.idUserType != (int)UserTypes.GUEST)
+            {
+                avatar =
+                    (Bitmap)ResourcesProfileImages.ResourceManager.GetObject(gamePlayer.Player.ProfileImage.profileImageName);
+            }
+            else
+            {
+                avatar = (Bitmap)ResourcesProfileImages.ResourceManager.GetObject("Lemon");
+            }
+
+
             return Imaging.CreateBitmapSourceFromHBitmap
                     (
-                        bitmapProfileImage.GetHbitmap(),
+                        avatar.GetHbitmap(),
                         IntPtr.Zero,
                         Int32Rect.Empty,
                         BitmapSizeOptions.FromEmptyOptions()

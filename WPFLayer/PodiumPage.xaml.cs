@@ -64,11 +64,10 @@ namespace WPFLayer
             int playerCount = players.Count;
             for (int playerIndex = 0; playerIndex < playerCount; playerIndex++)
             {
-                playerPanels[playerIndex].Visibility = Visibility.Visible; ;
+                playerPanels[playerIndex].Visibility = Visibility.Visible;
                 GamesPlayers currenPlayer = players[playerIndex];
                 playerAvatars[playerIndex].ImageSource = 
-                    Assets.ImageHelper.GetBitmapImageFor(currenPlayer.Player.ProfileImage.profileImageName);
-
+                    Assets.ImageHelper.GetBitmapImageFor(currenPlayer);
             }
         }
 

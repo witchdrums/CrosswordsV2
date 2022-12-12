@@ -58,7 +58,6 @@ namespace WPFLayer
 
         private void TextBox_Email_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int lengthInTextBox = this.TextBox_Email.Text.Length;
             String currentEmail = this.TextBox_Email.Text;
             currentEmailIsValid = UsersValidationService.ValidEmailRegex.IsMatch(currentEmail);
             this.Label_EmailInvalid.Visibility = GetVisibility(currentEmailIsValid);
@@ -94,10 +93,15 @@ namespace WPFLayer
                 ValidateEmailIsNew();
                 RegisterUser();
             }
-            catch (ArgumentException)
+            catch (ArgumentException argumentException)
             {
-                MessageBox.Show(Properties.Resources.General_Label_EmailAlreadyExists,
-                "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show
+                (
+                    argumentException.Message,
+                    "", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Warning
+                );
             }
         }
 
@@ -145,13 +149,14 @@ namespace WPFLayer
         {
 
             InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient client = 
+                new ServicesImplementation.UsersManagerClient(context);
             string emailInput = this.TextBox_Email.Text;
 
             bool emailIsNew = client.FindUserByEmail(emailInput);
             if (!emailIsNew)
             {
-                throw new ArgumentException();
+                throw new ArgumentException(Properties.Resources.General_Label_EmailAlreadyExists);
             }
         }
 

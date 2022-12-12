@@ -238,20 +238,20 @@ namespace Services
             }
         }
 
-        public void PassTurn(Queue<GamesPlayers> gamePlayersQueue, int currentTurns)
+        public void PassTurn(Queue<GamesPlayers> gamePlayers, int currentTurns)
         {
 
             OperationContext userContext;
 
             currentTurns -= 1;
-            gamePlayersQueue.Enqueue(gamePlayersQueue.Dequeue());
-            foreach (GamesPlayers gamePlayer in gamePlayersQueue)
+            gamePlayers.Enqueue(gamePlayers.Dequeue());
+            foreach (GamesPlayers gamePlayer in gamePlayers)
             {
                 int idUser = gamePlayer.Player.User.idUser;
                 userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayersQueue, currentTurns);
+                userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayers, currentTurns);
             }
-            int nextIdUser = gamePlayersQueue.Peek().Player.User.idUser;
+            int nextIdUser = gamePlayers.Peek().Player.User.idUser;
             userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
             userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
         }
