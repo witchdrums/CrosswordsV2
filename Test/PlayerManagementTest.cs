@@ -13,6 +13,48 @@ namespace Test
     public class PlayerManagementTest
     {
         [TestMethod]
+        public void GetPlayerFor_Test_Seccess()
+        {
+            Domain.Users user = new Domain.Users();
+            user.idUser = 1069;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.playerName = "TheChavis";
+            playerExpected.idPlayer = 1001;
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = playersManagement.GetPlayerFor(user);
+            Assert.AreEqual(playerExpected.playerName, playerResult.playerName);
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), "Not users found")]
+        public void GetPlayerFor_Test_Failure_IdUserNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.idUser = 1000069;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.playerName = "TheChavis";
+            playerExpected.idPlayer = 1001;
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = playersManagement.GetPlayerFor(user);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), "Not users found")]
+        public void GetPlayerFor_Test_Failure_InvalidIdUser()
+        {
+            Domain.Users user = new Domain.Users();
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.playerName = "TheChavis";
+            playerExpected.idPlayer = 1001;
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = playersManagement.GetPlayerFor(user);
+        }
+
+        [TestMethod]
         public void GetPlayersFilteredName_Test_Success()
         {
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
@@ -286,5 +328,65 @@ namespace Test
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
             Assert.IsFalse(playersManagement.UpdatePlayerPoints(gamePlayer));
         }
+
+        [TestMethod]
+        public void UpdatePlayerProfileInformation_Test_Success()
+        {
+            Domain.Players playerToUdate = new Domain.Players();
+            playerToUdate.idPlayer = 1;
+            playerToUdate.idProfileImage = 1;
+            playerToUdate.playerName = "vito";
+            playerToUdate.playerDescription = "Hello Friends";
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsTrue(playersManagement.UpdatePlayerProfileInformation(playerToUdate));
+        }
+
+        [TestMethod]
+        public void UpdatePlayerProfileInformation_Test_FailureIdPlayerNotFound()
+        {
+            Domain.Players playerToUdate = new Domain.Players();
+            playerToUdate.idPlayer = 0;
+            playerToUdate.idProfileImage = 2;
+            playerToUdate.playerName = "Vito";
+            playerToUdate.playerDescription = "Hello World";
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.UpdatePlayerProfileInformation(playerToUdate));
+        }
+
+
+        [TestMethod]
+        public void UpdatePlayerProfileInformation_Test_FailureIdProfileImageNotFound()
+        {
+            Domain.Players playerToUdate = new Domain.Players();
+            playerToUdate.idPlayer = 0;
+            playerToUdate.idProfileImage = 12;
+            playerToUdate.playerName = "Vito";
+            playerToUdate.playerDescription = "Hello World";
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.UpdatePlayerProfileInformation(playerToUdate));
+        }
+
+        [TestMethod]
+        public void UpdatePlayerProfileInformation_Test_FailureInvalidPlayerName()
+        {
+            Domain.Players playerToUdate = new Domain.Players();
+            playerToUdate.idPlayer = 0;
+            playerToUdate.idProfileImage = 12;
+            playerToUdate.playerDescription = "Hello World";
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.UpdatePlayerProfileInformation(playerToUdate));
+        }
+
+        [TestMethod]
+        public void UpdatePlayerProfileInformation_Test_FailureInvalidPlayerDescription()
+        {
+            Domain.Players playerToUdate = new Domain.Players();
+            playerToUdate.idPlayer = 0;
+            playerToUdate.idProfileImage = 12;
+            playerToUdate.playerName = "Vito";
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            Assert.IsFalse(playersManagement.UpdatePlayerProfileInformation(playerToUdate));
+        }
+
     }
 }
