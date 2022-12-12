@@ -1,15 +1,29 @@
-﻿<NavigationWindow x:Class="WPFLayer.MainWindow"
+﻿<Window x:Class="WPFLayer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFLayer"
+        xmlns:hm ="http://schemas.hpod9.com/haley/mvvm"
         mc:Ignorable="d"
-        xmlns:p ="clr-namespace:WPFLayer.Properties"
-        Title="{x:Static p:Resources.Crosswords}"
-        Height="500" 
-        Width="800" 
-        Source="LoginPage.xaml"
-        ShowsNavigationUI="False">
+        Title="{hm:Lang Crosswords}" Height="520" Width="800" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" >
 
-</NavigationWindow>
+            <MenuItem Header="{hm:Lang General_MenuItem_Language}" >
+                <MenuItem Header="EN" Click="SwitchLanguage" Foreground="Black"/>
+                <MenuItem Header="ES" Click="SwitchLanguage" Foreground="Black"/>
+            </MenuItem>
+        </Menu>
+
+        <Border Grid.Row="1" Margin="10">
+            <Frame x:Name="Frame_PagesNavigation" NavigationUIVisibility="Hidden" Margin="-10,-10,-10,-10">
+                <!-- Page Content -->
+            </Frame>
+        </Border>
+    </Grid>
+</Window>

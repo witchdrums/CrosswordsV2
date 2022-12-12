@@ -306,6 +306,9 @@
   <data name="General_Label_UsernameInvalid" xml:space="preserve">
     <value>Invalid username</value>
   </data>
+  <data name="General_MenuItem_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="General_Message_CannotOperation" xml:space="preserve">
     <value>We cannot do the operation</value>
   </data>

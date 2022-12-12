@@ -7,6 +7,7 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:p ="clr-namespace:WPFLayer.Properties"
+      xmlns:hm ="http://schemas.hpod9.com/haley/mvvm"
       xmlns:ServicesImplementation="clr-namespace:WPFLayer.ServicesImplementation" x:Class="WPFLayer.BanUsersPage"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
@@ -37,7 +38,7 @@
         </Rectangle>
 
         <Label 
-            Content="{x:Static p:Resources.BanUser_Label_BanUsers}"
+            Content="{hm:Lang BanUser_Label_BanUsers}"
             VerticalContentAlignment="Bottom"
             FontSize="50" 
             FontWeight="Bold"
@@ -58,11 +59,11 @@
                 <DataGridTextColumn 
                     x:Name="Column_Username" 
                     Binding="{Binding username}" 
-                    Header="{x:Static p:Resources.BanUser_Header_Username}" 
+                    Header="{hm:Lang BanUser_Header_Username}" 
                     Width="Auto"/>
                 <DataGridTemplateColumn 
                     x:Name="Column_BanDate" 
-                    Header="{x:Static p:Resources.BanUser_Header_Duration}" 
+                    Header="{hm:Lang BanUser_Header_Duration}" 
                     Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -75,7 +76,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn 
                     x:Name="Column_IsBanned"
-                    Header="{x:Static p:Resources.BanUser_Header_Ban}"
+                    Header="{hm:Lang BanUser_Header_Ban}"
                     Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -100,14 +101,14 @@
             <Button 
                 x:Name="Button_BanUser" 
                 Grid.Column="1" 
-                Content="{x:Static p:Resources.General_Button_SaveChanges}" 
+                Content="{hm:Lang General_Button_SaveChanges}" 
                 IsEnabled="False" 
                 Margin="10"
                 Click="Button_BanUser_Click"/>
             <Button 
                 x:Name="Button_GoBack" 
                 Grid.Column="2" 
-                Content="{x:Static p:Resources.General_Button_Back}"  
+                Content="{hm:Lang General_Button_Back}"  
                 Margin="10"
                 Click="Button_GoBack_Click"/>
         </Grid>

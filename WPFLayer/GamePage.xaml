@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:WPFLayer"
     xmlns:p ="clr-namespace:WPFLayer.Properties"
+    xmlns:hm ="http://schemas.hpod9.com/haley/mvvm"
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="800"
     KeyDown="KeyDownKeyboard"
@@ -60,14 +61,14 @@
                 x:Name="Button_LeaveGame"
                 Margin="20,0,20,0" 
                 Height="40" 
-                Content="{x:Static p:Resources.Game_Button_LeaveGame}" 
+                Content="{hm:Lang Game_Button_LeaveGame}" 
                 Click="Button_LeaveGame_Click"/>
         </Grid>
         <Viewbox Grid.Column="2" Grid.Row="1">
             <StackPanel  Orientation="Vertical">
                 <Button  
                     x:Name="Button_Player" 
-                    Content="{x:Static p:Resources.Game_Button_GuestPlayer}" 
+                    Content="{hm:Lang Game_Button_GuestPlayer}" 
                     HorizontalAlignment="Center" 
                     Background="White" 
                     BorderBrush="White" />
@@ -107,7 +108,7 @@
                 <StackPanel  Orientation="Vertical">
                     <Button 
                         x:Name="Button_Enemy3" 
-                        Content="{x:Static p:Resources.Game_Button_GuestPlayer}" 
+                        Content="{hm:Lang Game_Button_GuestPlayer}" 
                         HorizontalAlignment="Center" 
                         Background="White" 
                         BorderBrush="White" 
@@ -142,7 +143,7 @@
                 <StackPanel  Orientation="Vertical">
                     <Button 
                         x:Name="Button_Enemy2"
-                        Content="{x:Static p:Resources.Game_Button_GuestPlayer}"
+                        Content="{hm:Lang Game_Button_GuestPlayer}"
                         HorizontalAlignment="Center" 
                         Background="White"
                         BorderBrush="White"
@@ -177,7 +178,7 @@
                 <StackPanel  Orientation="Vertical">
                     <Button
                         x:Name="Button_Enemy1"
-                        Content="{x:Static p:Resources.Game_Button_GuestPlayer}" 
+                        Content="{hm:Lang Game_Button_GuestPlayer}" 
                         HorizontalAlignment="Center"
                         Background="White" 
                         BorderBrush="White"
@@ -282,7 +283,7 @@
                     <Button  
                         x:Name="Button_Guess" MinWidth="62" 
                         IsEnabled="False"
-                        Content="{x:Static p:Resources.Game_Button_Guess}" 
+                        Content="{hm:Lang Game_Button_Guess}" 
                         Click="Button_Guess_Click"
                         Grid.Column="1"
                         Visibility="Collapsed"/>

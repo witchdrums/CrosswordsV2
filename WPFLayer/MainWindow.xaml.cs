@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,18 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            Frame_PagesNavigation.Navigate(new LoginPage());
+
+        }
+
+        private void SwitchLanguage(object sender, RoutedEventArgs e)
+        {
+            MenuItem clickedItem = sender as MenuItem;
+            String languageCode = clickedItem.Header.ToString();
+            App.ChangeCulture(languageCode);
         }
     }
 }
