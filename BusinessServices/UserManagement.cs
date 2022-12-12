@@ -341,6 +341,21 @@ namespace BusinessServices
             }
             return domainUser;
         }
-
+        public List<ProfileImages> GetProfileImages()
+        {
+            List<ProfileImages> profileImages = new List<ProfileImages>();
+            using (var context = new CrosswordsContext())
+            {
+                List<ProfileImage> businessLogicProfileImages = context.ProfileImages.ToList();
+                foreach (ProfileImage profileImage in businessLogicProfileImages)
+                {
+                    ProfileImages domainProfileImage = new ProfileImages();
+                    domainProfileImage.idProfileImage = profileImage.idProfileImage;
+                    domainProfileImage.profileImageName = profileImage.profileImageName;
+                    profileImages.Add(domainProfileImage);
+                }
+            }
+            return profileImages;
+        }
     }
 }

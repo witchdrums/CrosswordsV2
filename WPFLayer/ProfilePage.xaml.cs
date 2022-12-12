@@ -46,6 +46,7 @@ namespace WPFLayer
         public void ShowProfileView()
         {
             this.TextBox_IdPlayer.Text = "ID:  " + playerLogin.idPlayer.ToString();
+            this.TextBox_PlayerName.Text = playerLogin.playerName;
             this.TextBlock_PlayerLevelNumber.Text = playerLogin.playerLevel.ToString();
             this.TextBlock_PlayerProfileDescription.Text = playerLogin.playerDescription;
             this.TextBlock_GamesPlayedNumber.Text = playerLogin.gamesPlayed.ToString();
@@ -62,8 +63,8 @@ namespace WPFLayer
 
         private void Button_EditProfile_Click(object sender, RoutedEventArgs e)
         {
-            SignUpPage signUpPage = new SignUpPage();
-            this.NavigationService.Navigate(signUpPage);
+            UpdateProfilePage updateProfilePage = new UpdateProfilePage(playerLogin);
+            this.NavigationService.Navigate(updateProfilePage);
         }
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
@@ -77,3 +78,4 @@ namespace WPFLayer
         }
     }
 }
+
