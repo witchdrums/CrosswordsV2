@@ -200,13 +200,16 @@ namespace Services
         public void LaunchGamePage(GameConfiguration gameConfiguration, int idRoom)
         {
             List<Users> usersInRoom = roomMap.GetUsersInRoom(idRoom);
-            foreach (Users user in usersInRoom)
+            List<Users> usersInRoomAlive = new List<Users>();
+            bool flag = this.CheckAlive(usersInRoom);
+            if (flag)
             {
-                connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
+                foreach (Users user in usersInRoom)
+                {
+                    connectionMapRoomManagement.GetOperationContextForId(user.idUser).GetCallbackChannel<IGameRoomManagementCallback>().EnterGame(gameConfiguration);
+                }
                 roomMap.makeRoomUnavailable(idRoom);
-            }
-
-
+            }  
         }
 
         public Boards GetBoardById(int idBoard)
@@ -229,12 +232,20 @@ namespace Services
 
         public void SendSolvedWordsBoard(Queue<GamesPlayers> gamePlayersQueue, GamesPlayers solver, Domain.WordsBoard solvedWordsBoard)
         {
-
+            List<Users> users = new List<Users>();
             foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                int idUser = gamePlayer.Player.User.idUser;
-                OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(solver, solvedWordsBoard);
+                users.Add(gamePlayer.Player.User);
+            }
+            bool flag = this.CheckAlive(users);
+            if (flag)
+            {
+                foreach (GamesPlayers gamePlayer in gamePlayersQueue)
+                {
+                    int idUser = gamePlayer.Player.User.idUser;
+                    OperationContext userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                    userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveSolvedWordsBoard(solver, solvedWordsBoard);
+                }
             }
         }
 
@@ -245,15 +256,25 @@ namespace Services
 
             currentTurns -= 1;
             gamePlayersQueue.Enqueue(gamePlayersQueue.Dequeue());
+            List<Users> users = new List<Users>();
+
             foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
-                int idUser = gamePlayer.Player.User.idUser;
-                userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayersQueue, currentTurns);
+                users.Add(gamePlayer.Player.User);
             }
-            int nextIdUser = gamePlayersQueue.Peek().Player.User.idUser;
-            userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
-            userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
+            bool flag = this.CheckAlive(users);
+            if(flag)
+            {
+                foreach (GamesPlayers gamePlayer in gamePlayersQueue)
+                {
+                    int idUser = gamePlayer.Player.User.idUser;
+                    userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                    userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayersQueue, currentTurns);
+                }
+                int nextIdUser = gamePlayersQueue.Peek().Player.User.idUser;
+                userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
+                userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
+            } 
         }
 
         public void EndGame(int idRoom, List<GamesPlayers> playerRanks)
@@ -261,13 +282,22 @@ namespace Services
             roomMap.DeleteRoom(idRoom);
             OperationContext userContext;
             PlayersManagement playerManagement = new PlayersManagement();
-            foreach (GamesPlayers player in playerRanks)
+            List<Users> users = new List<Users>();
+            foreach (GamesPlayers gamePlayer in playerRanks)
             {
-                playerManagement.RegisterGamesPlayer(player);
-                int idUser = player.Player.User.idUser;
+                users.Add(gamePlayer.Player.User);
+            }
+            bool flag = this.CheckAlive(users);
+            if (flag)
+            {
+                foreach (GamesPlayers player in playerRanks)
+                {
+                    playerManagement.RegisterGamesPlayer(player);
+                    int idUser = player.Player.User.idUser;
 
-                userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().ShowPlayerRanks(playerRanks);
+                    userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                    userContext.GetCallbackChannel<IGameManagementCallback>().ShowPlayerRanks(playerRanks);
+                }
             }
         }
 
@@ -292,12 +322,21 @@ namespace Services
                     gamePlayers.Dequeue();
                 }
             }
-            
-            foreach (GamesPlayers player in gamePlayers)
+
+            List<Users> users = new List<Users>();
+            foreach (GamesPlayers gamePlayer in gamePlayers)
             {
-                int idUser = player.Player.User.idUser;
-                userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                userContext.GetCallbackChannel<IGameManagementCallback>().RemoveLeavingUser(leavingPlayer, gamePlayers);
+                users.Add(gamePlayer.Player.User);
+            }
+            bool flag = this.CheckAlive(users);
+            if (flag)
+            {
+                foreach (GamesPlayers player in gamePlayers)
+                {
+                    int idUser = player.Player.User.idUser;
+                    userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                    userContext.GetCallbackChannel<IGameManagementCallback>().RemoveLeavingUser(leavingPlayer, gamePlayers);
+                }
             }
         }
 
@@ -305,14 +344,25 @@ namespace Services
         {
             roomMap.DeleteRoom(host.Player.User.idUser);
             OperationContext userContext;
-            foreach (GamesPlayers player in gamePlayers)
+
+
+            List<Users> users = new List<Users>();
+            foreach (GamesPlayers gamePlayer in gamePlayers)
             {
-                int idUser = player.Player.User.idUser;
-                if (idUser != host.Player.User.idUser)
+                users.Add(gamePlayer.Player.User);
+            }
+            bool flag = this.CheckAlive(users);
+            if (flag)
+            {
+                foreach (GamesPlayers player in gamePlayers)
                 {
-                    userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                    userContext.GetCallbackChannel<IGameManagementCallback>().StopGame();
-                    connectionMapGameManagement.DeteleUserForId(idUser);
+                    int idUser = player.Player.User.idUser;
+                    if (idUser != host.Player.User.idUser)
+                    {
+                        userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
+                        userContext.GetCallbackChannel<IGameManagementCallback>().StopGame();
+                        connectionMapGameManagement.DeteleUserForId(idUser);
+                    }
                 }
             }
         }
@@ -373,5 +423,41 @@ namespace Services
             return result;
         }
     }
+    public partial class ServicesImplementation : IPing
+    {
+        private static readonly ConnectionMap connectionMapPing = new ConnectionMap();
+
+        public void ConnectPingManagement(Users user)
+        {
+            connectionMapPing.SaveUser(user.idUser, OperationContext.Current);
+        }
+
+
+        public bool CheckAlive(List<Users> users) {
+            bool flag = true;
+            List<Users> usersAlive = new List<Users>();
+            foreach (Users user in users)
+            {
+                try
+                {
+                    connectionMapPing.GetOperationContextForId(user.idUser).GetCallbackChannel<IPingCallback>().Alive();
+                    usersAlive.Add(user);
+                }
+                catch(Exception e)
+                {
+                    flag = false;
+                }
+            }
+            if(!flag)
+            {
+                foreach(Users user in usersAlive)
+                {
+                    connectionMapPing.GetOperationContextForId(user.idUser).GetCallbackChannel<IPingCallback>().BackMenu();
+                }
+            }        
+            return flag;
+        }
+    }
+
 
 }
