@@ -1,0 +1,4 @@
+﻿C:\Users\52228\source\repos\CrosswordsV2SonarQube\Host\Program.cs
+C:\Users\52228\source\repos\CrosswordsV2SonarQube\Host\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2SonarQube\Host\App.config
+C:\Users\52228\source\repos\CrosswordsV2SonarQube\Host\packages.config

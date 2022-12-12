@@ -89,7 +89,7 @@ namespace WPFLayer
                     this.Player = gamePlayer;
                 }
             }
-            this.ImageBrush_Avatar1.ImageSource = Assets.ImageHelper.GetBitmapImageFor(this.Player);
+            this.ImageBrush_Avatar1.ImageSource = Assets.ImageHelper.GetBitmapImageFor(this.Player.Player);
         }
 
         private void StartGame(object sender, EventArgs e)
@@ -176,7 +176,7 @@ namespace WPFLayer
 
                 enemyAvatars[enemyIndex].Visibility = Visibility.Visible;
                 (enemyAvatars[enemyIndex].Fill as ImageBrush).ImageSource =
-                    Assets.ImageHelper.GetBitmapImageFor(currentEnemy);
+                    Assets.ImageHelper.GetBitmapImageFor(currentEnemy.Player);
                 EnemyPortrait enemyPortrait = new EnemyPortrait();
                 enemyPortrait.enemyAvatar = enemyAvatars[enemyIndex];
                 enemyPortrait.enemyScore = enemyScores[enemyIndex];

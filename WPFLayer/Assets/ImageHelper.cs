@@ -17,13 +17,14 @@ namespace WPFLayer.Assets
     public static class ImageHelper
     {
 
-        public static BitmapSource GetBitmapImageFor(GamesPlayers gamePlayer)
+        public static BitmapSource GetBitmapImageFor(Players player)
         {
             Bitmap avatar = null;
-            if (gamePlayer.Player.User.idUserType != (int)UserTypes.GUEST)
+
+            if (player.User.idUserType != (int)UserTypes.GUEST)
             {
                 avatar =
-                    (Bitmap)ResourcesProfileImages.ResourceManager.GetObject(gamePlayer.Player.ProfileImage.profileImageName);
+                    (Bitmap)ResourcesProfileImages.ResourceManager.GetObject(player.ProfileImage.profileImageName);
             }
             else
             {
