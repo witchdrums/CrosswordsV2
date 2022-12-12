@@ -461,7 +461,362 @@ namespace Test
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
             Assert.IsFalse(userManagement.LiftBan(businessUser));
         }
-    }
 
+        [TestMethod]
+        public void FindUserByUsernameAndPassword_Test_Success()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.password = "e83e8535d6f689493e5819bd60aa3e5fdcba940e6d111ab6fb5c34f24f86496bf3726e2bf4ec59d6d2f5a2aeb1e4f103283e7d64e4f49c03b4c4725cb361e773";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players userResult = userManagement.FindUserByUserNameAndPassword(user);
+            Domain.Players userExpected = new Domain.Players();
+            userExpected.idPlayer = 1001;
+            Assert.AreEqual(userExpected.idPlayer, userResult.idPlayer);
+        }
+
+        [TestMethod]
+        public void FindUserByUserNameAndPassword_Test_Failure_UsernameNotFound()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChahshshshsvis";
+            user.password = "e83e8535d6f689493e5819bd60aa3e5fdcba940e6d111ab6fb5c34f24f86496bf3726e2bf4ec59d6d2f5a2aeb1e4f103283e7d64e4f49c03b4c4725cb361e773";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players userResult = userManagement.FindUserByUserNameAndPassword(user);
+            Domain.Players userExpected = new Domain.Players();
+            userExpected.idPlayer = 1001;
+            Assert.AreNotEqual(userExpected.idPlayer, userResult.idPlayer);
+        }
+
+        [TestMethod]
+        public void FindUserByUserNameAndPassword_Test_Failure_PasswordNotFound()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChahshshshsvis";
+            user.password = "35d6f689493e5819bd60aa3e5fdcba940e6d111ab6fb5c34f24f86496bf3726e2bf4ec59d6d2f5a2aeb1e4f103283e7d64e4f49c03b4c4725cb361e773";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players userResult = userManagement.FindUserByUserNameAndPassword(user);
+            Domain.Players userExpected = new Domain.Players();
+            userExpected.idPlayer = 1001;
+            Assert.AreNotEqual(userExpected.idPlayer, userResult.idPlayer);
+        }
+
+        [TestMethod]
+        public void FindUserByUserNameAndPassword_Test_Failure_UsernameNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.password = "35d6f689493e5819bd60aa3e5fdcba940e6d111ab6fb5c34f24f86496bf3726e2bf4ec59d6d2f5a2aeb1e4f103283e7d64e4f49c03b4c4725cb361e773";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players userResult = userManagement.FindUserByUserNameAndPassword(user);
+            Domain.Players userExpected = new Domain.Players();
+            userExpected.idPlayer = 1001;
+            Assert.AreNotEqual(userExpected.idPlayer, userResult.idPlayer);
+        }
+
+        [TestMethod]
+        public void FindUserByUserNameAndPassword_Test_Failure_PasswordNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChahshshshsvis";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players userResult = userManagement.FindUserByUserNameAndPassword(user);
+            Domain.Players userExpected = new Domain.Players();
+            userExpected.idPlayer = 1001;
+            Assert.AreNotEqual(userExpected.idPlayer, userResult.idPlayer);
+        }
+
+        [TestMethod]
+        public void GetPlayerRank_Test_Success()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idRank = 6;
+            Domain.Players playerRankExpected = new Domain.Players();
+            playerRankExpected.Rank.idRank = 4;
+            playerRankExpected.Rank.rankName = "Maestro";
+            Domain.Players playerResult = new Domain.Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerResult = userManagement.GetPlayerRank(player);
+            Assert.AreEqual(playerRankExpected.Rank.rankName, playerResult.Rank.rankName);
+        }
+
+        [TestMethod]
+        public void GetPlayerRank_Test_Failure_IdPlayerRankNotExist()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idRank = 16;
+            Domain.Players playerRankExpected = new Domain.Players();
+            playerRankExpected.Rank.idRank = 4;
+            playerRankExpected.Rank.rankName = "Maestro";
+            Domain.Players playerResult = new Domain.Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerResult = userManagement.GetPlayerRank(player);
+            Assert.AreNotEqual(playerRankExpected.Rank.rankName, playerResult.Rank.rankName);
+        }
+
+        [TestMethod]
+        public void GetPlayerRank_Test_Failure_InvalidIdPlayerRank()
+        {
+            Domain.Players player = new Domain.Players();
+            Domain.Players playerRankExpected = new Domain.Players();
+            playerRankExpected.Rank.idRank = 4;
+            playerRankExpected.Rank.rankName = "Maestro";
+            Domain.Players playerResult = new Domain.Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerResult = userManagement.GetPlayerRank(player);
+            Assert.AreNotEqual(playerRankExpected.Rank.rankName, playerResult.Rank.rankName);
+        }
+
+
+        [TestMethod]
+        public void GetPlayerProfileImage_Test_Success()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idProfileImage = 2;
+            Domain.Players playerProfileImageExpected = new Domain.Players();
+            playerProfileImageExpected.ProfileImage.idProfileImage = 2;
+            playerProfileImageExpected.ProfileImage.profileImageName = "PurpleBoo";
+            Domain.Players playerResult = new Domain.Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerResult = userManagement.GetPlayerProfileImage(player);
+            Assert.AreEqual(playerProfileImageExpected.ProfileImage.profileImageName, playerResult.ProfileImage.profileImageName);
+        }
+
+        [TestMethod]
+        public void GetPlayerProfileImage_Test_Failure_IdProfileImageNotExist()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idProfileImage = 12;
+            Domain.Players playerProfileImageExpected = new Domain.Players();
+            playerProfileImageExpected.ProfileImage.idProfileImage = 2;
+            playerProfileImageExpected.ProfileImage.profileImageName = "PurpleBoo";
+            Domain.Players playerResult = new Domain.Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerResult = userManagement.GetPlayerProfileImage(player);
+            Assert.AreNotEqual(playerProfileImageExpected.ProfileImage.profileImageName, playerResult.ProfileImage.profileImageName);
+        }
+
+        [TestMethod]
+        public void GetPlayerProfileImage_Test_Failure_InvalidIdProfileImage()
+        {
+            Domain.Players player = new Domain.Players();
+            Domain.Players playerProfileImageExpected = new Domain.Players();
+            playerProfileImageExpected.ProfileImage.idProfileImage = 2;
+            playerProfileImageExpected.ProfileImage.profileImageName = "PurpleBoo";
+            Domain.Players playerResult = new Domain.Players();
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            playerResult = userManagement.GetPlayerProfileImage(player);
+            Assert.AreNotEqual(playerProfileImageExpected.ProfileImage.profileImageName, playerResult.ProfileImage.profileImageName);
+        }
+
+        [TestMethod]
+        public void GetPlayerGames_Test_Seccess()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idPlayer = 1001;
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.idPlayer = 1001;
+            playerExpected.gamesPlayed = 1;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = userManagement.GetPlayerGames(player);
+            Assert.AreEqual(playerExpected.gamesPlayed, playerResult.gamesPlayed);
+        }
+
+        [TestMethod]
+        public void GetPlayerGames_Test_Failure_IdPlayerIsNotExist()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idPlayer = 10001;
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.idPlayer = 1001;
+            playerExpected.gamesPlayed = 1;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = userManagement.GetPlayerGames(player);
+            Assert.AreNotEqual(playerExpected.gamesPlayed, playerResult.gamesPlayed);
+        }
+
+        [TestMethod]
+        public void GetPlayerGames_Test_Failure_InvalidIdPlayer()
+        {
+            Domain.Players player = new Domain.Players();
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.idPlayer = 1001;
+            playerExpected.gamesPlayed = 1;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = userManagement.GetPlayerGames(player);
+            Assert.AreNotEqual(playerExpected.gamesPlayed, playerResult.gamesPlayed);
+        }
+
+        [TestMethod]
+        public void GetPlayerGamesWon_Test_Success()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idPlayer = 1001;
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.idPlayer = 1001;
+            playerExpected.gamesWon = 1;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = userManagement.GetPlayerGamesWon(player);
+            Assert.AreEqual(playerExpected.gamesWon, playerResult.gamesWon);
+        }
+
+
+        [TestMethod]
+        public void GetPlayerGamesWon_Test_Failure_IdPlayerNotExist()
+        {
+            Domain.Players player = new Domain.Players();
+            player.idPlayer = 10001;
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.idPlayer = 1001;
+            playerExpected.gamesWon = 1;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = userManagement.GetPlayerGamesWon(player);
+            Assert.AreNotEqual(playerExpected.gamesWon, playerResult.gamesWon);
+        }
+
+        [TestMethod]
+        public void GetPlayerGamesWon_Test_Failure_InvalidIdPlayer()
+        {
+            Domain.Players player = new Domain.Players();
+            Domain.Players playerExpected = new Domain.Players();
+            playerExpected.idPlayer = 1001;
+            playerExpected.gamesWon = 1;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Domain.Players playerResult = new Domain.Players();
+            playerResult = userManagement.GetPlayerGamesWon(player);
+            Assert.AreNotEqual(playerExpected.gamesWon, playerResult.gamesWon);
+        }
+
+        [TestMethod]
+        public void FindUserByEmailAndUsername_Test_Seccess()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.email = "javierdominguez0070@gmail.com";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsTrue(userManagement.FindUserByEmailAndUsername(user));
+        }
+
+        [TestMethod]
+        public void FindUserByEmailAndUsername_Test_Failure_UsernameNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheCsdsdhavis";
+            user.email = "javierdominguez0070@gmail.com";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsFalse(userManagement.FindUserByEmailAndUsername(user));
+        }
+
+        [TestMethod]
+        public void FindUserByEmailAndUsername_Test_Failure_InvalidUsername()
+        {
+            Domain.Users user = new Domain.Users();
+            user.email = "javierdominguez0070@gmail.com";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsFalse(userManagement.FindUserByEmailAndUsername(user));
+        }
+
+        [TestMethod]
+        public void FindUserByEmailAndUsername_Test_Failure_EmailNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.email = "javierdominguez00979997979770@gmail.com";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsFalse(userManagement.FindUserByEmailAndUsername(user));
+        }
+
+        [TestMethod]
+        public void FindUserByEmailAndUsername_Test_Failure_InvalidEmail()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheCsdsdhavis";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsFalse(userManagement.FindUserByEmailAndUsername(user));
+        }
+
+        [TestMethod]
+        public void RegisterRecoveredPasswordUser_Test_Seccess()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.email = "javierdominguez0070@gmail.com";
+            user.password = "hola";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            Assert.IsTrue(userManagement.RegisterRecoveredPasswordUser(user));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Not users found")]
+        public void RegisterRecoveredPasswordUser_Test_Failure_UserNameNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "ywguygqyuge";
+            user.email = "javierdominguez0070@gmail.com";
+            user.password = "hola";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.RegisterRecoveredPasswordUser(user);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Not users found")]
+        public void RegisterRecoveredPasswordUser_Test_Failure_InvalidUserName()
+        {
+            Domain.Users user = new Domain.Users();
+            user.email = "javierdominguez0070@gmail.com";
+            user.password = "hola";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.RegisterRecoveredPasswordUser(user);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Not users found")]
+        public void RegisterRecoveredPasswordUser_Test_Failure_EmailNotExist()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.email = "javierdbsjkbaominguez0070@gmail.com";
+            user.password = "hola";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.RegisterRecoveredPasswordUser(user);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Not users found")]
+        public void RegisterRecoveredPasswordUser_Test_Failure_InavalidEmailt()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.password = "hola";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.RegisterRecoveredPasswordUser(user);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DbEntityValidationException), "Invalid password")]
+        public void RegisterRecoveredPasswordUser_Test_Failure_InvalidPassword()
+        {
+            Domain.Users user = new Domain.Users();
+            user.username = "TheChavis";
+            user.email = "javierdominguez0070@gmail.com";
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            userManagement.RegisterRecoveredPasswordUser(user);
+        }
+
+        [TestMethod]
+        public void GetProfileImages_Test_Seccess()
+        {
+            int profileImagesExpected = 5;
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            List<Domain.ProfileImages> profileImages = new List<Domain.ProfileImages>();
+            profileImages = userManagement.GetProfileImages();
+            Assert.AreEqual(profileImagesExpected, profileImages.Count);
+        }
+    }
 }
 
