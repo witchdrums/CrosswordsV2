@@ -24,12 +24,12 @@ namespace WPFLayer
     public partial class InvitationWindow : Window, IUsersManagerCallback
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }
-        public int idRoom { get; set; }
+        public int IdRoom { get; set; }
         public List<ServicesImplementation.Players> FriendsList = new List<Players>();
         public InvitationWindow(int idGameRoom,ServicesImplementation.Players player)
         {
             InitializeComponent();
-            this.idRoom = idGameRoom;
+            this.IdRoom = idGameRoom;
             this.PlayerLogin = player;
             ServicesImplementation.PlayersManagementClient playersManagementClient = new ServicesImplementation.PlayersManagementClient();
             this.FriendsList.AddRange(playersManagementClient.GetFriendList(PlayerLogin));
@@ -78,7 +78,7 @@ namespace WPFLayer
             userEmail,
             "Subject -- CrossWords Game invitation",
             "Header --- Te han invitado a una partida boludo",
-            "Body ---- Te invito a jugar una partida mi codigo de sala de juego es..." + this.idRoom
+            "Body ---- Te invito a jugar una partida mi codigo de sala de juego es..." + this.IdRoom
            );
         }
 
