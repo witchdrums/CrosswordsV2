@@ -21,7 +21,7 @@ using Email;
 namespace WPFLayer
 {
 
-    public partial class SignUpPage : Page, ServicesImplementation.IUsersManagerCallback
+    public partial class SignUpPage : Page
     {
         private bool currentEmailIsValid;
         private bool currentPasswordIsValid;
@@ -107,9 +107,8 @@ namespace WPFLayer
 
         private void RegisterUser()
         {
-            InstanceContext context = new InstanceContext(this);
 
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient();
 
             ServicesImplementation.Users newUser = new ServicesImplementation.Users();
             newUser.email = this.TextBox_Email.Text;
@@ -150,7 +149,7 @@ namespace WPFLayer
 
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.UsersManagerClient client = 
-                new ServicesImplementation.UsersManagerClient(context);
+                new ServicesImplementation.UsersManagerClient();
             string emailInput = this.TextBox_Email.Text;
 
             bool emailIsNew = client.FindUserByEmail(emailInput);

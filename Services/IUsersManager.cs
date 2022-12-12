@@ -11,7 +11,7 @@ using BusinessLogic;
 namespace Services
 {
 
-    [ServiceContract(CallbackContract = typeof(IUsersManagerCallback))]
+    [ServiceContract]
     public interface IUsersManager
     {
         [OperationContract]
@@ -43,12 +43,5 @@ namespace Services
 
         [OperationContract]
         List<ProfileImages> GetProfileImages();
-    }
-
-    [ServiceContract]
-    public interface IUsersManagerCallback
-    {
-        [OperationContract]
-        void Response(bool response);
     }
 }

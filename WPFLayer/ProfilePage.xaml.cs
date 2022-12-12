@@ -22,7 +22,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class ProfilePage : Page, ServicesImplementation.IUsersManagerCallback
+    public partial class ProfilePage : Page
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }
         public ProfilePage(ServicesImplementation.Players player)
@@ -35,8 +35,7 @@ namespace WPFLayer
 
         private ServicesImplementation.Players GetPlayerProfileInformation()
         {
-            InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient();
             ServicesImplementation.Players player = new ServicesImplementation.Players();
             player = PlayerLogin;
             player = client.GetPlayerInformation(player);

@@ -19,7 +19,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class ProfileWindow : Window, IUsersManagerCallback
+    public partial class ProfileWindow : Window
     {
         private Players chosenPlayer;
         private GamePage gamePage;
@@ -48,8 +48,7 @@ namespace WPFLayer
 
         private void GetReportCategories()
         {
-            InstanceContext instanceContext = new InstanceContext(this);
-            UsersManagerClient usersManagerClient = new UsersManagerClient(instanceContext);
+            UsersManagerClient usersManagerClient = new UsersManagerClient();
             Categories[] reportCategories = usersManagerClient.GetReportCategories();
             foreach (Categories category in reportCategories)
             {
@@ -67,8 +66,7 @@ namespace WPFLayer
 
         private void Button_SendReport_Click(object sender, RoutedEventArgs e)
         {
-            InstanceContext instanceContext = new InstanceContext(this);
-            UsersManagerClient usersManagerClient = new UsersManagerClient(instanceContext);
+            UsersManagerClient usersManagerClient = new UsersManagerClient();
 
             Categories selectedCategory = ((ComboBoxItem)this.Combobox_ReportCategories.SelectedItem).Tag as Categories;
             Reports report = new Reports();

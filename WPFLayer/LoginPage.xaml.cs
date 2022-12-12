@@ -7,7 +7,7 @@ using Security;
 
 namespace WPFLayer
 {
-    public partial class LoginPage : Page, ServicesImplementation.IUsersManagerCallback
+    public partial class LoginPage : Page
     {
         public LoginPage()
         {
@@ -59,9 +59,8 @@ namespace WPFLayer
 
         private void UserValidation()
         {
-            InstanceContext context = new InstanceContext(this);
             ServicesImplementation.UsersManagerClient client = 
-                new ServicesImplementation.UsersManagerClient(context);
+                new ServicesImplementation.UsersManagerClient();
             ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             userLogin.username = this.TextBox_Username.Text;

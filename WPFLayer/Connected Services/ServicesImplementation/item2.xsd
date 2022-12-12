@@ -165,18 +165,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Response">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="response" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ResponseResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetFriendList">
     <xs:complexType>
       <xs:sequence>
