@@ -80,8 +80,8 @@ namespace WPFLayer
             }
             else
             {
-                MessageBox.Show("Usuario no encontrado, verifique sus credenciales o registrese",
-                                "Usuario no encontrado", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Properties.Resources.LogIn_Message_CheckCredentials,
+                                Properties.Resources.LogIn_Message_UserNotFound, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
