@@ -63,8 +63,7 @@ namespace BusinessServices
                 {
                     if(player.playerName.ToLower().IndexOf(nameFilter.ToLower())>-1)
                     {
-                        Domain.Players filteredPlayer = new Domain.Players();
-                        filteredPlayer = this.ParseToDomain(player);
+                        Domain.Players filteredPlayer = this.ParseToDomain(player);
                         filteredPlayer.User = userManagement.ParseToDomain(player.User);
                         playersFiltered.Add(filteredPlayer);
                     }
@@ -87,8 +86,7 @@ namespace BusinessServices
                     playerBussinessService = query.ToList().ElementAt(0);
                     foreach (Player playerQuery in playerBussinessService.Players1)
                     {
-                        Domain.Players parsePlayer = new Domain.Players();
-                        parsePlayer = this.ParseToDomain(playerQuery);
+                        Domain.Players parsePlayer = this.ParseToDomain(playerQuery);
                         parsePlayer.User = userManagement.ParseToDomain(playerQuery.User);
                         friendListDomain.Add(parsePlayer);
                     }
@@ -102,8 +100,6 @@ namespace BusinessServices
             Boolean response = false;
             using (var context = new CrosswordsContext())
             {
-                UserManagement userManagement = new UserManagement();
-
                 var query= (from players in context.Players
                         where players.idPlayer == playerSource.idPlayer
                         select players);

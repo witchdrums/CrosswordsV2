@@ -200,7 +200,6 @@ namespace Services
         public void LaunchGamePage(GameConfiguration gameConfiguration, int idRoom)
         {
             List<Users> usersInRoom = roomMap.GetUsersInRoom(idRoom);
-            List<Users> usersInRoomAlive = new List<Users>();
             bool flag = this.CheckAlive(usersInRoom);
             if (flag)
             {
@@ -443,7 +442,7 @@ namespace Services
                     connectionMapPing.GetOperationContextForId(user.idUser).GetCallbackChannel<IPingCallback>().Alive();
                     usersAlive.Add(user);
                 }
-                catch(Exception e)
+                catch(Exception exception)
                 {
                     flag = false;
                 }

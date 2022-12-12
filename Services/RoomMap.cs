@@ -10,8 +10,8 @@ namespace Services
 {
     public class RoomMap
     {
-        private Dictionary<int, List<Users>> roomMap = new Dictionary<int, List<Users>>();
-        private Dictionary<int, bool> roomMapStatus = new Dictionary<int, bool>();
+        private readonly Dictionary<int, List<Users>> roomMap = new Dictionary<int, List<Users>>();
+        private readonly Dictionary<int, bool> roomMapStatus = new Dictionary<int, bool>();
 
         public void NewRoom(int idRoom)
         {
@@ -56,7 +56,7 @@ namespace Services
         public bool IsFullRoom(int idRoom)
         {
             bool response = false;
-            if(roomMap[idRoom].Count() >= 4)
+            if(roomMap[idRoom].Count >= 4)
             {
                 response = true;    
             }
@@ -75,7 +75,7 @@ namespace Services
         public bool IsEmptyRoom(int idRoom)
         {
             bool response = false;
-            if (roomMap[idRoom].Count() == 0)
+            if (roomMap[idRoom].Count == 0)
             {
                 response = true;
             }
@@ -85,7 +85,7 @@ namespace Services
         public bool isRoomAvailable(int idRoom)
         {
             bool response = false;
-            if (roomMapStatus[idRoom] == true)
+            if (roomMapStatus[idRoom])
             {
                 response = true;
             }

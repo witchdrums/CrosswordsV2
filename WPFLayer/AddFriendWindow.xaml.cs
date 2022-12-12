@@ -23,7 +23,8 @@ namespace WPFLayer
     public partial class AddFriendWindow : Window
     {
         public ServicesImplementation.Players PlayerLogin { set; get; }
-        public List<ServicesImplementation.Players> PlayersList = new List<Players>();
+        private List<ServicesImplementation.Players> PlayersList = new List<Players>();
+
         public AddFriendWindow(ServicesImplementation.Players player)
         {
             InitializeComponent();

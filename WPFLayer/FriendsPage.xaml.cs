@@ -22,7 +22,7 @@ namespace WPFLayer
     public partial class FriendsPage : Page
     {
         public ServicesImplementation.Players PlayerLogin { set; get; }
-        public List<ServicesImplementation.Players> FriendsList = new List<Players>();
+        private List<ServicesImplementation.Players> FriendsList = new List<Players>();
         public FriendsPage(ServicesImplementation.Players player)
         {
             InitializeComponent();
@@ -44,7 +44,6 @@ namespace WPFLayer
 
         private void UpdateFriends()
         {
-            InstanceContext context = new InstanceContext(this);
             ServicesImplementation.PlayersManagementClient playersManagementClient = new ServicesImplementation.PlayersManagementClient();
             this.FriendsList.Clear();
             this.FriendsList.AddRange(playersManagementClient.GetFriendList(this.PlayerLogin));

@@ -322,9 +322,7 @@ namespace BusinessServices
         public Domain.Users GetUserInformationForPlayer(Domain.Players player)
         {
             Domain.Users domainUser = new Domain.Users();
-            BusinessLogic.User bussinesLogicUser = new BusinessLogic.User();
             BusinessLogic.Player bussinesLogicPlayer = new BusinessLogic.Player();
-            int idUser = player.idPlayer;
             using (var context = new CrosswordsContext())
             {
                 var query = (from players in context.Players
