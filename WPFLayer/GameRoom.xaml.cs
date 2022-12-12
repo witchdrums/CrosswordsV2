@@ -208,6 +208,7 @@ namespace WPFLayer
         public void BackMenu()
         {
             NavigationService.GoBack();
+            MessageBox.Show(Properties.Resources.General_Message_ErrorGame);
         }
     }
 }

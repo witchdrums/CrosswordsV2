@@ -315,6 +315,9 @@
   <data name="General_Message_CannotOperation" xml:space="preserve">
     <value>No podemos efectuar esta operación</value>
   </data>
+  <data name="General_Message_ErrorGame" xml:space="preserve">
+    <value>Un error ocurrio durante la conexión del juego, porfavor vuelve a hacer la partida</value>
+  </data>
   <data name="General_Text_Code" xml:space="preserve">
     <value>Código</value>
   </data>

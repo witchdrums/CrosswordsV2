@@ -678,6 +678,7 @@ namespace WPFLayer
         public void BackMenu()
         {
             this.SendLeavingUserToMainMenu();
+            MessageBox.Show(Properties.Resources.General_Message_ErrorGame);
         }
     }
 
