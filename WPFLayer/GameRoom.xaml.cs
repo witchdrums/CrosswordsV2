@@ -19,7 +19,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for GameRoom.xaml
     /// </summary>
-    public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IUsersManagerCallback
+    public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IUsersManagerCallback,IPingCallback
     {
         public int IdRoom { set; get; }
         public ServicesImplementation.Players PlayerLogin { set; get; }
@@ -42,6 +42,8 @@ namespace WPFLayer
             InstanceContext context = new InstanceContext(this);
             ServicesImplementation.GameRoomManagementClient gameRoomClient = new ServicesImplementation.GameRoomManagementClient(context);
             ServicesImplementation.MessagesClient messagesClient = new ServicesImplementation.MessagesClient(context);
+            ServicesImplementation.PingClient pingClient = new ServicesImplementation.PingClient(context);
+            pingClient.ConnectPingManagement(userLogin);
             messagesClient.ConnectMessages(userLogin);
             gameRoomClient.ConnectGameRoomManagement(userLogin);
             gameRoomClient.JoinToRoom(this.IdRoom, PlayerLogin.User);
@@ -208,6 +210,15 @@ namespace WPFLayer
             this.gameConfigurationWindow = new GameConfigurationWindow(this.gameConfiguration);
             this.gameConfigurationWindow.Show();
             
+        }
+
+        public void Alive()
+        {
+        }
+
+        public void BackMenu()
+        {
+            NavigationService.GoBack();
         }
     }
 }

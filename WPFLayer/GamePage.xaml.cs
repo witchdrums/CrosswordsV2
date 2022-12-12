@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Contexts;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ using WPFLayer.ServicesImplementation;
 namespace WPFLayer
 {
 
-    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback
+    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback, IPingCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
@@ -57,6 +58,9 @@ namespace WPFLayer
             this.gameConfiguration = gameConfiguration;
             this.remainingTurns = gameConfiguration.TurnAmount;
             this.usersRoom = gameConfiguration.UsersRoom.ToList();
+            InstanceContext context = new InstanceContext(this);
+            ServicesImplementation.PingClient pingClient = new ServicesImplementation.PingClient(context);
+            pingClient.ConnectPingManagement(userLogin);
             GetGamePlayer();
             JoinGame();
 
@@ -666,6 +670,15 @@ namespace WPFLayer
             public Button enemyName;
             public Label enemyScore;
             public Ellipse enemyAvatar;
+        }
+
+        public void Alive()
+        {
+        }
+
+        public void BackMenu()
+        {
+            this.SendLeavingUserToMainMenu();
         }
     }
 

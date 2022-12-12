@@ -2128,4 +2128,62 @@ namespace WPFLayer.ServicesImplementation {
             return base.Channel.ConnectMessagesAsync(user);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IPing", CallbackContract=typeof(WPFLayer.ServicesImplementation.IPingCallback))]
+    public interface IPing {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPing/ConnectPingManagement", ReplyAction="http://tempuri.org/IPing/ConnectPingManagementResponse")]
+        void ConnectPingManagement(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPing/ConnectPingManagement", ReplyAction="http://tempuri.org/IPing/ConnectPingManagementResponse")]
+        System.Threading.Tasks.Task ConnectPingManagementAsync(WPFLayer.ServicesImplementation.Users user);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IPingCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPing/Alive", ReplyAction="http://tempuri.org/IPing/AliveResponse")]
+        void Alive();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPing/BackMenu", ReplyAction="http://tempuri.org/IPing/BackMenuResponse")]
+        void BackMenu();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IPingChannel : WPFLayer.ServicesImplementation.IPing, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class PingClient : System.ServiceModel.DuplexClientBase<WPFLayer.ServicesImplementation.IPing>, WPFLayer.ServicesImplementation.IPing {
+        
+        public PingClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public PingClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public PingClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public PingClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public PingClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void ConnectPingManagement(WPFLayer.ServicesImplementation.Users user) {
+            base.Channel.ConnectPingManagement(user);
+        }
+        
+        public System.Threading.Tasks.Task ConnectPingManagementAsync(WPFLayer.ServicesImplementation.Users user) {
+            return base.Channel.ConnectPingManagementAsync(user);
+        }
+    }
 }

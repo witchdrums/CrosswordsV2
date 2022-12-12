@@ -20,7 +20,7 @@ using WPFLayer.Properties;
 
 namespace WPFLayer
 {
-    public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback
+    public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback, ServicesImplementation.IPingCallback
     {
         public ServicesImplementation.Users UserLogin { get; set; }
         public ServicesImplementation.Players PlayerLogin { get; set; }
@@ -30,6 +30,9 @@ namespace WPFLayer
             this.TextBox_IdGameToJoin.MaxLength = 8;
             this.PlayerLogin = player;
             this.UserLogin = player.User;
+            InstanceContext context = new InstanceContext(this);
+            ServicesImplementation.PingClient ping = new PingClient(context);
+            ping.ConnectPingManagement(UserLogin);
             HideBanUsersButton();
         }
 
@@ -126,5 +129,12 @@ namespace WPFLayer
             }
         }
 
+        public void Alive()
+        {
+        }
+
+        public void BackMenu()
+        {
+        }
     }
 }

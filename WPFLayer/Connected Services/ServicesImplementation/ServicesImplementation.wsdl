@@ -145,6 +145,35 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IPing_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -385,6 +414,24 @@
   <wsdl:message name="IMessages_ReciveChatMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReciveChatMessage" />
   </wsdl:message>
+  <wsdl:message name="IPing_ConnectPingManagement_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectPingManagement" />
+  </wsdl:message>
+  <wsdl:message name="IPing_ConnectPingManagement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectPingManagementResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPing_Alive_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Alive" />
+  </wsdl:message>
+  <wsdl:message name="IPing_Alive_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPing_BackMenu_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:BackMenu" />
+  </wsdl:message>
+  <wsdl:message name="IPing_BackMenu_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:BackMenuResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUsersManager">
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/AddUser" message="tns:IUsersManager_AddUser_InputMessage" />
@@ -568,6 +615,20 @@
     </wsdl:operation>
     <wsdl:operation name="ReciveChatMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessages/ReciveChatMessage" message="tns:IMessages_ReciveChatMessage_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IPing">
+    <wsdl:operation name="ConnectPingManagement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPing/ConnectPingManagement" message="tns:IPing_ConnectPingManagement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPing/ConnectPingManagementResponse" message="tns:IPing_ConnectPingManagement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Alive">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPing/Alive" message="tns:IPing_Alive_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPing/AliveResponse" message="tns:IPing_Alive_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BackMenu">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPing/BackMenu" message="tns:IPing_BackMenu_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPing/BackMenuResponse" message="tns:IPing_BackMenu_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUsersManager" type="tns:IUsersManager">
@@ -968,13 +1029,44 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IPing" type="tns:IPing">
+    <wsp:PolicyReference URI="#NetTcpBinding_IPing_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ConnectPingManagement">
+      <soap12:operation soapAction="http://tempuri.org/IPing/ConnectPingManagement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Alive">
+      <soap12:operation soapAction="http://tempuri.org/IPing/Alive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackMenu">
+      <soap12:operation soapAction="http://tempuri.org/IPing/BackMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ServicesImplementation">
     <wsdl:port name="NetTcpBinding_IUsersManager" binding="tns:NetTcpBinding_IUsersManager">
       <soap12:address location="net.tcp://localhost:8090/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -983,7 +1075,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -992,7 +1084,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1001,7 +1093,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1010,7 +1102,16 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IPing" binding="tns:NetTcpBinding_IPing">
+      <soap12:address location="net.tcp://localhost:8090/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>DESKTOP-BP3OGCL\oband</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
