@@ -1,78 +1,11 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\App.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\AddFriendWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\ImageHelper.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\BanUsersPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\FriendsPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GameConfigurationWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GameMenu.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GamePage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GameRoom.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\InvitationWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\LoginPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\PodiumPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\ProfilePage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\ProfileWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\RecoverPasswordPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\SignUpPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\App.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\MainWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Properties\ResourcesPlayerRankImages.resx
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Properties\ResourcesProfileImages.resx
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Properties\Resources.resx
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\item.xsd
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\item1.xsd
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\item2.xsd
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\item3.xsd
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\item4.xsd
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\ServicesImplementation.wsdl
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Boards.datasource
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Categories.datasource
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Users.datasource
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\packages.config
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Properties\Settings.settings
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\App.config
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\item.disco
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\configuration91.svcinfo
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\configuration.svcinfo
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Connected Services\ServicesImplementation\Reference.svcmap
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\AddFriendWindow.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\BanUsersPage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\FriendsPage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GameConfigurationWindow.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GameMenu.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GamePage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\GameRoom.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\InvitationWindow.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\LoginPage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\MainWindow.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\PodiumPage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\ProfilePage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\ProfileWindow.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\RecoverPasswordPage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\SignUpPage.xaml
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\timer.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\podium.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\Bronce.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\BronceII.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\BronceIII.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\Oro.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\OroII.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\OroIII.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\Plata.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\PlataII.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\PlataIII.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\ProfileImages\Lemon.jpg
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\ProfileImages\PurpleBoo.jpg
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\ProfileImages\RedRobot.jpg
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\ProfileImages\SurprisedEgg.jpg
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\ProfileImages\WaterDrop.jpg
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\PlayerRankImages\Maestro.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\configuration.jpg
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\turn.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\wackamole.gif
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\intersection.gif
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\mail.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\key.png
-C:\Users\52228\source\repos\CrosswordsV2Ping\WPFLayer\Assets\Images\plane.png
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\Services\ConnectionMap.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IGameManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IGameRoomManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IMessages.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IPlayersManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\IUsersManager.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\RoomMap.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\ServicesImplementation.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\App.config
+C:\Users\52228\source\repos\CrosswordsV2-test\Services\packages.config

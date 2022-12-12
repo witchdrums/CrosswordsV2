@@ -274,7 +274,7 @@ namespace WPFLayer
             DeselectAllBoardLabels();
 
             WordsBoard selectedWord = GetSelectedWordInClueList();
-            ClearSelectedWordLabels(selectedWord);
+            ClearSelectedWordLabels();
             InitializeTextBoxToSolveWord(selectedWord);
 
             int xIndex = selectedWord.xStart;
@@ -361,7 +361,7 @@ namespace WPFLayer
                 AddScore(selectedWord);
                 selectedWord.Word.isSolved = true;
                 GetGameManagementClient().SendSolvedWordsBoard(this.gamePlayersQueue, this.Player, selectedWord);
-                ClearSelectedWordLabels(selectedWord);
+                ClearSelectedWordLabels();
             }
             else
             {
@@ -393,12 +393,10 @@ namespace WPFLayer
             this.Button_Guess.IsEnabled = hasTurn;
         }
 
-        private void ClearSelectedWordLabels(WordsBoard word)
+        private void ClearSelectedWordLabels()
         {
-
             this.selectedWordLabels.Clear();
             this.selectedWordLabelsCopy.Clear();
-            
         }
 
 
@@ -426,7 +424,6 @@ namespace WPFLayer
                 this.TextBox_Message.Clear();
             }
         }
-
 
         public void ReceiveSolvedWordsBoard(GamesPlayers solver, WordsBoard solvedWordsBoard)
         {

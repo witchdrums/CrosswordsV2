@@ -254,23 +254,23 @@ namespace Services
             OperationContext userContext;
 
             currentTurns -= 1;
-            gamePlayers.Enqueue(gamePlayers.Dequeue());
+            gamePlayersQueue.Enqueue(gamePlayersQueue.Dequeue());
             List<Users> users = new List<Users>();
 
-            foreach (GamesPlayers gamePlayer in gamePlayers)
+            foreach (GamesPlayers gamePlayer in gamePlayersQueue)
             {
                 users.Add(gamePlayer.Player.User);
             }
             bool flag = this.CheckAlive(users);
             if(flag)
             {
-                foreach (GamesPlayers gamePlayer in gamePlayers)
+                foreach (GamesPlayers gamePlayer in gamePlayersQueue)
                 {
                     int idUser = gamePlayer.Player.User.idUser;
                     userContext = connectionMapGameManagement.GetOperationContextForId(idUser);
-                    userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayers, currentTurns);
+                    userContext.GetCallbackChannel<IGameManagementCallback>().UpdateGamePlayersQueue(gamePlayersQueue, currentTurns);
                 }
-                int nextIdUser = gamePlayers.Peek().Player.User.idUser;
+                int nextIdUser = gamePlayersQueue.Peek().Player.User.idUser;
                 userContext = connectionMapGameManagement.GetOperationContextForId(nextIdUser);
                 userContext.GetCallbackChannel<IGameManagementCallback>().ReceiveTurn();
             } 

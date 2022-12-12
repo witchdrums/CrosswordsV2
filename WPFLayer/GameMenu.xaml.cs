@@ -20,7 +20,7 @@ using WPFLayer.Properties;
 
 namespace WPFLayer
 {
-    public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback
+    public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback,
     {
         public ServicesImplementation.Users UserLogin { get; set; }
         public ServicesImplementation.Players PlayerLogin { get; set; }

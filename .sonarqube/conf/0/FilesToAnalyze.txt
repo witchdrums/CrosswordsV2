@@ -1,4 +1,3 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2Ping\Email\EmailService.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\Email\IEmailService.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\Email\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\Email\Properties\EmailCredentials.resx
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\Email\EmailService.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Email\IEmailService.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Email\Properties\AssemblyInfo.cs

@@ -1,4 +1,0 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2Ping\Host\Program.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\Host\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2Ping\Host\App.config
-C:\Users\52228\source\repos\CrosswordsV2Ping\Host\packages.config
