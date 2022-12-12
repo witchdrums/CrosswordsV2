@@ -107,7 +107,7 @@
                 <StackPanel  Orientation="Vertical">
                     <Button 
                         x:Name="Button_Enemy3" 
-                        Content="Jugador" 
+                        Content="{x:Static p:Resources.Game_Button_GuestPlayer}" 
                         HorizontalAlignment="Center" 
                         Background="White" 
                         BorderBrush="White" 
@@ -142,7 +142,7 @@
                 <StackPanel  Orientation="Vertical">
                     <Button 
                         x:Name="Button_Enemy2"
-                        Content="Jugador"
+                        Content="{x:Static p:Resources.Game_Button_GuestPlayer}"
                         HorizontalAlignment="Center" 
                         Background="White"
                         BorderBrush="White"
@@ -177,7 +177,7 @@
                 <StackPanel  Orientation="Vertical">
                     <Button
                         x:Name="Button_Enemy1"
-                        Content="Jugador" 
+                        Content="{x:Static p:Resources.Game_Button_GuestPlayer}" 
                         HorizontalAlignment="Center"
                         Background="White" 
                         BorderBrush="White"

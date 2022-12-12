@@ -128,9 +128,5 @@ namespace WPFLayer
             this.NavigationService.GoBack();
         }
 
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

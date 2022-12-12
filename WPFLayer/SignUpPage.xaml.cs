@@ -160,15 +160,6 @@ namespace WPFLayer
         }
 
 
-        public void Response(bool response1)
-        {
-            if (response1)
-            {
-                MessageBox.Show("User has been added!");
-            }
-
-        }
-
         private void Button_Return_Click(object sender, RoutedEventArgs eventArguments)
         {
             this.NavigationService.GoBack();
