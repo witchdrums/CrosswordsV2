@@ -18,9 +18,7 @@ using WPFLayer.Properties;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for InvitationWindow.xaml
-    /// </summary>
+
     public partial class InvitationWindow : Window, IUsersManagerCallback
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }
@@ -57,12 +55,12 @@ namespace WPFLayer
             if(itemSelected == null)
             {
                 MessageBox.Show(Properties.Resources.Invitation_Message_Unselected);
-            }else if(true == true)
-                {
-                    ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
-                    playerTarget.User = usersManagerClient.GetUserByPlayer(playerTarget);
-                    this.SendEmail(playerTarget.User.email);
-                }
+            }else
+            {
+                ServicesImplementation.Players playerTarget = (Players)itemSelected.Tag;
+                playerTarget.User = usersManagerClient.GetUserByPlayer(playerTarget);
+                this.SendEmail(playerTarget.User.email);
+            }
         }
 
         private void Button_Search_Click(object sender, RoutedEventArgs e)

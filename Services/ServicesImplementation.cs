@@ -249,7 +249,7 @@ namespace Services
             }
         }
 
-        public void PassTurn(Queue<GamesPlayers> gamePlayersQueue, int currentTurns)
+        public void PassTurn(Queue<GamesPlayers> gamePlayers, int currentTurns)
         {
 
             OperationContext userContext;

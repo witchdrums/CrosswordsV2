@@ -102,9 +102,19 @@ namespace WPFLayer
             ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             //playerLogin.playerName = "Guest" + new Random().Next(1,1000);
-            userLogin.idUserType = 10;
+            userLogin.idUserType = (int)UserTypes.GUEST;
             userLogin.username = "Guest" + new Random().Next(1, 1000);
             playerLogin.User = userLogin;
+            playerLogin.Rank = new ServicesImplementation.Ranks()
+            {
+                idRank = 1,
+                rankName = "Bronce",
+            };
+            playerLogin.ProfileImage = new ServicesImplementation.ProfileImages()
+            {
+                idProfileImage = 1,
+                profileImageName = "Lemon"
+            };
             GameMenu gameMenuPage = new GameMenu(playerLogin);
             this.NavigationService.Navigate(gameMenuPage);
         }
