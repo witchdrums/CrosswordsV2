@@ -121,342 +121,342 @@
     <value>Hey!, you can't added, because are friends since ever.</value>
   </data>
   <data name="AddFriend_Message_FriendAdded" xml:space="preserve">
-    <value>Was added to your friend list</value>
+    <value> fue añadido a tu lista de amigos.</value>
   </data>
   <data name="AddFriend_Message_Selection" xml:space="preserve">
-    <value>Please, first select ha player</value>
+    <value>Por favor, selecciona a un jugador primero.</value>
   </data>
   <data name="BanUser_Header_Ban" xml:space="preserve">
-    <value>Ban</value>
+    <value>Banear</value>
   </data>
   <data name="BanUser_Header_Duration" xml:space="preserve">
-    <value>Duration</value>
+    <value>Duración</value>
   </data>
   <data name="BanUser_Header_Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Nombre de usuario</value>
   </data>
   <data name="BanUser_Label_BanUsers" xml:space="preserve">
-    <value>Ban users</value>
+    <value>Banear usuarios</value>
   </data>
   <data name="Button_AddFriend" xml:space="preserve">
-    <value>Add friend</value>
+    <value>Añadir amigo</value>
   </data>
   <data name="Button_EditProfile" xml:space="preserve">
-    <value>Edit profile</value>
+    <value>Editar perfil</value>
   </data>
   <data name="Button_Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Salir</value>
   </data>
   <data name="Button_GameSetting" xml:space="preserve">
-    <value>Game settings</value>
+    <value>Configuración de la partida</value>
   </data>
   <data name="Button_NewGame" xml:space="preserve">
-    <value>New game</value>
+    <value>Nuevo juego</value>
   </data>
   <data name="Button_Return" xml:space="preserve">
-    <value>Return</value>
+    <value>Regresar</value>
   </data>
   <data name="Button_Start" xml:space="preserve">
-    <value>Start</value>
+    <value>Comenzar</value>
   </data>
   <data name="Button_ViewProfile" xml:space="preserve">
-    <value>View profile</value>
+    <value>Ver perfil</value>
   </data>
   <data name="Crosswords" xml:space="preserve">
     <value>Crosswords</value>
   </data>
   <data name="Email_SignUpWelcome_Body" xml:space="preserve">
-    <value>That's it, have &lt;b&gt;fun :D&lt;/b&gt;</value>
+    <value>Eso es todo, &lt;b&gt;¡diviertete! :D&lt;/b&gt;</value>
   </data>
   <data name="Email_SignUpWelcome_Header" xml:space="preserve">
-    <value>Welcome to Crosswords</value>
+    <value>Bienvenidx a Crosswords</value>
   </data>
   <data name="Email_SignUpWelcome_Subject" xml:space="preserve">
-    <value>Thank you for signing up to Crosswords!</value>
+    <value>¡Gracias por registrarte a Crosswords!</value>
   </data>
   <data name="Exception_ServerFailure" xml:space="preserve">
-    <value>We couldn't reach our servers. Please, try again later.</value>
+    <value>No pudimos contactar a nuestros servidores. Por favor, inténtalo más tarde.</value>
   </data>
   <data name="FriendList_Message_FirstSelect" xml:space="preserve">
-    <value>Please, first select a friend</value>
+    <value>Por favor, selecciona a un amigo primero.</value>
   </data>
   <data name="FriendList_Message_Unfriend" xml:space="preserve">
-    <value>Alright yours aren't friends </value>
+    <value>Se ha removido a este amigo.</value>
   </data>
   <data name="Friends_Button_AddFriend" xml:space="preserve">
-    <value>Add Friend</value>
+    <value>Añadir amigo</value>
   </data>
   <data name="GameConfiguration_Button_SaveConfiguration" xml:space="preserve">
-    <value>Save</value>
+    <value>Guardar</value>
   </data>
   <data name="GameConfiguration_Label_GameConfiguration" xml:space="preserve">
-    <value>Game configuration</value>
+    <value>Configuración de la partida</value>
   </data>
   <data name="GameConfiguration_Label_Turns" xml:space="preserve">
-    <value>Turns</value>
+    <value>Turnos</value>
   </data>
   <data name="GameConfiguration_TextBlock_Seconds" xml:space="preserve">
-    <value>Seconds per turn</value>
+    <value>Segundos</value>
   </data>
   <data name="GameMenu_Button_BanUsers" xml:space="preserve">
-    <value>Ban users</value>
+    <value>Banear usuarios</value>
   </data>
   <data name="Game_Button_Guess" xml:space="preserve">
-    <value>Guess</value>
+    <value>Adivinar</value>
   </data>
   <data name="Game_Button_GuestPlayer" xml:space="preserve">
-    <value>Guest player</value>
+    <value>Invitado</value>
   </data>
   <data name="Game_Button_LeaveGame" xml:space="preserve">
-    <value>Leave game</value>
+    <value>Abandonar partida</value>
   </data>
   <data name="Game_Button_StartGame" xml:space="preserve">
-    <value>Start game!</value>
+    <value>¡Comenzar partida!</value>
   </data>
   <data name="Game_Label_Clues" xml:space="preserve">
-    <value>Clues</value>
+    <value>Pistas</value>
   </data>
   <data name="Game_Label_LeaveConfirmation" xml:space="preserve">
-    <value>Are you sure you want to leave this game?</value>
+    <value>¿Estás segurx de abandonar la partida?</value>
   </data>
   <data name="Game_Label_ReportingPlayer" xml:space="preserve">
-    <value>Reporting player: </value>
+    <value>Reportando al jugador: </value>
   </data>
   <data name="Game_Label_Score" xml:space="preserve">
-    <value>Score: </value>
+    <value>Puntuación: </value>
   </data>
   <data name="Game_Message_ForceExit" xml:space="preserve">
-    <value>The host left the game. You'll return to the main menu.</value>
+    <value>El anfitrión abandonó la partida. Regresarás al menú principal.</value>
   </data>
   <data name="Game_Message_Leave" xml:space="preserve">
-    <value>Are you sure you want to leave the game?</value>
+    <value>¿Estás segurx de abandonar la partida?</value>
   </data>
   <data name="General_Button_Accept" xml:space="preserve">
-    <value>Accept</value>
+    <value>Aceptar</value>
   </data>
   <data name="General_Button_Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Regresar</value>
   </data>
   <data name="General_Button_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="General_Button_Friends" xml:space="preserve">
-    <value>Friends</value>
+    <value>Amigos</value>
   </data>
   <data name="General_Button_Join" xml:space="preserve">
-    <value>Join to Game!</value>
+    <value>¡Unirse a partida!</value>
   </data>
   <data name="General_Button_MyProfile" xml:space="preserve">
-    <value>My profile</value>
+    <value>Mi perfil</value>
   </data>
   <data name="General_Button_NewGame" xml:space="preserve">
-    <value>New Game!</value>
+    <value>¡Juego nuevo!</value>
   </data>
   <data name="General_Button_No" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="General_Button_Report" xml:space="preserve">
-    <value>Report</value>
+    <value>Reportar</value>
   </data>
   <data name="General_Button_SaveChanges" xml:space="preserve">
-    <value>Save changes</value>
+    <value>Guardar cambios</value>
   </data>
   <data name="General_Button_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Buscar</value>
   </data>
   <data name="General_Button_Send" xml:space="preserve">
-    <value>Send</value>
+    <value>Enviar</value>
   </data>
   <data name="General_Button_Unfriend" xml:space="preserve">
-    <value>Unfriend</value>
+    <value>Remover amigo</value>
   </data>
   <data name="General_Button_ViewProfile" xml:space="preserve">
-    <value>View profile</value>
+    <value>Ver perfil</value>
   </data>
   <data name="General_Button_Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Sí</value>
   </data>
   <data name="General_Label_Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
   <data name="General_Label_EmailAlreadyExists" xml:space="preserve">
-    <value>This e-mail is already in our system</value>
+    <value>Éste e-mail ya está en nuestro sistema.</value>
   </data>
   <data name="General_Label_EmailInvalid" xml:space="preserve">
-    <value>Invalid e-mail address</value>
+    <value>El e-mail es inválido.</value>
   </data>
   <data name="General_Label_FriendList" xml:space="preserve">
-    <value>Friend List</value>
+    <value>Lista de amigos</value>
   </data>
   <data name="General_Label_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Contraseña</value>
   </data>
   <data name="General_Label_PasswordConfirmation" xml:space="preserve">
-    <value>Confirm your password</value>
+    <value>Confirma tu contraseña</value>
   </data>
   <data name="General_Label_PasswordDontMatch" xml:space="preserve">
-    <value>The passwords must match</value>
+    <value>La constraseñas deben coincidir.</value>
   </data>
   <data name="General_Label_PasswordInvalid" xml:space="preserve">
-    <value>Password must be 10 characters or longer and contain at least: one lower case letter, one upper case letter, one number and one special character of the following type:  !*@#$%^&amp;+=</value>
+    <value>La contraseña debe tener 10 caracteres o más y contener al menos: una letra minúscula, una letra mayúscula, un número y un caracter especial: !*@#$%^&amp;+=</value>
   </data>
   <data name="General_Label_UpdateProfile" xml:space="preserve">
-    <value>Update profile</value>
+    <value>Actualizar perfil</value>
   </data>
   <data name="General_Label_Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Nombre de usuario</value>
   </data>
   <data name="General_Label_UsernameInvalid" xml:space="preserve">
-    <value>Invalid username</value>
+    <value>Nombre de usuario inválido</value>
   </data>
   <data name="General_MenuItem_Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Lenguaje</value>
   </data>
   <data name="General_Message_CannotOperation" xml:space="preserve">
-    <value>We cannot do the operation</value>
+    <value>No podemos efectuar esta operación</value>
   </data>
   <data name="General_Text_Code" xml:space="preserve">
-    <value>Codigo</value>
+    <value>Código</value>
   </data>
   <data name="Invitation_Message_Unselected" xml:space="preserve">
-    <value>Please, select a friend to send invitation</value>
+    <value>Por favor, selecciona a un amigo para enviarle la invitación.</value>
   </data>
   <data name="Invite_Button_Invite" xml:space="preserve">
-    <value>Send Invitation</value>
+    <value>Enviar invitación</value>
   </data>
   <data name="Label_Friends" xml:space="preserve">
-    <value>Friends</value>
+    <value>Amigos</value>
   </data>
   <data name="Label_GamesPlayed" xml:space="preserve">
-    <value>Games played</value>
+    <value>Partidas jugadas</value>
   </data>
   <data name="Label_GamesWon" xml:space="preserve">
-    <value>Games won</value>
+    <value>Partidas ganadas</value>
   </data>
   <data name="Label_InviteFriend" xml:space="preserve">
-    <value>Invite friend</value>
+    <value>Invitar amigo</value>
   </data>
   <data name="Label_PlayerDescription" xml:space="preserve">
-    <value>Player description</value>
+    <value>Descripción</value>
   </data>
   <data name="Label_PlayerID" xml:space="preserve">
-    <value>Player ID</value>
+    <value>ID</value>
   </data>
   <data name="Label_PlayerLevel" xml:space="preserve">
-    <value>Player level</value>
+    <value>Level</value>
   </data>
   <data name="Label_PlayerProfile" xml:space="preserve">
-    <value>Player profile</value>
+    <value>Perfil de jugador</value>
   </data>
   <data name="Label_PlayerRank" xml:space="preserve">
-    <value>Rank</value>
+    <value>Rango</value>
   </data>
   <data name="Label_SearchPlayer" xml:space="preserve">
-    <value>Search player</value>
+    <value>Buscar jugador</value>
   </data>
   <data name="LogIn_Button_ForgotYourPassword" xml:space="preserve">
-    <value>Forgot your password?</value>
+    <value>¿Olvidaste tu contraseña?</value>
   </data>
   <data name="LogIn_Button_Login" xml:space="preserve">
-    <value>Log in</value>
+    <value>Entrar</value>
   </data>
   <data name="LogIn_Button_PlayAsGuest" xml:space="preserve">
-    <value>Play as guest</value>
+    <value>Entrar como invitado</value>
+  </data>
+  <data name="LogIn_Button_SignUp" xml:space="preserve">
+    <value>Registrar</value>
   </data>
   <data name="LogIn_LogIn" xml:space="preserve">
-    <value>Log in</value>
+    <value>Iniciar sesión</value>
   </data>
   <data name="LogIn_Message_Ban" xml:space="preserve">
-    <value>You've been banned until: </value>
+    <value>Te banearon hasta: </value>
   </data>
   <data name="LogIn_Message_CheckCredentials" xml:space="preserve">
-    <value>We didn't find your account. Please, check your credentials o sign up.</value>
+    <value>No pudimos encontrar tu cuenta. Por favor, verifica tus credenciales o regístrate.</value>
   </data>
   <data name="LogIn_Message_UserNotFound" xml:space="preserve">
-    <value>User not found</value>
+    <value>Usuario no encontrado.</value>
   </data>
   <data name="LogIn_PlayAsGuest" xml:space="preserve">
-    <value>Play as guest</value>
-  </data>
-  <data name="LogIn_SignUp" xml:space="preserve">
-    <value>Sign up</value>
+    <value>Entrar como invitado</value>
   </data>
   <data name="Menu_Message_RoomUnviable" xml:space="preserve">
-    <value>The room isn't accesible. Try Again Later!</value>
+    <value>No puedes entrar a esta sala. ¡Inténtalo más tarde!</value>
   </data>
   <data name="Message_SignUpSuccess" xml:space="preserve">
-    <value>Thank you for signing up. Have fun!</value>
+    <value>Gracias por registrarte. ¡Diviertete!</value>
   </data>
   <data name="Podium_Button_MainMenu" xml:space="preserve">
-    <value>Return to main menu</value>
+    <value>Regresar al menú principal</value>
   </data>
   <data name="Podium_TextBlock_2nd" xml:space="preserve">
-    <value>2nd</value>
+    <value>2do</value>
   </data>
   <data name="Podium_TextBlock_3rd" xml:space="preserve">
-    <value>3rd</value>
+    <value>3ro</value>
   </data>
   <data name="Podium_TextBlock_4th" xml:space="preserve">
-    <value>4th</value>
+    <value>4to</value>
   </data>
   <data name="Podium_TextBlock_TheWinnerIs" xml:space="preserve">
-    <value>The winner is...</value>
+    <value>El ganador es...</value>
   </data>
   <data name="ProfilePage_Label_Avatar" xml:space="preserve">
     <value>Avatar</value>
   </data>
   <data name="ProfilePage_Label_Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descripción</value>
   </data>
   <data name="ProfilePage_Label_Level" xml:space="preserve">
-    <value>Level</value>
+    <value>Nivel</value>
   </data>
   <data name="ProfilePage_Label_PlayerName" xml:space="preserve">
-    <value>Player name</value>
+    <value>Nombre del jugador</value>
   </data>
   <data name="ProfilePage_Label_PlayerProfile" xml:space="preserve">
-    <value>Player profile</value>
+    <value>Perfil del jugador</value>
   </data>
   <data name="ProfilePage_Label_Rank" xml:space="preserve">
-    <value>Rank</value>
+    <value>Rango</value>
   </data>
   <data name="ProfileWindow_Button_SendReport" xml:space="preserve">
-    <value>Send report</value>
+    <value>Enviar reporte</value>
   </data>
   <data name="ProfileWindow_Header_ReportPlayer" xml:space="preserve">
-    <value>Report player</value>
+    <value>Reportar jugador</value>
   </data>
   <data name="ProfileWindow_Label_PlayedGames" xml:space="preserve">
-    <value>Played games</value>
+    <value>Partidas jugadas</value>
   </data>
   <data name="ProfileWindow_Label_WonGames" xml:space="preserve">
-    <value>Won games</value>
+    <value>Partidas ganadas</value>
   </data>
   <data name="ProfileWindow_Message_Submitted" xml:space="preserve">
-    <value>Your report has been submitted.</value>
+    <value>Tu reporte se ha enviado</value>
   </data>
   <data name="RecoverPassword_Button_Recover" xml:space="preserve">
-    <value>Recover</value>
+    <value>Recuperar</value>
   </data>
   <data name="RecoverPassword_Label_Email" xml:space="preserve">
     <value>Enter your email:</value>
   </data>
   <data name="RecoverPassword_Label_Username" xml:space="preserve">
-    <value>Enter your username:</value>
+    <value>Escribe tu nombre de usuario: </value>
   </data>
   <data name="RecoverPassword_RecoverYourPassword" xml:space="preserve">
-    <value>Recover Your Password</value>
+    <value>Recupera Tu Contraseña</value>
   </data>
   <data name="RecoverPassword_TextBlock_RecoverPasswordMessage" xml:space="preserve">
-    <value>Enter your e-mail address and username. If we have it on our system, we´ll send you instructions to re-establish your password.</value>
+    <value>Escribe tu dirección de e-mail y tu nombre de usuario. Si los tenemos registrados, te enviaremos instrucciones para re-establecer tu contraseña.</value>
   </data>
   <data name="Room_Button_Invite" xml:space="preserve">
-    <value>Invite Player</value>
+    <value>Invitar Jugador</value>
   </data>
   <data name="Room_Button_SettingGame" xml:space="preserve">
-    <value>Setting Game</value>
+    <value>Configurar Partida</value>
   </data>
   <data name="SignUp_Label_SignUp" xml:space="preserve">
-    <value>Sign Up!</value>
+    <value>¡Regístrate!</value>
   </data>
 </root>

@@ -49,7 +49,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Label x:Name="Label_PlayerProfile" Content="Perfil de jugador" Height="45" Foreground="White" Width="200" Margin="185,2,185,2" FontSize="24" FontWeight="Bold"/>
+                <Label x:Name="Label_PlayerProfile" Content="{hm:Lang ProfilePage_Label_PlayerProfile}" Height="45" Foreground="White" Width="200" Margin="185,2,185,2" FontSize="24" FontWeight="Bold"/>
             </Grid>
             <Grid Grid.Row="1">
                 <TextBox  x:Name="TextBox_IdPlayer" Text="ID:  8989" IsReadOnly="True" BorderBrush="#FF000000" Background="#7093c7" Height="40" Width="150" FontWeight="Bold" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
@@ -77,19 +77,19 @@
                     <Label x:Name="Label_PlayerRank" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="244" Height="39" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" Margin="10,89,0,0"/>
                 </Grid>
                 <Border Margin="40,40,40,40" Padding="5" BorderThickness="1" BorderBrush="#FF000000" CornerRadius="10">
-                    <TextBlock x:Name="TextBlock_Rank" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Rango" TextAlignment="Center" VerticalAlignment="Center" Width="166" FontSize="22" FontWeight="Bold"/>
+                    <TextBlock x:Name="TextBlock_Rank" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{hm:Lang ProfilePage_Label_Rank}" TextAlignment="Center" VerticalAlignment="Center" Width="166" FontSize="22" FontWeight="Bold"/>
                 </Border>
                 <Border Margin="40,10,40,12" Padding="5" BorderThickness="1" BorderBrush="#FF000000" CornerRadius="10" Grid.Row="1" >
-                    <TextBlock x:Name="TextBlock_GamesPlayed" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Partidas jugadas:  " TextAlignment="Center" VerticalAlignment="Center" Width="144" FontSize="16" FontWeight="Bold" Margin="4,0,0,0"/>
+                    <TextBlock x:Name="TextBlock_GamesPlayed" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{hm:Lang ProfileWindow_Label_PlayedGames}" TextAlignment="Center" VerticalAlignment="Center" Width="144" FontSize="16" FontWeight="Bold" Margin="4,0,0,0"/>
                 </Border>
                 <Border Margin="40,10,40,12" Padding="5" BorderThickness="1" BorderBrush="#FF000000" CornerRadius="10" Grid.Row="2">
-                    <TextBlock x:Name="TextBlock_PlayerLevel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nivel:  " TextAlignment="Center" VerticalAlignment="Center" Width="128" FontSize="16" FontWeight="Bold" Margin="-30,0,0,0"/>
+                    <TextBlock x:Name="TextBlock_PlayerLevel" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{hm:Lang ProfilePage_Label_Level}" TextAlignment="Center" VerticalAlignment="Center" Width="128" FontSize="16" FontWeight="Bold" Margin="-30,0,0,0"/>
                 </Border>
                 <Border Margin="40,10,40,12" Padding="5" BorderThickness="1" BorderBrush="#FF000000" CornerRadius="10" Grid.Row="1" Grid.Column="1">
-                    <TextBlock x:Name="TextBlock_GamesWon" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Partidas ganadas:  " TextAlignment="Center" VerticalAlignment="Center" Width="166" FontSize="16" FontWeight="Bold" Margin="-14,0,0,0"/>
+                    <TextBlock x:Name="TextBlock_GamesWon" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{hm:Lang ProfileWindow_Label_WonGames}" TextAlignment="Center" VerticalAlignment="Center" Width="166" FontSize="16" FontWeight="Bold" Margin="-14,0,0,0"/>
                 </Border>
                 <Border Margin="40,4,40,5" Padding="5" BorderThickness="1" BorderBrush="#FF000000" CornerRadius="10" Grid.Row="2" Grid.Column="1">
-                    <TextBlock x:Name="TextBlock_PlayerDescription" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Descripción:  " TextAlignment="Center" VerticalAlignment="Center" Width="226" FontSize="16" FontWeight="Bold" Margin="-65,0,0,0"/>
+                    <TextBlock x:Name="TextBlock_PlayerDescription" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{hm:Lang ProfilePage_Label_Description}" TextAlignment="Center" VerticalAlignment="Center" Width="226" FontSize="16" FontWeight="Bold" Margin="-65,0,0,0"/>
                 </Border>
                 <TextBlock x:Name="TextBlock_GamesPlayedNumber" HorizontalAlignment="Left" Margin="186,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="64" FontSize="16" FontWeight="Bold" TextAlignment="Left" Text="0"/>
                 <TextBlock x:Name="TextBlock_GamesWonNumber" HorizontalAlignment="Left" Margin="180,-1,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="77" FontSize="16" FontWeight="Bold" TextAlignment="Left" Text="0" Grid.Column="1"/>
@@ -97,14 +97,14 @@
                 <TextBlock x:Name="TextBlock_PlayerLevelNumber" HorizontalAlignment="Left" Margin="101,-1,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="149" FontSize="16" FontWeight="Bold" TextAlignment="Left" Text="0"/>
             </Grid>
             <Grid Grid.Row="3">
-                <Button  x:Name="Button_Exit" BorderThickness="2" Content="Salir" Height="40" Width="150"  Foreground="White" Background="#FF000000" FontWeight="Normal" Margin="348,30,72,30" Click="Button_Exit_Click" >
+                <Button  x:Name="Button_Exit" BorderThickness="2" Content="{hm:Lang General_Button_Back}" Height="40" Width="150"  Foreground="White" Background="#FF000000" FontWeight="Normal" Margin="348,30,72,30" Click="Button_Exit_Click" >
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="Button_EditProfile" BorderThickness="2" Content="Modificar" Foreground="White" Background="#FF000000" Height="40" Width="150" FontWeight="Normal" Margin="86,30,334,30" Click="Button_EditProfile_Click">
+                <Button x:Name="Button_EditProfile" BorderThickness="2" Content="{hm:Lang General_Label_UpdateProfile}" Foreground="White" Background="#FF000000" Height="40" Width="150" FontWeight="Normal" Margin="86,30,334,30" Click="Button_EditProfile_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>

@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="Label_UpdatePlayerProfile" Content="Personalizar perfil" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="306,10,0,0" Foreground="White"/>
+        <Label x:Name="Label_UpdatePlayerProfile" Content="{hm:Lang General_Label_UpdateProfile}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="306,10,0,0" Foreground="White"/>
         <Grid Margin="3,64,-3,0" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -28,9 +28,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label>
-                <Label x:Name="Label_Avatar" Content="Avatar:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="325,34.5,0,0" Width="67" Foreground="White"/>
+                <Label x:Name="Label_Avatar" Content="{hm:Lang ProfilePage_Label_Avatar}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="325,34.5,0,0" Width="67" Foreground="White"/>
             </Label>
-            <Label x:Name="Label_PlayerName" Content="Nombre de jugador:" HorizontalAlignment="Left" Margin="250,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Width="145" Foreground="White"/>
+            <Label x:Name="Label_PlayerName" Content="{hm:Lang ProfilePage_Label_PlayerName}" HorizontalAlignment="Left" Margin="250,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Width="145" Foreground="White"/>
             <TextBox x:Name="TextBox_PlayerName" Grid.Column="1" MaxLength="20" VerticalContentAlignment="Center" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" Margin="10,32,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35" TextAlignment="Left" FontWeight="Normal">
                 <TextBox.Resources>
                     <Style TargetType="Border">
@@ -38,7 +38,7 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <Label x:Name="Label_PlayerDescription" Content="Descripción:" HorizontalAlignment="Left" Margin="302,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Width="92" Foreground="White"/>
+            <Label x:Name="Label_PlayerDescription" Content="{hm:Lang ProfilePage_Label_Description}" HorizontalAlignment="Left" Margin="302,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Width="92" Foreground="White"/>
             <TextBox x:Name="TextBox_PlayerDescription" Grid.Column="1"  MaxLength="18" BorderThickness="2" BorderBrush="Black" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,32,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="35">
                 <TextBox.Resources>
                     <Style TargetType="Border">
@@ -46,14 +46,14 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <Button x:Name="Button_Save" BorderThickness="2" Content="Guardar" HorizontalAlignment="Left" Margin="213,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="150" Height="35" FontWeight="Bold" Click="Button_Save_Click">
+            <Button x:Name="Button_Save" BorderThickness="2" Content="{hm:Lang General_Button_SaveChanges}" HorizontalAlignment="Left" Margin="213,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="150" Height="35" FontWeight="Bold" Click="Button_Save_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Button_Cancel" BorderThickness="2" Grid.Column="1" Content="Cancelar" HorizontalAlignment="Left" Margin="60,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="150" Height="35" FontWeight="Bold" Click="Button_Cancel_Click">
+            <Button x:Name="Button_Cancel" BorderThickness="2" Grid.Column="1" Content="{hm:Lang General_Button_Cancel}" HorizontalAlignment="Left" Margin="60,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="150" Height="35" FontWeight="Bold" Click="Button_Cancel_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

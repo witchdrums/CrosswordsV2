@@ -363,6 +363,9 @@
   <data name="LogIn_Button_PlayAsGuest" xml:space="preserve">
     <value>Play as guest</value>
   </data>
+  <data name="LogIn_Button_SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
   <data name="LogIn_LogIn" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -377,9 +380,6 @@
   </data>
   <data name="LogIn_PlayAsGuest" xml:space="preserve">
     <value>Play as guest</value>
-  </data>
-  <data name="LogIn_SignUp" xml:space="preserve">
-    <value>Sign up</value>
   </data>
   <data name="Menu_Message_RoomUnviable" xml:space="preserve">
     <value>The room isn't accesible. Try Again Later!</value>

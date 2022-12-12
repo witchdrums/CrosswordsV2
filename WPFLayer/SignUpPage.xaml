@@ -160,7 +160,7 @@
                 <StackPanel Grid.Row="4">
                     <Button 
                         x:Name="Button_SignUp" 
-                        Content="{hm:Lang LogIn_SignUp}"
+                        Content="{hm:Lang LogIn_Button_SignUp}"
                         VerticalAlignment="Top" 
             
                         Height="34" 

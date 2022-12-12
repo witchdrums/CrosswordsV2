@@ -209,6 +209,16 @@
     <Compile Include="ProfileWindow.xaml.cs">
       <DependentUpon>ProfileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.ES.Designer.cs">
+      <DependentUpon>Resources.ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.EN.Designer.cs">
+      <DependentUpon>Resources.EN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\ResourcesPlayerRankImages.Designer.cs">
       <DependentUpon>ResourcesPlayerRankImages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -315,6 +325,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.EN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.EN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\ResourcesPlayerRankImages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesPlayerRankImages.Designer.cs</LastGenOutput>

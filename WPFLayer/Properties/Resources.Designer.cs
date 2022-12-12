@@ -610,6 +610,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update profile.
+        /// </summary>
+        public static string General_Label_UpdateProfile {
+            get {
+                return ResourceManager.GetString("General_Label_UpdateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string General_Label_Username {
@@ -808,6 +817,24 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We didn&apos;t find your account. Please, check your credentials o sign up..
+        /// </summary>
+        public static string LogIn_Message_CheckCredentials {
+            get {
+                return ResourceManager.GetString("LogIn_Message_CheckCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found.
+        /// </summary>
+        public static string LogIn_Message_UserNotFound {
+            get {
+                return ResourceManager.GetString("LogIn_Message_UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play as guest.
         /// </summary>
         public static string LogIn_PlayAsGuest {
@@ -885,6 +912,60 @@ namespace WPFLayer.Properties {
         public static string Podium_TextBlock_TheWinnerIs {
             get {
                 return ResourceManager.GetString("Podium_TextBlock_TheWinnerIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avatar.
+        /// </summary>
+        public static string ProfilePage_Label_Avatar {
+            get {
+                return ResourceManager.GetString("ProfilePage_Label_Avatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string ProfilePage_Label_Description {
+            get {
+                return ResourceManager.GetString("ProfilePage_Label_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string ProfilePage_Label_Level {
+            get {
+                return ResourceManager.GetString("ProfilePage_Label_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player name.
+        /// </summary>
+        public static string ProfilePage_Label_PlayerName {
+            get {
+                return ResourceManager.GetString("ProfilePage_Label_PlayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player profile.
+        /// </summary>
+        public static string ProfilePage_Label_PlayerProfile {
+            get {
+                return ResourceManager.GetString("ProfilePage_Label_PlayerProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank.
+        /// </summary>
+        public static string ProfilePage_Label_Rank {
+            get {
+                return ResourceManager.GetString("ProfilePage_Label_Rank", resourceCulture);
             }
         }
         
