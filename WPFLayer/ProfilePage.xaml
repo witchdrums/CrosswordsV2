@@ -21,7 +21,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="2">
-                <TextBox x:Name="TexBox_PlayerName" Margin="10,0,10,127" Text="TheChavis" Background="#01bdaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True" FontWeight="Bold" FontSize="14">
+                <TextBox x:Name="TextBox_PlayerName" Margin="10,0,10,127" Text="Usuario0012345678900" Background="#01bdaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True" FontWeight="Bold" FontSize="14">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -95,14 +95,14 @@
                 <TextBlock x:Name="TextBlock_PlayerLevelNumber" HorizontalAlignment="Left" Margin="101,-1,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="149" FontSize="16" FontWeight="Bold" TextAlignment="Left" Text="0"/>
             </Grid>
             <Grid Grid.Row="3">
-                <Button  x:Name="Button_Exit" Content="Salir" Height="40" Width="150"  Foreground="White" Background="#FF000000" FontWeight="Normal" Margin="348,30,72,30" Click="Button_Exit_Click" >
+                <Button  x:Name="Button_Exit" BorderThickness="2" Content="Salir" Height="40" Width="150"  Foreground="White" Background="#FF000000" FontWeight="Normal" Margin="348,30,72,30" Click="Button_Exit_Click" >
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="Button_EditProfile" Content="Modificar" Foreground="White" Background="#FF000000" Height="40" Width="150" FontWeight="Normal" Margin="86,30,334,30" Click="Button_EditProfile_Click">
+                <Button x:Name="Button_EditProfile" BorderThickness="2" Content="Modificar" Foreground="White" Background="#FF000000" Height="40" Width="150" FontWeight="Normal" Margin="86,30,334,30" Click="Button_EditProfile_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -112,7 +112,6 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="2" Background="#384b74">
-
         </Grid>
     </Grid>
 </Page>

@@ -209,5 +209,23 @@ namespace BusinessServices
             }
             return currentIdRank;
         }
+
+        public bool UpdatePlayerProfileInformation(Players playerToUpdate)
+        {
+            bool updatePlayerSuccessful = false;
+            if (playerToUpdate.idPlayer > 0)
+            {
+                using (var context = new CrosswordsContext())
+                {
+                    Player businessPlayer = context.Players.Find(playerToUpdate.idPlayer);
+                    businessPlayer.idProfileImage = playerToUpdate.idProfileImage;
+                    businessPlayer.playerName = playerToUpdate.playerName;
+                    businessPlayer.playerDescription = playerToUpdate.playerDescription;
+                    context.Players.AddOrUpdate(businessPlayer);
+                    updatePlayerSuccessful = context.SaveChanges() == 1;
+                }
+            }
+            return updatePlayerSuccessful;
+        }
     }
 }

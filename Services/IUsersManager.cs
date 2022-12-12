@@ -40,6 +40,9 @@ namespace Services
 
         [OperationContract]
         bool UpdateUserBanStatus(Users user);
+
+        [OperationContract]
+        List<ProfileImages> GetProfileImages();
     }
 
     [ServiceContract]

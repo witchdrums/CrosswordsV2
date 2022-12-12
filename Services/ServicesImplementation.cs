@@ -95,6 +95,11 @@ namespace Services
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
             return userManagement.UpdateUserBanStatus(user);
         }
+        public List<ProfileImages> GetProfileImages()
+        {
+            BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
+            return userManagement.GetProfileImages();
+        }
 
     }
 
@@ -420,6 +425,12 @@ namespace Services
             BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
             result = playersManagement.DeleteFriendPlayer(playerOrigin, playerTarget);
             return result;
+        }
+
+        public bool UpdatePlayerProfileInformation(Players player)
+        {
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            return playersManagement.UpdatePlayerProfileInformation(player);
         }
     }
     public partial class ServicesImplementation : IPing

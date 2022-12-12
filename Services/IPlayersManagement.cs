@@ -26,5 +26,7 @@ namespace Services
         bool AddFriend(Players playerOrigin, Players playerTarget);
         [OperationContract]
         bool RemoveFriend(Players playerOrigin, Players playerTarget);
+        [OperationContract]
+        bool UpdatePlayerProfileInformation(Players player);
     }
 }

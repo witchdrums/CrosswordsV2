@@ -20,7 +20,7 @@ using WPFLayer.Properties;
 
 namespace WPFLayer
 {
-    public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback,
+    public partial class GameMenu : Page, ServicesImplementation.IGameRoomManagementCallback
     {
         public ServicesImplementation.Users UserLogin { get; set; }
         public ServicesImplementation.Players PlayerLogin { get; set; }
@@ -30,7 +30,17 @@ namespace WPFLayer
             this.TextBox_IdGameToJoin.MaxLength = 8;
             this.PlayerLogin = player;
             this.UserLogin = player.User;
+            HideFeaturesByUserType();
             HideBanUsersButton();
+        }
+
+        private void HideFeaturesByUserType()
+        {
+            if (UserLogin.idUserType == (int)UserTypes.GUEST)
+            {
+                this.Button_MyProfile.Visibility = Visibility.Hidden;
+                this.Button_Friends.Visibility = Visibility.Hidden;
+            }
         }
 
         private void HideBanUsersButton()
