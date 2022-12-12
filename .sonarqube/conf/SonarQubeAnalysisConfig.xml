@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AnalysisConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <SonarConfigDir>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf</SonarConfigDir>
-  <SonarOutputDir>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\out</SonarOutputDir>
-  <SonarBinDir>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\bin</SonarBinDir>
-  <SonarScannerWorkingDirectory>C:\Users\52228\source\repos\CrosswordsV2SonarQube</SonarScannerWorkingDirectory>
+  <SonarConfigDir>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf</SonarConfigDir>
+  <SonarOutputDir>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\out</SonarOutputDir>
+  <SonarBinDir>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\bin</SonarBinDir>
+  <SonarScannerWorkingDirectory>C:\Users\52228\source\repos\CrosswordsV2-test</SonarScannerWorkingDirectory>
   <HasBeginStepCommandLineCredentials>true</HasBeginStepCommandLineCredentials>
   <SonarQubeHostUrl>http://localhost:9004</SonarQubeHostUrl>
   <SonarQubeVersion>9.7.1.62043</SonarQubeVersion>
@@ -112,7 +112,7 @@
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>
     <Property Name="sonar.core.id">147B411E-AYR7fdHQZ3tdIkCJK5SR</Property>
-    <Property Name="sonar.core.startTime">11/12/2022 05:42:44 p. m.</Property>
+    <Property Name="sonar.core.startTime">21/11/2022 06:07:22 p. m.</Property>
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">http://localhost:9004</Property>
@@ -120,58 +120,58 @@
   <AnalyzersSettings>
     <AnalyzerSettings>
       <Language>cs</Language>
-      <RulesetPath>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf\Sonar-cs.ruleset</RulesetPath>
-      <DeactivatedRulesetPath>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf\Sonar-cs-none.ruleset</DeactivatedRulesetPath>
+      <RulesetPath>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf\Sonar-cs.ruleset</RulesetPath>
+      <DeactivatedRulesetPath>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf\Sonar-cs-none.ruleset</DeactivatedRulesetPath>
       <AnalyzerPlugins>
         <AnalyzerPlugin Key="csharp" Version="8.46.0.54807" StaticResourceName="SonarAnalyzer-8.46.0.54807.zip">
           <AssemblyPaths>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\Google.Protobuf.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.CSharp.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
         <AnalyzerPlugin Key="vbnet" Version="8.46.0.54807" StaticResourceName="SonarAnalyzer-8.46.0.54807.zip">
           <AssemblyPaths>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\Google.Protobuf.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.VisualBasic.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
       </AnalyzerPlugins>
       <AdditionalFilePaths>
-        <Path>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf\cs\SonarLint.xml</Path>
+        <Path>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf\cs\SonarLint.xml</Path>
       </AdditionalFilePaths>
     </AnalyzerSettings>
     <AnalyzerSettings>
       <Language>vbnet</Language>
-      <RulesetPath>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf\Sonar-vbnet.ruleset</RulesetPath>
-      <DeactivatedRulesetPath>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf\Sonar-vbnet-none.ruleset</DeactivatedRulesetPath>
+      <RulesetPath>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf\Sonar-vbnet.ruleset</RulesetPath>
+      <DeactivatedRulesetPath>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf\Sonar-vbnet-none.ruleset</DeactivatedRulesetPath>
       <AnalyzerPlugins>
         <AnalyzerPlugin Key="csharp" Version="8.46.0.54807" StaticResourceName="SonarAnalyzer-8.46.0.54807.zip">
           <AssemblyPaths>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\Google.Protobuf.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.CSharp.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\2\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\0\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
         <AnalyzerPlugin Key="vbnet" Version="8.46.0.54807" StaticResourceName="SonarAnalyzer-8.46.0.54807.zip">
           <AssemblyPaths>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\Google.Protobuf.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.VisualBasic.dll</Path>
-            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\3\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
+            <Path>C:\Users\52228\AppData\Local\Temp\.sonarqube\resources\1\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
       </AnalyzerPlugins>
       <AdditionalFilePaths>
-        <Path>C:\Users\52228\source\repos\CrosswordsV2SonarQube\.sonarqube\conf\vbnet\SonarLint.xml</Path>
+        <Path>C:\Users\52228\source\repos\CrosswordsV2-test\.sonarqube\conf\vbnet\SonarLint.xml</Path>
       </AdditionalFilePaths>
     </AnalyzerSettings>
   </AnalyzersSettings>

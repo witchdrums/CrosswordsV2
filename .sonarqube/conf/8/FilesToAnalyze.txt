@@ -1,7 +1,4 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\GameManagement.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\GameRoomManagement.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\PlayersManagement.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\UserManagement.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\App.config
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\BusinessServices\packages.config
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\Host\Program.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Host\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\Host\App.config
+C:\Users\52228\source\repos\CrosswordsV2-test\Host\packages.config

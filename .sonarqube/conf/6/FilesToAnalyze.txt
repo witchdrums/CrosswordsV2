@@ -1,38 +1,6 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\AddFriendWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Assets\ImageHelper.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\BanUsersPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\FriendsPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\GameConfigurationWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\GameMenu.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\GamePage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\GameRoom.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\InvitationWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\LoginPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\PodiumPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\ProfilePage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\ProfileWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\RecoverPasswordPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\SignUpPage.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\App.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\MainWindow.xaml.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Properties\ResourcesPlayerRankImages.resx
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Properties\ResourcesProfileImages.resx
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Properties\Resources.resx
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\item.xsd
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\item1.xsd
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\item2.xsd
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\item3.xsd
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\item4.xsd
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\ServicesImplementation.wsdl
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Boards.datasource
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Categories.datasource
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Players.datasource
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\WPFLayer.ServicesImplementation.Users.datasource
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\packages.config
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Properties\Settings.settings
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\App.config
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\item.disco
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\configuration91.svcinfo
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\configuration.svcinfo
-C:\Users\52228\source\repos\CrosswordsV2SonarQube\WPFLayer\Connected Services\ServicesImplementation\Reference.svcmap
+﻿C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\GameRoomManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\PlayersManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\UserManagement.cs
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\App.config
+C:\Users\52228\source\repos\CrosswordsV2-test\BusinessServices\packages.config

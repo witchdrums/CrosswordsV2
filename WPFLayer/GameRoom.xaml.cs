@@ -65,7 +65,6 @@ namespace WPFLayer
         public void UpdateRoom(Users[] usersInRoom)
         {
             InstanceContext context = new InstanceContext(this);
-            UsersManagerClient usersManagerClient = new UsersManagerClient(context);
             this.UsersRoom.Clear();
             this.PlayersRoom.Clear();
             this.UsersRoom.AddRange(usersInRoom);
@@ -78,7 +77,6 @@ namespace WPFLayer
             
             InstanceContext context = new InstanceContext(this);
             UsersManagerClient usersManagerClient = new UsersManagerClient(context);
-            Players playerUser = new Players();
             foreach (Users user in usersList)
             {
                 Players userPlayer = new Players();

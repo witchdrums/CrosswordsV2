@@ -23,7 +23,7 @@ namespace WPFLayer
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }
         public int IdRoom { get; set; }
-        public List<ServicesImplementation.Players> FriendsList = new List<Players>();
+        private List<ServicesImplementation.Players> FriendsList = new List<Players>();
         public InvitationWindow(int idGameRoom,ServicesImplementation.Players player)
         {
             InitializeComponent();
@@ -49,7 +49,6 @@ namespace WPFLayer
         private void Button_SendInvitation_Click(object sender, RoutedEventArgs e)
         {
             InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.PlayersManagementClient playersManagementClient = new PlayersManagementClient();
             ServicesImplementation.UsersManagerClient usersManagerClient = new UsersManagerClient(context);
             ListViewItem itemSelected = (ListViewItem)this.ListView_Friends.SelectedItem;
             if(itemSelected == null)
