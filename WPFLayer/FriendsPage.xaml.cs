@@ -16,9 +16,7 @@ using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for FriendsPage.xaml
-    /// </summary>
+
     public partial class FriendsPage : Page
     {
         public ServicesImplementation.Players PlayerLogin { set; get; }

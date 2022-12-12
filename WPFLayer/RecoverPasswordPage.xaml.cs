@@ -19,9 +19,6 @@ using Validation;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for RecoverPasswordPage.xaml
-    /// </summary>
     public partial class RecoverPasswordPage : Page
     {
         public RecoverPasswordPage()

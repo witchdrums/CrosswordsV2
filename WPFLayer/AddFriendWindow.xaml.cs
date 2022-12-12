@@ -17,9 +17,6 @@ using WPFLayer.Properties;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for AddFriendWindow.xaml
-    /// </summary>
     public partial class AddFriendWindow : Window
     {
         public ServicesImplementation.Players PlayerLogin { set; get; }

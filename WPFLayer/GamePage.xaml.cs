@@ -42,7 +42,6 @@ namespace WPFLayer
         private int remainingTurns = 0;
         private WordsBoard currentWordSelected;
 
-        //room info
         private Queue<GamesPlayers> gamePlayersQueue = new Queue<GamesPlayers>();
         private List<ServicesImplementation.Users> usersRoom;
         private Users userLogin;
@@ -97,7 +96,7 @@ namespace WPFLayer
             this.ImageBrush_Avatar1.ImageSource = Assets.ImageHelper.GetBitmapImageFor(this.Player.Player);
         }
 
-        private void StartGame(object sender, EventArgs e)
+        private void StartGame(object sender, EventArgs eventArguments)
         {
             this.Button_Player.Content = this.Player.Player.playerName;
             this.Button_Player.Background = System.Windows.Media.Brushes.White;
@@ -123,7 +122,7 @@ namespace WPFLayer
             gameTimer.Start();
         }
 
-        private void SecondPasses(object sender, EventArgs e)
+        private void SecondPasses(object sender, EventArgs eventArguments)
         {
             if (timeSpan == TimeSpan.FromSeconds(1))
             {
@@ -250,20 +249,21 @@ namespace WPFLayer
             this.Grid_CrosswordPanel.Children.Add(crosswordGrid);
         }
 
-        private void TextBox_WordGuess_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_WordGuess_TextChanged(object sender, TextChangedEventArgs eventArguments)
         {
             this.selectedWordLabels.ForEach(label => label.Content = "");
             for (int xIndex = 0; xIndex < this.TextBox_WordGuess.Text.Length; xIndex++)
             {
 
-                if (xIndex < this.selectedWordLabels.Count && this.selectedWordLabels.ElementAt(xIndex).Content.ToString() == "")
+                if (xIndex < this.selectedWordLabels.Count 
+                    && this.selectedWordLabels.ElementAt(xIndex).Content.ToString() == "")
                 {
                     this.selectedWordLabels.ElementAt(xIndex).Content = this.TextBox_WordGuess.Text[xIndex];
                 }
             }
         }
 
-        private void ListView_HorizontalClueList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_HorizontalClueList_SelectionChanged(object sender, SelectionChangedEventArgs eventArguments)
         {
             if (!currentWordSelected.Word.isSolved)
             {
@@ -419,7 +419,7 @@ namespace WPFLayer
 
         }
 
-        private void Button_SendMessage_Click(object sender, RoutedEventArgs e)
+        private void Button_SendMessage_Click(object sender, RoutedEventArgs eventArguments)
         {
             if (!String.IsNullOrWhiteSpace(TextBox_Message.Text))
             {
@@ -507,7 +507,7 @@ namespace WPFLayer
             keyEvent.Handled = true;
         }
 
-        private void Button_Guess_Click(object sender, RoutedEventArgs e)
+        private void Button_Guess_Click(object sender, RoutedEventArgs eventArguments)
         {
             GuessWord();
         }
@@ -515,7 +515,9 @@ namespace WPFLayer
         private void DeleteGuess()
         {
             this.TextBox_WordGuess.Clear();
-            for (int selectedWordLabelIndex = 0; selectedWordLabelIndex < selectedWordLabelsCopy.Count; selectedWordLabelIndex++)
+            for (int selectedWordLabelIndex = 0; 
+                 selectedWordLabelIndex < selectedWordLabelsCopy.Count; 
+                 selectedWordLabelIndex++)
             {
                 this.selectedWordLabels.ElementAt(selectedWordLabelIndex).Content =
                     this.selectedWordLabelsCopy.ElementAt(selectedWordLabelIndex).Content;
@@ -537,7 +539,7 @@ namespace WPFLayer
 
         }
 
-        private void SortPlayersByScore(object sender, RoutedEventArgs e)
+        private void SortPlayersByScore(object sender, RoutedEventArgs eventArguments)
         {
             List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
             finalPlayerPositions.Sort((a, b) => b.gameScore.CompareTo(a.gameScore));
@@ -556,7 +558,8 @@ namespace WPFLayer
         {
             Games game = new Games();
             game.gameDate = DateTime.Now;
-            int timeInSeconds = (this.gameConfiguration.TurnAmount - this.remainingTurns) * this.gameConfiguration.TurnSeconds;
+            int timeInSeconds = 
+                (this.gameConfiguration.TurnAmount - this.remainingTurns) * this.gameConfiguration.TurnSeconds;        
             game.gameTime = TimeSpan.FromSeconds(timeInSeconds);
 
             return GetGameManagementClient().RegisterGame(game);
@@ -598,7 +601,7 @@ namespace WPFLayer
             NavigationService.Navigate(podiumPage);
         }
 
-        private void Button_Avatar_Click(object sender, RoutedEventArgs e)
+        private void Button_Avatar_Click(object sender, RoutedEventArgs eventArguments)
         {
             GamesPlayers chosenPlayer = ((Button)sender).Tag as GamesPlayers;
             new ProfileWindow(this, chosenPlayer.Player).Show();
@@ -611,7 +614,7 @@ namespace WPFLayer
             GetGameManagementClient().RemovePlayer(chosenPlayer, this.gamePlayersQueue);
         }
 
-        private void Button_LeaveGame_Click(object sender, RoutedEventArgs e)
+        private void Button_LeaveGame_Click(object sender, RoutedEventArgs eventArguments)
         {
             MessageBoxResult messageBoxResult = 
                 System.Windows.MessageBox.Show
