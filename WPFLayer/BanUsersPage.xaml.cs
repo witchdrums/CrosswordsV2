@@ -18,23 +18,21 @@ using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    public partial class BanUsersPage : Page, IUsersManagerCallback
+    public partial class BanUsersPage : Page
     {
         private List<Users> reportedUsers;
         private Dictionary<int, Users> usersToUpdate = new Dictionary<int, Users>();
-        private InstanceContext context;
 
         public BanUsersPage()
         {
             InitializeComponent();
-            this.context = new InstanceContext(this);
             reportedUsers = GetUsersManagerClient().GetReportedUsers().ToList();
             this.DataGrid_Users.DataContext = reportedUsers;
         }
 
         private UsersManagerClient GetUsersManagerClient()
         {
-            return new ServicesImplementation.UsersManagerClient(context);
+            return new ServicesImplementation.UsersManagerClient();
         }
 
         private void Button_GoBack_Click(object sender, RoutedEventArgs e)

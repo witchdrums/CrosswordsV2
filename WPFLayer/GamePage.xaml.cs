@@ -27,7 +27,7 @@ using WPFLayer.ServicesImplementation;
 namespace WPFLayer
 {
 
-    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IUsersManagerCallback, IPingCallback
+    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IPingCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
@@ -538,12 +538,24 @@ namespace WPFLayer
             List<GamesPlayers> finalPlayerPositions = gamePlayersQueue.ToList();
             finalPlayerPositions.Sort((a, b) => b.gameScore.CompareTo(a.gameScore));
             int gameRank = 1;
+            int idGame = RegisterGame();
             foreach (GamesPlayers player in finalPlayerPositions)
             {
                 player.gameRank = gameRank;
                 gameRank = gameRank + 1;
+                player.idGame = idGame;
             }
             GetGameManagementClient().EndGame(this.IdRoom, finalPlayerPositions.ToArray());
+        }
+
+        private int RegisterGame()
+        {
+            Games game = new Games();
+            game.gameDate = DateTime.Now;
+            int timeInSeconds = (this.gameConfiguration.TurnAmount - this.remainingTurns) * this.gameConfiguration.TurnSeconds;
+            game.gameTime = TimeSpan.FromSeconds(timeInSeconds);
+
+            return GetGameManagementClient().RegisterGame(game);
         }
 
         private bool ThereAreWordsToBeSolvedStill()

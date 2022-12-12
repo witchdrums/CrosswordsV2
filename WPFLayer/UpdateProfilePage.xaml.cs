@@ -26,7 +26,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for UpdateProfilePage.xaml
     /// </summary>
-    public partial class UpdateProfilePage : Page, ServicesImplementation.IUsersManagerCallback
+    public partial class UpdateProfilePage : Page
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }
 
@@ -48,8 +48,7 @@ namespace WPFLayer
             BitmapSource bitmapProfileImageSource = Imaging.CreateBitmapSourceFromHBitmap(bitmapProfileImage.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             this.Image_AddNewImagePlayerProfile.Source = bitmapProfileImageSource;
             this.Image_AddNewImagePlayerProfile.Stretch = Stretch.Fill;
-            InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient();
             profileImages = client.GetProfileImages().ToList();
             imageSelectedName = PlayerLogin.ProfileImage;
         }

@@ -22,7 +22,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for RecoverPasswordPage.xaml
     /// </summary>
-    public partial class RecoverPasswordPage : Page, ServicesImplementation.IUsersManagerCallback
+    public partial class RecoverPasswordPage : Page
     {
         public RecoverPasswordPage()
         {
@@ -44,8 +44,7 @@ namespace WPFLayer
 
         private void FindUser() 
         {
-            InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient();
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             userLogin.username = this.TextBox_Username.Text;
             userLogin.email = this.TextBox_Email.Text;

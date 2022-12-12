@@ -1402,7 +1402,7 @@ namespace WPFLayer.ServicesImplementation {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IUsersManager", CallbackContract=typeof(WPFLayer.ServicesImplementation.IUsersManagerCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicesImplementation.IUsersManager")]
     public interface IUsersManager {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/AddUser", ReplyAction="http://tempuri.org/IUsersManager/AddUserResponse")]
@@ -1479,38 +1479,30 @@ namespace WPFLayer.ServicesImplementation {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUsersManagerCallback {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/Response", ReplyAction="http://tempuri.org/IUsersManager/ResponseResponse")]
-        void Response([System.ServiceModel.MessageParameterAttribute(Name="response")] bool response1);
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IUsersManagerChannel : WPFLayer.ServicesImplementation.IUsersManager, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UsersManagerClient : System.ServiceModel.DuplexClientBase<WPFLayer.ServicesImplementation.IUsersManager>, WPFLayer.ServicesImplementation.IUsersManager {
+    public partial class UsersManagerClient : System.ServiceModel.ClientBase<WPFLayer.ServicesImplementation.IUsersManager>, WPFLayer.ServicesImplementation.IUsersManager {
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance) {
+        public UsersManagerClient() {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-                base(callbackInstance, endpointConfigurationName) {
+        public UsersManagerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public UsersManagerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public UsersManagerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public UsersManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, binding, remoteAddress) {
+        public UsersManagerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
         }
         
         public bool AddUser(WPFLayer.ServicesImplementation.Users user) {

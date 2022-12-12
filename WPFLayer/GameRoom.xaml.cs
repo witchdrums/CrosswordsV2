@@ -19,7 +19,7 @@ namespace WPFLayer
     /// <summary>
     /// Interaction logic for GameRoom.xaml
     /// </summary>
-    public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IUsersManagerCallback,IPingCallback
+    public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IPingCallback
     {
         public int IdRoom { set; get; }
         public ServicesImplementation.Players PlayerLogin { set; get; }
@@ -76,7 +76,7 @@ namespace WPFLayer
         {
             
             InstanceContext context = new InstanceContext(this);
-            UsersManagerClient usersManagerClient = new UsersManagerClient(context);
+            UsersManagerClient usersManagerClient = new UsersManagerClient();
             foreach (Users user in usersList)
             {
                 Players userPlayer = new Players();
@@ -168,8 +168,7 @@ namespace WPFLayer
 
         public Queue<GamesPlayers> GetGamesPlayersQueue(List<Users> userRoom)
         {
-            InstanceContext context = new InstanceContext(this);
-            UsersManagerClient usersManagerClient = new UsersManagerClient(context);
+            UsersManagerClient usersManagerClient = new UsersManagerClient();
             Queue<GamesPlayers> gamePlayersQueue = new Queue<GamesPlayers>();
             foreach (Users user in userRoom)
             {

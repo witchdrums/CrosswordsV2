@@ -19,7 +19,7 @@ using WPFLayer.Properties;
 namespace WPFLayer
 {
 
-    public partial class InvitationWindow : Window, IUsersManagerCallback
+    public partial class InvitationWindow : Window
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }
         public int IdRoom { get; set; }
@@ -48,8 +48,7 @@ namespace WPFLayer
 
         private void Button_SendInvitation_Click(object sender, RoutedEventArgs e)
         {
-            InstanceContext context = new InstanceContext(this);
-            ServicesImplementation.UsersManagerClient usersManagerClient = new UsersManagerClient(context);
+            ServicesImplementation.UsersManagerClient usersManagerClient = new UsersManagerClient();
             ListViewItem itemSelected = (ListViewItem)this.ListView_Friends.SelectedItem;
             if(itemSelected == null)
             {
