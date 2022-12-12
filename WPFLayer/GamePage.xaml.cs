@@ -40,6 +40,7 @@ namespace WPFLayer
         private List<GamesPlayers> enemies;
         private bool hasTurn;
         private int remainingTurns = 0;
+        private WordsBoard currentWordSelected;
 
         //room info
         private Queue<GamesPlayers> gamePlayersQueue = new Queue<GamesPlayers>();
@@ -213,8 +214,7 @@ namespace WPFLayer
         {
             this.board = this.gameConfiguration.Board;
             this.ListView_HorizontalClueList.ItemsSource = this.board.WordsBoards;
-            this.ListView_HorizontalClueList.SelectedIndex = 0;
-
+            this.currentWordSelected = this.board.WordsBoards.ElementAt(0);
         }
 
 
@@ -265,7 +265,10 @@ namespace WPFLayer
 
         private void ListView_HorizontalClueList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DeleteGuess();
+            if (!currentWordSelected.Word.isSolved)
+            {
+                DeleteGuess();
+            }
             SelectWordLabels();
         }
 
@@ -273,20 +276,20 @@ namespace WPFLayer
         {
             DeselectAllBoardLabels();
 
-            WordsBoard selectedWord = GetSelectedWordInClueList();
+            this.currentWordSelected = GetSelectedWordInClueList();
             ClearSelectedWordLabels();
-            InitializeTextBoxToSolveWord(selectedWord);
+            InitializeTextBoxToSolveWord(currentWordSelected);
 
-            int xIndex = selectedWord.xStart;
-            int yIndex = selectedWord.yStart;
+            int xIndex = currentWordSelected.xStart;
+            int yIndex = currentWordSelected.yStart;
 
-            foreach (char letter in selectedWord.Word.term)
+            foreach (char letter in currentWordSelected.Word.term)
             {
                 Label selectedWordLabel = this.labelMatrix[xIndex, yIndex];
                 selectedWordLabel.Background = System.Windows.Media.Brushes.Red;
 
                 this.selectedWordLabels.Add(selectedWordLabel);
-                bool wordIsHorizontal = selectedWord.yStart == selectedWord.yEnd;
+                bool wordIsHorizontal = currentWordSelected.yStart == currentWordSelected.yEnd;
                 if (wordIsHorizontal)
                 {
                     xIndex++;
@@ -395,8 +398,10 @@ namespace WPFLayer
 
         private void ClearSelectedWordLabels()
         {
+
             this.selectedWordLabels.Clear();
             this.selectedWordLabelsCopy.Clear();
+            
         }
 
 
@@ -512,7 +517,6 @@ namespace WPFLayer
             this.TextBox_WordGuess.Clear();
             for (int selectedWordLabelIndex = 0; selectedWordLabelIndex < selectedWordLabelsCopy.Count; selectedWordLabelIndex++)
             {
-
                 this.selectedWordLabels.ElementAt(selectedWordLabelIndex).Content =
                     this.selectedWordLabelsCopy.ElementAt(selectedWordLabelIndex).Content;
             }
