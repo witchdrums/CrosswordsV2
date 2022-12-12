@@ -7,12 +7,14 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WPFLayer.Properties;
+
 
 namespace WPFLayer
 {
     public partial class App : Application
     {
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -55,11 +57,13 @@ namespace WPFLayer
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Exception in LogUnhandledException");
+                logger.Error(ex, "Exception in LogUnhandledException");
             }
             finally
             {
-                _logger.Error(exception, message);
+                logger.Error(exception, message);
+                MessageBox.Show("An Error has success, Bye Bye!");
+                System.Windows.Application.Current.Shutdown();
             }
         }
         }

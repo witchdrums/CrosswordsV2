@@ -655,6 +655,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error ocurred while conecting the game, please remake the game.
+        /// </summary>
+        public static string General_Message_ErrorGame {
+            get {
+                return ResourceManager.GetString("General_Message_ErrorGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Codigo.
         /// </summary>
         public static string General_Text_Code {
