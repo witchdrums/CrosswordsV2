@@ -80,14 +80,14 @@ namespace WPFLayer
         {
             string randomPassword;
             Random random = new Random();
-            string securePasswordCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%$#@*";
-            int securePasswordCharacterslength = securePasswordCharacters.Length;
+            string secureCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%$#@*";
+            int securePasswordCharacterslength = secureCharacters.Length;
             char passwordCharacter;
             int passwordLength = 10;
             randomPassword = string.Empty;
             for (int i = 0; i < passwordLength; i++)
             {
-                passwordCharacter = securePasswordCharacters[random.Next(securePasswordCharacterslength)];
+                passwordCharacter = secureCharacters[random.Next(securePasswordCharacterslength)];
                 randomPassword += passwordCharacter.ToString();
             }
             return randomPassword;

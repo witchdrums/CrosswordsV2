@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Validation;
 using WPFLayer.Properties;
 using WPFLayer.ServicesImplementation;
 
@@ -42,8 +43,7 @@ namespace WPFLayer
 
         //room info
         private Queue<GamesPlayers> gamePlayersQueue = new Queue<GamesPlayers>();
-        private List<ServicesImplementation.Users> usersRoom =
-            new List<ServicesImplementation.Users>();
+        private List<ServicesImplementation.Users> usersRoom;
         private Users userLogin;
         public int IdRoom { get; set; }
 
@@ -93,8 +93,7 @@ namespace WPFLayer
                     this.Player = gamePlayer;
                 }
             }
-            this.ImageBrush_Avatar1.ImageSource =
-                Assets.ImageHelper.GetBitmapImageFor(this.Player.Player.ProfileImage.profileImageName);
+            this.ImageBrush_Avatar1.ImageSource = Assets.ImageHelper.GetBitmapImageFor(this.Player.Player);
         }
 
         private void StartGame(object sender, EventArgs e)
@@ -105,8 +104,6 @@ namespace WPFLayer
             this.Button_Player.Click += (SortPlayersByScore);
             EndTurn();
         }
-
-
 
         private void GameSetup()
         {
@@ -137,7 +134,6 @@ namespace WPFLayer
                 this.Label_Timer.Content = timeSpan.TotalSeconds.ToString();
             }
         }
-
 
         private void JoinGame()
         {
@@ -184,7 +180,7 @@ namespace WPFLayer
 
                 enemyAvatars[enemyIndex].Visibility = Visibility.Visible;
                 (enemyAvatars[enemyIndex].Fill as ImageBrush).ImageSource =
-                    Assets.ImageHelper.GetBitmapImageFor(currentEnemy.Player.ProfileImage.profileImageName);
+                    Assets.ImageHelper.GetBitmapImageFor(currentEnemy.Player);
                 EnemyPortrait enemyPortrait = new EnemyPortrait();
                 enemyPortrait.enemyAvatar = enemyAvatars[enemyIndex];
                 enemyPortrait.enemyScore = enemyScores[enemyIndex];
@@ -278,7 +274,7 @@ namespace WPFLayer
             DeselectAllBoardLabels();
 
             WordsBoard selectedWord = GetSelectedWordInClueList();
-            ClearSelectedWordLabels(selectedWord);
+            ClearSelectedWordLabels();
             InitializeTextBoxToSolveWord(selectedWord);
 
             int xIndex = selectedWord.xStart;
@@ -365,7 +361,7 @@ namespace WPFLayer
                 AddScore(selectedWord);
                 selectedWord.Word.isSolved = true;
                 GetGameManagementClient().SendSolvedWordsBoard(this.gamePlayersQueue, this.Player, selectedWord);
-                ClearSelectedWordLabels(selectedWord);
+                ClearSelectedWordLabels();
             }
             else
             {
@@ -387,8 +383,6 @@ namespace WPFLayer
                     player.gameScore += score;
                 }
             }
-
-
         }
 
         private void IsMyTurn(bool isMyTurn)
@@ -399,7 +393,7 @@ namespace WPFLayer
             this.Button_Guess.IsEnabled = hasTurn;
         }
 
-        private void ClearSelectedWordLabels(WordsBoard word)
+        private void ClearSelectedWordLabels()
         {
             this.selectedWordLabels.Clear();
             this.selectedWordLabelsCopy.Clear();
@@ -463,7 +457,6 @@ namespace WPFLayer
                 {
                     currentLabel.Content = letter;
                 }
-                //currentLabel.FontSize = 15;
                 if (word.yStart == word.yEnd)
                 {
                     xIndex++;
@@ -473,7 +466,6 @@ namespace WPFLayer
                     yIndex++;
                 }
             }
-
         }
 
         private void KeyDownKeyboard(object sender, KeyEventArgs keyEvent)
@@ -492,7 +484,7 @@ namespace WPFLayer
             if (keyValue >= 44 && keyValue <= 69)
             {
                 int currentLettersInGuess = this.TextBox_WordGuess.Text.Length;
-                WordsBoard selectedWord = GetSelectedWordInClueList() as WordsBoard;
+                WordsBoard selectedWord = GetSelectedWordInClueList();
 
                 if (this.TextBox_WordGuess.MaxLength > currentLettersInGuess && !selectedWord.Word.isSolved)
                 {
@@ -559,7 +551,7 @@ namespace WPFLayer
             int wordsToBeSolved = 0;
             foreach (WordsBoard word in this.ListView_HorizontalClueList.Items)
             {
-                if (word.Word.isSolved == false)
+                if (!word.Word.isSolved)
                 {
                     wordsToBeSolved += 1;
                 }
