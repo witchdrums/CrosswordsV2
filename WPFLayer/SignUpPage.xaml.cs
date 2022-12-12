@@ -56,7 +56,7 @@ namespace WPFLayer
             return visibility;
         }
 
-        private void TextBox_Email_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_Email_TextChanged(object sender, TextChangedEventArgs eventArguments)
         {
             String currentEmail = this.TextBox_Email.Text;
             currentEmailIsValid = UsersValidationService.ValidEmailRegex.IsMatch(currentEmail);

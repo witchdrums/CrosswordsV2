@@ -16,9 +16,6 @@ using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for GameRoom.xaml
-    /// </summary>
     public partial class GameRoom : Page, ServicesImplementation.IMessagesCallback, ServicesImplementation.IGameRoomManagementCallback, IPingCallback
     {
         public int IdRoom { set; get; }

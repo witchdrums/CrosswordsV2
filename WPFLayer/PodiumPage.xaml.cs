@@ -71,7 +71,7 @@ namespace WPFLayer
             }
         }
 
-        private void Button_ReturnToMenu_Click(object sender, RoutedEventArgs e)
+        private void Button_ReturnToMenu_Click(object sender, RoutedEventArgs eventArguments)
         {
             NavigationService.RemoveBackEntry();
             NavigationService.RemoveBackEntry();

@@ -16,9 +16,6 @@ using WPFLayer.ServicesImplementation;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for ProfilePage.xaml
-    /// </summary>
     public partial class ProfileWindow : Window
     {
         private Players chosenPlayer;
@@ -63,7 +60,8 @@ namespace WPFLayer
         {
             UsersManagerClient usersManagerClient = new UsersManagerClient();
 
-            Categories selectedCategory = ((ComboBoxItem)this.Combobox_ReportCategories.SelectedItem).Tag as Categories;
+            Categories selectedCategory = 
+                ((ComboBoxItem)this.Combobox_ReportCategories.SelectedItem).Tag as Categories;
             Reports report = new Reports();
             report.idCategory = selectedCategory.idCategory;
             report.idUser = this.chosenPlayer.User.idUser;

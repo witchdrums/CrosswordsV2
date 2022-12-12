@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for ProfilePage.xaml
-    /// </summary>
     public partial class ProfilePage : Page
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }

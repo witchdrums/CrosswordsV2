@@ -23,9 +23,6 @@ using System.ServiceModel;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for UpdateProfilePage.xaml
-    /// </summary>
     public partial class UpdateProfilePage : Page
     {
         public ServicesImplementation.Players PlayerLogin { get; set; }

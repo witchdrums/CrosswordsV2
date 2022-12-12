@@ -11,10 +11,10 @@ namespace Validation
     {
         public static readonly Regex ValidEmailRegex = new Regex
         (
-            "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +
-            "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:" +
-            "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+" +
-            "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+            "^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +
+            "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:" +
+            "[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+" +
+            "[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
         );
 
         public static readonly Regex ValidPasswordRegex = new Regex
