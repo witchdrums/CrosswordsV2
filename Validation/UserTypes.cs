@@ -1,6 +1,6 @@
 ﻿namespace Validation
 {
-    public enum UserTypes : int
+    public enum UserTypes
     {
         PLAYER = 1,
         GUEST = 2,

@@ -102,7 +102,7 @@ namespace WPFLayer
             ServicesImplementation.Players playerLogin = new ServicesImplementation.Players();
             ServicesImplementation.Users userLogin = new ServicesImplementation.Users();
             //playerLogin.playerName = "Guest" + new Random().Next(1,1000);
-            userLogin.idUserType = 10;
+            userLogin.idUserType = (int)UserTypes.GUEST;
             userLogin.username = "Guest" + new Random().Next(1, 1000);
             playerLogin.User = userLogin;
             GameMenu gameMenuPage = new GameMenu(playerLogin);
