@@ -1470,6 +1470,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/UpdateUserBanStatus", ReplyAction="http://tempuri.org/IUsersManager/UpdateUserBanStatusResponse")]
         System.Threading.Tasks.Task<bool> UpdateUserBanStatusAsync(WPFLayer.ServicesImplementation.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetProfileImages", ReplyAction="http://tempuri.org/IUsersManager/GetProfileImagesResponse")]
+        WPFLayer.ServicesImplementation.ProfileImages[] GetProfileImages();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersManager/GetProfileImages", ReplyAction="http://tempuri.org/IUsersManager/GetProfileImagesResponse")]
+        System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.ProfileImages[]> GetProfileImagesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1594,6 +1600,14 @@ namespace WPFLayer.ServicesImplementation {
         public System.Threading.Tasks.Task<bool> UpdateUserBanStatusAsync(WPFLayer.ServicesImplementation.Users user) {
             return base.Channel.UpdateUserBanStatusAsync(user);
         }
+        
+        public WPFLayer.ServicesImplementation.ProfileImages[] GetProfileImages() {
+            return base.Channel.GetProfileImages();
+        }
+        
+        public System.Threading.Tasks.Task<WPFLayer.ServicesImplementation.ProfileImages[]> GetProfileImagesAsync() {
+            return base.Channel.GetProfileImagesAsync();
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1635,6 +1649,12 @@ namespace WPFLayer.ServicesImplementation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/RemoveFriend", ReplyAction="http://tempuri.org/IPlayersManagement/RemoveFriendResponse")]
         System.Threading.Tasks.Task<bool> RemoveFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformation", ReplyAction="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformationResponse")]
+        bool UpdatePlayerProfileInformation(WPFLayer.ServicesImplementation.Players player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformation", ReplyAction="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformationResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePlayerProfileInformationAsync(WPFLayer.ServicesImplementation.Players player);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1710,6 +1730,14 @@ namespace WPFLayer.ServicesImplementation {
         
         public System.Threading.Tasks.Task<bool> RemoveFriendAsync(WPFLayer.ServicesImplementation.Players playerOrigin, WPFLayer.ServicesImplementation.Players playerTarget) {
             return base.Channel.RemoveFriendAsync(playerOrigin, playerTarget);
+        }
+        
+        public bool UpdatePlayerProfileInformation(WPFLayer.ServicesImplementation.Players player) {
+            return base.Channel.UpdatePlayerProfileInformation(player);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePlayerProfileInformationAsync(WPFLayer.ServicesImplementation.Players player) {
+            return base.Channel.UpdatePlayerProfileInformationAsync(player);
         }
     }
     

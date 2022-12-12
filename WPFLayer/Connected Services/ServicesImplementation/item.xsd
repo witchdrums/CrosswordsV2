@@ -83,6 +83,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
+  <xs:complexType name="ArrayOfProfileImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProfileImages" nillable="true" type="tns:ProfileImages" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProfileImages" nillable="true" type="tns:ArrayOfProfileImages" />
   <xs:complexType name="ArrayOfPlayers">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Players" nillable="true" type="tns:Players" />

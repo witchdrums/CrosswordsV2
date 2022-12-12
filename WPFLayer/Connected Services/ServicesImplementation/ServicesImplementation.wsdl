@@ -249,6 +249,12 @@
   <wsdl:message name="IUsersManager_UpdateUserBanStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserBanStatusResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersManager_GetProfileImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfileImages" />
+  </wsdl:message>
+  <wsdl:message name="IUsersManager_GetProfileImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfileImagesResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersManager_Response_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:Response" />
   </wsdl:message>
@@ -290,6 +296,12 @@
   </wsdl:message>
   <wsdl:message name="IPlayersManagement_RemoveFriend_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_UpdatePlayerProfileInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerProfileInformation" />
+  </wsdl:message>
+  <wsdl:message name="IPlayersManagement_UpdatePlayerProfileInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerProfileInformationResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManagement_SendSolvedWordsBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:SendSolvedWordsBoard" />
@@ -477,6 +489,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/UpdateUserBanStatus" message="tns:IUsersManager_UpdateUserBanStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/UpdateUserBanStatusResponse" message="tns:IUsersManager_UpdateUserBanStatus_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetProfileImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/GetProfileImages" message="tns:IUsersManager_GetProfileImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/GetProfileImagesResponse" message="tns:IUsersManager_GetProfileImages_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Response">
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersManager/Response" message="tns:IUsersManager_Response_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersManager/ResponseResponse" message="tns:IUsersManager_Response_InputCallbackMessage" />
@@ -506,6 +522,10 @@
     <wsdl:operation name="RemoveFriend">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/RemoveFriend" message="tns:IPlayersManagement_RemoveFriend_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/RemoveFriendResponse" message="tns:IPlayersManagement_RemoveFriend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayerProfileInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformation" message="tns:IPlayersManagement_UpdatePlayerProfileInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformationResponse" message="tns:IPlayersManagement_UpdatePlayerProfileInformation_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagement">
@@ -733,6 +753,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetProfileImages">
+      <soap12:operation soapAction="http://tempuri.org/IUsersManager/GetProfileImages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Response">
       <soap12:operation soapAction="http://tempuri.org/IUsersManager/Response" style="document" />
       <wsdl:input>
@@ -793,6 +822,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveFriend">
       <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/RemoveFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayerProfileInformation">
+      <soap12:operation soapAction="http://tempuri.org/IPlayersManagement/UpdatePlayerProfileInformation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1066,7 +1104,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1075,7 +1113,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1084,7 +1122,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1093,7 +1131,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1102,7 +1140,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1111,7 +1149,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/Services</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-54PBLF8\52228</Upn>
+          <Upn>JAVI\THE CHAVI’S</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
