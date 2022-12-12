@@ -1,3 +1,4 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2-test\Validation\IUsersValidationService.cs
-C:\Users\52228\source\repos\CrosswordsV2-test\Validation\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2-test\Validation\UsersValidationService.cs
+﻿C:\Users\52228\source\repos\CrosswordsV2SonarQube\Validation\IUsersValidationService.cs
+C:\Users\52228\source\repos\CrosswordsV2SonarQube\Validation\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2SonarQube\Validation\UsersValidationService.cs
+C:\Users\52228\source\repos\CrosswordsV2SonarQube\Validation\UserTypes.cs

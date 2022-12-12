@@ -67,7 +67,7 @@ namespace WPFLayer
                 playerPanels[playerIndex].Visibility = Visibility.Visible;
                 GamesPlayers currenPlayer = players[playerIndex];
                 playerAvatars[playerIndex].ImageSource = 
-                    Assets.ImageHelper.GetBitmapImageFor(currenPlayer);
+                    Assets.ImageHelper.GetBitmapImageFor(currenPlayer.Player);
             }
         }
 
