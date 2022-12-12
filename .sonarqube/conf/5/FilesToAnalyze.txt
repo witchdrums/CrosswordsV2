@@ -1,3 +1,4 @@
-﻿C:\Users\52228\source\repos\CrosswordsV2-test\Validation\IUsersValidationService.cs
-C:\Users\52228\source\repos\CrosswordsV2-test\Validation\Properties\AssemblyInfo.cs
-C:\Users\52228\source\repos\CrosswordsV2-test\Validation\UsersValidationService.cs
+﻿C:\Users\52228\source\repos\CrosswordsV2Ping\Validation\IUsersValidationService.cs
+C:\Users\52228\source\repos\CrosswordsV2Ping\Validation\Properties\AssemblyInfo.cs
+C:\Users\52228\source\repos\CrosswordsV2Ping\Validation\UsersValidationService.cs
+C:\Users\52228\source\repos\CrosswordsV2Ping\Validation\UserTypes.cs
