@@ -59,11 +59,6 @@ namespace WPFLayer
             }
         }
 
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Button_SendReport_Click(object sender, RoutedEventArgs e)
         {
             UsersManagerClient usersManagerClient = new UsersManagerClient();
@@ -76,7 +71,7 @@ namespace WPFLayer
 
             if (usersManagerClient.RegisterReport(report))
             {
-                MessageBox.Show("Your report has been submitted.");
+                MessageBox.Show(Properties.Resources.ProfileWindow_Message_Submitted);
             }
         }
 

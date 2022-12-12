@@ -49,11 +49,6 @@ namespace WPFLayer
             }
         }
 
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-            throw new NotImplementedException();
-        }
-
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
 

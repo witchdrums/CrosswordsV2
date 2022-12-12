@@ -162,6 +162,9 @@
   <data name="Button_ViewProfile" xml:space="preserve">
     <value>View profile</value>
   </data>
+  <data name="Crosswords" xml:space="preserve">
+    <value>Crosswords</value>
+  </data>
   <data name="Email_SignUpWelcome_Body" xml:space="preserve">
     <value>That's it, have &lt;b&gt;fun :D&lt;/b&gt;</value>
   </data>
@@ -221,6 +224,12 @@
   </data>
   <data name="Game_Label_Score" xml:space="preserve">
     <value>Score: </value>
+  </data>
+  <data name="Game_Message_ForceExit" xml:space="preserve">
+    <value>The host left the game. You'll return to the main menu.</value>
+  </data>
+  <data name="Game_Message_Leave" xml:space="preserve">
+    <value>Are you sure you want to leave the game?</value>
   </data>
   <data name="General_Button_Accept" xml:space="preserve">
     <value>Accept</value>
@@ -351,6 +360,9 @@
   <data name="LogIn_LogIn" xml:space="preserve">
     <value>Log in</value>
   </data>
+  <data name="LogIn_Message_Ban" xml:space="preserve">
+    <value>You've been banned until: </value>
+  </data>
   <data name="LogIn_PlayAsGuest" xml:space="preserve">
     <value>Play as guest</value>
   </data>
@@ -377,6 +389,21 @@
   </data>
   <data name="Podium_TextBlock_TheWinnerIs" xml:space="preserve">
     <value>The winner is...</value>
+  </data>
+  <data name="ProfileWindow_Button_SendReport" xml:space="preserve">
+    <value>Send report</value>
+  </data>
+  <data name="ProfileWindow_Header_ReportPlayer" xml:space="preserve">
+    <value>Report player</value>
+  </data>
+  <data name="ProfileWindow_Label_PlayedGames" xml:space="preserve">
+    <value>Played games</value>
+  </data>
+  <data name="ProfileWindow_Label_WonGames" xml:space="preserve">
+    <value>Won games</value>
+  </data>
+  <data name="ProfileWindow_Message_Submitted" xml:space="preserve">
+    <value>Your report has been submitted.</value>
   </data>
   <data name="RecoverPassword_Button_Recover" xml:space="preserve">
     <value>Recover</value>

@@ -27,7 +27,7 @@ using WPFLayer.ServicesImplementation;
 namespace WPFLayer
 {
 
-    public partial class GamePage : Page, IMessagesCallback, IGameRoomManagementCallback, IGameManagementCallback, IPingCallback
+    public partial class GamePage : Page, IMessagesCallback, IGameManagementCallback, IPingCallback
     {
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private TimeSpan timeSpan = new TimeSpan();
@@ -573,32 +573,6 @@ namespace WPFLayer
         }
 
 
-
-        public void ReciveInvitationToRoom(int idRoom)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateRoom(Users[] usersInRoom)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ForceExitToRoom()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EnterGame(GameConfiguration gameConfiguration)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-            throw new NotImplementedException();
-        }
-
         public void ReceiveTurn()
         {
             IsMyTurn(true);
@@ -635,7 +609,13 @@ namespace WPFLayer
 
         private void Button_LeaveGame_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to leave the game?", "Leave game", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = 
+                System.Windows.MessageBox.Show
+                (
+                    Properties.Resources.Game_Message_Leave,
+                    "", 
+                    System.Windows.MessageBoxButton.YesNo
+                );
             if (messageBoxResult == MessageBoxResult.Yes)
             {
 
@@ -667,7 +647,7 @@ namespace WPFLayer
 
         public void StopGame()
         {
-            MessageBox.Show("The host left the game. You'll return to the main menu.", "Host left");
+            MessageBox.Show(Properties.Resources.Game_Message_ForceExit);
             SendLeavingUserToMainMenu();
         }
 

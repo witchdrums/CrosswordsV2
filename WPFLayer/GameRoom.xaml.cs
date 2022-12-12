@@ -191,11 +191,6 @@ namespace WPFLayer
             NavigationService.Navigate(gamePage);
         }
 
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Button_Invite_Click(object sender, RoutedEventArgs e)
         {
             this.invitationWindow = new InvitationWindow(this.IdRoom,this.PlayerLogin);

@@ -196,6 +196,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crosswords.
+        /// </summary>
+        public static string Crosswords {
+            get {
+                return ResourceManager.GetString("Crosswords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to That&apos;s it, have &lt;b&gt;fun :D&lt;/b&gt;.
         /// </summary>
         public static string Email_SignUpWelcome_Body {
@@ -327,6 +336,24 @@ namespace WPFLayer.Properties {
         public static string Game_Label_Score {
             get {
                 return ResourceManager.GetString("Game_Label_Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The host left the game. You&apos;ll return to the main menu..
+        /// </summary>
+        public static string Game_Message_ForceExit {
+            get {
+                return ResourceManager.GetString("Game_Message_ForceExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to leave the game?.
+        /// </summary>
+        public static string Game_Message_Leave {
+            get {
+                return ResourceManager.GetString("Game_Message_Leave", resourceCulture);
             }
         }
         
@@ -763,6 +790,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve been banned until: .
+        /// </summary>
+        public static string LogIn_Message_Ban {
+            get {
+                return ResourceManager.GetString("LogIn_Message_Ban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play as guest.
         /// </summary>
         public static string LogIn_PlayAsGuest {
@@ -840,6 +876,51 @@ namespace WPFLayer.Properties {
         public static string Podium_TextBlock_TheWinnerIs {
             get {
                 return ResourceManager.GetString("Podium_TextBlock_TheWinnerIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send report.
+        /// </summary>
+        public static string ProfileWindow_Button_SendReport {
+            get {
+                return ResourceManager.GetString("ProfileWindow_Button_SendReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report player.
+        /// </summary>
+        public static string ProfileWindow_Header_ReportPlayer {
+            get {
+                return ResourceManager.GetString("ProfileWindow_Header_ReportPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Played games.
+        /// </summary>
+        public static string ProfileWindow_Label_PlayedGames {
+            get {
+                return ResourceManager.GetString("ProfileWindow_Label_PlayedGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Won games.
+        /// </summary>
+        public static string ProfileWindow_Label_WonGames {
+            get {
+                return ResourceManager.GetString("ProfileWindow_Label_WonGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your report has been submitted..
+        /// </summary>
+        public static string ProfileWindow_Message_Submitted {
+            get {
+                return ResourceManager.GetString("ProfileWindow_Message_Submitted", resourceCulture);
             }
         }
         

@@ -78,9 +78,6 @@ namespace WPFLayer
            );
         }
 
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-        }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {

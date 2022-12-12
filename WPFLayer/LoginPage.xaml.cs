@@ -70,8 +70,8 @@ namespace WPFLayer
             playerLogin = client.Login(playerLogin.User);
             if (playerLogin.User.isBanned)
             {
-                MessageBox.Show("Tu ban expira: " + playerLogin.User.banDate.Date,
-                                "Estás baneado", MessageBoxButton.OK, MessageBoxImage.Error);
+                String banMessage = Properties.Resources.LogIn_Message_Ban + playerLogin.User.banDate.Date;
+                MessageBox.Show(banMessage, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (playerLogin.User.credential)
             {
@@ -89,11 +89,6 @@ namespace WPFLayer
         {
             SignUpPage signUpPage = new SignUpPage();
             this.NavigationService.Navigate(signUpPage);
-        }
-
-        public void Response([MessageParameter(Name = "response")] bool response1)
-        {
-            throw new NotImplementedException();
         }
 
         private void Button_PlayAsGuest_Click(object sender, RoutedEventArgs e)
