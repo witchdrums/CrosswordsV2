@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPFLayer"
       xmlns:p ="clr-namespace:WPFLayer.Properties"
+      xmlns:hm ="http://schemas.hpod9.com/haley/mvvm"
       mc:Ignorable="d"
-      Title="{x:Static p:Resources.LogIn_LogIn}" Height="500" Width="800">
+      Title="{hm:Lang LogIn_LogIn}" Height="500" Width="800">
     <Grid Background="White">
         <Label 
             x:Name="Label_CrossWords" 
@@ -18,7 +19,7 @@
             FontWeight="Bold"/>
         <Label 
             x:Name="Label_Username"
-            Content="{x:Static p:Resources.General_Label_Username}" 
+            Content="{hm:Lang General_Label_Username}" 
             HorizontalAlignment="Left" 
             Margin="176,80,0,0" 
             VerticalAlignment="Top"
@@ -26,7 +27,7 @@
             FontWeight="Bold"/>
         <Label 
             x:Name="Label_Password" 
-            Content="{x:Static p:Resources.General_Label_Password}" 
+            Content="{hm:Lang General_Label_Password}" 
             HorizontalAlignment="Left"
             Margin="176,182,0,0" 
             VerticalAlignment="Top" 
@@ -53,7 +54,7 @@
             VerticalContentAlignment="Center"/>
         <Button 
             x:Name="Button_Login" 
-            Content="{x:Static p:Resources.LogIn_Button_Login}" 
+            Content="{hm:Lang LogIn_Button_Login}" 
             HorizontalAlignment="Left"
             Margin="180,295,0,0" 
             VerticalAlignment="Top"
@@ -63,7 +64,7 @@
             Click="buttonLogin_Click"/>
         <Button 
             x:Name="Button_SignUp" 
-            Content="{x:Static p:Resources.LogIn_SignUp}" 
+            Content="{hm:Lang LogIn_SignUp}" 
             HorizontalAlignment="Left"
             Margin="182,356,0,0"
             VerticalAlignment="Top" 
@@ -72,7 +73,7 @@
             FontWeight="Bold" Click="Button_SignUp_Click_"/>
         <Button
             x:Name="Button_PlayAsGuest" 
-            Content= "{x:Static p:Resources.LogIn_Button_PlayAsGuest}" 
+            Content= "{hm:Lang LogIn_Button_PlayAsGuest}" 
             HorizontalAlignment="Left" 
             Margin="433,356,0,0" 
             VerticalAlignment="Top" 
@@ -81,7 +82,7 @@
             FontWeight="Bold" Click="Button_PlayAsGuest_Click"/>
         <Button 
             x:Name="Button_ForgotYourPassword" 
-            Content="{x:Static p:Resources.LogIn_Button_ForgotYourPassword}" 
+            Content="{hm:Lang LogIn_Button_ForgotYourPassword}" 
             HorizontalAlignment="Left" 
             Margin="303,421,0,0"
             VerticalAlignment="Top"
@@ -95,14 +96,14 @@
 
         <Label 
             x:Name="Label_UsernameInvalid" 
-            Content="{x:Static p:Resources.General_Label_UsernameInvalid}"
+            Content="{hm:Lang General_Label_UsernameInvalid}"
             HorizontalAlignment="Left" 
             Margin="176,143,0,0"
             VerticalAlignment="Top"
             Foreground="Red"/>
         <Label 
             x:Name="Label_PasswordInvalid" 
-            Content="{x:Static p:Resources.General_Label_PasswordInvalid}" 
+            Content="{hm:Lang General_Label_PasswordInvalid}" 
             HorizontalAlignment="Left"
             Margin="176,247,0,0" 
             VerticalAlignment="Top" 

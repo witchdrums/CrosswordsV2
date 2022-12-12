@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Haley.Utils;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,9 +10,6 @@ using System.Windows;
 
 namespace WPFLayer
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
@@ -19,8 +17,14 @@ namespace WPFLayer
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            LangUtils.Register();
+            ChangeCulture("EN");
             SetupExceptionHandling();
+        }
+
+        public static void ChangeCulture(String code)
+        {
+            LangUtils.ChangeCulture(code);
         }
 
         private void SetupExceptionHandling()

@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:WPFLayer"
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:p ="clr-namespace:WPFLayer.Properties"
+      xmlns:hm ="http://schemas.hpod9.com/haley/mvvm"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
-      Title="{x:Static p:Resources.LogIn_SignUp}"
+      Title="{hm:Lang LogIn_SignUp}"
       Background="White">
 
     <Grid>
@@ -34,7 +35,7 @@
 
         <Viewbox Grid.Column="0" HorizontalAlignment="Right"  >
             <TextBlock 
-                Text="{x:Static p:Resources.SignUp_Label_SignUp}" 
+                Text="{hm:Lang SignUp_Label_SignUp}" 
                 VerticalAlignment="Top" HorizontalAlignment="Right" 
                 FontSize="50" 
                 FontWeight="Bold" 
@@ -87,7 +88,7 @@
                         Grid.Column="1"
                         x:Name="Label_EmailInvalid" 
                         Visibility="Visible" 
-                        Content="{x:Static p:Resources.General_Label_EmailInvalid}" 
+                        Content="{hm:Lang General_Label_EmailInvalid}" 
                         FontSize="15" 
                         HorizontalAlignment="Center"
                         Foreground="MediumVioletRed"/>
@@ -113,7 +114,7 @@
                         Grid.Column="1"
                         x:Name="Label_PasswordInvalid"
                         Visibility="Visible" 
-                        Text="{x:Static p:Resources.General_Label_PasswordInvalid}" 
+                        Text="{hm:Lang General_Label_PasswordInvalid}" 
                         FontSize="12" 
                         TextAlignment="Center"
                         HorizontalAlignment="Center"
@@ -148,7 +149,7 @@
                             Grid.Column="1"
                             x:Name="Label_PasswordsDontMatch" 
                             Visibility="Visible"
-                            Content="{x:Static p:Resources.General_Label_PasswordDontMatch}" 
+                            Content="{hm:Lang General_Label_PasswordDontMatch}" 
                             FontSize="15" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Top" 
@@ -159,7 +160,7 @@
                 <StackPanel Grid.Row="4">
                     <Button 
                         x:Name="Button_SignUp" 
-                        Content="{x:Static p:Resources.LogIn_SignUp}"
+                        Content="{hm:Lang LogIn_SignUp}"
                         VerticalAlignment="Top" 
             
                         Height="34" 
@@ -171,7 +172,7 @@
                         x:Name="Button_Return" 
                         Height="34"
                         MaxWidth="300"
-                        Content="{x:Static p:Resources.Button_Return}" 
+                        Content="{hm:Lang Button_Return}" 
                         Click="Button_Return_Click" 
                         Margin="0,0,0,10"/>
                 </StackPanel>

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPFLayer"
         mc:Ignorable="d"
         xmlns:p ="clr-namespace:WPFLayer.Properties"
+        xmlns:hm ="http://schemas.hpod9.com/haley/mvvm"
         Title="ProfilePage" Height="200" Width="440">
     <Viewbox>
 
@@ -34,11 +35,11 @@
 
                 </StackPanel>
                 <Expander  Name="myExpander" Background="White" 
-                HorizontalAlignment="Center" Header="{x:Static p:Resources.ProfileWindow_Header_ReportPlayer}" FontSize="20"
+                HorizontalAlignment="Center" Header="{hm:Lang ProfileWindow_Header_ReportPlayer}" FontSize="20"
                 ExpandDirection="Down" IsExpanded="false" Width="300" Margin="120,0,0,0">
                     <StackPanel>
                         <ComboBox x:Name="Combobox_ReportCategories" Height="40" SelectionChanged="Combobox_ReportCategories_SelectionChanged"/>
-                        <Button x:Name="Button_SendReport"  Content="{x:Static p:Resources.ProfileWindow_Button_SendReport}" Height="40" Click="Button_SendReport_Click" IsEnabled="False"/>
+                        <Button x:Name="Button_SendReport"  Content="{hm:Lang ProfileWindow_Button_SendReport}" Height="40" Click="Button_SendReport_Click" IsEnabled="False"/>
                         <Button x:Name="Button_Kick"  Content="Kick" Height="40" Click="Button_Kick_Click" Visibility="Collapsed"/>
                     </StackPanel>
                 </Expander>
@@ -52,12 +53,12 @@
 
 
                 <StackPanel Grid.Column="0"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10">
-                    <Label Content="{x:Static p:Resources.ProfileWindow_Label_PlayedGames}" FontSize="20"/>
+                    <Label Content="{hm:Lang ProfileWindow_Label_PlayedGames}" FontSize="20"/>
                     <Label x:Name="Label_PlayedGames" Content="50" FontSize="70" HorizontalContentAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10">
-                    <Label Content="{x:Static p:Resources.ProfileWindow_Label_WonGames}" FontSize="20"/>
+                    <Label Content="{hm:Lang ProfileWindow_Label_WonGames}" FontSize="20"/>
                     <Label x:Name="Label_WonGames" Content="50" FontSize="70" HorizontalContentAlignment="Center" Margin="0,-20"/>
                 </StackPanel>
             </Grid>

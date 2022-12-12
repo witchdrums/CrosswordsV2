@@ -628,6 +628,15 @@ namespace WPFLayer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string General_MenuItem_Language {
+            get {
+                return ResourceManager.GetString("General_MenuItem_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We cannot do the operation.
         /// </summary>
         public static string General_Message_CannotOperation {
