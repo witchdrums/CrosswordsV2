@@ -87,7 +87,7 @@ namespace Test
             BusinessServices.UserManagement userManagement = new BusinessServices.UserManagement();
 
             bool expectedResult = false;
-            bool actualResult = userManagement.FindUserByEmail("vitocfdz@gmail.com");
+            bool actualResult = userManagement.FindUserByEmail("maledict@protonmail.com");
 
             Assert.AreEqual(expectedResult, actualResult);
         }

@@ -196,16 +196,22 @@ namespace BusinessServices
             return updateWasSuccessful;
         }
 
-        private int GetNextRank(Player player)
+        public int GetNextRank(Player player)
         {
-            int currentIdRank = player.idRank;
-            if (currentIdRank < 3)
+            int currentIdRank = 1;
+            if (player != null
+                && player.idRank > 0
+                && player.idRank < 7)
             {
-                currentIdRank += 1;
-            }
-            else
-            {
-                currentIdRank = 6;
+                currentIdRank = player.idRank;
+                if (currentIdRank < 3)
+                {
+                    currentIdRank += 1;
+                }
+                else
+                {
+                    currentIdRank = 6;
+                }
             }
             return currentIdRank;
         }

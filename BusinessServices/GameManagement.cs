@@ -13,7 +13,8 @@ namespace BusinessServices
         public int RegisterGame(Games game)
         {
             int insertedIdGame = 0;
-            if (game != null)
+            if (game != null
+                && game.gameDate.Date == DateTime.Now.Date)
             {
                 using (var context = new CrosswordsContext())
                 {

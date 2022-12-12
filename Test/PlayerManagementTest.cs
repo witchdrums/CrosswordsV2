@@ -388,5 +388,58 @@ namespace Test
             Assert.IsFalse(playersManagement.UpdatePlayerProfileInformation(playerToUdate));
         }
 
+         [TestMethod]
+        public void GetNextRank_Test_Success1()
+        {
+            BusinessLogic.Player playerToUdate = new BusinessLogic.Player();
+            playerToUdate.idRank = 1;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            int expectedResult = 2;
+            int actualResult = playersManagement.GetNextRank(playerToUdate);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void GetNextRank_Test_Success2()
+        {
+            BusinessLogic.Player playerToUdate = new BusinessLogic.Player();
+            playerToUdate.idRank = 3;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            int expectedResult = 6;
+            int actualResult = playersManagement.GetNextRank(playerToUdate);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void GetNextRank_Test_Failure1()
+        {
+            BusinessLogic.Player playerToUdate = new BusinessLogic.Player();
+            playerToUdate.idRank = 3;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            int expectedResult = 1;
+            int actualResult = playersManagement.GetNextRank(null);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void GetNextRank_Test_Failure2()
+        {
+            BusinessLogic.Player playerToUdate = new BusinessLogic.Player();
+            playerToUdate.idRank = 0;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            int expectedResult = 1;
+            int actualResult = playersManagement.GetNextRank(playerToUdate);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void GetNextRank_Test_Failure3()
+        {
+            BusinessLogic.Player playerToUdate = new BusinessLogic.Player();
+            playerToUdate.idRank = 7;
+            BusinessServices.PlayersManagement playersManagement = new BusinessServices.PlayersManagement();
+            int expectedResult = 1;
+            int actualResult = playersManagement.GetNextRank(playerToUdate);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
     }
 }
