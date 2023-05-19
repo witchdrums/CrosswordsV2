@@ -1,585 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Domain" />
-  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
-  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Services" />
-  <xs:element name="AddUser">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q1:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddUserResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AddUserResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindUserByEmail">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userEmail" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindUserByEmailResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="FindUserByEmailResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Login">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q2:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LoginResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="LoginResult" nillable="true" type="q3:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RecoverPassword">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q4:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RecoverPasswordResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RecoverPasswordResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterRecoveredPassword">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q5:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterRecoveredPasswordResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RegisterRecoveredPasswordResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetPlayerInformation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="player" nillable="true" type="q6:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetPlayerInformationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetPlayerInformationResult" nillable="true" type="q7:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetReportCategories">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetReportCategoriesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetReportCategoriesResult" nillable="true" type="q8:ArrayOfCategories" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterReport">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="report" nillable="true" type="q9:Reports" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterReportResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RegisterReportResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUserByPlayer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="player" nillable="true" type="q10:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetUserByPlayerResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetUserByPlayerResult" nillable="true" type="q11:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetReportedUsers">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetReportedUsersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetReportedUsersResult" nillable="true" type="q12:ArrayOfUsers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateUserBanStatus">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q13:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateUserBanStatusResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateUserBanStatusResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetProfileImages">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetProfileImagesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetProfileImagesResult" nillable="true" type="q14:ArrayOfProfileImages" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetFriendList">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="player" nillable="true" type="q15:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetFriendListResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetFriendListResult" nillable="true" type="q16:ArrayOfPlayers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterPlayer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q17:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterPlayerResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="RegisterPlayerResult" nillable="true" type="q18:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetPlayerFor">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q19:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetPlayerForResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetPlayerForResult" nillable="true" type="q20:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetFilteredPlayers">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="nameFilter" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetFilteredPlayersResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetFilteredPlayersResult" nillable="true" type="q21:ArrayOfPlayers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddFriend">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerOrigin" nillable="true" type="q22:Players" />
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerTarget" nillable="true" type="q23:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddFriendResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AddFriendResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveFriend">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerOrigin" nillable="true" type="q24:Players" />
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerTarget" nillable="true" type="q25:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveFriendResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RemoveFriendResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePlayerProfileInformation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="player" nillable="true" type="q26:Players" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePlayerProfileInformationResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdatePlayerProfileInformationResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendSolvedWordsBoard">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayersQueue" nillable="true" type="q27:QueueOfGamesPlayersWUeOuCFA" />
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solver" nillable="true" type="q28:GamesPlayers" />
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solvedWordsBoard" nillable="true" type="q29:WordsBoard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="JoinGame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="gamePlayer" nillable="true" type="q30:GamesPlayers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PassTurn">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q31:QueueOfGamesPlayersWUeOuCFA" />
-        <xs:element minOccurs="0" name="currentTurns" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EndGame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerRanks" nillable="true" type="q32:ArrayOfGamesPlayers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemovePlayer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="leavingPlayer" nillable="true" type="q33:Players" />
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q34:QueueOfGamesPlayersWUeOuCFA" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveHost">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="host" nillable="true" type="q35:GamesPlayers" />
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q36:QueueOfGamesPlayersWUeOuCFA" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterGame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="game" nillable="true" type="q37:Games" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterGameResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="RegisterGameResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReceiveSolvedWordsBoard">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solver" nillable="true" type="q38:GamesPlayers" />
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="solvedWordsBoard" nillable="true" type="q39:WordsBoard" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReceiveTurn">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateGamePlayersQueue">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="gamePlayers" nillable="true" type="q40:QueueOfGamesPlayersWUeOuCFA" />
-        <xs:element minOccurs="0" name="remainingTurns" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ShowPlayerRanks">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="playerRanks" nillable="true" type="q41:ArrayOfGamesPlayers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveLeavingUser">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="leavingPlayer" nillable="true" type="q42:Players" />
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="updatedQueue" nillable="true" type="q43:QueueOfGamesPlayersWUeOuCFA" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendLeavingUserToMainMenu">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StopGame">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendInvitationToRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userTarget" nillable="true" type="q44:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="JoinToRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="newUser" nillable="true" type="q45:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CheckRoomAvailability">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CheckRoomAvailabilityResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CheckRoomAvailabilityResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q46:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateRoomResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CreateRoomResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectGameRoomManagement">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="users" nillable="true" type="q47:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectGameRoomManagementResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ExitToRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q48:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LaunchGamePage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameConfiguration" nillable="true" type="q49:GameConfiguration" />
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetBoardById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idBoard" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetBoardByIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="GetBoardByIdResult" nillable="true" type="q50:Boards" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReciveInvitationToRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReciveInvitationToRoomResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="usersInRoom" nillable="true" type="q51:ArrayOfUsers" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateRoomResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ForceExitToRoom">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ForceExitToRoomResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EnterGame">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameConfiguration" nillable="true" type="q52:GameConfiguration" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EnterGameResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendChatMessage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="room" nillable="true" type="q53:ArrayOfUsers" />
-        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q54:Users" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendPrivateMessage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q55:Users" />
-        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userDestination" nillable="true" type="q56:Users" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectMessages">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q57:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectMessagesResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReciveChatMessage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="userOrigin" nillable="true" type="q58:Users" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectPingManagement">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/Domain" minOccurs="0" name="user" nillable="true" type="q59:Users" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectPingManagementResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Alive">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AliveResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="BackMenu">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="BackMenuResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Domain" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Domain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Users">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="banDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="credential" type="xs:boolean" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idUser" type="xs:int" />
+      <xs:element minOccurs="0" name="idUserType" type="xs:int" />
+      <xs:element minOccurs="0" name="isBanned" type="xs:boolean" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Users" nillable="true" type="tns:Users" />
+  <xs:complexType name="Players">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProfileImage" nillable="true" type="tns:ProfileImages" />
+      <xs:element minOccurs="0" name="Rank" nillable="true" type="tns:Ranks" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:Users" />
+      <xs:element minOccurs="0" name="gamesPlayed" type="xs:int" />
+      <xs:element minOccurs="0" name="gamesWon" type="xs:int" />
+      <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+      <xs:element minOccurs="0" name="idProfileImage" type="xs:int" />
+      <xs:element minOccurs="0" name="idRank" type="xs:int" />
+      <xs:element minOccurs="0" name="playerDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerRank" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Players" nillable="true" type="tns:Players" />
+  <xs:complexType name="ProfileImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idProfileImage" type="xs:int" />
+      <xs:element minOccurs="0" name="profileImageName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProfileImages" nillable="true" type="tns:ProfileImages" />
+  <xs:complexType name="Ranks">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idRank" type="xs:int" />
+      <xs:element minOccurs="0" name="rankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rankPoints" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ranks" nillable="true" type="tns:Ranks" />
+  <xs:complexType name="ArrayOfCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Categories" nillable="true" type="tns:Categories" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategories" nillable="true" type="tns:ArrayOfCategories" />
+  <xs:complexType name="Categories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReports" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idCategory" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Categories" nillable="true" type="tns:Categories" />
+  <xs:complexType name="ArrayOfReports">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reports" nillable="true" type="tns:Reports" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReports" nillable="true" type="tns:ArrayOfReports" />
+  <xs:complexType name="Reports">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Categories" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:Users" />
+      <xs:element minOccurs="0" name="chatLog" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="idReport" type="xs:int" />
+      <xs:element minOccurs="0" name="idUser" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Reports" nillable="true" type="tns:Reports" />
+  <xs:complexType name="ArrayOfUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Users" nillable="true" type="tns:Users" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
+  <xs:complexType name="ArrayOfProfileImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProfileImages" nillable="true" type="tns:ProfileImages" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProfileImages" nillable="true" type="tns:ArrayOfProfileImages" />
+  <xs:complexType name="ArrayOfPlayers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Players" nillable="true" type="tns:Players" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayers" nillable="true" type="tns:ArrayOfPlayers" />
+  <xs:complexType name="ArrayOfGamesPlayers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GamesPlayers" nillable="true" type="tns:GamesPlayers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGamesPlayers" nillable="true" type="tns:ArrayOfGamesPlayers" />
+  <xs:complexType name="GamesPlayers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Game" nillable="true" type="tns:Games" />
+      <xs:element minOccurs="0" name="Player" nillable="true" type="tns:Players" />
+      <xs:element minOccurs="0" name="gameRank" type="xs:int" />
+      <xs:element minOccurs="0" name="gameScore" type="xs:int" />
+      <xs:element minOccurs="0" name="hasTurn" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idGame" type="xs:int" />
+      <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GamesPlayers" nillable="true" type="tns:GamesPlayers" />
+  <xs:complexType name="Games">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GamesPlayers" nillable="true" type="tns:ArrayOfGamesPlayers" />
+      <xs:element minOccurs="0" name="gameDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gameTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="idGame" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Games" nillable="true" type="tns:Games" />
+  <xs:complexType name="WordsBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Board" nillable="true" type="tns:Boards" />
+      <xs:element minOccurs="0" name="Word" nillable="true" type="tns:Word" />
+      <xs:element minOccurs="0" name="idBoard" type="xs:int" />
+      <xs:element minOccurs="0" name="idWord" type="xs:int" />
+      <xs:element minOccurs="0" name="xEnd" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="xStart" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="yEnd" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="yStart" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WordsBoard" nillable="true" type="tns:WordsBoard" />
+  <xs:complexType name="Boards">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WordsBoards" nillable="true" type="tns:ArrayOfWordsBoard" />
+      <xs:element minOccurs="0" name="boardMatrix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idBoard" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Boards" nillable="true" type="tns:Boards" />
+  <xs:complexType name="ArrayOfWordsBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WordsBoard" nillable="true" type="tns:WordsBoard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWordsBoard" nillable="true" type="tns:ArrayOfWordsBoard" />
+  <xs:complexType name="Word">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WordsBoards" nillable="true" type="tns:ArrayOfWordsBoard" />
+      <xs:element minOccurs="0" name="clue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isSolved" type="xs:boolean" />
+      <xs:element minOccurs="0" name="term" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Word" nillable="true" type="tns:Word" />
 </xs:schema>

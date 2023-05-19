@@ -108,15 +108,21 @@ namespace WPFLayer
         private void RegisterUser()
         {
 
-            ServicesImplementation.UsersManagerClient client = new ServicesImplementation.UsersManagerClient();
+            ServicesImplementation.UsersManagerClient client = 
+                new ServicesImplementation.UsersManagerClient();
 
             ServicesImplementation.Users newUser = new ServicesImplementation.Users();
+
             newUser.email = this.TextBox_Email.Text;
+
             IEncryptionService encryptionService = new EncryptionService();
-            newUser.password = encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
+            newUser.password = 
+                encryptionService.StringToSHA512(this.PasswordBox_Password.Password);
+
             newUser.username = this.TextBox_Email.Text;
 
             if (client.AddUser(newUser))
+
             {
                 WelcomeNewUserViaEmail(newUser.email);
                 MessageBox.Show(Properties.Resources.Message_SignUpSuccess);
